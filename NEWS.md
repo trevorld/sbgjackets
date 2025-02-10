@@ -1,0 +1,32 @@
+sbgjackets v0.1.0 (development)
+===============================
+
+New features
+------------
+
+Functions to create small box game (SBG) jackets under Creative Commons licenses:
+
+* Functions to create SBG jackets for dominoes (#1):
+
+  + `sbgj_dominoes_double6()`
+  + `sbgj_dominoes_double9()`
+  + `sbgj_dominoes_double12()`
+  + `sbgj_dominoes_all()`
+
+Functions to create small box game (SBG) jackets for **Personal Use Only**:
+
+* Functions to create SBG for Looney Pyramids (#2):
+
+  + `sbgj_looney_pyramids()`
+  + `sbgj_homeworlds()`
+  + `sbgj_ice_duo()`
+  + `sbgj_jinxx()`
+  + `sbgj_martian_chess()`
+  + `sbgj_nomids()`
+  + `sbgj_looney_pyramids_all()`
+
+Grobs to help create small box game (SBG) jackets:
+
+  + `creditsGrob()` (to go on inside of jacket)
+  + `spineIconGrob()`
+  + `spineTextGrob()`

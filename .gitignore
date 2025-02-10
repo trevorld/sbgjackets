@@ -1,0 +1,6 @@
+README.html
+codecov.yml
+pkgdown
+*.swp
+*_raw.svg
+tmp

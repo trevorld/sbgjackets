@@ -1,0 +1,36 @@
+Package: sbgjackets
+Type: Package
+Title: Utilities for Small Box Game Jackets
+Version: 0.1.0-1
+Authors@R: c(person("Trevor L.", "Davis", role=c("aut", "cre"),
+                     email="trevor.l.davis@gmail.com",
+                     comment = c(ORCID = "0000-0001-6341-4639")),
+             person("Delapouite <https://delapouite.com/>", role="ill",
+                    comment = '"Person icon" <https://game-icons.net/1x1/delapouite/person.html> and "Weight icon" <https://game-icons.net/1x1/delapouite/weight.html> / "CC BY 3.0" <https://creativecommons.org/licenses/by/3.0/>'),
+             person("Lorc <https://lorcblog.blogspot.com/>", role="ill",
+                    comment = '"Clockwork icon" <https://game-icons.net/1x1/lorc/clockwork.html> / "CC BY 3.0" <https://creativecommons.org/licenses/by/3.0/>'))
+URL: https://github.com/trevorld/sbgjackets, https://trevorldavis.com/R/sbgjackets/dev/
+BugReports: https://github.com/trevorld/sbgjackets/issues
+Description: Utilities for small box game jackets.
+Depends:
+    R (>= 4.1)
+Imports:
+    bittermelon,
+    dplyr,
+    grid,
+    grImport2,
+    magick,
+    marquee,
+    piecepackr,
+    pnpmisc (>= 0.1.0-15),
+    ppdf,
+    qpdf,
+    rlang,
+    stringr,
+    tools,
+    xmpdf
+Remotes: piecepackr/ppdf, trevorld/pnpmisc
+License: MIT + file LICENSE
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Encoding: UTF-8
