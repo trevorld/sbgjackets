@@ -13,17 +13,18 @@
 #' For more information see the Looney Labs FAQ: <https://faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774>.
 #'
 #' @param output Output file name.  Defaults to `tempfile(fileext = ".pdf")`.
+#' @param ... Should be empty.
+#' @inheritParams pnpmisc::pdf_create_jacket
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
 #' @rdname sbgj_looney
 #' @export
-sbgj_looney_pyramids_all <- function(output = NULL) {
-    stopifnot(piecepackr::has_font("Carlito"),
-              requireNamespace("ppdf"),
-              requireNamespace("xmpdf"),
-              xmpdf::supports_set_bookmarks(),
-              xmpdf::supports_set_docinfo(),
-              xmpdf::supports_set_xmp())
+sbgj_looney_pyramids_all <- function(output = NULL, ...,
+                              paper = c("letter", "a4")) {
+    check_dots_empty()
+    assert_runtime_dependencies()
 
+    paper <- tolower(paper)
+    paper <- match.arg(paper)
     output <- pnpmisc:::normalize_output(output)
 
     bm <- data.frame(title = c("Looney Pyramids",
@@ -35,22 +36,22 @@ sbgj_looney_pyramids_all <- function(output = NULL) {
                                "Nomids"),
                      page = seq.int(1L, by = 2L, length.out = 7L))
 
-    xmp <- xmpdf::xmp(creator = "Trevor L. Davis",
-                      title = "Looney Pyramids Small Box Game Jackets")
+    xmp <- xmp(creator = "Trevor L. Davis",
+               title = "Looney Pyramids Small Box Game Jackets")
 
-    lp <- sbgj_looney_pyramids()
-    hm <- sbgj_homeworlds()
-    id <- sbgj_ice_duo()
-    jx <- sbgj_jinxx()
-    nomids <- sbgj_nomids()
-    mc1 <- sbgj_martian_chess()
-    mc2 <- sbgj_martian_chess(silver = TRUE)
+    lp <- sbgj_looney_pyramids(paper = paper)
+    hm <- sbgj_homeworlds(paper = paper)
+    id <- sbgj_ice_duo(paper = paper)
+    jx <- sbgj_jinxx(paper = paper)
+    nomids <- sbgj_nomids(paper = paper)
+    mc1 <- sbgj_martian_chess(paper = paper)
+    mc2 <- sbgj_martian_chess(silver = TRUE, paper = paper)
     output_c <- tempfile(fileext = ".pdf")
 
     qpdf::pdf_combine(c(lp, hm, id, jx, mc1, mc2, nomids), output_c) |>
         pnpmisc::pdf_set_bookmarks(bookmarks = bm) |>
         pnpmisc::pdf_set_xmp(xmp = xmp) |>
-        pnpmisc::pdf_set_docinfo(docinfo = xmpdf::as_docinfo(xmp)) |>
+        pnpmisc::pdf_set_docinfo(docinfo = as_docinfo(xmp)) |>
         pnpmisc::pdf_compress(output, linearize = TRUE)
 
     pnpmisc::rm_temp_pdfs()
@@ -60,8 +61,14 @@ sbgj_looney_pyramids_all <- function(output = NULL) {
 
 #' @rdname sbgj_looney
 #' @export
-sbgj_looney_pyramids <- function(output = NULL) {
-    stopifnot(piecepackr::has_font("Carlito"))
+sbgj_looney_pyramids <- function(output = NULL, ...,
+                                 paper = c("letter", "a4")) {
+    check_dots_empty()
+    assert_runtime_dependencies()
+
+    paper <- tolower(paper)
+    paper <- match.arg(paper)
+    output <- pnpmisc:::normalize_output(output)
 
     dir <- tools::R_user_dir("sbgjackets", "data")
     if (!dir.exists(dir))
@@ -100,7 +107,7 @@ sbgj_looney_pyramids <- function(output = NULL) {
                          bm_pamphlet[, seq.int(ncol(bm_pamphlet) / 2)])
     bm_pamphlet[1:90, seq.int(ncol(bm_pamphlet) / 2)] <- background_col
     bm_pamphlet[1080:1200, 170:830] <- background_col
-    bm_pamphlet <- bm_pamphlet |> 
+    bm_pamphlet <- bm_pamphlet |>
         bm_replace(background_col) |>
         bm_replace(background_col, "#EDE4D3FF") |>
         bm_replace(background_col, "#EEE5D4FF") |>
@@ -108,7 +115,7 @@ sbgj_looney_pyramids <- function(output = NULL) {
 
     bm_pamphlet2 <- pnpmisc::pdf_render_bm_pixmap(pamphlet, page = 2L)
     bm_pamphlet2 <- bm_pamphlet2[, seq.int(ceiling(0.75 * ncol(bm_pamphlet2)))]
-    bm_pamphlet2 <- bm_pamphlet2 |> 
+    bm_pamphlet2 <- bm_pamphlet2 |>
         bm_replace(background_col) |>
         bm_replace(background_col, "#EEE5D4FF") |>
         bm_replace(background_col, "#EDE4D3FF") |>
@@ -148,8 +155,8 @@ sbgj_looney_pyramids <- function(output = NULL) {
     # * Zark City
     # * Zendo
     front <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)))
-    badges <- c("BlackIce", "Blam", "Volcano", "ClosestGhost", 
-                "FreezeTag", "Gnostica", "Homeworlds", "IceHouse", 
+    badges <- c("BlackIce", "Blam", "Volcano", "ClosestGhost",
+                "FreezeTag", "Gnostica", "Homeworlds", "IceHouse",
                 "IceTowers", "Jinxx", "Pharaoh", "MartianChess",
                 "PenguinSoccer", "Pikemen", "Powerhouse", "PyramidShamBo",
                 "RAMbots", "Skurdir", "StarRunners", "TicTacDoh",
@@ -162,13 +169,13 @@ sbgj_looney_pyramids <- function(output = NULL) {
         front[[i + 1L]] <- editGrob(l_badges[[badges[i]]], vp = vp)
     }
 
-    back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), 
+    back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)),
                   bm_logo, bm_pamphlet, bm_pamphlet2)
     spine <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)),
                    spineTextGrob("Looney Pyramids", col = text_col))
 
-    xmp <- xmpdf::xmp(creator = "Trevor L. Davis",
-                      title = "Looney Pyramids Small Box Game Jacket")
+    xmp <- xmp(creator = "Trevor L. Davis",
+               title = "Looney Pyramids Small Box Game Jacket")
     credits <- c("* From https://www.looneylabs.com/",
                  "",
                  "  + *Looney Pyramids Intro Pamphlet* (cropped and edited)",
@@ -184,14 +191,10 @@ sbgj_looney_pyramids <- function(output = NULL) {
     inner <- gList(cr_grob, bank_grob())
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
-                                spine = spine, inner = inner)
+                                spine = spine, inner = inner, paper = paper)
 
-    if (xmpdf::supports_set_xmp()) {
-        xmpdf::set_xmp(xmp, output)
-    }
-    if (xmpdf::supports_set_docinfo()) {
-        xmpdf::set_docinfo(xmpdf::as_docinfo(xmp), output)
-    }
+    set_xmp(xmp, output)
+    set_docinfo(as_docinfo(xmp), output)
     invisible(output)
 }
 
@@ -200,7 +203,7 @@ bank_grob <- function() {
     ys <- unit(c(0.8, 1.9, 3, 4.1, 5.2), "in")
     w <- unit(9/16, "in")
     vp <- viewport(width = unit(4, "in"), height = unit(6, "in"),
-                   x = unit(1, "npc") - unit(0.5 * (pnpmisc:::JACKET_FACE_WIDTH - 4), "in"), 
+                   x = unit(1, "npc") - unit(0.5 * (pnpmisc:::JACKET_FACE_WIDTH - 4), "in"),
                    just = "right")
     grobTree(rectGrob(xs, y = ys[5L], width = w, height = w,
                       gp = gpar(col = "black", fill = "black", lwd = 4)),
@@ -277,8 +280,14 @@ load_pyramid_badges <- function() {
 
 #' @rdname sbgj_looney
 #' @export
-sbgj_homeworlds <- function(output = NULL) {
-    stopifnot(piecepackr::has_font("Carlito"))
+sbgj_homeworlds <- function(output = NULL, ...,
+                            paper = c("letter", "a4")) {
+    check_dots_empty()
+    assert_runtime_dependencies()
+
+    paper <- tolower(paper)
+    paper <- match.arg(paper)
+    output <- pnpmisc:::normalize_output(output)
 
     dir <- tools::R_user_dir("sbgjackets", "data")
     if (!dir.exists(dir))
@@ -299,13 +308,13 @@ sbgj_homeworlds <- function(output = NULL) {
     background_col <- "#EFE8D5FF"
     text_col <- "#1C3160FF"
 
-    bm_cover <- magick::image_read(cover) |> 
-        as_bm_pixmap() |> 
+    bm_cover <- magick::image_read(cover) |>
+        as_bm_pixmap() |>
         bm_trim(left = 10L, right = 10L) |>
         rasterGrob(height = 0.8)
 
-    bm_back <- magick::image_read(back) |> 
-        as_bm_pixmap() |> 
+    bm_back <- magick::image_read(back) |>
+        as_bm_pixmap() |>
         bm_trim(left = 10L, right = 10L, bottom = 10L, top = 10L) |>
         rasterGrob(height = 0.85)
 
@@ -316,8 +325,8 @@ sbgj_homeworlds <- function(output = NULL) {
                    spineTextGrob("Homeworlds", col = text_col),
                    spineIconGrob(2, 60, 3.43, text_col))
 
-    xmp <- xmpdf::xmp(creator = "Trevor L. Davis",
-                      title = "Homeworlds Small Box Game Jacket")
+    xmp <- xmp(creator = "Trevor L. Davis",
+               title = "Homeworlds Small Box Game Jacket")
     credits <- c("* From https://www.looneylabs.com/resources/game/Homeworlds",
                  "",
                  "  + *Homeworlds Box Front*",
@@ -329,21 +338,23 @@ sbgj_homeworlds <- function(output = NULL) {
     inner <- creditsGrob(xmp, credits, icons = TRUE)
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
-                                spine = spine, inner = inner)
+                                spine = spine, inner = inner, paper = paper)
 
-    if (xmpdf::supports_set_xmp()) {
-        xmpdf::set_xmp(xmp, output)
-    }
-    if (xmpdf::supports_set_docinfo()) {
-        xmpdf::set_docinfo(xmpdf::as_docinfo(xmp), output)
-    }
+    set_xmp(xmp, output)
+    set_docinfo(as_docinfo(xmp), output)
     invisible(output)
 }
 
 #' @rdname sbgj_looney
 #' @export
-sbgj_ice_duo <- function(output = NULL) {
-    stopifnot(piecepackr::has_font("Carlito"))
+sbgj_ice_duo <- function(output = NULL, ...,
+                         paper = c("letter", "a4")) {
+    check_dots_empty()
+    assert_runtime_dependencies()
+
+    paper <- tolower(paper)
+    paper <- match.arg(paper)
+    output <- pnpmisc:::normalize_output(output)
 
     dir <- tools::R_user_dir("sbgjackets", "data")
     if (!dir.exists(dir))
@@ -364,13 +375,13 @@ sbgj_ice_duo <- function(output = NULL) {
     background_col <- "#EFE8D5FF"
     text_col <- "#1C3160FF"
 
-    bm_cover <- magick::image_read(cover) |> 
-        as_bm_pixmap() |> 
+    bm_cover <- magick::image_read(cover) |>
+        as_bm_pixmap() |>
         bm_trim(left = 10L, right = 10L) |>
         rasterGrob(height = 0.8)
 
-    bm_back <- magick::image_read(back) |> 
-        as_bm_pixmap() |> 
+    bm_back <- magick::image_read(back) |>
+        as_bm_pixmap() |>
         bm_trim(left = 10L, right = 10L, bottom = 10L, top = 10L) |>
         rasterGrob(height = 0.85)
 
@@ -381,8 +392,8 @@ sbgj_ice_duo <- function(output = NULL) {
                    spineTextGrob("Ice Duo", col = text_col),
                    spineIconGrob(2, 30, 1.50, text_col))
 
-    xmp <- xmpdf::xmp(creator = "Trevor L. Davis",
-                      title = "Ice Duo Small Box Game Jacket")
+    xmp <- xmp(creator = "Trevor L. Davis",
+               title = "Ice Duo Small Box Game Jacket")
     credits <- c("* From https://www.looneylabs.com/resources/game/Ice%20Duo",
                  "",
                  "  + *Ice Duo Box Front*",
@@ -394,21 +405,23 @@ sbgj_ice_duo <- function(output = NULL) {
     inner <- creditsGrob(xmp, credits, icons = TRUE)
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
-                                spine = spine, inner = inner)
+                                spine = spine, inner = inner, paper = paper)
 
-    if (xmpdf::supports_set_xmp()) {
-        xmpdf::set_xmp(xmp, output)
-    }
-    if (xmpdf::supports_set_docinfo()) {
-        xmpdf::set_docinfo(xmpdf::as_docinfo(xmp), output)
-    }
+    set_xmp(xmp, output)
+    set_docinfo(as_docinfo(xmp), output)
     invisible(output)
 }
 
 #' @rdname sbgj_looney
 #' @export
-sbgj_jinxx <- function(output = NULL) {
-    stopifnot(piecepackr::has_font("Carlito"))
+sbgj_jinxx <- function(output = NULL, ...,
+                       paper = c("letter", "a4")) {
+    check_dots_empty()
+    assert_runtime_dependencies()
+
+    paper <- tolower(paper)
+    paper <- match.arg(paper)
+    output <- pnpmisc:::normalize_output(output)
 
     dir <- tools::R_user_dir("sbgjackets", "data")
     if (!dir.exists(dir))
@@ -429,13 +442,13 @@ sbgj_jinxx <- function(output = NULL) {
     background_col <- "#EFE8D5FF"
     text_col <- "#1C3160FF"
 
-    bm_cover <- magick::image_read(cover) |> 
-        as_bm_pixmap() |> 
+    bm_cover <- magick::image_read(cover) |>
+        as_bm_pixmap() |>
         bm_trim(left = 300L, right = 300L) |>
         rasterGrob(height = 0.8)
 
-    bm_back <- magick::image_read(back) |> 
-        as_bm_pixmap() |> 
+    bm_back <- magick::image_read(back) |>
+        as_bm_pixmap() |>
         bm_trim(left = 300L, right = 300L) |>
         rasterGrob(height = 0.85)
 
@@ -446,8 +459,8 @@ sbgj_jinxx <- function(output = NULL) {
                    spineTextGrob("Jinxx", col = text_col),
                    spineIconGrob(2:4, 30, 1.50, text_col))
 
-    xmp <- xmpdf::xmp(creator = "Trevor L. Davis",
-                      title = "Jinxx Small Box Game Jacket")
+    xmp <- xmp(creator = "Trevor L. Davis",
+               title = "Jinxx Small Box Game Jacket")
     credits <- c("* From https://www.looneylabs.com/resources/game/Jinxx",
                  "",
                  "  + *Jinxx Box Front*",
@@ -459,14 +472,10 @@ sbgj_jinxx <- function(output = NULL) {
     inner <- creditsGrob(xmp, credits, icons = TRUE)
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
-                                spine = spine, inner = inner)
+                                spine = spine, inner = inner, paper = paper)
 
-    if (xmpdf::supports_set_xmp()) {
-        xmpdf::set_xmp(xmp, output)
-    }
-    if (xmpdf::supports_set_docinfo()) {
-        xmpdf::set_docinfo(xmpdf::as_docinfo(xmp), output)
-    }
+    set_xmp(xmp, output)
+    set_docinfo(as_docinfo(xmp), output)
     invisible(output)
 }
 
@@ -474,9 +483,15 @@ sbgj_jinxx <- function(output = NULL) {
 #' @param ... Should be left empty.
 #' @param silver If `TRUE` make jacket for silver Martian Chess.
 #' @export
-sbgj_martian_chess <- function(output = NULL, ..., silver = FALSE) {
+sbgj_martian_chess <- function(output = NULL, ...,
+                               silver = FALSE,
+                               paper = c("letter", "a4")) {
     check_dots_empty()
-    stopifnot(piecepackr::has_font("Carlito"))
+    assert_runtime_dependencies()
+
+    paper <- tolower(paper)
+    paper <- match.arg(paper)
+    output <- pnpmisc:::normalize_output(output)
 
     dir <- tools::R_user_dir("sbgjackets", "data")
     if (!dir.exists(dir))
@@ -505,17 +520,17 @@ sbgj_martian_chess <- function(output = NULL, ..., silver = FALSE) {
     background_col <- "#EFE8D5FF"
     text_col <- "#1C3160FF"
 
-    bm_cover <- magick::image_read(cover) |> 
-        as_bm_pixmap() |> 
+    bm_cover <- magick::image_read(cover) |>
+        as_bm_pixmap() |>
         rasterGrob()
     if (silver) {
-        bm_back <- magick::image_read(back) |> 
-            as_bm_pixmap() |> 
+        bm_back <- magick::image_read(back) |>
+            as_bm_pixmap() |>
             bm_trim(left = 300L, right = 300L) |>
             rasterGrob(height = 0.85)
     } else {
-        bm_back <- magick::image_read(back) |> 
-            as_bm_pixmap() |> 
+        bm_back <- magick::image_read(back) |>
+            as_bm_pixmap() |>
             bm_trim(bottom = 10L, top = 10L) |>
             rasterGrob()
     }
@@ -528,7 +543,7 @@ sbgj_martian_chess <- function(output = NULL, ..., silver = FALSE) {
                    spineIconGrob(2, 20, 2.42, text_col))
 
     if (silver) {
-        xmp <- xmpdf::xmp(creator = "Trevor L. Davis",
+        xmp <- xmp(creator = "Trevor L. Davis",
                           title = "Martian Chess (Silver) Small Box Game Jacket")
         credits <- c("* From https://www.looneylabs.com/resources/game/Martian%20Chess",
                      "",
@@ -538,7 +553,7 @@ sbgj_martian_chess <- function(output = NULL, ..., silver = FALSE) {
                      "",
                      "    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law.")
     } else {
-        xmp <- xmpdf::xmp(creator = "Trevor L. Davis",
+        xmp <- xmp(creator = "Trevor L. Davis",
                           title = "Martian Chess Small Box Game Jacket")
         credits <- c("* From https://www.looneylabs.com/resources/game/Martian%20Chess",
                      "",
@@ -551,21 +566,23 @@ sbgj_martian_chess <- function(output = NULL, ..., silver = FALSE) {
     inner <- creditsGrob(xmp, credits, icons = TRUE)
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
-                                spine = spine, inner = inner)
+                                spine = spine, inner = inner, paper = paper)
 
-    if (xmpdf::supports_set_xmp()) {
-        xmpdf::set_xmp(xmp, output)
-    }
-    if (xmpdf::supports_set_docinfo()) {
-        xmpdf::set_docinfo(xmpdf::as_docinfo(xmp), output)
-    }
+    set_xmp(xmp, output)
+    set_docinfo(as_docinfo(xmp), output)
     invisible(output)
 }
 
 #' @rdname sbgj_looney
 #' @export
-sbgj_nomids <- function(output = NULL) {
-    stopifnot(piecepackr::has_font("Carlito"))
+sbgj_nomids <- function(output = NULL, ...,
+                        paper = c("letter", "a4")) {
+    check_dots_empty()
+    assert_runtime_dependencies()
+
+    paper <- tolower(paper)
+    paper <- match.arg(paper)
+    output <- pnpmisc:::normalize_output(output)
 
     dir <- tools::R_user_dir("sbgjackets", "data")
     if (!dir.exists(dir))
@@ -615,8 +632,8 @@ sbgj_nomids <- function(output = NULL) {
                    spineTextGrob("Nomids", col = text_col),
                    spineIconGrob(2:10, 10, 1.0, text_col))
 
-    xmp <- xmpdf::xmp(creator = "Trevor L. Davis",
-                      title = "Nomids Small Box Game Jacket")
+    xmp <- xmp(creator = "Trevor L. Davis",
+               title = "Nomids Small Box Game Jacket")
     credits <- c("* From https://www.looneylabs.com/resources/game/Nomids",
                  "",
                  "  + *Nomids Logo with Background*",
@@ -629,13 +646,9 @@ sbgj_nomids <- function(output = NULL) {
     inner <- creditsGrob(xmp, credits, icons = TRUE)
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
-                                spine = spine, inner = inner)
+                                spine = spine, inner = inner, paper = paper)
 
-    if (xmpdf::supports_set_xmp()) {
-        xmpdf::set_xmp(xmp, output)
-    }
-    if (xmpdf::supports_set_docinfo()) {
-        xmpdf::set_docinfo(xmpdf::as_docinfo(xmp), output)
-    }
+    set_xmp(xmp, output)
+    set_docinfo(as_docinfo(xmp), output)
     invisible(output)
 }
