@@ -18,6 +18,7 @@ Imports:
     bittermelon,
     dplyr,
     grid,
+    grDevices,
     grImport2,
     magick,
     marquee,

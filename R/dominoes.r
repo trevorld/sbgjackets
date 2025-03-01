@@ -78,6 +78,7 @@ sbgj_dominoes_double6 <- function(output = NULL, ...,
                spdx_id = "CC-BY-4.0",
                title = "Double-Six Dominoes Small Box Game Jacket")
 
+
     credits <- c("* *ilustracja z ksi\u0105\u017cki* (illustration with prints) by Louis Poyet",
                  "",
                  "  + https://commons.wikimedia.org/wiki/File:Rozrywki_Naukowe_Fig._049.jpg",

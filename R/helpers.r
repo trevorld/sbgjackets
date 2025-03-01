@@ -35,6 +35,10 @@ spineTextGrob <- function(title, col = "white") {
 #' @param icons If `TRUE` include Creative Commons credits for Games-icons.net icons.
 #' @export
 creditsGrob <- function(xmp = xmpdf::xmp(), credits = character(), icons = FALSE) {
+    # Prevents `marquee::marque_grob()` from leaving open a graphics device
+    pdf(NULL, width = pnpmisc:::JACKET_WIDTH, height = pnpmisc:::JACKET_HEIGHT)
+    on.exit(invisible(dev.off()), add = TRUE)
+
     if (icons) {
         credits <- c(credits, "",
                   "* Various icons from Game-icons.net",
@@ -93,7 +97,6 @@ creditsGrob <- function(xmp = xmpdf::xmp(), credits = character(), icons = FALSE
     mg <- marquee::marquee_grob(credits, style = style, x = unit(1/8, "in"),
                           width = unit(pnpmisc:::JACKET_FACE_WIDTH + 1, "in"),
                           y = unit(1, "npc") - unit(1/8, "in"))
-
 
     if (is.null(xmp$spdx_id)) {
         grob_cc <- nullGrob()
