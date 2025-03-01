@@ -131,12 +131,12 @@ spineIconGrob <- function(players, minutes, weight, col = "white") {
     vp <- viewport(x = unit(1, "npc") - unit(0.125, "in"),
                    y = unit(0.125, "in"),
                    just = c("right", "bottom"),
-                   height = unit(5/8, "in"),
+                   height = unit(17/32, "in"),
                    width = unit(17/16, "in"))
     non_icons <- grobTree(roundrectGrob(x = 1/6, width = 1/3, r = r, gp = gp_rr),
                           textGrob(format_n_players(players), x = 1/6, y = 1/4, gp = gp_text),
                           roundrectGrob(x = 3/6, width = 1/3, r = r, gp = gp_rr),
-                          textGrob(paste(minutes, "'"), x = 3/6, y = 1/4, gp = gp_text),
+                          textGrob(str_glue("{minutes}\u2032"), x = 3/6, y = 1/4, gp = gp_text),
                           roundrectGrob(x = 5/6, width = 1/3, r = r, gp = gp_rr),
                           textGrob(sprintf("%.1f", weight), x = 5/6, y = 1/4, gp = gp_text),
                           vp = vp)
