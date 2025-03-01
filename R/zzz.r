@@ -5,4 +5,12 @@
 #' @importFrom rlang abort check_dots_empty .data
 #' @importFrom stringr str_c str_glue str_sub str_sub<-
 #' @importFrom utils download.file
+#' @importFrom xmpdf as_docinfo set_bookmarks set_docinfo set_xmp xmp
 NULL
+
+assert_runtime_dependencies <- function() {
+    stopifnot(piecepackr::has_font("Carlito"),
+              xmpdf::supports_set_bookmarks(),
+              xmpdf::supports_set_docinfo(),
+              xmpdf::supports_set_xmp())
+}

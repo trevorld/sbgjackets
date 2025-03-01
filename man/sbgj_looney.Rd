@@ -10,24 +10,31 @@
 \alias{sbgj_nomids}
 \title{Create SBG Jacket for Looney Pyramids}
 \usage{
-sbgj_looney_pyramids_all(output = NULL)
+sbgj_looney_pyramids_all(output = NULL, ..., paper = c("letter", "a4"))
 
-sbgj_looney_pyramids(output = NULL)
+sbgj_looney_pyramids(output = NULL, ..., paper = c("letter", "a4"))
 
-sbgj_homeworlds(output = NULL)
+sbgj_homeworlds(output = NULL, ..., paper = c("letter", "a4"))
 
-sbgj_ice_duo(output = NULL)
+sbgj_ice_duo(output = NULL, ..., paper = c("letter", "a4"))
 
-sbgj_jinxx(output = NULL)
+sbgj_jinxx(output = NULL, ..., paper = c("letter", "a4"))
 
-sbgj_martian_chess(output = NULL, ..., silver = FALSE)
+sbgj_martian_chess(
+  output = NULL,
+  ...,
+  silver = FALSE,
+  paper = c("letter", "a4")
+)
 
-sbgj_nomids(output = NULL)
+sbgj_nomids(output = NULL, ..., paper = c("letter", "a4"))
 }
 \arguments{
 \item{output}{Output file name.  Defaults to \code{tempfile(fileext = ".pdf")}.}
 
 \item{...}{Should be left empty.}
+
+\item{paper}{Paper size.  Either "letter", "a4", or "special".}
 
 \item{silver}{If \code{TRUE} make jacket for silver Martian Chess.}
 }

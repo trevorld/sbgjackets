@@ -4,17 +4,18 @@
 #' `sbgj_dominoes_all()` creates all of those into a single pdf file.
 #'
 #' @param output Output file name.  Defaults to `tempfile(fileext = ".pdf")`.
+#' @param ... Should be empty.
+#' @inheritParams pnpmisc::pdf_create_jacket
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
 #' @rdname sbgj_dominoes
 #' @export
-sbgj_dominoes_all <- function(output = NULL) {
-    stopifnot(piecepackr::has_font("Carlito"),
-              requireNamespace("ppdf"),
-              requireNamespace("xmpdf"),
-              xmpdf::supports_set_bookmarks(),
-              xmpdf::supports_set_docinfo(),
-              xmpdf::supports_set_xmp())
+sbgj_dominoes_all <- function(output = NULL, ...,
+                              paper = c("letter", "a4")) {
+    check_dots_empty()
+    assert_runtime_dependencies()
 
+    paper <- tolower(paper)
+    paper <- match.arg(paper)
     output <- pnpmisc:::normalize_output(output)
 
     bm <- data.frame(title = c("Double-Six Dominoes",
@@ -22,20 +23,20 @@ sbgj_dominoes_all <- function(output = NULL) {
                                "Double-Twelve Dominoes"),
                      page = c(1L, 3L, 5L))
 
-    xmp <- xmpdf::xmp(creator = "Trevor L. Davis",
-                      date_created = "2025",
-                      spdx_id = "CC-BY-4.0",
-                      title = "Dominoes Small Box Game Jackets")
+    xmp <- xmp(creator = "Trevor L. Davis",
+               date_created = "2025",
+               spdx_id = "CC-BY-4.0",
+               title = "Dominoes Small Box Game Jackets")
 
-    d6d <- sbgj_dominoes_double6()
-    d9d <- sbgj_dominoes_double9()
-    d12d <- sbgj_dominoes_double12()
+    d6d <- sbgj_dominoes_double6(paper = paper)
+    d9d <- sbgj_dominoes_double9(paper = paper)
+    d12d <- sbgj_dominoes_double12(paper = paper)
     output_c <- tempfile(fileext = ".pdf")
 
     qpdf::pdf_combine(c(d6d, d9d, d12d), output_c) |>
         pnpmisc::pdf_set_bookmarks(bookmarks = bm) |>
         pnpmisc::pdf_set_xmp(xmp = xmp) |>
-        pnpmisc::pdf_set_docinfo(docinfo = xmpdf::as_docinfo(xmp)) |>
+        pnpmisc::pdf_set_docinfo(docinfo = as_docinfo(xmp)) |>
         pnpmisc::pdf_compress(output, linearize = TRUE)
 
     pnpmisc::rm_temp_pdfs()
@@ -45,9 +46,14 @@ sbgj_dominoes_all <- function(output = NULL) {
 
 #' @rdname sbgj_dominoes
 #' @export
-sbgj_dominoes_double6 <- function(output = NULL) {
-    stopifnot(piecepackr::has_font("Carlito"),
-              requireNamespace("ppdf"))
+sbgj_dominoes_double6 <- function(output = NULL, ...,
+                                  paper = c("letter", "a4")) {
+    check_dots_empty()
+    assert_runtime_dependencies()
+
+    paper <- tolower(paper)
+    paper <- match.arg(paper)
+    output <- pnpmisc:::normalize_output(output)
 
     envir <- piecepackr::game_systems(round = TRUE)
     df <- ppdf::domino_tiles() |> mutate(x = 0.4 +  0.4 * .data$x, y = 0.4 * .data$y)
@@ -68,9 +74,9 @@ sbgj_dominoes_double6 <- function(output = NULL) {
     back <- dominoes
     spine <- gList(rectGrob(gp = gpar(col = NA, fill = "black")),
                    spineTextGrob("Double-Six Dominoes"))
-    xmp <- xmpdf::xmp(creator = "Trevor L. Davis", date_created = "2025",
-                      spdx_id = "CC-BY-4.0", 
-                      title = "Double-Six Dominoes Small Box Game Jacket")
+    xmp <- xmp(creator = "Trevor L. Davis", date_created = "2025",
+               spdx_id = "CC-BY-4.0",
+               title = "Double-Six Dominoes Small Box Game Jacket")
 
     credits <- c("* *ilustracja z ksi\u0105\u017cki* (illustration with prints) by Louis Poyet",
                  "",
@@ -80,21 +86,22 @@ sbgj_dominoes_double6 <- function(output = NULL) {
     inner <- creditsGrob(xmp, credits, icons = FALSE)
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
-                                spine = spine, inner = inner)
-    if (xmpdf::supports_set_xmp()) {
-        xmpdf::set_xmp(xmp, output)
-    }
-    if (xmpdf::supports_set_docinfo()) {
-        xmpdf::set_docinfo(xmpdf::as_docinfo(xmp), output)
-    }
+                                spine = spine, inner = inner, paper = paper)
+    set_xmp(xmp, output)
+    set_docinfo(as_docinfo(xmp), output)
     invisible(output)
 }
 
 #' @rdname sbgj_dominoes
 #' @export
-sbgj_dominoes_double9 <- function(output = NULL) {
-    stopifnot(piecepackr::has_font("Carlito"),
-              requireNamespace("ppdf"))
+sbgj_dominoes_double9 <- function(output = NULL, ...,
+                                  paper = c("letter", "a4")) {
+    check_dots_empty()
+    assert_runtime_dependencies()
+
+    paper <- tolower(paper)
+    paper <- match.arg(paper)
+    output <- pnpmisc:::normalize_output(output)
 
     envir <- piecepackr::game_systems(round = TRUE)
     df <- ppdf::domino_tiles(n=10) |>
@@ -134,9 +141,9 @@ sbgj_dominoes_double9 <- function(output = NULL) {
     back <- dominoes
     spine <- gList(rectGrob(gp = gpar(col = NA, fill = "black")),
                    spineTextGrob("Double-Nine Dominoes"))
-    xmp <- xmpdf::xmp(creator = "Trevor L. Davis", date_created = "2025",
-                      spdx_id = "CC-BY-4.0", 
-                      title = "Double-Nine Dominoes Small Box Game Jacket")
+    xmp <- xmp(creator = "Trevor L. Davis", date_created = "2025",
+               spdx_id = "CC-BY-4.0",
+               title = "Double-Nine Dominoes Small Box Game Jacket")
     credits <- c("* *Optical illusion of some dominoes.* by Unknown artist",
                  "",
                  "  + https://www.getty.edu/art/collection/object/107CZC",
@@ -155,21 +162,22 @@ sbgj_dominoes_double9 <- function(output = NULL) {
     inner <- creditsGrob(xmp, credits, icons = FALSE)
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
-                                spine = spine, inner = inner)
-    if (xmpdf::supports_set_xmp()) {
-        xmpdf::set_xmp(xmp, output)
-    }
-    if (xmpdf::supports_set_docinfo()) {
-        xmpdf::set_docinfo(xmpdf::as_docinfo(xmp), output)
-    }
+                                spine = spine, inner = inner, paper = paper)
+    set_xmp(xmp, output)
+    set_docinfo(as_docinfo(xmp), output)
     invisible(output)
 }
 
 #' @rdname sbgj_dominoes
 #' @export
-sbgj_dominoes_double12 <- function(output = NULL) {
-    stopifnot(piecepackr::has_font("Carlito"),
-              requireNamespace("ppdf"))
+sbgj_dominoes_double12 <- function(output = NULL, ...,
+                                   paper = c("letter", "a4")) {
+    check_dots_empty()
+    assert_runtime_dependencies()
+
+    paper <- tolower(paper)
+    paper <- match.arg(paper)
+    output <- pnpmisc:::normalize_output(output)
 
     envir <- piecepackr::game_systems(round = TRUE)
     df <- ppdf::domino_tiles(n=13) |>
@@ -204,9 +212,9 @@ sbgj_dominoes_double12 <- function(output = NULL) {
     back <- dominoes
     spine <- gList(rectGrob(gp = gpar(col = NA, fill = "black")),
                    spineTextGrob("Double-Twelve Dominoes"))
-    xmp <- xmpdf::xmp(creator = "Trevor L. Davis", date_created = "2025",
-                      spdx_id = "CC-BY-4.0", 
-                      title = "Double-Twelve Dominoes Small Box Game Jacket")
+    xmp <- xmp(creator = "Trevor L. Davis", date_created = "2025",
+               spdx_id = "CC-BY-4.0",
+               title = "Double-Twelve Dominoes Small Box Game Jacket")
     credits <- c("* *My Little White Kittens: Playing Dominoes* published by Currier & Ives",
                  "",
                  "  + https://www.loc.gov/resource/cph.3b50738/?st=image",
@@ -226,12 +234,8 @@ sbgj_dominoes_double12 <- function(output = NULL) {
     inner <- creditsGrob(xmp, credits, icons = FALSE)
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
-                                spine = spine, inner = inner)
-    if (xmpdf::supports_set_xmp()) {
-        xmpdf::set_xmp(xmp, output)
-    }
-    if (xmpdf::supports_set_docinfo()) {
-        xmpdf::set_docinfo(xmpdf::as_docinfo(xmp), output)
-    }
+                                spine = spine, inner = inner, paper = paper)
+    set_xmp(xmp, output)
+    set_docinfo(as_docinfo(xmp), output)
     invisible(output)
 }
