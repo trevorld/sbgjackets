@@ -27,7 +27,7 @@ sbgj_martian_chess(
   paper = c("letter", "a4")
 )
 
-sbgj_nomids(output = NULL, ..., paper = c("letter", "a4"))
+sbgj_nomids(output = NULL, ..., paper = c("letter", "a4"), custom = FALSE)
 }
 \arguments{
 \item{output}{Output file name.  Defaults to \code{tempfile(fileext = ".pdf")}.}
@@ -37,6 +37,8 @@ sbgj_nomids(output = NULL, ..., paper = c("letter", "a4"))
 \item{paper}{Paper size.  Either "letter", "a4", or "special".}
 
 \item{silver}{If \code{TRUE} make jacket for silver Martian Chess.}
+
+\item{custom}{If \code{TRUE} use custom back imagery.}
 }
 \value{
 The output file name invisibly.  As a side effect creates a pdf file.
