@@ -33,8 +33,9 @@ sbgj_looney_pyramids_all <- function(output = NULL, ...,
                                "Jinxx",
                                "Martian Chess",
                                "Martian Chess (Silver)",
-                               "Nomids"),
-                     page = seq.int(1L, by = 2L, length.out = 7L))
+                               "Nomids",
+                               "Nomids (Custom Back)"),
+                     page = seq.int(1L, by = 2L, length.out = 8L))
 
     xmp <- xmp(creator = "Trevor L. Davis",
                title = "Looney Pyramids Small Box Game Jackets")
@@ -43,12 +44,13 @@ sbgj_looney_pyramids_all <- function(output = NULL, ...,
     hm <- sbgj_homeworlds(paper = paper)
     id <- sbgj_ice_duo(paper = paper)
     jx <- sbgj_jinxx(paper = paper)
-    nomids <- sbgj_nomids(paper = paper)
     mc1 <- sbgj_martian_chess(paper = paper)
     mc2 <- sbgj_martian_chess(silver = TRUE, paper = paper)
+    nomids1 <- sbgj_nomids(paper = paper)
+    nomids2 <- sbgj_nomids(paper = paper, custom = TRUE)
     output_c <- tempfile(fileext = ".pdf")
 
-    qpdf::pdf_combine(c(lp, hm, id, jx, mc1, mc2, nomids), output_c) |>
+    qpdf::pdf_combine(c(lp, hm, id, jx, mc1, mc2, nomids1, nomids2), output_c) |>
         pnpmisc::pdf_set_bookmarks(bookmarks = bm) |>
         pnpmisc::pdf_set_xmp(xmp = xmp) |>
         pnpmisc::pdf_set_docinfo(docinfo = as_docinfo(xmp)) |>
@@ -574,9 +576,11 @@ sbgj_martian_chess <- function(output = NULL, ...,
 }
 
 #' @rdname sbgj_looney
+#' @param custom If `TRUE` use custom back imagery.
 #' @export
 sbgj_nomids <- function(output = NULL, ...,
-                        paper = c("letter", "a4")) {
+                        paper = c("letter", "a4"),
+                        custom = FALSE) {
     check_dots_empty()
     assert_runtime_dependencies()
 
@@ -588,26 +592,10 @@ sbgj_nomids <- function(output = NULL, ...,
     if (!dir.exists(dir))
         dir.create(dir, recursive = TRUE)
 
-    rules <- normalizePath(file.path(dir, "Nomids_Rules6.pdf"), mustWork = FALSE)
-    if (!file.exists(rules))
-        download.file("https://www.looneylabs.com/sites/default/files/literature/Nomids_Rules6.pdf",
-                      rules)
     cover <- normalizePath(file.path(dir, "NomidsBoxFront.jpg"), mustWork = FALSE)
     if (!file.exists(cover)) {
         download.file("https://www.looneylabs.com/sites/default/files/marketing_images/NomidsBoxFront.jpg",
                       cover)
-    }
-
-    zoom <- normalizePath(file.path(dir, "PyramidArcadeZoomBackground.jpg"), mustWork = FALSE)
-    if (!file.exists(zoom)) {
-        download.file("https://www.looneylabs.com/sites/default/files/marketing_images/PyramidArcadeZoomBackground.jpg",
-        zoom)
-    }
-
-    logo <- normalizePath(file.path(dir, "NomidsLogo_Background.jpg"), mustWork = FALSE)
-    if (!file.exists(logo)) {
-        download.file("https://www.looneylabs.com/sites/default/files/marketing_images/NomidsLogo_Background.jpg",
-        logo)
     }
 
     background_col <- "#EFE8D5FF"
@@ -615,34 +603,77 @@ sbgj_nomids <- function(output = NULL, ...,
 
     bm_cover <- magick::image_read(cover) |> as_bm_pixmap() |> rasterGrob()
 
-    bm_rules <- pnpmisc::pdf_render_bm_pixmap(rules, page = 1L)
-    bm_rules <- bm_rules[, 1:(ncol(bm_rules) / 2)] |>
-        bm_replace(background_col) |>
-        rasterGrob(y = 0.86, just = "top")
+    if (custom) {
+        rules <- normalizePath(file.path(dir, "Nomids_Rules6.pdf"), mustWork = FALSE)
+        if (!file.exists(rules))
+            download.file("https://www.looneylabs.com/sites/default/files/literature/Nomids_Rules6.pdf",
+                          rules)
+        zoom <- normalizePath(file.path(dir, "PyramidArcadeZoomBackground.jpg"), mustWork = FALSE)
+        if (!file.exists(zoom)) {
+            download.file("https://www.looneylabs.com/sites/default/files/marketing_images/PyramidArcadeZoomBackground.jpg",
+            zoom)
+        }
 
-    bm_zoom <- magick::image_read(zoom) |> as_bm_pixmap() |>
-        rasterGrob(y = 0, just = "bottom")
+        logo <- normalizePath(file.path(dir, "NomidsLogo_Background.jpg"), mustWork = FALSE)
+        if (!file.exists(logo)) {
+            download.file("https://www.looneylabs.com/sites/default/files/marketing_images/NomidsLogo_Background.jpg",
+            logo)
+        }
 
-    bm_logo <- magick::image_read(logo) |> as_bm_pixmap() |>
-        rasterGrob(y = 1, just = "top", height = unit(0.15, "npc"))
+        bm_rules <- pnpmisc::pdf_render_bm_pixmap(rules, page = 1L)
+        bm_rules <- bm_rules[, 1:(ncol(bm_rules) / 2)] |>
+            bm_replace(background_col) |>
+            rasterGrob(y = 0.86, just = "top")
+
+        bm_zoom <- magick::image_read(zoom) |> as_bm_pixmap() |>
+            rasterGrob(y = 0, just = "bottom")
+
+        bm_logo <- magick::image_read(logo) |> as_bm_pixmap() |>
+            rasterGrob(y = 1, just = "top", height = unit(0.15, "npc"))
+    } else {
+        back <- normalizePath(file.path(dir, "NomidsBoxBack.jpg"), mustWork = FALSE)
+        if (!file.exists(back)) {
+            download.file("https://www.looneylabs.com/sites/default/files/marketing_images/NomidsBoxBack.jpg",
+                          back)
+        }
+        bm_back <- magick::image_read(back) |> as_bm_pixmap() |> rasterGrob()
+    }
+
 
     front <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), bm_cover)
-    back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), bm_logo, bm_rules, bm_zoom)
+    if (custom) {
+        back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), bm_logo, bm_rules, bm_zoom)
+    } else {
+        back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), bm_back)
+    }
     spine <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)),
                    spineTextGrob("Nomids", col = text_col),
                    spineIconGrob(2:10, 10, 1.0, text_col))
 
-    xmp <- xmp(creator = "Trevor L. Davis",
-               title = "Nomids Small Box Game Jacket")
-    credits <- c("* From https://www.looneylabs.com/resources/game/Nomids",
-                 "",
-                 "  + *Nomids Logo with Background*",
-                 "  + *Nomids Box Front*",
-                 "  + *Nomids Rules* (cropped, background tweaked)",
-                 "  + *Looney Pyramids - Zoom*",
-                 "  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774",
-                 "",
-                 "    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law.")
+    if (custom) {
+        xmp <- xmp(creator = "Trevor L. Davis",
+                   title = "Nomids Small Box Game Jacket (Custom Back)")
+        credits <- c("* From https://www.looneylabs.com/resources/game/Nomids",
+                     "",
+                     "  + *Nomids Logo with Background*",
+                     "  + *Nomids Box Front*",
+                     "  + *Nomids Rules* (cropped, background tweaked)",
+                     "  + *Looney Pyramids - Zoom*",
+                     "  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774",
+                     "",
+                     "    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law.")
+    } else {
+        xmp <- xmp(creator = "Trevor L. Davis",
+                   title = "Nomids Small Box Game Jacket")
+        credits <- c("* From https://www.looneylabs.com/resources/game/Nomids",
+                     "",
+                     "  + *Nomids Box Back*",
+                     "  + *Nomids Box Front*",
+                     "  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774",
+                     "",
+                     "    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law.")
+
+    }
     inner <- creditsGrob(xmp, credits, icons = TRUE)
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
