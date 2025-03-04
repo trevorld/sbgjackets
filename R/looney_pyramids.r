@@ -14,12 +14,14 @@
 #'
 #' @param output Output file name.  Defaults to `tempfile(fileext = ".pdf")`.
 #' @param ... Should be empty.
+#' @inheritParams sbgj_dominoes_all
 #' @inheritParams pnpmisc::pdf_create_jacket
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
 #' @rdname sbgj_looney
 #' @export
 sbgj_looney_pyramids_all <- function(output = NULL, ...,
-                              paper = c("letter", "a4")) {
+                                     paper = c("letter", "a4"),
+                                     instructions = TRUE) {
     check_dots_empty()
     assert_runtime_dependencies()
 
@@ -36,6 +38,11 @@ sbgj_looney_pyramids_all <- function(output = NULL, ...,
                                "Nomids",
                                "Nomids (Custom Back)"),
                      page = seq.int(1L, by = 2L, length.out = 8L))
+    if (isTRUE(instructions)) {
+        bmi <- data.frame(title = "Instructions", page = 1L)
+        bm$page <- bm$page + 2L
+        bm <- rbind(bmi, bm)
+    }
 
     xmp <- xmp(creator = "Trevor L. Davis",
                title = "Looney Pyramids Small Box Game Jackets")
@@ -49,8 +56,10 @@ sbgj_looney_pyramids_all <- function(output = NULL, ...,
     nomids1 <- sbgj_nomids(paper = paper)
     nomids2 <- sbgj_nomids(paper = paper, custom = TRUE)
     output_c <- tempfile(fileext = ".pdf")
-
-    qpdf::pdf_combine(c(lp, hm, id, jx, mc1, mc2, nomids1, nomids2), output_c) |>
+    qpdf::pdf_combine(c(lp, hm, id, jx, mc1, mc2, nomids1, nomids2), output_c)
+    if (instructions)
+        prepend_instructions(output_c, paper = paper)
+    output_c |>
         pnpmisc::pdf_set_bookmarks(bookmarks = bm) |>
         pnpmisc::pdf_set_xmp(xmp = xmp) |>
         pnpmisc::pdf_set_docinfo(docinfo = as_docinfo(xmp)) |>
@@ -64,7 +73,8 @@ sbgj_looney_pyramids_all <- function(output = NULL, ...,
 #' @rdname sbgj_looney
 #' @export
 sbgj_looney_pyramids <- function(output = NULL, ...,
-                                 paper = c("letter", "a4")) {
+                                 paper = c("letter", "a4"),
+                                 instructions = FALSE) {
     check_dots_empty()
     assert_runtime_dependencies()
 
@@ -194,6 +204,8 @@ sbgj_looney_pyramids <- function(output = NULL, ...,
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
                                 spine = spine, inner = inner, paper = paper)
+    if (instructions)
+        prepend_instructions(output, paper = paper)
 
     set_xmp(xmp, output)
     set_docinfo(as_docinfo(xmp), output)
@@ -283,7 +295,8 @@ load_pyramid_badges <- function() {
 #' @rdname sbgj_looney
 #' @export
 sbgj_homeworlds <- function(output = NULL, ...,
-                            paper = c("letter", "a4")) {
+                            paper = c("letter", "a4"),
+                            instructions = FALSE) {
     check_dots_empty()
     assert_runtime_dependencies()
 
@@ -341,6 +354,8 @@ sbgj_homeworlds <- function(output = NULL, ...,
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
                                 spine = spine, inner = inner, paper = paper)
+    if (instructions)
+        prepend_instructions(output, paper = paper)
 
     set_xmp(xmp, output)
     set_docinfo(as_docinfo(xmp), output)
@@ -350,7 +365,8 @@ sbgj_homeworlds <- function(output = NULL, ...,
 #' @rdname sbgj_looney
 #' @export
 sbgj_ice_duo <- function(output = NULL, ...,
-                         paper = c("letter", "a4")) {
+                         paper = c("letter", "a4"),
+                         instructions = FALSE) {
     check_dots_empty()
     assert_runtime_dependencies()
 
@@ -408,6 +424,8 @@ sbgj_ice_duo <- function(output = NULL, ...,
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
                                 spine = spine, inner = inner, paper = paper)
+    if (instructions)
+        prepend_instructions(output, paper = paper)
 
     set_xmp(xmp, output)
     set_docinfo(as_docinfo(xmp), output)
@@ -417,7 +435,8 @@ sbgj_ice_duo <- function(output = NULL, ...,
 #' @rdname sbgj_looney
 #' @export
 sbgj_jinxx <- function(output = NULL, ...,
-                       paper = c("letter", "a4")) {
+                       paper = c("letter", "a4"),
+                       instructions = FALSE) {
     check_dots_empty()
     assert_runtime_dependencies()
 
@@ -475,6 +494,8 @@ sbgj_jinxx <- function(output = NULL, ...,
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
                                 spine = spine, inner = inner, paper = paper)
+    if (instructions)
+        prepend_instructions(output, paper = paper)
 
     set_xmp(xmp, output)
     set_docinfo(as_docinfo(xmp), output)
@@ -487,7 +508,8 @@ sbgj_jinxx <- function(output = NULL, ...,
 #' @export
 sbgj_martian_chess <- function(output = NULL, ...,
                                silver = FALSE,
-                               paper = c("letter", "a4")) {
+                               paper = c("letter", "a4"),
+                               instructions = FALSE) {
     check_dots_empty()
     assert_runtime_dependencies()
 
@@ -569,6 +591,8 @@ sbgj_martian_chess <- function(output = NULL, ...,
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
                                 spine = spine, inner = inner, paper = paper)
+    if (instructions)
+        prepend_instructions(output, paper = paper)
 
     set_xmp(xmp, output)
     set_docinfo(as_docinfo(xmp), output)
@@ -580,6 +604,7 @@ sbgj_martian_chess <- function(output = NULL, ...,
 #' @export
 sbgj_nomids <- function(output = NULL, ...,
                         paper = c("letter", "a4"),
+                        instructions = FALSE,
                         custom = FALSE) {
     check_dots_empty()
     assert_runtime_dependencies()
@@ -678,6 +703,8 @@ sbgj_nomids <- function(output = NULL, ...,
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
                                 spine = spine, inner = inner, paper = paper)
+    if (instructions)
+        prepend_instructions(output, paper = paper)
 
     set_xmp(xmp, output)
     set_docinfo(as_docinfo(xmp), output)

@@ -74,7 +74,8 @@ This package also provides functions that locally create SBG jackets pdfs for a 
 | Quantity | Over 1,400 pre-made jackets | 9 pre-made jackets |
 | Process | Made in Microsoft Publisher with a template | Made in `R` with `pnpmisc::pdf_create_jacket()` |
 | Spine Font | Calibri (proprietary) | Carlito (libre font, metrically compatible with Calibri) |
-| Spine Icons | Proprietary icons that each vary in color and style | Libre icons from game-icons.net that don't vary (but chosen to not be too dissimilar from Boardgame Barrio's icons) |
+| Spine Text Color | Spine text is always white | Spine text may be other colors (e.g. to match cover text color) |
+| Spine Icons | Proprietary icons whose style and backround color can each vary between three levels (i.e. green, orange, or red) | Libre icons from game-icons.net that don't vary in style and aren't color-coded (but the icons are chosen to not be too dissimilar from Boardgame Barrio's icons) |
 | License | Always "For Personal Use Only" | Sometimes "For Personal Use Only" but sometimes available under various Creative Commons licenses when the image licenses allow |
 | Credits | | List of credits to go on inside cover |
 

@@ -7,13 +7,33 @@
 \alias{sbgj_dominoes_double12}
 \title{Create SBG Jacket for Dominoes}
 \usage{
-sbgj_dominoes_all(output = NULL, ..., paper = c("letter", "a4"))
+sbgj_dominoes_all(
+  output = NULL,
+  ...,
+  paper = c("letter", "a4"),
+  instructions = TRUE
+)
 
-sbgj_dominoes_double6(output = NULL, ..., paper = c("letter", "a4"))
+sbgj_dominoes_double6(
+  output = NULL,
+  ...,
+  paper = c("letter", "a4"),
+  instructions = FALSE
+)
 
-sbgj_dominoes_double9(output = NULL, ..., paper = c("letter", "a4"))
+sbgj_dominoes_double9(
+  output = NULL,
+  ...,
+  paper = c("letter", "a4"),
+  instructions = FALSE
+)
 
-sbgj_dominoes_double12(output = NULL, ..., paper = c("letter", "a4"))
+sbgj_dominoes_double12(
+  output = NULL,
+  ...,
+  paper = c("letter", "a4"),
+  instructions = FALSE
+)
 }
 \arguments{
 \item{output}{Output file name.  Defaults to \code{tempfile(fileext = ".pdf")}.}
@@ -21,6 +41,8 @@ sbgj_dominoes_double12(output = NULL, ..., paper = c("letter", "a4"))
 \item{...}{Should be empty.}
 
 \item{paper}{Paper size.  Either "letter", "a4", or "special".}
+
+\item{instructions}{If \code{TRUE} then prepend instructions on how to make the jacket to the beginning of the pdf}
 }
 \value{
 The output file name invisibly.  As a side effect creates a pdf file.
