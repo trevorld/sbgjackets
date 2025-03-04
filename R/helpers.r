@@ -28,6 +28,30 @@ spineTextGrob <- function(title, col = "white") {
              gp = gpar(fontsize = "28", col = col))
 }
 
+prepend_instructions <- function(output, paper = "letter") {
+    pdf(NULL, width = pnpmisc:::JACKET_WIDTH, height = pnpmisc:::JACKET_HEIGHT)
+    on.exit(invisible(dev.off()), add = TRUE)
+    f1 <- pnpmisc::pdf_create_jacket_instructions(paper = paper,
+                                         style = credits_style())
+    mg <- marquee::marquee_grob("This page intentionally left blank.",
+                                style = credits_style(),
+                                x = 0.5, y = 0.5,
+                                hjust = "center-ink", vjust = "center")
+    f2 <- pnpmisc::pdf_create_blank(paper = paper,
+                                    orientation = "landscape",
+                                    grob = mg)
+    f3 <- tempfile(fileext = ".pdf")
+
+    qpdf::pdf_combine(c(f1, f2, output), f3) |>
+        pnpmisc::pdf_compress(output, linearize = TRUE)
+
+    unlink(f1)
+    unlink(f2)
+    unlink(f3)
+
+    invisible(output)
+}
+
 #' @rdname helper_grobs
 #' @param xmp A [xmpdf::xmp()] object with copyright/license information.
 #' @param credits A character vector of (commonmark) credits to eventually be
@@ -83,21 +107,11 @@ creditsGrob <- function(xmp = xmpdf::xmp(), credits = character(), icons = FALSE
     }
     credits <- paste(credits, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
     # cat(credits, sep = "\n")
-    style <- marquee::classic_style(base_size = 10,
-        body_font = "Carlito", header_font = "Carlito",
-        lineheight = 1.6,
-        margin = marquee::trbl(0, bottom = marquee::rem(0.7)),
-        bullets = rep("\u2022", 3L)) |>
-        marquee::modify_style("h1", border = NA,
-                               size = marquee::relative(1.4),
-                               border_size = marquee::trbl(NULL),
-                               margin = marquee::trbl(NULL),
-                               padding = marquee::trbl(NULL)) |>
-        marquee::modify_style("ul", padding = marquee::trbl(right = marquee::em(1)))
-    mg <- marquee::marquee_grob(credits, style = style, x = unit(1/8, "in"),
-                          width = unit(pnpmisc:::JACKET_FACE_WIDTH + 1, "in"),
-                          y = unit(1, "npc") - unit(1/8, "in"))
-
+    mg <- marquee::marquee_grob(credits,
+                                style = credits_style(),
+                                width = unit(pnpmisc:::JACKET_FACE_WIDTH + 1, "in"),
+                                x = unit(1/8, "in"),
+                                y = unit(1, "npc") - unit(1/8, "in"))
     if (is.null(xmp$spdx_id)) {
         grob_cc <- nullGrob()
     } else {
@@ -110,12 +124,26 @@ creditsGrob <- function(xmp = xmpdf::xmp(), credits = character(), icons = FALSE
             cc_picture <- grImport2::readPicture(cc_file)
             grob_cc <- grImport2::symbolsGrob(cc_picture,
                                               x=unit(pnpmisc:::JACKET_FACE_WIDTH / 2, "in"),
-                                              y=unit(0.30, "in"), 
+                                              y=unit(0.30, "in"),
                                               size=unit(0.9, "in"))
         }
     }
 
     gList(grob_cc, mg)
+}
+
+credits_style <- function() {
+    marquee::classic_style(base_size = 10,
+        body_font = "Carlito", header_font = "Carlito",
+        lineheight = 1.6,
+        margin = marquee::trbl(0, bottom = marquee::rem(0.7)),
+        bullets = rep("\u2022", 3L)) |>
+        marquee::modify_style("h1", border = NA,
+                               size = marquee::relative(1.4),
+                               border_size = marquee::trbl(NULL),
+                               margin = marquee::trbl(NULL),
+                               padding = marquee::trbl(NULL)) |>
+        marquee::modify_style("ul", padding = marquee::trbl(right = marquee::em(1)))
 }
 
 # vermillion <- "#D55E00"

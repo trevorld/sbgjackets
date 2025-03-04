@@ -6,11 +6,13 @@
 #' @param output Output file name.  Defaults to `tempfile(fileext = ".pdf")`.
 #' @param ... Should be empty.
 #' @inheritParams pnpmisc::pdf_create_jacket
+#' @param instructions If `TRUE` then prepend instructions on how to make the jacket to the beginning of the pdf
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
 #' @rdname sbgj_dominoes
 #' @export
 sbgj_dominoes_all <- function(output = NULL, ...,
-                              paper = c("letter", "a4")) {
+                              paper = c("letter", "a4"),
+                              instructions = TRUE) {
     check_dots_empty()
     assert_runtime_dependencies()
 
@@ -22,6 +24,11 @@ sbgj_dominoes_all <- function(output = NULL, ...,
                                "Double-Nine Dominoes",
                                "Double-Twelve Dominoes"),
                      page = c(1L, 3L, 5L))
+    if (isTRUE(instructions)) {
+        bmi <- data.frame(title = "Instructions", page = 1L)
+        bm$page <- bm$page + 2L
+        bm <- rbind(bmi, bm)
+    }
 
     xmp <- xmp(creator = "Trevor L. Davis",
                date_created = "2025",
@@ -32,8 +39,10 @@ sbgj_dominoes_all <- function(output = NULL, ...,
     d9d <- sbgj_dominoes_double9(paper = paper)
     d12d <- sbgj_dominoes_double12(paper = paper)
     output_c <- tempfile(fileext = ".pdf")
-
-    qpdf::pdf_combine(c(d6d, d9d, d12d), output_c) |>
+    qpdf::pdf_combine(c(d6d, d9d, d12d), output_c)
+    if (instructions)
+        prepend_instructions(output_c, paper = paper)
+    output_c |>
         pnpmisc::pdf_set_bookmarks(bookmarks = bm) |>
         pnpmisc::pdf_set_xmp(xmp = xmp) |>
         pnpmisc::pdf_set_docinfo(docinfo = as_docinfo(xmp)) |>
@@ -47,7 +56,8 @@ sbgj_dominoes_all <- function(output = NULL, ...,
 #' @rdname sbgj_dominoes
 #' @export
 sbgj_dominoes_double6 <- function(output = NULL, ...,
-                                  paper = c("letter", "a4")) {
+                                  paper = c("letter", "a4"),
+                                  instructions = FALSE) {
     check_dots_empty()
     assert_runtime_dependencies()
 
@@ -88,6 +98,8 @@ sbgj_dominoes_double6 <- function(output = NULL, ...,
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
                                 spine = spine, inner = inner, paper = paper)
+    if (instructions)
+        prepend_instructions(output, paper = paper)
     set_xmp(xmp, output)
     set_docinfo(as_docinfo(xmp), output)
     invisible(output)
@@ -96,7 +108,8 @@ sbgj_dominoes_double6 <- function(output = NULL, ...,
 #' @rdname sbgj_dominoes
 #' @export
 sbgj_dominoes_double9 <- function(output = NULL, ...,
-                                  paper = c("letter", "a4")) {
+                                  paper = c("letter", "a4"),
+                                  instructions = FALSE) {
     check_dots_empty()
     assert_runtime_dependencies()
 
@@ -164,6 +177,8 @@ sbgj_dominoes_double9 <- function(output = NULL, ...,
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
                                 spine = spine, inner = inner, paper = paper)
+    if (instructions)
+        prepend_instructions(output, paper = paper)
     set_xmp(xmp, output)
     set_docinfo(as_docinfo(xmp), output)
     invisible(output)
@@ -172,7 +187,8 @@ sbgj_dominoes_double9 <- function(output = NULL, ...,
 #' @rdname sbgj_dominoes
 #' @export
 sbgj_dominoes_double12 <- function(output = NULL, ...,
-                                   paper = c("letter", "a4")) {
+                                   paper = c("letter", "a4"),
+                                   instructions = FALSE) {
     check_dots_empty()
     assert_runtime_dependencies()
 
@@ -236,6 +252,8 @@ sbgj_dominoes_double12 <- function(output = NULL, ...,
 
     output <- pdf_create_jacket(output = output, front = front, back = back,
                                 spine = spine, inner = inner, paper = paper)
+    if (instructions)
+        prepend_instructions(output, paper = paper)
     set_xmp(xmp, output)
     set_docinfo(as_docinfo(xmp), output)
     invisible(output)
