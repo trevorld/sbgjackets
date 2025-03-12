@@ -67,6 +67,7 @@ This package also provides functions that locally create SBG jackets pdfs for a 
 | [Jinxx](https://www.looneylabs.com/games/jinxx) | `sbgj_jinxx()` | Personal Use Only |
 | [Martian Chess](https://www.looneylabs.com/games/martian-chess) | `sbgj_martian_chess()` | Personal Use Only |
 | [Nomids](https://www.looneylabs.com/games/nomids) | `sbgj_nomids()` | Personal Use Only |
+| [Shibumi](https://cambolbro.com/games/shibumi/) | `sbgj_shibumi()` | Personal Use Only |
 
 ## <a name="barrio">Differences with Boardgame Barrio's Small Box Game Jackets</a>
 

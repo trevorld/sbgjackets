@@ -29,6 +29,8 @@ spineTextGrob <- function(title, col = "white") {
 }
 
 prepend_instructions <- function(output, paper = "letter") {
+    current_dev <- grDevices::dev.cur()
+    if (current_dev > 1) on.exit(grDevices::dev.set(current_dev), add = TRUE)
     pdf(NULL, width = pnpmisc:::JACKET_WIDTH, height = pnpmisc:::JACKET_HEIGHT)
     on.exit(invisible(dev.off()), add = TRUE)
     f1 <- pnpmisc::pdf_create_jacket_instructions(paper = paper,
@@ -60,6 +62,8 @@ prepend_instructions <- function(output, paper = "letter") {
 #' @export
 creditsGrob <- function(xmp = xmpdf::xmp(), credits = character(), icons = FALSE) {
     # Prevents `marquee::marque_grob()` from leaving open a graphics device
+    current_dev <- grDevices::dev.cur()
+    if (current_dev > 1) on.exit(grDevices::dev.set(current_dev), add = TRUE)
     pdf(NULL, width = pnpmisc:::JACKET_WIDTH, height = pnpmisc:::JACKET_HEIGHT)
     on.exit(invisible(dev.off()), add = TRUE)
 
