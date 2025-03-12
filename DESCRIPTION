@@ -1,7 +1,7 @@
 Package: sbgjackets
 Type: Package
 Title: Utilities for Small Box Game Jackets
-Version: 0.1.0-3
+Version: 0.1.0-4
 Authors@R: c(person("Trevor L.", "Davis", role=c("aut", "cre"),
                      email="trevor.l.davis@gmail.com",
                      comment = c(ORCID = "0000-0001-6341-4639")),
@@ -22,15 +22,17 @@ Imports:
     grImport2,
     magick,
     marquee,
-    piecepackr,
+    piecepackr (>= 1.15.0-4),
     pnpmisc (>= 0.1.0-16),
-    ppdf,
+    ppdf (>= 0.2.0-7),
+    ppn (>= 0.2.0-1),
     qpdf,
+    ragg,
     rlang,
     stringr,
     tools,
     xmpdf
-Remotes: piecepackr/ppdf, trevorld/pnpmisc
+Remotes: piecepackr/piecepackr, piecepackr/ppdf, piecepackr/ppn, trevorld/pnpmisc
 License: MIT + file LICENSE
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
