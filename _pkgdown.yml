@@ -11,6 +11,7 @@ reference:
         - sbgj_dominoes_all
         - sbgj_nomids
         - sbgj_shibumi
+        - sbgj_storage_all
     - title: "Helper grob utilities"
       desc: ''
       contents:

@@ -54,7 +54,7 @@ pnpmisc::pdf_create_jacket("example_jacket.pdf",
                            spine = spine, inner = inner)
 ```
 
-This package also provides functions that locally create SBG jackets pdfs for a few select games:
+This package also provides functions that locally create SBG jackets pdfs for a few select games and game systems:
 
 | Game (System) | Function | Jacket License |
 | --- | --- | --- |
@@ -68,6 +68,16 @@ This package also provides functions that locally create SBG jackets pdfs for a 
 | [Martian Chess](https://www.looneylabs.com/games/martian-chess) | `sbgj_martian_chess()` | Personal Use Only |
 | [Nomids](https://www.looneylabs.com/games/nomids) | `sbgj_nomids()` | Personal Use Only |
 | [Shibumi](https://cambolbro.com/games/shibumi/) | `sbgj_shibumi()` | Personal Use Only |
+
+This package also provides functions that locally create SBG jackets pdfs for a few select generic components:
+
+| Component | Function | Jacket License |
+| --- | --- | --- |
+| Dice | `sbgj_dice()` | CC BY 4.0 |
+| Pawns | `sbgj_pawns()` | CC BY ND 4.0 |
+| Glass Stones | `sbgj_glass_stones()` | CC BY ND 4.0 |
+| Polyhedral Dice | `sbgj_polyhedral_dice()` | CC BY ND 4.0 |
+
 
 ## <a name="barrio">Differences with Boardgame Barrio's Small Box Game Jackets</a>
 
