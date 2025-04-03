@@ -19,6 +19,14 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
   + `sbgj_dominoes_double12()`
   + `sbgj_dominoes_all()`
 
+* Functions to create SBG jackets for generic components (#8):
+
+  + `sbgj_dice()`
+  + `sbgj_glass_stones()`
+  + `sbgj_pawns()`
+  + `sbgj_polyhedral_dice()`
+  + `sbgj_storage_all()`
+
 Functions to create small box game (SBG) jackets for **Personal Use Only**:
 
 * Functions to create SBG jackets for Looney Pyramids (#2):
@@ -31,7 +39,7 @@ Functions to create small box game (SBG) jackets for **Personal Use Only**:
   + `sbgj_nomids()`
   + `sbgj_looney_pyramids_all()`
 
-* Functions to create SBG jackets for nestorgames:
+* Functions to create SBG jackets for nestorgames (#3):
 
   + `sbgj_shibumi()`
   + `sbgj_nestorgames_all()`
