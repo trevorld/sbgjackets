@@ -85,7 +85,7 @@ This package also provides functions that locally create SBG jackets pdfs for a 
 
 | Feature | Boardgame Barrio | `{sbgjackets}` |
 | --- | --- | --- |
-| Quantity | Over 1,400 pre-made jackets | 9 pre-made jackets |
+| Quantity | Over 1,400 pre-made jackets | 14 pre-made jackets |
 | Process | Made in Microsoft Publisher with a template | Made in `R` with `pnpmisc::pdf_create_jacket()` |
 | Spine Font | Calibri (proprietary) | Carlito (libre font, metrically compatible with Calibri) |
 | Spine Text Color | Spine text is always white | Spine text may be other colors (e.g. to match cover text color) |

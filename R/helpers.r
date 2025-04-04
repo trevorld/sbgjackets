@@ -82,7 +82,6 @@ creditsGrob <- function(xmp = xmpdf::xmp(), credits = character(), icons = FALSE
                   # "  + {dQuote('Weight')} icon by Delapouite under CC BY 3.0",
                   # "  + https://game-icons.net/1x1/delapouite/weight.html")
     }
-    fn <- as.list(sys.call(-1L))[[1L]]
     credits <- c("# Credits",
       "",
       credits,
@@ -90,12 +89,19 @@ creditsGrob <- function(xmp = xmpdf::xmp(), credits = character(), icons = FALSE
       "* The Carlito font by \u0142ukasz Dziedzic",
       "",
       "  + https://fonts.google.com/specimen/Carlito",
-      "  + SIL Open Font License, Version 1.1",
-      "",
-      "* Generated in `R` by `sbgjackets::{fn}()`",
-      "",
-      "  + https://github.com/trevorld/sbgjackets",
-      "  + MIT license")
+      "  + SIL Open Font License, Version 1.1")
+
+    fn <- try(as.character(as.list(sys.call(-1L))[[1L]]),
+              silent = TRUE)
+    if (!inherits(fn, "try-error") &&
+        exists(fn, getNamespace("sbgjackets"))) {
+        credits <- c(credits,
+          "",
+          "* Generated in `R` by `sbgjackets::{fn}()`",
+          "",
+          "  + https://github.com/trevorld/sbgjackets",
+          "  + MIT license")
+    }
     if (!is.null(xmp$usage_terms)) {
         license <- xmp$usage_terms
     } else {
