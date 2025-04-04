@@ -84,7 +84,8 @@ sbgj_dominoes_double6 <- function(output = NULL, ...,
     back <- dominoes
     spine <- gList(rectGrob(gp = gpar(col = NA, fill = "black")),
                    spineTextGrob("Double-Six Dominoes"))
-    xmp <- xmp(creator = "Trevor L. Davis", date_created = "2025",
+    xmp <- xmp(creator = "Trevor L. Davis",
+               date_created = "2025",
                spdx_id = "CC-BY-4.0",
                title = "Double-Six Dominoes Small Box Game Jacket")
 
