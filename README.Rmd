@@ -8,6 +8,7 @@
 * [Overview](#overview)
 * [Installation](#installation)
 * [Examples](#examples)
+* [Pre-made Jackets](#premade)
 * [Differences with Boardgame Barrio's Small Box Game Jackets](#barrio)
 * [Related links](#related)
 
@@ -51,7 +52,9 @@ pnpmisc::pdf_create_jacket("example_jacket.pdf",
                            spine = spine, inner = inner)
 ```
 
-This package also provides functions that locally create SBG jackets pdfs for a few select games and game systems:
+## <a name="premade">Pre-made Jackets</a>
+
+This package also provides functions that locally create SBG jackets pdfs for a few select games and game systems.  Pre-made versions for several of these are available for download at <https://trevorldavis.com/piecepackr/pages/print-and-play-pdfs.html>.
 
 | Game (System) | Function | Jacket License |
 | --- | --- | --- |
@@ -96,6 +99,6 @@ This package also provides functions that locally create SBG jackets pdfs for a 
 * [Carlito font](https://fonts.google.com/specimen/Carlito)
 * [Game-icons.net](https://game-icons.net)
 * [Origami Masu Box](https://www.paperkawaii.com/origami-photo-tutorials/masu-box/) and [Origami Masu Box Divider](https://www.paperkawaii.com/origami-photo-tutorials/masu-box-divider/) (6"x6" paper)
-* [Origami Baggi Box](http://www.origami-instructions.com/origami-baggi-box.html)
+* [Origami Baggi Box](http://www.origami-instructions.com/origami-baggi-box.html) (4"x4" paper)
 * [Photo Storage Board Game Insert Collection](https://www.reddit.com/r/boardgames/comments/vs6b6q/photo_storage_board_game_insert_collection/)
 * [Guide to Organizing Small Box Games](https://web.archive.org/web/20220711005902/https://www.kenkuhn.me/l/guide-to-organizing-small-box-games/)
