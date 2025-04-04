@@ -101,6 +101,13 @@ creditsGrob <- function(xmp = xmpdf::xmp(), credits = character(), icons = FALSE
           "",
           "  + https://github.com/trevorld/sbgjackets",
           "  + MIT license")
+    } else {
+        credits <- c(credits,
+          "",
+          "* Generated in `R` by `pnpmisc::pdf_create_jacket()`",
+          "",
+          "  + https://github.com/trevorld/pnpmisc",
+          "  + MIT license")
     }
     if (!is.null(xmp$usage_terms)) {
         license <- xmp$usage_terms
