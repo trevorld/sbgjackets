@@ -71,7 +71,7 @@ sbgj_shibumi <- function(output = NULL, ...,
     df_back <- data.frame(piece_side = c("board_face", rep_len("bit_back", 16 * 3)),
                           x = c(2, rep(1:4, 4L), rep(5:8, 8L)),
                           y = c(2, rep(5:8, each = 4L), rep(8:1, each = 4L)),
-                          suit = c(4L, rep(1L, 16L), rep(2L, 16L), rep(6L, 16L)),
+                          suit = c(7L, rep(1L, 16L), rep(2L, 16L), rep(6L, 16L)),
                           rank = c(4L, rep(9L, 3 * 16)),
                           scale = c(1, rep(0.95, 3 * 16)),
                           cfg = "marbles")
