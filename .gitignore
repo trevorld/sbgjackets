@@ -3,4 +3,5 @@ codecov.yml
 pkgdown
 *.swp
 *_raw.svg
+R/tetris_stax.r
 tmp

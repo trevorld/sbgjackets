@@ -7,6 +7,6 @@ _pkgdown.yml
 ^pkgdown$
 ^\.github$
 ^raw-data$
-^ivory-skull.jpg$
 ^cran-comments.md$
 ^tmp$
+R/tetris_stax.r

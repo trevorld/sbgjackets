@@ -33,6 +33,7 @@ prepend_instructions <- function(output, paper = "letter") {
     pdf(NULL, width = pnpmisc:::JACKET_WIDTH, height = pnpmisc:::JACKET_HEIGHT)
     on.exit(invisible(dev.off()), add = TRUE)
     if (current_dev > 1) on.exit(grDevices::dev.set(current_dev), add = TRUE)
+
     f1 <- pnpmisc::pdf_create_jacket_instructions(paper = paper,
                                          style = credits_style())
     mg <- marquee::marquee_grob("This page intentionally left blank.",
@@ -178,13 +179,13 @@ spineIconGrob <- function(players, minutes, weight, col = "white") {
                    just = c("right", "bottom"),
                    height = unit(17/32, "in"),
                    width = unit(17/16, "in"))
-    non_icons <- grobTree(roundrectGrob(x = 1/6, width = 1/3, r = r, gp = gp_rr),
-                          textGrob(format_n_players(players), x = 1/6, y = 1/4, gp = gp_text),
-                          roundrectGrob(x = 3/6, width = 1/3, r = r, gp = gp_rr),
-                          textGrob(str_glue("{minutes}\u2032"), x = 3/6, y = 1/4, gp = gp_text),
-                          roundrectGrob(x = 5/6, width = 1/3, r = r, gp = gp_rr),
-                          textGrob(sprintf("%.1f", weight), x = 5/6, y = 1/4, gp = gp_text),
-                          vp = vp)
+    gl <- gList(roundrectGrob(x = 1/6, width = 1/3, r = r, gp = gp_rr),
+                textGrob(format_n_players(players), x = 1/6, y = 1/4, gp = gp_text),
+                roundrectGrob(x = 3/6, width = 1/3, r = r, gp = gp_rr),
+                textGrob(str_glue("{minutes}\u2032"), x = 3/6, y = 1/4, gp = gp_text),
+                roundrectGrob(x = 5/6, width = 1/3, r = r, gp = gp_rr),
+                textGrob(sprintf("%.1f", weight), x = 5/6, y = 1/4, gp = gp_text))
+    non_icons <- gTree(children = gl, vp = vp)
     mask <- grobTree(person_grob(), clockwork_grob(), weight_grob())
     icons <- rectGrob(gp = gpar(col = NA, fill = col),
                       vp = vpStack(vp, viewport(mask = as.mask(mask))))
