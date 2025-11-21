@@ -10,9 +10,11 @@
 NULL
 
 assert_runtime_dependencies <- function() {
-    stopifnot(capabilities("cairo"),
-              piecepackr::has_font("Carlito"),
-              xmpdf::supports_set_bookmarks(),
-              xmpdf::supports_set_docinfo(),
-              xmpdf::supports_set_xmp())
+	stopifnot(
+		capabilities("cairo"),
+		piecepackr::has_font("Carlito"),
+		xmpdf::supports_set_bookmarks(),
+		xmpdf::supports_set_docinfo(),
+		xmpdf::supports_set_xmp()
+	)
 }
