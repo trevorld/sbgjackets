@@ -8,13 +8,14 @@
 * [Overview](#overview)
 * [Installation](#installation)
 * [Examples](#examples)
-* [Pre-made Jackets](#premade)
+* [Pre-made 4x6 Photo Box Jackets](#premade)
+* [Pre-made Playing Card Box Jackets](#premade_card)
 * [Differences with Boardgame Barrio's Small Box Game Jackets](#barrio)
 * [Related links](#related)
 
 ## <a name="overview">Overview</a>
 
-`{sbgjackets}` is an R package to help make print-and-play small box game (SBG) jackets to use in 4x6 photo boxes.
+`{sbgjackets}` is an R package to help make print-and-play small box game (SBG) jackets to use in 4x6 photo storage boxes and/or poker deck storage boxes.
 
 ## <a name="installation">Installation</a>
 
@@ -68,7 +69,7 @@ set_xmp(xmp, output)
 set_docinfo(as_docinfo(xmp), output)
 ```
 
-## <a name="premade">Pre-made Jackets</a>
+## <a name="premade">Pre-made 4x6 Photo Box Jackets</a>
 
 This package also provides functions that locally create SBG jackets pdfs for a few select games and game systems.  Pre-made versions for several of these are available for download at <https://trevorldavis.com/piecepackr/pages/print-and-play-pdfs.html>.
 
@@ -77,10 +78,11 @@ This package also provides functions that locally create SBG jackets pdfs for a 
 | Double-Six Dominoes | `sbgj_dominoes_double6()` | CC BY 4.0 |
 | Double-Nine Dominoes | `sbgj_dominoes_double9()` | CC BY 4.0 |
 | Double-Twelve Dominoes | `sbgj_dominoes_double12()` | CC BY 4.0 |
-| [Looney Pyramids](https://www.looneylabs.com/pyramids-home) | `sbgj_looney_pyramids()` | Personal Use Only |
+| [The Fox in the Forest](https://foxtrotgames.com/forest/) | `pcbj_fox_in_the_forest()` | Personal Use Only |
 | [Homeworlds](https://www.looneylabs.com/games/homeworlds) | `sbgj_homeworlds()` | Personal Use Only |
 | [Ice Duo](https://www.looneylabs.com/games/ice-duo) | `sbgj_ice_duo()` | Personal Use Only |
 | [Jinxx](https://www.looneylabs.com/games/jinxx) | `sbgj_jinxx()` | Personal Use Only |
+| [Looney Pyramids](https://www.looneylabs.com/pyramids-home) | `sbgj_looney_pyramids()` | Personal Use Only |
 | [Martian Chess](https://www.looneylabs.com/games/martian-chess) | `sbgj_martian_chess()` | Personal Use Only |
 | [Nomids](https://www.looneylabs.com/games/nomids) | `sbgj_nomids()` | Personal Use Only |
 | [Shibumi](https://cambolbro.com/games/shibumi/) | `sbgj_shibumi()` | Personal Use Only |
@@ -94,6 +96,13 @@ This package also provides functions that locally create SBG jackets pdfs for a 
 | Glass Stones | `sbgj_glass_stones()` | CC BY ND 4.0 |
 | Polyhedral Dice | `sbgj_polyhedral_dice()` | CC BY ND 4.0 |
 
+## <a name="premade_card">Pre-made Playing Card Box Jackets</a>
+
+This package also provides functions that locally create playing-card box jackets pdfs for a few select games and game systems.  Pre-made versions for several of these are available for download at <https://trevorldavis.com/piecepackr/pages/print-and-play-pdfs.html>.
+
+| Game (System) | Function | Jacket License |
+| --- | --- | --- |
+| [The Fox in the Forest](https://foxtrotgames.com/forest/) | `pcbj_fox_in_the_forest()` | Personal Use Only |
 
 ## <a name="barrio">Differences with Boardgame Barrio's Small Box Game Jackets</a>
 
@@ -111,10 +120,50 @@ This package also provides functions that locally create SBG jackets pdfs for a 
 
 ## <a name="related">Related links</a>
 
+Other Small Box Game Jackets:
+
 * [Boardgame Barrio's Small Box Game Jackets](https://sites.google.com/view/boardgamebarrio)
-* [Carlito font](https://fonts.google.com/specimen/Carlito)
-* [Game-icons.net](https://game-icons.net)
+
+Origami to organize a 4"x6" photo storage box:
+
 * [Origami Masu Box](https://www.paperkawaii.com/origami-photo-tutorials/masu-box/) and [Origami Masu Box Divider](https://www.paperkawaii.com/origami-photo-tutorials/masu-box-divider/) (6"x6" paper)
 * [Origami Baggi Box](http://www.origami-instructions.com/origami-baggi-box.html) (4"x4" paper)
-* [Photo Storage Board Game Insert Collection](https://www.reddit.com/r/boardgames/comments/vs6b6q/photo_storage_board_game_insert_collection/)
+
+
+3D printable models to organize a 4"x6" photo storage box:
+
+<!---* [Photo Storage Board Game Insert Collection](https://www.reddit.com/r/boardgames/comments/vs6b6q/photo_storage_board_game_insert_collection/)--->
+
+* [Canadian Gamer's Card Game Organizers](https://makerworld.com/en/models/752771-card-game-organizers-for-4x6-photo-craft-caddy#profileId-686706) (Standard Digital File License)
+* [endofturn's 4x6 Photo Case Organizer](https://www.printables.com/model/108936-4x6-photo-case-organizer/files) (CC BY-NC 4.0)
+* [Gut Shot Games's Photo Caddy Board Game Insert Collection](https://www.printables.com/model/278336-photo-caddy-board-game-insert-collection) (CC BY-NC 4.0)
+* [LinearRelation's Modular 4x6 Photo Case Inserts](https://www.printables.com/model/479844-modular-4x6-photo-case-inserts/files) (CC-BY 4.0)
+* [passif's Photo Case Inserts](https://www.thingiverse.com/thing:5144296)
+* [somedave's Ultimate Modular Photo Keeper Game Storage](https://makerworld.com/en/models/98197-ultimate-modular-photo-keeper-game-storage#profileId-133787)
+
+Some compatible 4"x6" photo storage box brands:
+
+* [IRIS USA](https://www.irisusainc.com/collections/photo-storage-boxes/products/photo-keeper-4-inchx6-inch-12-case)
+* Novelinks
+* Simply Tidy
+
+Some likely compatible playing card box brands:
+
+* Apacali
+* Queekay
+* Vicenpal
+* Whyogeta
+
+Various guides:
+
 * [Guide to Organizing Small Box Games](https://web.archive.org/web/20220711005902/https://www.kenkuhn.me/l/guide-to-organizing-small-box-games/)
+
+Some games that may fit within a 4"x6" photo storage box:
+
+* https://boardgamegeek.com/geeklist/259450/games-that-fit-in-photo-storage-box
+* https://sites.google.com/view/boardgamebarrio/jacket-catalogue
+
+Artistic assets used by `{sbgjackets}`:
+
+* [Carlito font](https://fonts.google.com/specimen/Carlito)
+* [Game-icons.net](https://game-icons.net)

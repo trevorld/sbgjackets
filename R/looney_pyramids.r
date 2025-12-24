@@ -92,10 +92,7 @@ sbgj_looney_pyramids <- function(
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
+	dir <- get_data_dir()
 
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
@@ -270,7 +267,7 @@ bank_grob <- function() {
 	vp <- viewport(
 		width = unit(4, "in"),
 		height = unit(6, "in"),
-		x = unit(1, "npc") - unit(0.5 * (pnpmisc:::JACKET_FACE_WIDTH - 4), "in"),
+		x = unit(1, "npc") - unit(0.5 * (pnpmisc:::JACKET_4x6_FRONT_WIDTH - 4), "in"),
 		just = "right"
 	)
 	grobTree(
@@ -329,10 +326,7 @@ bank_grob <- function() {
 }
 
 load_pyramid_badges <- function() {
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
+	dir <- get_data_dir()
 
 	badges <- c(
 		"BlackIce",
@@ -433,10 +427,7 @@ sbgj_homeworlds <- function(output = NULL, ..., paper = c("letter", "a4"), instr
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
+	dir <- get_data_dir()
 
 	cover <- normalizePath(file.path(dir, "HomeworldsBoxFront.jpg"), mustWork = FALSE)
 	if (!file.exists(cover)) {
@@ -515,10 +506,7 @@ sbgj_ice_duo <- function(output = NULL, ..., paper = c("letter", "a4"), instruct
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
+	dir <- get_data_dir()
 
 	cover <- normalizePath(file.path(dir, "IceDuoBoxFront.jpg"), mustWork = FALSE)
 	if (!file.exists(cover)) {
@@ -597,10 +585,7 @@ sbgj_jinxx <- function(output = NULL, ..., paper = c("letter", "a4"), instructio
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
+	dir <- get_data_dir()
 
 	cover <- normalizePath(file.path(dir, "JinxxFlatBoxFront.png"), mustWork = FALSE)
 	if (!file.exists(cover)) {
@@ -687,10 +672,7 @@ sbgj_martian_chess <- function(
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
+	dir <- get_data_dir()
 
 	cover <- normalizePath(file.path(dir, "MartianChessBoxFront.jpg"), mustWork = FALSE)
 	if (!file.exists(cover)) {
@@ -806,10 +788,7 @@ sbgj_nomids <- function(
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
+	dir <- get_data_dir()
 
 	cover <- normalizePath(file.path(dir, "NomidsBoxFront.jpg"), mustWork = FALSE)
 	if (!file.exists(cover)) {

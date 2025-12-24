@@ -67,10 +67,7 @@ sbgj_dice <- function(output = NULL, ..., paper = c("letter", "a4"), instruction
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
+	dir <- get_data_dir()
 	pic <- normalizePath(file.path(dir, "dice.jpg"), mustWork = FALSE)
 	if (!file.exists(pic)) {
 		download.file(
@@ -149,10 +146,7 @@ sbgj_glass_stones <- function(output = NULL, ..., paper = c("letter", "a4"), ins
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
+	dir <- get_data_dir()
 	pic <- normalizePath(file.path(dir, "glass_stones.jpg"), mustWork = FALSE)
 	if (!file.exists(pic)) {
 		download.file(
@@ -214,11 +208,8 @@ sbgj_pawns <- function(output = NULL, ..., paper = c("letter", "a4"), instructio
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- tools::R_user_dir("sbgjackets", "data")
+	dir <- get_data_dir()
 	# https://pixabay.com/photos/play-stone-multicoloured-characters-1743645/
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
 	pic <- normalizePath(file.path(dir, "wooden_pawns.jpg"), mustWork = FALSE)
 	if (!file.exists(pic)) {
 		url <- "https://pixabay.com/photos/play-stone-multicoloured-characters-1743645/"
@@ -288,10 +279,7 @@ sbgj_polyhedral_dice <- function(
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
+	dir <- get_data_dir()
 	pic <- normalizePath(file.path(dir, "polyhedral_dice.jpg"), mustWork = FALSE)
 	if (!file.exists(pic)) {
 		download.file(
