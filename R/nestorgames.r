@@ -58,10 +58,7 @@ sbgj_shibumi <- function(output = NULL, ..., paper = c("letter", "a4"), instruct
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
+	dir <- get_data_dir()
 
 	background_col <- "white"
 	text_col <- "white"

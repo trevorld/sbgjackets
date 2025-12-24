@@ -43,3 +43,7 @@ Functions to create small box game (SBG) jackets for **Personal Use Only**:
 
   + `sbgj_shibumi()`
   + `sbgj_nestorgames_all()`
+
+* Functions to create Playing Card Box jackets for Foxtrot Games:
+
+  + `pcbj_fox_in_the_forest()`

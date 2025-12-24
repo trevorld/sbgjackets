@@ -5,13 +5,17 @@ development:
 template:
   bootstrap: 5
 reference:
-    - title: "Generate Small Box Game Jacket PDF files"
+    - title: 'Generate print-and-play "jacket" files for 4"x6" photo storage boxes'
       desc: ''
       contents:
         - sbgj_dominoes_all
         - sbgj_nomids
         - sbgj_shibumi
         - sbgj_storage_all
+    - title: 'Generate print-and-play "jacket" files for playing card boxes'
+      desc: ''
+      contents:
+        - pcbj_fox_in_the_forest
     - title: "Helper grob utilities"
       desc: ''
       contents:

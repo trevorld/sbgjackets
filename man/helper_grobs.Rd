@@ -6,16 +6,23 @@
 \alias{spineIconGrob}
 \title{Helper grobs}
 \usage{
-spineTextGrob(title, col = "white")
+spineTextGrob(title, col = "white", size = c("4x6", "poker"))
 
-creditsGrob(xmp = xmpdf::xmp(), credits = character(), icons = FALSE)
+creditsGrob(
+  xmp = xmpdf::xmp(),
+  credits = character(),
+  icons = FALSE,
+  size = "4x6"
+)
 
-spineIconGrob(players, minutes, weight, col = "white")
+spineIconGrob(players, minutes, weight, col = "white", size = "4x6")
 }
 \arguments{
 \item{title}{Title of small box game jacket (usually game name)}
 
 \item{col}{Color of text/icons}
+
+\item{size}{Target box size.  Either \code{"4x6"} or \code{"poker"}.}
 
 \item{xmp}{A \code{\link[xmpdf:xmp]{xmpdf::xmp()}} object with copyright/license information.}
 

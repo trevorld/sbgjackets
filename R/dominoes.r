@@ -79,10 +79,7 @@ sbgj_dominoes_double6 <- function(
 		draw = FALSE,
 		default.units = "in"
 	)
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
+	dir <- get_data_dir()
 	pic <- normalizePath(file.path(dir, "Rozrywki_Naukowe_Fig._049.jpg"), mustWork = FALSE)
 	if (!file.exists(pic)) {
 		download.file(
@@ -160,10 +157,7 @@ sbgj_dominoes_double9 <- function(
 		default.units = "in"
 	)
 
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
+	dir <- get_data_dir()
 	# pic <- normalizePath(file.path(dir, "Mexican_Train.jpg"), mustWork = FALSE)
 	# if (!file.exists(pic))
 	#     download.file("https://upload.wikimedia.org/wikipedia/commons/3/38/Mexican_Train.jpg",
@@ -265,10 +259,7 @@ sbgj_dominoes_double12 <- function(
 		default.units = "in"
 	)
 
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
+	dir <- get_data_dir()
 	# pic <- normalizePath(file.path(dir, "pic1424282.jpg"), mustWork = FALSE)
 	# if (!file.exists(pic))
 	#     abort(c(str_glue("{shQuote(pic)} not found"),
