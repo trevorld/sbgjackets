@@ -81,7 +81,6 @@ This package also provides functions that locally create SBG jackets pdfs for a 
 | Double-Six Dominoes | `sbgj_dominoes_double6()` | CC BY 4.0 |
 | Double-Nine Dominoes | `sbgj_dominoes_double9()` | CC BY 4.0 |
 | Double-Twelve Dominoes | `sbgj_dominoes_double12()` | CC BY 4.0 |
-| [The Fox in the Forest](https://foxtrotgames.com/forest/) | `pcbj_fox_in_the_forest()` | Personal Use Only |
 | [Homeworlds](https://www.looneylabs.com/games/homeworlds) | `sbgj_homeworlds()` | Personal Use Only |
 | [Ice Duo](https://www.looneylabs.com/games/ice-duo) | `sbgj_ice_duo()` | Personal Use Only |
 | [Jinxx](https://www.looneylabs.com/games/jinxx) | `sbgj_jinxx()` | Personal Use Only |
