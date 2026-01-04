@@ -18,15 +18,8 @@ sbgj_dominoes_all <- function(output = NULL, ..., paper = c("letter", "a4"), ins
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	bm <- data.frame(
-		title = c("Double-Six Dominoes", "Double-Nine Dominoes", "Double-Twelve Dominoes"),
-		page = c(1L, 3L, 5L)
-	)
-	if (isTRUE(instructions)) {
-		bmi <- data.frame(title = "Instructions", page = 1L)
-		bm$page <- bm$page + 2L
-		bm <- rbind(bmi, bm)
-	}
+	title <- c("Double-Six Dominoes", "Double-Nine Dominoes", "Double-Twelve Dominoes")
+	bm <- bm_from_title(title, instructions)
 
 	xmp <- xmp(
 		creator = "Trevor L. Davis",

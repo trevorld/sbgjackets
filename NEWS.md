@@ -27,6 +27,14 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
   + `sbgj_polyhedral_dice()`
   + `sbgj_storage_all()`
 
+* Functions to create Playing Card Box jackets:
+
+  + `pcbj_bavarian_pattern()`
+  + `pcbj_castilian_pattern()`
+  + `pcbj_english_pattern()`
+  + `pcbj_pinochle()`
+  + `pcbj_playing_cards_all()`
+
 Functions to create small box game (SBG) jackets for **Personal Use Only**:
 
 * Functions to create SBG jackets for Looney Pyramids (#2):

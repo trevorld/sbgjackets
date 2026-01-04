@@ -45,6 +45,16 @@ spineTextGrob <- function(title, col = "white", size = c("4x6", "poker")) {
 	)
 }
 
+bm_from_title <- function(title, instructions = TRUE) {
+	bm <- data.frame(title = title, page = seq.int(by = 2L, length.out = length(title)))
+	if (isTRUE(instructions)) {
+		bmi <- data.frame(title = "Instructions", page = 1L)
+		bm$page <- bm$page + 2L
+		bm <- rbind(bmi, bm)
+	}
+	bm
+}
+
 prepend_instructions <- function(output, paper = "letter") {
 	current_dev <- grDevices::dev.cur()
 	pdf(NULL, width = pnpmisc:::JACKET_4x6_WIDTH, height = pnpmisc:::JACKET_4x6_HEIGHT)

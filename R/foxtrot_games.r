@@ -6,7 +6,7 @@
 #' @inheritParams sbgj_dominoes_all
 #' @inheritParams pnpmisc::pdf_create_jacket
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
-#' @rdname sbgj_nestorgames
+#' @rdname pcbj_foxtrot_games
 #' @export
 pcbj_fox_in_the_forest <- function(
 	output = NULL,

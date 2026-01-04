@@ -22,12 +22,8 @@ sbgj_nestorgames_all <- function(
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	bm <- data.frame(title = c("Shibumi"), page = seq.int(1L, by = 2L, length.out = 1L))
-	if (isTRUE(instructions)) {
-		bmi <- data.frame(title = "Instructions", page = 1L)
-		bm$page <- bm$page + 2L
-		bm <- rbind(bmi, bm)
-	}
+	title <- "Shibumi"
+	bm <- bm_from_title(title, instructions)
 
 	xmp <- xmp(creator = "Trevor L. Davis", title = "nestorgames Small Box Game Jackets")
 

@@ -32,24 +32,17 @@ sbgj_looney_pyramids_all <- function(
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	bm <- data.frame(
-		title = c(
-			"Looney Pyramids",
-			"Homeworlds",
-			"Ice Duo",
-			"Jinxx",
-			"Martian Chess",
-			"Martian Chess (Silver)",
-			"Nomids",
-			"Nomids (Custom Back)"
-		),
-		page = seq.int(1L, by = 2L, length.out = 8L)
+	title <- c(
+		"Looney Pyramids",
+		"Homeworlds",
+		"Ice Duo",
+		"Jinxx",
+		"Martian Chess",
+		"Martian Chess (Silver)",
+		"Nomids",
+		"Nomids (Custom Back)"
 	)
-	if (isTRUE(instructions)) {
-		bmi <- data.frame(title = "Instructions", page = 1L)
-		bm$page <- bm$page + 2L
-		bm <- rbind(bmi, bm)
-	}
+	bm <- bm_from_title(title, instructions)
 
 	xmp <- xmp(creator = "Trevor L. Davis", title = "Looney Pyramids Small Box Game Jackets")
 

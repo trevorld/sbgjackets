@@ -15,6 +15,7 @@ reference:
     - title: 'Generate print-and-play "jacket" files for playing card boxes'
       desc: ''
       contents:
+        - pcbj_castilian_pattern
         - pcbj_fox_in_the_forest
     - title: "Helper grob utilities"
       desc: ''

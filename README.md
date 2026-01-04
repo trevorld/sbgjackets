@@ -106,6 +106,10 @@ This package also provides functions that locally create playing-card box jacket
 | Game (System) | Function | Jacket License |
 | --- | --- | --- |
 | [The Fox in the Forest](https://foxtrotgames.com/forest/) | `pcbj_fox_in_the_forest()` | Personal Use Only |
+| French Suits: English Pattern | `pcbj_english_pattern()` | CC BY 4.0 |
+| German Suits: Bavarian Pattern | `pcbj_bavarian_pattern()` | CC BY 4.0 |
+| Pinochle | `pcbj_pinochle()` | CC BY-SA 3.0 |
+| Spanish Suits: Castilian Pattern | `pcbj_castilian_pattern()` | CC BY 4.0 |
 
 ## <a name="barrio">Differences with Boardgame Barrio's Small Box Game Jackets</a>
 
