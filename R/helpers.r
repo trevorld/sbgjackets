@@ -90,8 +90,19 @@ prepend_instructions <- function(output, paper = "letter") {
 #' @param credits A character vector of (commonmark) credits to eventually be
 #'                passed to [marquee::marquee_grob()].
 #' @param icons If `TRUE` include Creative Commons credits for Games-icons.net icons.
+#' @param ... Ignored for now.
+#' @param x,width [grid::unit()] that will be passed to [marquee::marquee_grob()].
 #' @export
-creditsGrob <- function(xmp = xmpdf::xmp(), credits = character(), icons = FALSE, size = "4x6") {
+creditsGrob <- function(
+	xmp = xmpdf::xmp(),
+	credits = character(),
+	icons = FALSE,
+	size = "4x6",
+	...,
+	width = NULL,
+	x = NULL
+) {
+	check_dots_empty()
 	# Prevents `marquee::marque_grob()` from leaving open a graphics device
 	current_dev <- grDevices::dev.cur()
 	pdf(NULL, width = pnpmisc:::JACKET_4x6_WIDTH, height = pnpmisc:::JACKET_4x6_HEIGHT)
@@ -176,8 +187,8 @@ creditsGrob <- function(xmp = xmpdf::xmp(), credits = character(), icons = FALSE
 	mg <- marquee::marquee_grob(
 		credits,
 		style = credits_style(size),
-		width = unit(pnpmisc:::JACKET_4x6_FRONT_WIDTH + 1, "in"),
-		x = unit(1 / 8, "in"),
+		width = width %||% unit(pnpmisc:::JACKET_4x6_FRONT_WIDTH + 1, "in"),
+		x = x %||% unit(1 / 8, "in"),
 		y = unit(1, "npc") - unit(1 / 8, "in")
 	)
 	if (is.null(xmp$spdx_id)) {

@@ -58,6 +58,7 @@ pcbj_playing_cards_all <- function(
 	invisible(output)
 }
 
+
 #' @rdname pcbj_playing_cards
 #' @export
 pcbj_bavarian_pattern <- function(
@@ -83,6 +84,12 @@ pcbj_bavarian_pattern <- function(
 		on.exit(grDevices::graphics.off(), add = TRUE)
 	}
 
+	# Actual Bavarian Pattern cards are 2.25 inches wide and
+	# the clear plastic box I received them in are a bit narrower and
+	# taller than the poker boxes I have
+	BAVARIAN_WIDTH <- 2.3
+	BAVARIAN_DELTA <- pnpmisc:::JACKET_POKER_FRONT_WIDTH - BAVARIAN_WIDTH
+
 	dir <- get_data_dir()
 	# https://commons.wikimedia.org/wiki/Category:Castilian_pattern
 	pic <- normalizePath(file.path(dir, "bavarian_pattern.jpg"), mustWork = FALSE)
@@ -96,18 +103,21 @@ pcbj_bavarian_pattern <- function(
 	bm_pic <- magick::image_read(pic) |>
 		as_bm_pixmap()
 	bm_pic <- bm_pic[10:870, 1020:1500]
-	bm_pic <- rasterGrob(bm_pic, height = 1)
-
-	front <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_pic)))
+	front <- rasterGrob(
+		bm_pic,
+		height = 1,
+		x = unit(0.5, "npc") - unit(BAVARIAN_DELTA, "in"),
+		vp = viewport(just = "center", width = unit(BAVARIAN_WIDTH, "in"))
+	)
 
 	back_notes <- c(
 		"# Contents",
 		"",
 		"* 36 cards (4 suits x 9 ranks)",
 		"",
-		"  + 4 German suits: Acorns, Leaves, Hearts, Bells",
-		"  + 9 ranks: 6\u201310, Under, Over, King, Ace (literally a two)",
-		"  + Common to remove the 6's and often the 7's and 8's",
+		"  + Suits: Acorns, Leaves, Hearts, Bells",
+		"  + Ranks: 6\u201310, Under, Over, King, Ace",
+		"  + Common to remove the 6's and often the 7's and 8's as well",
 		"",
 		"# Notable games for this deck",
 		"",
@@ -122,9 +132,9 @@ pcbj_bavarian_pattern <- function(
 	mg <- marquee::marquee_grob(
 		back_notes,
 		style = credits_style("poker", color = text_col),
-		width = unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in"),
-		x = unit(1 / 8, "in"),
-		y = unit(1, "npc") - unit(1 / 8, "in")
+		width = unit(BAVARIAN_WIDTH, "in"),
+		x = unit(1 / 8 + BAVARIAN_DELTA, "in"),
+		y = unit(1, "npc") - unit(1 / 8, "in"),
 	)
 
 	back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), mg)
@@ -148,7 +158,14 @@ pcbj_bavarian_pattern <- function(
 		"  + https://www.froja.de/karten/karten.php?menu_id=2_4"
 	)
 
-	inner <- creditsGrob(xmp, credits, icons = FALSE, size = "poker")
+	inner <- creditsGrob(
+		xmp,
+		credits,
+		icons = FALSE,
+		size = "poker",
+		width = unit(2 * BAVARIAN_WIDTH, "in"),
+		x = unit(1 / 8 + BAVARIAN_DELTA, "in")
+	)
 
 	output <- pdf_create_poker_jacket(
 		output = output,

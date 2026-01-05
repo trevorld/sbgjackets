@@ -12,7 +12,10 @@ creditsGrob(
   xmp = xmpdf::xmp(),
   credits = character(),
   icons = FALSE,
-  size = "4x6"
+  size = "4x6",
+  ...,
+  width = NULL,
+  x = NULL
 )
 
 spineIconGrob(players, minutes, weight, col = "white", size = "4x6")
@@ -30,6 +33,10 @@ spineIconGrob(players, minutes, weight, col = "white", size = "4x6")
 passed to \code{\link[marquee:marquee_grob]{marquee::marquee_grob()}}.}
 
 \item{icons}{If \code{TRUE} include Creative Commons credits for Games-icons.net icons.}
+
+\item{...}{Ignored for now.}
+
+\item{x, width}{\code{\link[grid:unit]{grid::unit()}} that will be passed to \code{\link[marquee:marquee_grob]{marquee::marquee_grob()}}.}
 
 \item{players}{A integer vector of allowed number of players}
 
