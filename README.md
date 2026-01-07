@@ -108,6 +108,7 @@ This package also provides functions that locally create playing-card box jacket
 |[The Fox in the Forest](https://foxtrotgames.com/forest/)|`pcbj_fox_in_the_forest()` |Personal Use Only |
 |French Suits: English Pattern    |`pcbj_english_pattern()`   |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
 |German Suits: Bavarian Pattern   |`pcbj_bavarian_pattern()`  |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
+|[Mahjong](https://www.sloperama.com/mahjongg/)|`pcbj_mahjong()`           |[CC-BY-ND-4.0](https://creativecommons.org/licenses/by-nd/4.0/)|
 |Pinochle                         |`pcbj_pinochle()`          |[CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/)|
 |Spanish Suits: Castilian Pattern |`pcbj_castilian_pattern()` |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
 
@@ -119,7 +120,7 @@ This package also provides functions that locally create playing-card box jacket
 
 | Feature | Boardgame Barrio | `{sbgjackets}` |
 | --- | --- | --- |
-| Quantity | Over 1,400 pre-made jackets | 19 pre-made jackets |
+| Quantity | Over 1,400 pre-made jackets | 20 pre-made jackets |
 | Size | Targets only 4x6 photo storage boxes | Targets 4x6 photo storage boxes as well as playing card boxes |
 | Process | Made in Microsoft Publisher with a template | Made in `R` with `pnpmisc::pdf_create_jacket()` |
 | Spine Font | Calibri (proprietary) | Carlito (libre font, metrically compatible with Calibri) |

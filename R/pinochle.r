@@ -29,7 +29,6 @@ pcbj_pinochle <- function(
 	}
 
 	dir <- get_data_dir()
-	# https://commons.wikimedia.org/wiki/Category:Castilian_pattern
 	pic <- normalizePath(file.path(dir, "pinochle.jpg"), mustWork = FALSE)
 
 	if (!file.exists(pic)) {

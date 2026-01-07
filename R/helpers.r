@@ -55,7 +55,7 @@ bm_from_title <- function(title, instructions = TRUE) {
 	bm
 }
 
-prepend_instructions <- function(output, paper = "letter") {
+prepend_instructions <- function(output, paper = "letter", orientation = "landscape") {
 	current_dev <- grDevices::dev.cur()
 	pdf(NULL, width = pnpmisc:::JACKET_4x6_WIDTH, height = pnpmisc:::JACKET_4x6_HEIGHT)
 	on.exit(invisible(dev.off()), add = TRUE)
@@ -63,7 +63,11 @@ prepend_instructions <- function(output, paper = "letter") {
 		on.exit(grDevices::dev.set(current_dev), add = TRUE)
 	}
 
-	f1 <- pnpmisc::pdf_create_jacket_instructions(paper = paper, style = credits_style())
+	f1 <- pnpmisc::pdf_create_jacket_instructions(
+		paper = paper,
+		style = credits_style(),
+		orientation = orientation
+	)
 	mg <- marquee::marquee_grob(
 		"This page intentionally left blank.",
 		style = credits_style(),
@@ -72,7 +76,7 @@ prepend_instructions <- function(output, paper = "letter") {
 		hjust = "center-ink",
 		vjust = "center"
 	)
-	f2 <- pnpmisc::pdf_create_blank(paper = paper, orientation = "landscape", grob = mg)
+	f2 <- pnpmisc::pdf_create_blank(paper = paper, orientation = orientation, grob = mg)
 	f3 <- tempfile(fileext = ".pdf")
 
 	qpdf::pdf_combine(c(f1, f2, output), f3) |>

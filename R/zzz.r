@@ -72,6 +72,7 @@ df_pcbj <- function() {
 		"The Fox in the Forest", "https://foxtrotgames.com/forest/", "`pcbj_fox_in_the_forest()`", "Personal Use Only",
 		"French Suits: English Pattern", NA_character_, "`pcbj_english_pattern()`", "CC-BY-4.0",
 		"German Suits: Bavarian Pattern", NA_character_, "`pcbj_bavarian_pattern()`", "CC-BY-4.0",
+		"Mahjong", "https://www.sloperama.com/mahjongg/", "`pcbj_mahjong()`", "CC-BY-ND-4.0",
 		"Pinochle", NA_character_, "`pcbj_pinochle()`", "CC-BY-SA-3.0",
 		"Spanish Suits: Castilian Pattern", NA_character_, "`pcbj_castilian_pattern()`", "CC-BY-4.0"
 	)
