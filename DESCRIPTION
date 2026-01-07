@@ -33,6 +33,10 @@ Imports:
     stringr,
     tools,
     xmpdf
+Suggests:
+	glue,
+	knitr,
+	tibble
 Remotes: piecepackr/piecepackr, piecepackr/ppdf, piecepackr/ppn, trevorld/pnpmisc
 License: MIT + file LICENSE
 Roxygen: list(markdown = TRUE)

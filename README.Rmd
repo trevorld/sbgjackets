@@ -71,41 +71,15 @@ set_docinfo(as_docinfo(xmp), output)
 
 ## <a name="premade">Pre-made 4x6 Photo Box Jackets</a>
 
-This package also provides functions that locally create SBG jackets pdfs for a few select games and game systems.  Pre-made versions for several of these are available for download at <https://trevorldavis.com/piecepackr/pages/print-and-play-pdfs.html>.
+This package also provides functions that locally create SBG jackets pdfs for a few select games (and game systems and generic components).  Pre-made versions for several of these are available for download at <https://trevorldavis.com/piecepackr/pages/print-and-play-pdfs.html>.
 
-| Game (System) | Function | Jacket License |
-| --- | --- | --- |
-| Double-Six Dominoes | `sbgj_dominoes_double6()` | CC BY 4.0 |
-| Double-Nine Dominoes | `sbgj_dominoes_double9()` | CC BY 4.0 |
-| Double-Twelve Dominoes | `sbgj_dominoes_double12()` | CC BY 4.0 |
-| [Homeworlds](https://www.looneylabs.com/games/homeworlds) | `sbgj_homeworlds()` | Personal Use Only |
-| [Ice Duo](https://www.looneylabs.com/games/ice-duo) | `sbgj_ice_duo()` | Personal Use Only |
-| [Jinxx](https://www.looneylabs.com/games/jinxx) | `sbgj_jinxx()` | Personal Use Only |
-| [Looney Pyramids](https://www.looneylabs.com/pyramids-home) | `sbgj_looney_pyramids()` | Personal Use Only |
-| [Martian Chess](https://www.looneylabs.com/games/martian-chess) | `sbgj_martian_chess()` | Personal Use Only |
-| [Nomids](https://www.looneylabs.com/games/nomids) | `sbgj_nomids()` | Personal Use Only |
-| [Shibumi](https://cambolbro.com/games/shibumi/) | `sbgj_shibumi()` | Personal Use Only |
-
-This package also provides functions that locally create SBG jackets pdfs for a few select generic components:
-
-| Component | Function | Jacket License |
-| --- | --- | --- |
-| Dice | `sbgj_dice()` | CC BY 4.0 |
-| Pawns | `sbgj_pawns()` | CC BY ND 4.0 |
-| Glass Stones | `sbgj_glass_stones()` | CC BY ND 4.0 |
-| Polyhedral Dice | `sbgj_polyhedral_dice()` | CC BY ND 4.0 |
+`r sbgjackets:::readme_markdown_table(sbgjackets:::df_sbgj())`
 
 ## <a name="premade_card">Pre-made Playing Card Box Jackets</a>
 
-This package also provides functions that locally create playing-card box jackets pdfs for a few select games and game systems.  Pre-made versions for several of these are available for download at <https://trevorldavis.com/piecepackr/pages/print-and-play-pdfs.html>.
+This package also provides functions that locally create playing-card box jackets pdfs for a few select games (and game systems and generic components).  Pre-made versions for several of these are available for download at <https://trevorldavis.com/piecepackr/pages/print-and-play-pdfs.html>.
 
-| Game (System) | Function | Jacket License |
-| --- | --- | --- |
-| [The Fox in the Forest](https://foxtrotgames.com/forest/) | `pcbj_fox_in_the_forest()` | Personal Use Only |
-| French Suits: English Pattern | `pcbj_english_pattern()` | CC BY 4.0 |
-| German Suits: Bavarian Pattern | `pcbj_bavarian_pattern()` | CC BY 4.0 |
-| Pinochle | `pcbj_pinochle()` | CC BY-SA 3.0 |
-| Spanish Suits: Castilian Pattern | `pcbj_castilian_pattern()` | CC BY 4.0 |
+`r sbgjackets:::readme_markdown_table(sbgjackets:::df_pcbj())`
 
 ## <a name="barrio">Differences with Boardgame Barrio's Small Box Game Jackets</a>
 
@@ -113,7 +87,8 @@ This package also provides functions that locally create playing-card box jacket
 
 | Feature | Boardgame Barrio | `{sbgjackets}` |
 | --- | --- | --- |
-| Quantity | Over 1,400 pre-made jackets | 14 pre-made jackets |
+| Quantity | Over 1,400 pre-made jackets | `r nrow(sbgjackets:::df_pcbj()) + nrow(sbgjackets:::df_sbgj())` pre-made jackets |
+| Size | Targets only 4x6 photo storage boxes | Targets 4x6 photo storage boxes as well as playing card boxes |
 | Process | Made in Microsoft Publisher with a template | Made in `R` with `pnpmisc::pdf_create_jacket()` |
 | Spine Font | Calibri (proprietary) | Carlito (libre font, metrically compatible with Calibri) |
 | Spine Text Color | Spine text is always white | Spine text may be other colors (e.g. to match cover text color) |
