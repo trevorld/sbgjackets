@@ -155,8 +155,6 @@ creditsGrob <- function(
 			exists(fn, getNamespace("sbgjackets"))
 	) {
 		generated_by <- c(
-			credits,
-			"",
 			"* Generated in `R` by `sbgjackets::{fn}()`",
 			"",
 			"  + https://github.com/trevorld/sbgjackets",
