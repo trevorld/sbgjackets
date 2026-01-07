@@ -5,7 +5,6 @@
 \alias{pcbj_bavarian_pattern}
 \alias{pcbj_castilian_pattern}
 \alias{pcbj_english_pattern}
-\alias{pcbj_pinochle}
 \title{Create playing card box jacket for various playing card decks.}
 \usage{
 pcbj_playing_cards_all(
@@ -30,13 +29,6 @@ pcbj_castilian_pattern(
 )
 
 pcbj_english_pattern(
-  output = NULL,
-  ...,
-  paper = c("letter", "a4"),
-  instructions = FALSE
-)
-
-pcbj_pinochle(
   output = NULL,
   ...,
   paper = c("letter", "a4"),

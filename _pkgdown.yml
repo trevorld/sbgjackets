@@ -17,6 +17,7 @@ reference:
       contents:
         - pcbj_castilian_pattern
         - pcbj_fox_in_the_forest
+        - pcbj_pinochle
     - title: "Helper grob utilities"
       desc: ''
       contents:
