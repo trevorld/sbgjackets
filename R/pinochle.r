@@ -112,7 +112,7 @@ pcbj_pinochle <- function(
 		"  + Cropped to fit front cover"
 	)
 
-	inner <- creditsGrob(xmp, credits, icons = FALSE, size = "poker")
+	inner <- creditsGrob(xmp, credits, icons = TRUE, size = "poker")
 
 	output <- pdf_create_poker_jacket(
 		output = output,

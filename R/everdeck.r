@@ -35,7 +35,7 @@ pcbj_everdeck <- function(
 		abort(str_glue("{dQuote(pic)} does not exist.  Download from <{url}>."))
 	}
 	con <- unz(pic, "Red and Black.pdf", "rb")
-	vec_raw <- readBin(con, "raw", 1e6)
+	vec_raw <- readBin(con, "raw", 89787L)
 	close(con)
 	bm_pic <- pnpmisc::pdf_render_bm_pixmap(vec_raw)
 	bm_pic <- bm_pic[1076:1681, 1304:2130] |> rasterGrob(width = 1)
