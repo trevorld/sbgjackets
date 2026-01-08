@@ -100,7 +100,7 @@ pcbj_pinochle <- function(
 
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
-		date_created = "2025",
+		date_created = "2026",
 		spdx_id = "CC-BY-SA-3.0",
 		title = "Pinochle Playing Card Box Jacket"
 	)

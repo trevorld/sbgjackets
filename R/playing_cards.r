@@ -32,7 +32,7 @@ pcbj_playing_cards_all <- function(
 
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
-		date_created = "2025",
+		date_created = "2026",
 		spdx_id = "CC-BY-4.0",
 		title = "Playing Cards Box Jackets"
 	)
@@ -143,7 +143,7 @@ pcbj_bavarian_pattern <- function(
 
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
-		date_created = "2025",
+		date_created = "2026",
 		spdx_id = "CC-BY-4.0",
 		title = "German Suits: Bavarian Pattern Playing Card Box Jacket"
 	)
@@ -259,7 +259,7 @@ pcbj_castilian_pattern <- function(
 
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
-		date_created = "2025",
+		date_created = "2026",
 		spdx_id = "CC-BY-4.0",
 		title = "Spanish Suits: Castilian Pattern Playing Card Box Jacket"
 	)
@@ -366,7 +366,7 @@ pcbj_english_pattern <- function(
 
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
-		date_created = "2025",
+		date_created = "2026",
 		spdx_id = "CC-BY-4.0",
 		title = "French Suits: English Pattern Playing Card Box Jacket"
 	)
@@ -473,7 +473,7 @@ pcbj_english_pattern <- function(
 
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
-		date_created = "2025",
+		date_created = "2026",
 		spdx_id = "CC-BY-4.0",
 		title = "French Suits: English Pattern Playing Card Box Jacket"
 	)

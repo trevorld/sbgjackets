@@ -46,11 +46,11 @@ readme_markdown_table <- function(df) {
 
 df_sbgj <- function() {
 	# fmt: skip
-	tibble::tribble(
+	df <- tibble::tribble(
 		~game, ~url, ~`function`, ~license,
 		"Dice", NA_character_, "`sbgj_dice()`", "CC-BY-4.0",
 		"Polyhedral Dice", NA_character_, "`sbgj_polyhedral_dice()`", "CC-BY-ND-4.0",
-		"Double-Six Dominoes", NA_character_, "`sbgj_dominoes_double6()`", "CC-BY-4.0",
+		"Double-Six Dominoes", "https://www.pagat.com/domino/", "`sbgj_dominoes_double6()`", "CC-BY-4.0",
 		"Double-Nine Dominoes", NA_character_, "`sbgj_dominoes_double9()`", "CC-BY-4.0",
 		"Double-Twelve Dominoes", NA_character_, "`sbgj_dominoes_double12()`", "CC-BY-4.0",
 		"Homeworlds", "https://www.looneylabs.com/games/homeworlds", "`sbgj_homeworlds()`", "Personal Use Only",
@@ -63,17 +63,31 @@ df_sbgj <- function() {
 		"Shibumi", "https://cambolbro.com/games/shibumi/", "`sbgj_shibumi()`", "Personal Use Only",
 		"Glass Stones", NA_character_, "`sbgj_glass_stones()`", "CC-BY-ND-4.0"
 	)
+	# Looney Labs FAQ says okay to use their images to **create** jackets for personal use
+	# but does not grant permission to **share** such jackets
+	not_shareable <- c(
+		"Homeworlds",
+		"Ice Duo",
+		"Jinxx",
+		"Looney Pyramids",
+		"Martian Chess",
+		"Nomids"
+	)
+	df$shareable <- !(df$game %in% not_shareable)
+	df
 }
 
 df_pcbj <- function() {
 	# fmt: skip
-	tibble::tribble(
+	df <- tibble::tribble(
 		~game, ~url, ~`function`, ~license,
 		"The Fox in the Forest", "https://foxtrotgames.com/forest/", "`pcbj_fox_in_the_forest()`", "Personal Use Only",
-		"French Suits: English Pattern", NA_character_, "`pcbj_english_pattern()`", "CC-BY-4.0",
-		"German Suits: Bavarian Pattern", NA_character_, "`pcbj_bavarian_pattern()`", "CC-BY-4.0",
+		"French Suits: English Pattern", "https://i-p-c-s.org/pattern/ps-48.html", "`pcbj_english_pattern()`", "CC-BY-4.0",
+		"German Suits: Bavarian Pattern", "https://i-p-c-s.org/pattern/ps-55.html", "`pcbj_bavarian_pattern()`", "CC-BY-4.0",
 		"Mahjong", "https://www.sloperama.com/mahjongg/", "`pcbj_mahjong()`", "CC-BY-ND-4.0",
-		"Pinochle", NA_character_, "`pcbj_pinochle()`", "CC-BY-SA-3.0",
-		"Spanish Suits: Castilian Pattern", NA_character_, "`pcbj_castilian_pattern()`", "CC-BY-4.0"
+		"Pinochle", "https://www.pagat.com/marriage/pinmain.html", "`pcbj_pinochle()`", "CC-BY-SA-3.0",
+		"Spanish Suits: Castilian Pattern", "https://i-p-c-s.org/pattern/ps-27.html", "`pcbj_castilian_pattern()`", "CC-BY-4.0"
 	)
+	df$shareable <- TRUE
+	df
 }
