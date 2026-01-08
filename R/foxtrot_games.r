@@ -1,6 +1,6 @@
-#' Create playing card box jacket for *Fox in the Forest*
+#' Create playing card box jacket for *The Fox in the Forest*
 #'
-#' `pcbj_fox_in_the_forest()` creates a playing card box jacket for the game *Fox in the Forest*.
+#' `pcbj_fox_in_the_forest()` creates a playing card box jacket for the game *The Fox in the Forest*.
 #'
 #' Note that these print-and-play playing card box jackets are for **Personal Use Only**.
 #' @inheritParams sbgj_dominoes_all
