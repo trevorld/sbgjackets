@@ -54,8 +54,6 @@ sbgj_shibumi <- function(output = NULL, ..., paper = c("letter", "a4"), instruct
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- get_data_dir()
-
 	background_col <- "white"
 	text_col <- "white"
 
@@ -86,7 +84,6 @@ sbgj_shibumi <- function(output = NULL, ..., paper = c("letter", "a4"), instruct
 		op_scale = 0.5,
 		trans = piecepackr::marbles_transform
 	)
-	rg_front <- rasterGrob(l_front$image)
 	l_back <- piecepackr::render_piece(
 		df_back,
 		dev = ragg::agg_capture,
@@ -95,12 +92,11 @@ sbgj_shibumi <- function(output = NULL, ..., paper = c("letter", "a4"), instruct
 		op_scale = 0.0,
 		trans = piecepackr::marbles_transform
 	)
-	rg_back <- rasterGrob(l_back$image)
 
-	front <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), rg_front)
-	back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), rg_back)
+	front <- rasterGrob(l_front$image)
+	back <- rasterGrob(l_back$image)
 	spine <- gList(
-		rectGrob(gp = gpar(col = NA, fill = "black")),
+		fullGrob("black"),
 		spineTextGrob("Shibumi", col = text_col)
 	)
 
@@ -128,7 +124,8 @@ sbgj_shibumi <- function(output = NULL, ..., paper = c("letter", "a4"), instruct
 		back = back,
 		spine = spine,
 		inner = inner,
-		paper = paper
+		paper = paper,
+		bg = background_col
 	)
 	if (instructions) {
 		prepend_instructions(output, paper = paper)

@@ -31,18 +31,9 @@ pcbj_fox_in_the_forest <- function(
 		on.exit(grDevices::graphics.off(), add = TRUE)
 	}
 
-	dir <- get_data_dir()
-	pic <- normalizePath(file.path(dir, "Carl_Rungius_Red_Fox.jpg"), mustWork = FALSE)
-
-	if (!file.exists(pic)) {
-		download.file(
-			"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Red_Fox%2C_Carl_Rungius%2C_1933.jpg/960px-Red_Fox%2C_Carl_Rungius%2C_1933.jpg",
-			pic
-		)
-	}
-	bm_pic <- magick::image_read(pic) |> as_bm_pixmap() |> rasterGrob(height = 1)
-
-	front <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_pic)))
+	url <- "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Red_Fox%2C_Carl_Rungius%2C_1933.jpg/960px-Red_Fox%2C_Carl_Rungius%2C_1933.jpg"
+	bm_pic <- bm_cache_url(url, "Carl_Rungius_Red_Fox.jpg")
+	front <- fullGrob(bm_pic, height = 1)
 
 	back_notes <- c(
 		"# Contents",
@@ -76,9 +67,9 @@ pcbj_fox_in_the_forest <- function(
 		y = unit(1, "npc") - unit(1 / 8, "in")
 	)
 
-	back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), mg)
+	back <- gList(fullGrob(background_col), mg)
 	spine <- gList(
-		rectGrob(gp = gpar(col = NA, fill = background_col)),
+		fullGrob(background_col),
 		spineTextGrob("The Fox in the Forest", col = text_col, size = "poker"),
 		spineIconGrob(2, 30, 1.6, text_col, size = "poker")
 	)

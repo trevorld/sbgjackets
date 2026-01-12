@@ -53,11 +53,11 @@ are helper grob functions to help make small box game jackets
 using \code{\link[pnpmisc:pdf_create_jacket]{pnpmisc::pdf_create_jacket()}}.
 }
 \examples{
-library("grid", include.only = c("gList", "gpar", "rectGrob"))
+library("grid", include.only = c("gList", "gpar"))
 sbgj_example <- function(output = NULL) {
-  front <- rectGrob(gp = gpar(col = NA, fill = "#D55E00"))
-  back <- rectGrob(gp = gpar(col = NA, fill = "#009E73"))
-  spine <- gList(rectGrob(gp = gpar(col = NA, fill = "black")),
+  front <- fullGrob("#D55E00")
+  back <- fullGrob("#009E73")
+  spine <- gList(fullGrob("black"),
                  spineTextGrob("Example Spine"),
                  spineIconGrob(2:4, 30, 1.5))
   inner <- creditsGrob(icons = TRUE)

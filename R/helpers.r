@@ -12,11 +12,11 @@
 #' @return A grid grob object
 #' @rdname helper_grobs
 #' @examples
-#' library("grid", include.only = c("gList", "gpar", "rectGrob"))
+#' library("grid", include.only = c("gList", "gpar"))
 #' sbgj_example <- function(output = NULL) {
-#'   front <- rectGrob(gp = gpar(col = NA, fill = "#D55E00"))
-#'   back <- rectGrob(gp = gpar(col = NA, fill = "#009E73"))
-#'   spine <- gList(rectGrob(gp = gpar(col = NA, fill = "black")),
+#'   front <- fullGrob("#D55E00")
+#'   back <- fullGrob("#009E73")
+#'   spine <- gList(fullGrob("black"),
 #'                  spineTextGrob("Example Spine"),
 #'                  spineIconGrob(2:4, 30, 1.5))
 #'   inner <- creditsGrob(icons = TRUE)
@@ -150,23 +150,23 @@ creditsGrob <- function(
 	}
 
 	fn <- try(as.character(as.list(sys.call(-1L))[[1L]]), silent = TRUE)
-	if (
-		!inherits(fn, "try-error") &&
-			exists(fn, getNamespace("sbgjackets"))
-	) {
-		generated_by <- c(
-			"* Generated in `R` by `sbgjackets::{fn}()`",
-			"",
-			"  + https://github.com/trevorld/sbgjackets",
-			"  + MIT license"
-		)
-	} else {
-		generated_by <- c(
-			"* Generated in `R` by `pnpmisc::pdf_create_jacket()`",
-			"",
-			"  + https://github.com/trevorld/pnpmisc",
-			"  + MIT license"
-		)
+	if (!inherits(fn, "try-error")) {
+		fn <- grepv("^sbgj_|^pcbj_", fn)
+		if (length(fn) == 1L && exists(fn, getNamespace("sbgjackets"))) {
+			generated_by <- c(
+				"* Generated in `R` by `sbgjackets::{fn}()`",
+				"",
+				"  + https://github.com/trevorld/sbgjackets",
+				"  + MIT license"
+			)
+		} else {
+			generated_by <- c(
+				"* Generated in `R` by `pnpmisc::pdf_create_jacket()`",
+				"",
+				"  + https://github.com/trevorld/pnpmisc",
+				"  + MIT license"
+			)
+		}
 	}
 	if (size == "4x6") {
 		credits <- c(credits, "", generated_by)

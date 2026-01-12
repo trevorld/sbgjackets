@@ -72,23 +72,13 @@ sbgj_dominoes_double6 <- function(
 		draw = FALSE,
 		default.units = "in"
 	)
-	dir <- get_data_dir()
-	pic <- normalizePath(file.path(dir, "Rozrywki_Naukowe_Fig._049.jpg"), mustWork = FALSE)
-	if (!file.exists(pic)) {
-		download.file(
-			"https://upload.wikimedia.org/wikipedia/commons/b/bb/Rozrywki_Naukowe_Fig._049.jpg",
-			pic
-		)
-	}
-	bm_pic <- magick::image_read(pic) |> as_bm_pixmap() |> rasterGrob(height = 1)
 
-	front <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_pic)))
+	url <- "https://upload.wikimedia.org/wikipedia/commons/b/bb/Rozrywki_Naukowe_Fig._049.jpg"
+	bm_pic <- bm_cache_url(url)
+	front <- fullGrob(bm_pic, height = 1)
 
 	back <- dominoes
-	spine <- gList(
-		rectGrob(gp = gpar(col = NA, fill = "black")),
-		spineTextGrob("Double-Six Dominoes")
-	)
+	spine <- gList(fullGrob("black"), spineTextGrob("Double-Six Dominoes"))
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
 		date_created = "2025",
@@ -150,38 +140,23 @@ sbgj_dominoes_double9 <- function(
 		default.units = "in"
 	)
 
-	dir <- get_data_dir()
-	# pic <- normalizePath(file.path(dir, "Mexican_Train.jpg"), mustWork = FALSE)
-	# if (!file.exists(pic))
-	#     download.file("https://upload.wikimedia.org/wikipedia/commons/3/38/Mexican_Train.jpg",
-	#     pic)
-	# pic <- normalizePath(file.path(dir, "Chicken_Foot_domino_game.jpg"), mustWork = FALSE)
-	# if (!file.exists(pic))
-	#     download.file("https://upload.wikimedia.org/wikipedia/commons/2/22/Chicken_Foot_domino_game.jpg",
-	#     pic)
+	# "Mexican_Train.jpg"
+	# "https://upload.wikimedia.org/wikipedia/commons/3/38/Mexican_Train.jpg"
+	# "Chicken_Foot_domino_game.jpg"
+	# "https://upload.wikimedia.org/wikipedia/commons/2/22/Chicken_Foot_domino_game.jpg"
 	# bm_pic <- magick::image_read(pic) |>
 	#     as_bm_pixmap() |>
 	#     bm_rotate(-90) |>
 	#     bm_flip("h") |>
 	#     rasterGrob(width = 1)
-	pic <- normalizePath(file.path(dir, "optical_illusion_dominoes.jpg"), mustWork = FALSE)
-	if (!file.exists(pic)) {
-		download.file(
-			"https://media.getty.edu/iiif/image/aec737a6-9166-4a04-a684-b03cbe242173/full/1024,/0/default.jpg?download=aec737a6-9166-4a04-a684-b03cbe242173_1024.jpg&size=medium",
-			pic
-		)
-	}
-	bm_pic <- magick::image_read(pic) |>
-		as_bm_pixmap() |>
-		bm_trim(right = 80L, top = 50L, bottom = 85L) |>
-		rasterGrob(height = 1)
+	filename <- "optical_illusion_dominoes.jpg"
+	url <- "https://media.getty.edu/iiif/image/aec737a6-9166-4a04-a684-b03cbe242173/full/1024,/0/default.jpg?download=aec737a6-9166-4a04-a684-b03cbe242173_1024.jpg&size=medium"
+	bm_pic <- bm_cache_url(url, filename) |>
+		bm_trim(right = 80L, top = 50L, bottom = 85L)
 
-	front <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_pic)))
+	front <- fullGrob(bm_pic, height = 1)
 	back <- dominoes
-	spine <- gList(
-		rectGrob(gp = gpar(col = NA, fill = "black")),
-		spineTextGrob("Double-Nine Dominoes")
-	)
+	spine <- gList(fullGrob("black"), spineTextGrob("Double-Nine Dominoes"))
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
 		date_created = "2025",
@@ -252,33 +227,17 @@ sbgj_dominoes_double12 <- function(
 		default.units = "in"
 	)
 
-	dir <- get_data_dir()
-	# pic <- normalizePath(file.path(dir, "pic1424282.jpg"), mustWork = FALSE)
-	# if (!file.exists(pic))
-	#     abort(c(str_glue("{shQuote(pic)} not found"),
-	#             i = c("Download from <https://boardgamegeek.com/image/1424282/mexican-train>")))
-	# pic <- normalizePath(file.path(dir, "People_playing_Mexican_Train.jpg"), mustWork = FALSE)
-	# if (!file.exists(pic))
-	#     download.file("https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/People_playing_Mexican_Train.jpg/1280px-People_playing_Mexican_Train.jpg",
-	#     pic)
-	pic <- normalizePath(file.path(dir, "kittens_playing_dominoes.jpg"), mustWork = FALSE)
-	if (!file.exists(pic)) {
-		download.file(
-			"https://tile.loc.gov/storage-services/service/pnp/cph/3b50000/3b50000/3b50700/3b50738r.jpg",
-			pic
-		)
-	}
-
-	bm_pic <- magick::image_read(pic) |>
-		as_bm_pixmap() |>
-		bm_trim(right = 90L, top = 20L, bottom = 60L) |>
-		rasterGrob(height = 1)
-	front <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_pic)))
+	# "pic1424282.jpg"
+	# "https://boardgamegeek.com/image/1424282/mexican-train"
+	# "People_playing_Mexican_Train.jpg"
+	# "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/People_playing_Mexican_Train.jpg/1280px-People_playing_Mexican_Train.jpg"
+	filename <- "kittens_playing_dominoes.jpg"
+	url <- "https://tile.loc.gov/storage-services/service/pnp/cph/3b50000/3b50000/3b50700/3b50738r.jpg"
+	bm_pic <- bm_cache_url(url, filename) |>
+		bm_trim(right = 90L, top = 20L, bottom = 60L)
+	front <- fullGrob(bm_pic, height = 1)
 	back <- dominoes
-	spine <- gList(
-		rectGrob(gp = gpar(col = NA, fill = "black")),
-		spineTextGrob("Double-Twelve Dominoes")
-	)
+	spine <- gList(fullGrob("black"), spineTextGrob("Double-Twelve Dominoes"))
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
 		date_created = "2025",

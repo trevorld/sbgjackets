@@ -2,7 +2,7 @@
 % Please edit documentation in R/foxtrot_games.r
 \name{pcbj_fox_in_the_forest}
 \alias{pcbj_fox_in_the_forest}
-\title{Create playing card box jacket for \emph{Fox in the Forest}}
+\title{Create playing card box jacket for \emph{The Fox in the Forest}}
 \usage{
 pcbj_fox_in_the_forest(
   output = NULL,
@@ -24,7 +24,7 @@ pcbj_fox_in_the_forest(
 The output file name invisibly.  As a side effect creates a pdf file.
 }
 \description{
-\code{pcbj_fox_in_the_forest()} creates a playing card box jacket for the game \emph{Fox in the Forest}.
+\code{pcbj_fox_in_the_forest()} creates a playing card box jacket for the game \emph{The Fox in the Forest}.
 }
 \details{
 Note that these print-and-play playing card box jackets are for \strong{Personal Use Only}.

@@ -85,60 +85,36 @@ sbgj_looney_pyramids <- function(
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- get_data_dir()
-
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
 
-	logo <- normalizePath(file.path(dir, "LP4TopHeader.png"), mustWork = FALSE)
-	if (!file.exists(logo)) {
-		download.file("https://www.looneylabs.com/sites/default/files/LP4%20Top%20Header.png", logo)
-	}
-	bm_logo <- magick::image_read(logo) |>
-		as_bm_pixmap() |>
+	url <- "https://www.looneylabs.com/sites/default/files/LP4%20Top%20Header.png"
+	bm_logo <- bm_cache_url(url, "LP4TopHeader.png") |>
 		bm_replace(text_col, "black") |>
 		bm_replace(text_col, "#191A17FF") |>
-		bm_replace(text_col, "#1C1D1AFF") |>
-		rasterGrob(y = 0.96, just = "top", width = unit(0.94, "npc"), interpolate = FALSE)
+		bm_replace(text_col, "#1C1D1AFF")
 
-	zoom <- normalizePath(file.path(dir, "PyramidArcadeZoomBackground.jpg"), mustWork = FALSE)
-	if (!file.exists(zoom)) {
-		download.file(
-			"https://www.looneylabs.com/sites/default/files/marketing_images/PyramidArcadeZoomBackground.jpg",
-			zoom
-		)
-	}
-	pamphlet <- normalizePath(file.path(dir, "Pyramids_Intro_Pamphlet7.pdf"), mustWork = FALSE)
-	if (!file.exists(pamphlet)) {
-		download.file(
-			"https://www.looneylabs.com/sites/default/files/literature/Pyramids_Intro_Pamphlet7.pdf",
-			pamphlet
-		)
-	}
+	url <- "https://www.looneylabs.com/sites/default/files/literature/Pyramids_Intro_Pamphlet7.pdf"
+	pamphlet_path <- cache_url(url)
 
-	bm_zoom <- magick::image_read(zoom) |> as_bm_pixmap() |> rasterGrob(y = 0, just = "bottom")
-
-	bm_pamphlet <- pnpmisc::pdf_render_bm_pixmap(pamphlet, page = 1L)
-	bm_pamphlet <- bm_pamphlet[, seq.int(ncol(bm_pamphlet) / 2 + 1, ncol(bm_pamphlet))]
-	bm_pamphlet <- cbind(
-		bm_pamphlet[, seq.int(ncol(bm_pamphlet) / 2 + 1, ncol(bm_pamphlet))],
-		bm_pamphlet[, seq.int(ncol(bm_pamphlet) / 2)]
+	bm_pamphlet1 <- pnpmisc::pdf_render_bm_pixmap(pamphlet_path, page = 1L)
+	bm_pamphlet1 <- bm_pamphlet1[, seq.int(ncol(bm_pamphlet1) / 2 + 1, ncol(bm_pamphlet1))]
+	bm_pamphlet1 <- cbind(
+		bm_pamphlet1[, seq.int(ncol(bm_pamphlet1) / 2 + 1, ncol(bm_pamphlet1))],
+		bm_pamphlet1[, seq.int(ncol(bm_pamphlet1) / 2)]
 	)
-	bm_pamphlet[1:90, seq.int(ncol(bm_pamphlet) / 2)] <- background_col
-	bm_pamphlet[1080:1200, 170:830] <- background_col
-	bm_pamphlet <- bm_pamphlet |>
+	bm_pamphlet1[1:90, seq.int(ncol(bm_pamphlet1) / 2)] <- background_col
+	bm_pamphlet1[1080:1200, 170:830] <- background_col
+	bm_pamphlet1 <- bm_pamphlet1 |>
 		bm_replace(background_col) |>
 		bm_replace(background_col, "#EDE4D3FF") |>
-		bm_replace(background_col, "#EEE5D4FF") |>
-		rasterGrob(y = 0.84, just = "top")
+		bm_replace(background_col, "#EEE5D4FF")
 
-	bm_pamphlet2 <- pnpmisc::pdf_render_bm_pixmap(pamphlet, page = 2L)
-	bm_pamphlet2 <- bm_pamphlet2[, seq.int(ceiling(0.75 * ncol(bm_pamphlet2)))]
-	bm_pamphlet2 <- bm_pamphlet2 |>
+	bm_pamphlet2 <- pnpmisc::pdf_render_bm_pixmap(pamphlet_path, page = 2L)
+	bm_pamphlet2 <- bm_pamphlet2[, seq.int(ceiling(0.75 * ncol(bm_pamphlet2)))] |>
 		bm_replace(background_col) |>
 		bm_replace(background_col, "#EEE5D4FF") |>
-		bm_replace(background_col, "#EDE4D3FF") |>
-		rasterGrob(y = 0.05, just = "bottom", width = 0.95)
+		bm_replace(background_col, "#EDE4D3FF")
 
 	#   Alien City
 	# * Apophis (Zark City deck, Uno deck, etc., d6, 5 tokens)
@@ -173,7 +149,7 @@ sbgj_looney_pyramids <- function(
 	# * Zarcana
 	# * Zark City
 	# * Zendo
-	front <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)))
+	front <- gList()
 	badges <- c(
 		"BlackIce",
 		"Blam",
@@ -209,14 +185,9 @@ sbgj_looney_pyramids <- function(
 	}
 
 	back <- gList(
-		rectGrob(gp = gpar(col = NA, fill = background_col)),
-		bm_logo,
-		bm_pamphlet,
-		bm_pamphlet2
-	)
-	spine <- gList(
-		rectGrob(gp = gpar(col = NA, fill = background_col)),
-		spineTextGrob("Looney Pyramids", col = text_col)
+		rasterGrob(bm_logo, y = 0.96, just = "top", width = unit(0.94, "npc"), interpolate = FALSE),
+		rasterGrob(bm_pamphlet1, y = 0.84, just = "top"),
+		rasterGrob(bm_pamphlet2, y = 0.05, just = "bottom", width = 0.95)
 	)
 
 	xmp <- xmp(creator = "Trevor L. Davis", title = "Looney Pyramids Small Box Game Jacket")
@@ -240,9 +211,10 @@ sbgj_looney_pyramids <- function(
 		output = output,
 		front = front,
 		back = back,
-		spine = spine,
+		spine = spineTextGrob("Looney Pyramids", col = text_col),
 		inner = inner,
-		paper = paper
+		paper = paper,
+		bg = background_col
 	)
 	if (instructions) {
 		prepend_instructions(output, paper = paper)
@@ -318,9 +290,7 @@ bank_grob <- function() {
 	)
 }
 
-load_pyramid_badges <- function() {
-	dir <- get_data_dir()
-
+pyramid_badges <- function() {
 	badges <- c(
 		"BlackIce",
 		"ColorWheel",
@@ -374,38 +344,30 @@ load_pyramid_badges <- function() {
 		"TicTacDoh",
 		"Zarcana"
 	)
+	list(badges = badges, g_badges = g_badges, patches = patches)
+}
+
+load_pyramid_badges <- function() {
+	pb <- pyramid_badges()
 
 	l_badges <- list()
 
-	for (badge in badges) {
+	for (badge in pb$badges) {
 		Sys.sleep(1)
-		f <- normalizePath(file.path(dir, str_glue("{badge}.png")), mustWork = FALSE)
-		if (!file.exists(f)) {
-			download.file(str_glue("https://www.looneylabs.com/sites/default/files/{badge}.png"), f)
-		}
-		l_badges[[badge]] <- magick::image_read(f) |> as_bm_pixmap() |> rasterGrob()
+		url <- str_glue("https://www.looneylabs.com/sites/default/files/{badge}.png")
+		l_badges[[badge]] <- bm_cache_url(url) |> rasterGrob()
 	}
-	for (badge in g_badges) {
+	for (badge in pb$g_badges) {
 		Sys.sleep(1)
-		f <- normalizePath(file.path(dir, str_glue("{badge}.png")), mustWork = FALSE)
-		if (!file.exists(f)) {
-			download.file(
-				str_glue("https://www.looneylabs.com/sites/default/files/{badge}.g.png"),
-				f
-			)
-		}
-		l_badges[[badge]] <- magick::image_read(f) |> as_bm_pixmap() |> rasterGrob()
+		f <- str_glue("{badge}.png")
+		url <- str_glue("https://www.looneylabs.com/sites/default/files/{badge}.g.png")
+		l_badges[[badge]] <- bm_cache_url(url, f) |> rasterGrob()
 	}
-	for (badge in patches) {
+	for (badge in pb$patches) {
 		Sys.sleep(1)
-		f <- normalizePath(file.path(dir, str_glue("{badge}.png")), mustWork = FALSE)
-		if (!file.exists(f)) {
-			download.file(
-				str_glue("https://www.looneylabs.com/sites/default/files/{badge}.patch_.png"),
-				f
-			)
-		}
-		l_badges[[badge]] <- magick::image_read(f) |> as_bm_pixmap() |> rasterGrob()
+		f <- str_glue("{badge}.png")
+		url <- str_glue("https://www.looneylabs.com/sites/default/files/{badge}.patch_.png")
+		l_badges[[badge]] <- bm_cache_url(url, f) |> rasterGrob()
 	}
 	l_badges
 }
@@ -420,41 +382,20 @@ sbgj_homeworlds <- function(output = NULL, ..., paper = c("letter", "a4"), instr
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- get_data_dir()
-
-	cover <- normalizePath(file.path(dir, "HomeworldsBoxFront.jpg"), mustWork = FALSE)
-	if (!file.exists(cover)) {
-		download.file(
-			"https://www.looneylabs.com/sites/default/files/marketing_images/HomeworldsBoxFront.jpg",
-			cover
-		)
-	}
-
-	back <- normalizePath(file.path(dir, "HomeworldsBoxBack.jpg"), mustWork = FALSE)
-	if (!file.exists(back)) {
-		download.file(
-			"https://www.looneylabs.com/sites/default/files/marketing_images/HomeworldsBoxBack.jpg",
-			back
-		)
-	}
-
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
 
-	bm_cover <- magick::image_read(cover) |>
-		as_bm_pixmap() |>
-		bm_trim(left = 10L, right = 10L) |>
-		rasterGrob(height = 0.8)
+	url <- "https://www.looneylabs.com/sites/default/files/marketing_images/HomeworldsBoxFront.jpg"
+	bm_cover <- bm_cache_url(url) |>
+		bm_trim(left = 10L, right = 10L)
 
-	bm_back <- magick::image_read(back) |>
-		as_bm_pixmap() |>
-		bm_trim(left = 10L, right = 10L, bottom = 10L, top = 10L) |>
-		rasterGrob(height = 0.85)
+	url <- "https://www.looneylabs.com/sites/default/files/marketing_images/HomeworldsBoxBack.jpg"
+	bm_back <- bm_cache_url(url) |>
+		bm_trim(left = 10L, right = 10L, bottom = 10L, top = 10L)
 
-	front <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), bm_cover)
-	back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), bm_back)
+	front <- rasterGrob(bm_cover, height = 0.8)
+	back <- rasterGrob(bm_back, height = 0.85)
 	spine <- gList(
-		rectGrob(gp = gpar(col = NA, fill = background_col)),
 		spineTextGrob("Homeworlds", col = text_col),
 		spineIconGrob(2, 60, 3.43, text_col)
 	)
@@ -478,7 +419,8 @@ sbgj_homeworlds <- function(output = NULL, ..., paper = c("letter", "a4"), instr
 		back = back,
 		spine = spine,
 		inner = inner,
-		paper = paper
+		paper = paper,
+		bg = background_col
 	)
 	if (instructions) {
 		prepend_instructions(output, paper = paper)
@@ -499,41 +441,20 @@ sbgj_ice_duo <- function(output = NULL, ..., paper = c("letter", "a4"), instruct
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- get_data_dir()
-
-	cover <- normalizePath(file.path(dir, "IceDuoBoxFront.jpg"), mustWork = FALSE)
-	if (!file.exists(cover)) {
-		download.file(
-			"https://www.looneylabs.com/sites/default/files/marketing_images/IceDuoBoxFront.jpg",
-			cover
-		)
-	}
-
-	back <- normalizePath(file.path(dir, "IceDuoBoxBack.jpg"), mustWork = FALSE)
-	if (!file.exists(back)) {
-		download.file(
-			"https://www.looneylabs.com/sites/default/files/marketing_images/IceDuoBoxBack.jpg",
-			back
-		)
-	}
-
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
 
-	bm_cover <- magick::image_read(cover) |>
-		as_bm_pixmap() |>
-		bm_trim(left = 10L, right = 10L) |>
-		rasterGrob(height = 0.8)
+	url <- "https://www.looneylabs.com/sites/default/files/marketing_images/IceDuoBoxFront.jpg"
+	bm_cover <- bm_cache_url(url) |>
+		bm_trim(left = 10L, right = 10L)
 
-	bm_back <- magick::image_read(back) |>
-		as_bm_pixmap() |>
-		bm_trim(left = 10L, right = 10L, bottom = 10L, top = 10L) |>
-		rasterGrob(height = 0.85)
+	url <- "https://www.looneylabs.com/sites/default/files/marketing_images/IceDuoBoxBack.jpg"
+	bm_back <- bm_cache_url(url) |>
+		bm_trim(left = 10L, right = 10L, bottom = 10L, top = 10L)
 
-	front <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), bm_cover)
-	back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), bm_back)
+	front <- rasterGrob(bm_cover, height = 0.8)
+	back <- rasterGrob(bm_back, height = 0.85)
 	spine <- gList(
-		rectGrob(gp = gpar(col = NA, fill = background_col)),
 		spineTextGrob("Ice Duo", col = text_col),
 		spineIconGrob(2, 30, 1.50, text_col)
 	)
@@ -557,7 +478,8 @@ sbgj_ice_duo <- function(output = NULL, ..., paper = c("letter", "a4"), instruct
 		back = back,
 		spine = spine,
 		inner = inner,
-		paper = paper
+		paper = paper,
+		bg = background_col
 	)
 	if (instructions) {
 		prepend_instructions(output, paper = paper)
@@ -578,41 +500,22 @@ sbgj_jinxx <- function(output = NULL, ..., paper = c("letter", "a4"), instructio
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- get_data_dir()
-
-	cover <- normalizePath(file.path(dir, "JinxxFlatBoxFront.png"), mustWork = FALSE)
-	if (!file.exists(cover)) {
-		download.file(
-			"https://www.looneylabs.com/sites/default/files/marketing_images/JinxxFlatBoxFront.png",
-			cover
-		)
-	}
-
-	back <- normalizePath(file.path(dir, "JinxxFlatBoxBack.png"), mustWork = FALSE)
-	if (!file.exists(back)) {
-		download.file(
-			"https://www.looneylabs.com/sites/default/files/marketing_images/JinxxFlatBoxBack.png",
-			back
-		)
-	}
-
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
 
-	bm_cover <- magick::image_read(cover) |>
-		as_bm_pixmap() |>
+	url <- "https://www.looneylabs.com/sites/default/files/marketing_images/JinxxFlatBoxFront.png"
+	bm_cover <- bm_cache_url(url) |>
 		bm_trim(left = 300L, right = 300L) |>
 		rasterGrob(height = 0.8)
 
-	bm_back <- magick::image_read(back) |>
-		as_bm_pixmap() |>
+	url <- "https://www.looneylabs.com/sites/default/files/marketing_images/JinxxFlatBoxBack.png"
+	bm_back <- bm_cache_url(url) |>
 		bm_trim(left = 300L, right = 300L) |>
 		rasterGrob(height = 0.85)
 
-	front <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), bm_cover)
-	back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), bm_back)
+	front <- bm_cover
+	back <- bm_back
 	spine <- gList(
-		rectGrob(gp = gpar(col = NA, fill = background_col)),
 		spineTextGrob("Jinxx", col = text_col),
 		spineIconGrob(2:4, 30, 1.50, text_col)
 	)
@@ -636,7 +539,8 @@ sbgj_jinxx <- function(output = NULL, ..., paper = c("letter", "a4"), instructio
 		back = back,
 		spine = spine,
 		inner = inner,
-		paper = paper
+		paper = paper,
+		bg = background_col
 	)
 	if (instructions) {
 		prepend_instructions(output, paper = paper)
@@ -665,56 +569,26 @@ sbgj_martian_chess <- function(
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- get_data_dir()
-
-	cover <- normalizePath(file.path(dir, "MartianChessBoxFront.jpg"), mustWork = FALSE)
-	if (!file.exists(cover)) {
-		download.file(
-			"https://www.looneylabs.com/sites/default/files/marketing_images/MartianChessBoxFront.jpg",
-			cover
-		)
-	}
-
-	if (silver) {
-		back <- normalizePath(file.path(dir, "MartianChessSilverFlatBoxBack.png"), mustWork = FALSE)
-		if (!file.exists(back)) {
-			download.file(
-				"https://www.looneylabs.com/sites/default/files/marketing_images/MartianChessSilverFlatBoxBack.png",
-				back
-			)
-		}
-	} else {
-		back <- normalizePath(file.path(dir, "MartianChessBoxBack.jpg"), mustWork = FALSE)
-		if (!file.exists(back)) {
-			download.file(
-				"https://www.looneylabs.com/sites/default/files/marketing_images/MartianChessBoxBack.jpg",
-				back
-			)
-		}
-	}
-
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
 
-	bm_cover <- magick::image_read(cover) |>
-		as_bm_pixmap() |>
-		rasterGrob()
+	url <- "https://www.looneylabs.com/sites/default/files/marketing_images/MartianChessBoxFront.jpg"
+	bm_cover <- bm_cache_url(url)
+	front <- rasterGrob(bm_cover)
+
 	if (silver) {
-		bm_back <- magick::image_read(back) |>
-			as_bm_pixmap() |>
-			bm_trim(left = 300L, right = 300L) |>
-			rasterGrob(height = 0.85)
+		url <- "https://www.looneylabs.com/sites/default/files/marketing_images/MartianChessSilverFlatBoxBack.png"
+		bm_back <- bm_cache_url(url) |>
+			bm_trim(left = 300L, right = 300L)
+		back <- rasterGrob(bm_back, height = 0.85)
 	} else {
-		bm_back <- magick::image_read(back) |>
-			as_bm_pixmap() |>
-			bm_trim(bottom = 10L, top = 10L) |>
-			rasterGrob()
+		url <- "https://www.looneylabs.com/sites/default/files/marketing_images/MartianChessBoxBack.jpg"
+		bm_back <- bm_cache_url(url) |>
+			bm_trim(bottom = 10L, top = 10L)
+		back <- rasterGrob(bm_back)
 	}
 
-	front <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), bm_cover)
-	back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), bm_back)
 	spine <- gList(
-		rectGrob(gp = gpar(col = NA, fill = background_col)),
 		spineTextGrob("Martian Chess", col = text_col),
 		spineIconGrob(2, 20, 2.42, text_col)
 	)
@@ -753,7 +627,8 @@ sbgj_martian_chess <- function(
 		back = back,
 		spine = spine,
 		inner = inner,
-		paper = paper
+		paper = paper,
+		bg = background_col
 	)
 	if (instructions) {
 		prepend_instructions(output, paper = paper)
@@ -781,79 +656,37 @@ sbgj_nomids <- function(
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- get_data_dir()
-
-	cover <- normalizePath(file.path(dir, "NomidsBoxFront.jpg"), mustWork = FALSE)
-	if (!file.exists(cover)) {
-		download.file(
-			"https://www.looneylabs.com/sites/default/files/marketing_images/NomidsBoxFront.jpg",
-			cover
-		)
-	}
-
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
 
-	bm_cover <- magick::image_read(cover) |> as_bm_pixmap() |> rasterGrob()
+	url <- "https://www.looneylabs.com/sites/default/files/marketing_images/NomidsBoxFront.jpg"
+	bm_cover <- bm_cache_url(url)
+	front <- rasterGrob(bm_cover)
 
 	if (custom) {
-		rules <- normalizePath(file.path(dir, "Nomids_Rules6.pdf"), mustWork = FALSE)
-		if (!file.exists(rules)) {
-			download.file(
-				"https://www.looneylabs.com/sites/default/files/literature/Nomids_Rules6.pdf",
-				rules
-			)
-		}
-		zoom <- normalizePath(file.path(dir, "PyramidArcadeZoomBackground.jpg"), mustWork = FALSE)
-		if (!file.exists(zoom)) {
-			download.file(
-				"https://www.looneylabs.com/sites/default/files/marketing_images/PyramidArcadeZoomBackground.jpg",
-				zoom
-			)
-		}
+		url <- "https://www.looneylabs.com/sites/default/files/marketing_images/NomidsLogo_Background.jpg"
+		bm_logo <- bm_cache_url(url)
 
-		logo <- normalizePath(file.path(dir, "NomidsLogo_Background.jpg"), mustWork = FALSE)
-		if (!file.exists(logo)) {
-			download.file(
-				"https://www.looneylabs.com/sites/default/files/marketing_images/NomidsLogo_Background.jpg",
-				logo
-			)
-		}
-
-		bm_rules <- pnpmisc::pdf_render_bm_pixmap(rules, page = 1L)
+		url <- "https://www.looneylabs.com/sites/default/files/literature/Nomids_Rules6.pdf"
+		bm_rules <- bm_cache_url(url)
 		bm_rules <- bm_rules[, 1:(ncol(bm_rules) / 2)] |>
-			bm_replace(background_col) |>
-			rasterGrob(y = 0.86, just = "top")
+			bm_replace(background_col)
 
-		bm_zoom <- magick::image_read(zoom) |> as_bm_pixmap() |> rasterGrob(y = 0, just = "bottom")
+		url <- "https://www.looneylabs.com/sites/default/files/marketing_images/PyramidArcadeZoomBackground.jpg"
+		bm_zoom <- bm_cache_url(url)
 
-		bm_logo <- magick::image_read(logo) |>
-			as_bm_pixmap() |>
-			rasterGrob(y = 1, just = "top", height = unit(0.15, "npc"))
-	} else {
-		back <- normalizePath(file.path(dir, "NomidsBoxBack.jpg"), mustWork = FALSE)
-		if (!file.exists(back)) {
-			download.file(
-				"https://www.looneylabs.com/sites/default/files/marketing_images/NomidsBoxBack.jpg",
-				back
-			)
-		}
-		bm_back <- magick::image_read(back) |> as_bm_pixmap() |> rasterGrob()
-	}
-
-	front <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), bm_cover)
-	if (custom) {
 		back <- gList(
-			rectGrob(gp = gpar(col = NA, fill = background_col)),
-			bm_logo,
-			bm_rules,
-			bm_zoom
+			rasterGrob(bm_logo, y = 1, just = "top", height = unit(0.15, "npc")),
+			rasterGrob(bm_rules, y = 0.86, just = "top"),
+			rasterGrob(bm_zoom, y = 0, just = "bottom")
 		)
 	} else {
-		back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), bm_back)
+		url <- "https://www.looneylabs.com/sites/default/files/marketing_images/NomidsBoxBack.jpg"
+		bm_back <- bm_cache_url(url)
+		back <- rasterGrob(bm_back)
 	}
+
 	spine <- gList(
-		rectGrob(gp = gpar(col = NA, fill = background_col)),
 		spineTextGrob("Nomids", col = text_col),
 		spineIconGrob(2:10, 10, 1.0, text_col)
 	)
@@ -894,7 +727,8 @@ sbgj_nomids <- function(
 		back = back,
 		spine = spine,
 		inner = inner,
-		paper = paper
+		paper = paper,
+		bg = background_col
 	)
 	if (instructions) {
 		prepend_instructions(output, paper = paper)

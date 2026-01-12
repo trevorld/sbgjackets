@@ -2,7 +2,7 @@
 #' @importFrom bittermelon as_bm_pixmap bm_replace bm_trim
 #' @importFrom dplyr filter mutate
 #' @importFrom grDevices dev.off pdf
-#' @importFrom pnpmisc pdf_create_jacket pdf_create_poker_jacket
+#' @importFrom pnpmisc fullGrob pdf_create_jacket pdf_create_poker_jacket zip_extract_bm_pixmap
 #' @importFrom rlang abort check_dots_empty .data
 #' @importFrom stringr str_c str_glue str_sub str_sub<-
 #' @importFrom utils download.file packageVersion
@@ -19,20 +19,12 @@ assert_runtime_dependencies <- function() {
 	)
 }
 
-get_data_dir <- function() {
-	dir <- tools::R_user_dir("sbgjackets", "data")
-	if (!dir.exists(dir)) {
-		dir.create(dir, recursive = TRUE)
-	}
-	dir
-}
-
 readme_markdown_table <- function(df) {
-	name <- ifelse(is.na(df$url), df$game, glue::glue("[{df$game}]({df$url})"))
+	name <- ifelse(is.na(df$url), df$game, str_glue("[{df$game}]({df$url})"))
 	fn <- df$`function`
 	license <- ifelse(
 		df$license %in% piecepackr::spdx_license_list$id,
-		glue::glue("[{df$license}]({piecepackr::spdx_license_list[df$license, 'url_alt']})"),
+		str_glue("[{df$license}]({piecepackr::spdx_license_list[df$license, 'url_alt']})"),
 		df$license
 	)
 	table <- data.frame(
@@ -92,3 +84,39 @@ df_pcbj <- function() {
 	df$shareable <- TRUE
 	df
 }
+
+cache_has <- function(filename) {
+	file.exists(cache_path(filename))
+}
+
+cache_path <- function(filename) {
+	dir <- tools::R_user_dir("sbgjackets", "data")
+	normalizePath(file.path(dir, filename), mustWork = FALSE)
+}
+
+cache_url <- function(url, filename = basename(url), download = TRUE) {
+	dir <- tools::R_user_dir("sbgjackets", "data")
+	if (!dir.exists(dir)) {
+		dir.create(dir, recursive = TRUE)
+	}
+	path <- cache_path(filename)
+	if (!file.exists(path)) {
+		if (download) {
+			download.file(url, path)
+		} else {
+			abort(str_glue("{dQuote(path)} does not exist.  Download from <{url}>."))
+		}
+	}
+	path
+}
+
+bm_cache_url <- function(url, filename = basename(url), download = TRUE) {
+	path <- cache_url(url, filename, download)
+	if (tolower(tools::file_ext(path)) == "pdf") {
+		pnpmisc::pdf_render_bm_pixmap(path)
+	} else {
+		magick::image_read(path) |> bittermelon::as_bm_pixmap()
+	}
+}
+
+extract <- `[` # to use in pipes

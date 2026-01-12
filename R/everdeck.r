@@ -28,18 +28,11 @@ pcbj_everdeck <- function(
 		on.exit(grDevices::graphics.off(), add = TRUE)
 	}
 
-	dir <- get_data_dir()
-	pic <- normalizePath(file.path(dir, "Everdeck_Packvelopes.zip"), mustWork = FALSE)
-	if (!file.exists(pic)) {
-		url <- "https://boardgamegeek.com/filepage/279177/packvelopes-storage-boxes"
-		abort(str_glue("{dQuote(pic)} does not exist.  Download from <{url}>."))
-	}
-	con <- unz(pic, "Red and Black.pdf", "rb")
-	vec_raw <- readBin(con, "raw", 89787L)
-	close(con)
-	bm_pic <- pnpmisc::pdf_render_bm_pixmap(vec_raw)
-	bm_pic <- bm_pic[1076:1681, 1304:2130] |> rasterGrob(width = 1)
-	front <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_pic)))
+	url <- "https://boardgamegeek.com/filepage/279177/packvelopes-storage-boxes"
+	bm_pic <- cache_url(url, "Everdeck_Packvelopes.zip", download = FALSE) |>
+		zip_extract_bm_pixmap("Red and Black.pdf") |>
+		extract(1076:1681, 1304:2130)
+	front <- fullGrob(bm_pic, height = 1)
 
 	back_notes <- c(
 		"# Contents",
@@ -81,13 +74,13 @@ pcbj_everdeck <- function(
 		y = unit(1, "npc") - unit(1 / 8, "in")
 	)
 
-	back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), mg)
+	back <- gList(fullGrob(background_col), mg)
 	spine1 <- gList(
-		rectGrob(gp = gpar(col = NA, fill = background_col)),
+		fullGrob(background_col),
 		spineTextGrob("Everdeck (1/2)", col = text_col, size = "poker")
 	)
 	spine2 <- gList(
-		rectGrob(gp = gpar(col = NA, fill = background_col)),
+		fullGrob(background_col),
 		spineTextGrob("Everdeck (2/2)", col = text_col, size = "poker")
 	)
 	spine <- list(spine1, spine2)

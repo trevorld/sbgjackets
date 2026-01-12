@@ -34,13 +34,6 @@ pcbj_english_pattern(
   paper = c("letter", "a4"),
   instructions = FALSE
 )
-
-pcbj_english_pattern(
-  output = NULL,
-  ...,
-  paper = c("letter", "a4"),
-  instructions = FALSE
-)
 }
 \arguments{
 \item{output}{Output file name.  Defaults to \code{tempfile(fileext = ".pdf")}.}

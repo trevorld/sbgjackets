@@ -60,18 +60,9 @@ sbgj_dice <- function(output = NULL, ..., paper = c("letter", "a4"), instruction
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- get_data_dir()
-	pic <- normalizePath(file.path(dir, "dice.jpg"), mustWork = FALSE)
-	if (!file.exists(pic)) {
-		download.file(
-			"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Mannen_spelen_dobbelspel%2C_op_de_grond_zit_aap_met_speelkaarten_Titelpagina_voor_De_alea_libri_duo%2C_Amsterdam_1642_De_alea_libri_duo_%28titel_op_object%29%2C_RP-P-1878-A-819.jpg/1193px-thumbnail.jpg",
-			pic
-		)
-	}
-	bm_pic <- magick::image_read(pic) |>
-		as_bm_pixmap() |>
+	url <- "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Mannen_spelen_dobbelspel%2C_op_de_grond_zit_aap_met_speelkaarten_Titelpagina_voor_De_alea_libri_duo%2C_Amsterdam_1642_De_alea_libri_duo_%28titel_op_object%29%2C_RP-P-1878-A-819.jpg/1193px-thumbnail.jpg"
+	bm_pic <- bm_cache_url(url, "dice.jpg") |>
 		bm_trim(right = 150L, left = 075L, top = 550L, bottom = 250L)
-	bm_front <- rasterGrob(bm_pic, height = 1)
 
 	envir <- piecepackr::game_systems()
 	# df <- ppdf::dice_dice(x = rep(1:4 - 0.5, 6L),
@@ -93,10 +84,10 @@ sbgj_dice <- function(output = NULL, ..., paper = c("letter", "a4"), instruction
 		default.units = "in"
 	)
 
-	front <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_front)))
+	front <- fullGrob(bm_pic, height = 1)
 	back <- dice
 
-	spine <- gList(rectGrob(gp = gpar(col = NA, fill = "black")), spineTextGrob("Dice"))
+	spine <- gList(fullGrob("black"), spineTextGrob("Dice"))
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
 		date_created = "2025",
@@ -139,23 +130,16 @@ sbgj_glass_stones <- function(output = NULL, ..., paper = c("letter", "a4"), ins
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- get_data_dir()
-	pic <- normalizePath(file.path(dir, "glass_stones.jpg"), mustWork = FALSE)
-	if (!file.exists(pic)) {
-		download.file(
-			"https://i2.pickpik.com/photos/301/542/392/glass-beads-glass-blue-decoration-a9ef02658d94bb22dd25203b4aa9f858.jpg",
-			pic
-		)
-	}
-	bm_pic <- magick::image_read(pic) |> as_bm_pixmap()
+	url <- "https://i2.pickpik.com/photos/301/542/392/glass-beads-glass-blue-decoration-a9ef02658d94bb22dd25203b4aa9f858.jpg"
+	bm_pic <- bm_cache_url(url, "glass_stones.jpg")
 	nc <- ncol(bm_pic)
-	bm_front <- rasterGrob(bm_pic[, seq.int(ceiling(nc / 2) - 24L, nc)], height = 1)
-	bm_back <- rasterGrob(bm_pic[, seq.int(1L, floor(nc / 2) + 24L)], height = 1)
+	bm_front <- bm_pic[, seq.int(ceiling(nc / 2) - 24L, nc)]
+	bm_back <- bm_pic[, seq.int(1L, floor(nc / 2) + 24L)]
 
-	front <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_front)))
-	back <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_back)))
+	front <- fullGrob(bm_front, height = 1)
+	back <- fullGrob(bm_back, height = 1)
 
-	spine <- gList(rectGrob(gp = gpar(col = NA, fill = "black")), spineTextGrob("Glass Stones"))
+	spine <- gList(fullGrob("black"), spineTextGrob("Glass Stones"))
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
 		date_created = "2025",
@@ -201,22 +185,16 @@ sbgj_pawns <- function(output = NULL, ..., paper = c("letter", "a4"), instructio
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- get_data_dir()
-	# https://pixabay.com/photos/play-stone-multicoloured-characters-1743645/
-	pic <- normalizePath(file.path(dir, "wooden_pawns.jpg"), mustWork = FALSE)
-	if (!file.exists(pic)) {
-		url <- "https://pixabay.com/photos/play-stone-multicoloured-characters-1743645/"
-		abort(str_glue("{dQuote(pic)} does not exist.  Download from <{url}>."))
-	}
-	bm_pic <- magick::image_read(pic) |> as_bm_pixmap()
+	url <- "https://pixabay.com/photos/play-stone-multicoloured-characters-1743645/"
+	bm_pic <- bm_cache_url(url, "wooden_pawns.jpg", download = FALSE)
 	nc <- ncol(bm_pic)
-	bm_front <- rasterGrob(bm_pic[, seq.int(ceiling(nc / 2), nc)], height = 1)
-	bm_back <- rasterGrob(bm_pic[, seq.int(1L, floor(nc / 2))], height = 1)
+	bm_front <- bm_pic[, seq.int(ceiling(nc / 2), nc)]
+	bm_back <- bm_pic[, seq.int(1L, floor(nc / 2))]
 
-	front <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_front)))
-	back <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_back)))
+	front <- fullGrob(bm_front, height = 1)
+	back <- fullGrob(bm_back, height = 1)
 
-	spine <- gList(rectGrob(gp = gpar(col = NA, fill = "black")), spineTextGrob("Pawns"))
+	spine <- gList(fullGrob("black"), spineTextGrob("Pawns"))
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
 		date_created = "2025",
@@ -272,18 +250,11 @@ sbgj_polyhedral_dice <- function(
 	paper <- match.arg(paper)
 	output <- pnpmisc:::normalize_output(output)
 
-	dir <- get_data_dir()
-	pic <- normalizePath(file.path(dir, "polyhedral_dice.jpg"), mustWork = FALSE)
-	if (!file.exists(pic)) {
-		download.file(
-			"https://i2.pickpik.com/photos/821/950/430/cube-play-role-playing-game-craps-82caba6d073e803940fba76a77c4be8a.jpg",
-			pic
-		)
-	}
-	bm_pic <- magick::image_read(pic) |> as_bm_pixmap()
+	url <- "https://i2.pickpik.com/photos/821/950/430/cube-play-role-playing-game-craps-82caba6d073e803940fba76a77c4be8a.jpg"
+	bm_pic <- bm_cache_url(url, "polyhedral_dice.jpg")
 	nc <- ncol(bm_pic)
-	bm_front <- rasterGrob(bm_pic[, seq.int(ceiling(nc / 2) - 24L, nc)], height = 1)
-	# bm_back <- rasterGrob(bm_pic[, seq.int(1L, floor(nc / 2) + 24L)], height = 1)
+	bm_front <- bm_pic[, seq.int(ceiling(nc / 2) - 24L, nc)]
+	# bm_back <- bm_pic[, seq.int(1L, floor(nc / 2) + 24L)]
 
 	envir <- piecepackr::game_systems()
 	df <- ppdf::dice_dice(
@@ -308,11 +279,11 @@ sbgj_polyhedral_dice <- function(
 		default.units = "in"
 	)
 
-	front <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_front)))
+	front <- fullGrob(bm_front, height = 1)
 	back <- dice
-	# back <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_back)))
+	# back <- fullGrob(bm_back, height = 1)
 
-	spine <- gList(rectGrob(gp = gpar(col = NA, fill = "black")), spineTextGrob("Polyhedral Dice"))
+	spine <- gList(fullGrob("black"), spineTextGrob("Polyhedral Dice"))
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
 		date_created = "2025",

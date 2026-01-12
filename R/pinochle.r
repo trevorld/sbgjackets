@@ -28,21 +28,11 @@ pcbj_pinochle <- function(
 		on.exit(grDevices::graphics.off(), add = TRUE)
 	}
 
-	dir <- get_data_dir()
-	pic <- normalizePath(file.path(dir, "pinochle.jpg"), mustWork = FALSE)
-
-	if (!file.exists(pic)) {
-		download.file(
-			"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Pinochle_meld.jpg/1280px-Pinochle_meld.jpg",
-			pic
-		)
-	}
-	bm_pic <- magick::image_read(pic) |>
-		as_bm_pixmap() |>
+	url <- "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Pinochle_meld.jpg/1280px-Pinochle_meld.jpg"
+	bm_pic <- bm_cache_url(url, "pinochle.jpg") |>
 		bm_trim(right = 300L)
-	bm_pic <- rasterGrob(bm_pic, height = 1)
 
-	front <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_pic)))
+	front <- fullGrob(bm_pic, height = 1)
 
 	around_table <- data.frame(
 		Rank = c("one per suit", "all eight"),
@@ -79,7 +69,7 @@ pcbj_pinochle <- function(
 		"  ![](around_table)"
 	)
 	back_notes <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
-	mg <- marquee::marquee_grob(
+	back <- marquee::marquee_grob(
 		back_notes,
 		style = credits_style("poker", color = text_col) |>
 			marquee::modify_style(
@@ -91,9 +81,7 @@ pcbj_pinochle <- function(
 		y = unit(1, "npc") - unit(1 / 8, "in")
 	)
 
-	back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), mg)
 	spine <- gList(
-		rectGrob(gp = gpar(col = NA, fill = background_col)),
 		spineTextGrob("Pinochle", col = text_col, size = "poker"),
 		spineIconGrob(2:4, 45, 2.31, text_col, size = "poker")
 	)
@@ -120,7 +108,8 @@ pcbj_pinochle <- function(
 		back = back,
 		spine = spine,
 		inner = inner,
-		paper = paper
+		paper = paper,
+		bg = background_col
 	)
 	if (instructions) {
 		prepend_instructions(output, paper = paper)

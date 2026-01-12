@@ -1,7 +1,7 @@
 Package: sbgjackets
 Type: Package
 Title: Utilities for Small Box Game Jackets
-Version: 0.1.0-17
+Version: 0.1.0-18
 Authors@R: c(person("Trevor L.", "Davis", role=c("aut", "cre"),
                      email="trevor.l.davis@gmail.com",
                      comment = c(ORCID = "0000-0001-6341-4639")),
@@ -24,7 +24,7 @@ Imports:
     magick,
     marquee,
     piecepackr (>= 1.15.0-11),
-    pnpmisc (>= 0.2.0-2),
+    pnpmisc (>= 0.2.0-9),
     ppdf (>= 0.2.0-22),
     ppn (>= 0.2.0-1),
     qpdf,
@@ -34,8 +34,9 @@ Imports:
     tools,
     xmpdf
 Suggests:
-	glue,
+	gtable,
 	knitr,
+	testthat,
 	tibble
 Remotes: piecepackr/piecepackr, piecepackr/ppdf, piecepackr/ppn, trevorld/pnpmisc
 License: MIT + file LICENSE

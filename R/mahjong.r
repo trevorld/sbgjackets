@@ -28,30 +28,13 @@ pcbj_mahjong <- function(
 		on.exit(grDevices::graphics.off(), add = TRUE)
 	}
 
-	dir <- get_data_dir()
-	pic <- normalizePath(file.path(dir, "mahjong.jpg"), mustWork = FALSE)
-	if (!file.exists(pic)) {
-		download.file(
-			"https://www.publicdomainpictures.net/pictures/280000/velka/mahjong-tiles-1545917019VCL.jpg",
-			pic
-		)
-	}
-	bm_pic <- magick::image_read(pic) |>
-		as_bm_pixmap() |>
-		rasterGrob(height = 1)
-	front1 <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_pic)))
+	url <- "https://www.publicdomainpictures.net/pictures/280000/velka/mahjong-tiles-1545917019VCL.jpg"
+	bm_pic <- bm_cache_url(url, "mahjong.jpg")
+	front1 <- fullGrob(bm_pic, height = 1)
 
-	pic <- normalizePath(file.path(dir, "mahjong2.jpg"), mustWork = FALSE)
-	if (!file.exists(pic)) {
-		download.file(
-			"https://images.pexels.com/photos/28996231/pexels-photo-28996231.jpeg",
-			pic
-		)
-	}
-	bm_pic <- magick::image_read(pic) |>
-		as_bm_pixmap() |>
-		rasterGrob(height = 1)
-	front2 <- rectGrob(gp = gpar(col = NA, fill = pattern(bm_pic)))
+	url2 <- "https://images.pexels.com/photos/28996231/pexels-photo-28996231.jpeg"
+	bm_pic2 <- bm_cache_url(url2, "mahjong2.jpg")
+	front2 <- fullGrob(bm_pic2, height = 1)
 
 	front <- list(front1, front2)
 
@@ -77,7 +60,7 @@ pcbj_mahjong <- function(
 		"* https://www.sloperama.com/mahjongg/"
 	)
 	back_notes <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
-	mg <- marquee::marquee_grob(
+	back <- marquee::marquee_grob(
 		back_notes,
 		style = credits_style("poker", color = text_col) |>
 			marquee::modify_style(
@@ -89,15 +72,8 @@ pcbj_mahjong <- function(
 		y = unit(1, "npc") - unit(1 / 8, "in")
 	)
 
-	back <- gList(rectGrob(gp = gpar(col = NA, fill = background_col)), mg)
-	spine1 <- gList(
-		rectGrob(gp = gpar(col = NA, fill = background_col)),
-		spineTextGrob("Mahjong (1/2)", col = text_col, size = "poker")
-	)
-	spine2 <- gList(
-		rectGrob(gp = gpar(col = NA, fill = background_col)),
-		spineTextGrob("Mahjong (2/2)", col = text_col, size = "poker")
-	)
+	spine1 <- spineTextGrob("Mahjong (1/2)", col = text_col, size = "poker")
+	spine2 <- spineTextGrob("Mahjong (2/2)", col = text_col, size = "poker")
 	spine <- list(spine1, spine2)
 
 	xmp <- xmp(
@@ -128,7 +104,8 @@ pcbj_mahjong <- function(
 		back = back,
 		spine = spine,
 		inner = inner,
-		paper = paper
+		paper = paper,
+		bg = background_col
 	)
 	if (instructions) {
 		prepend_instructions(output, paper = paper, orientation = "portrait")
