@@ -1,4 +1,5 @@
 test_that("`pcbj_mahjong()`", {
+	skip_if_not(has_runtime_dependencies())
 	skip_if_not(cache_has("mahjong.jpg"))
 	skip_if_not(cache_has("mahjong2.jpg"))
 	f <- pcbj_mahjong()

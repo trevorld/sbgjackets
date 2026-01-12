@@ -1,4 +1,5 @@
 test_that("Storage jackets", {
+	skip_if_not(has_runtime_dependencies())
 	skip_if_not(cache_has("dice.jpg"))
 	f <- sbgj_dice()
 	expect_true(file.exists(f))

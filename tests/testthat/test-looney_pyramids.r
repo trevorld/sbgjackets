@@ -1,4 +1,5 @@
 test_that("Looney Pyramid jackets", {
+	skip_if_not(has_runtime_dependencies())
 	skip_if_not(cache_has("HomeworldsBoxFront.jpg"))
 	skip_if_not(cache_has("HomeworldsBoxBack.jpg"))
 	f <- sbgj_homeworlds()

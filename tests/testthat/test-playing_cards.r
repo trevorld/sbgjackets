@@ -1,4 +1,5 @@
 test_that("Playing card jackets", {
+	skip_if_not(has_runtime_dependencies())
 	skip_if_not(cache_has("bavarian_pattern.jpg"))
 	f <- pcbj_bavarian_pattern()
 	expect_true(file.exists(f))

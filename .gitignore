@@ -4,4 +4,5 @@ pkgdown
 *.swp
 *_raw.svg
 R/tetris_stax.r
+tests/testthat/test-tetris_stax.r
 tmp
