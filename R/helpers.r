@@ -151,7 +151,7 @@ creditsGrob <- function(
 
 	fn <- try(as.character(as.list(sys.call(-1L))[[1L]]), silent = TRUE)
 	if (!inherits(fn, "try-error")) {
-		fn <- grepv("^sbgj_|^pcbj_", fn)
+		fn <- grep("^sbgj_|^pcbj_", fn, value = TRUE)
 		if (length(fn) == 1L && exists(fn, getNamespace("sbgjackets"))) {
 			generated_by <- c(
 				"* Generated in `R` by `sbgjackets::{fn}()`",
