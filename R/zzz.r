@@ -1,5 +1,5 @@
 #' @import grid
-#' @importFrom bittermelon as_bm_pixmap bm_replace bm_trim
+#' @importFrom bittermelon as_bm_pixmap bm_heights bm_replace bm_trim bm_widths
 #' @importFrom dplyr filter mutate
 #' @importFrom grDevices dev.off pdf
 #' @importFrom pnpmisc fullGrob pdf_create_jacket pdf_create_poker_jacket zip_extract_bm_pixmap
@@ -81,6 +81,7 @@ df_pcbj <- function() {
 	# fmt: skip
 	df <- tibble::tribble(
 		~game, ~url, ~`function`, ~license,
+		"Bridge", "https://www.pagat.com/auctionwhist/bridge.html", "`pcbj_bridge()`", "CC-BY-4.0",
 		"Decktet", "https://decktet.com", "`pcbj_decktet()`", "CC-BY-NC-SA-4.0",
 		"Everdeck", "https://thewrongtools.wordpress.com/2019/10/10/the-everdeck/", "`pcbj_everdeck()`", "CC-BY-SA-3.0",
 		"The Fox in the Forest", "https://foxtrotgames.com/forest/", "`pcbj_fox_in_the_forest()`", "Personal Use Only",
@@ -129,3 +130,5 @@ bm_cache_url <- function(url, filename = basename(url), download = TRUE) {
 }
 
 extract <- `[` # to use in pipes
+
+AR_POKER <- pnpmisc:::JACKET_POKER_FRONT_WIDTH / pnpmisc:::JACKET_POKER_HEIGHT

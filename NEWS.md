@@ -30,6 +30,7 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
 * Functions to create Playing Card Box jackets:
 
   + `pcbj_bavarian_pattern()`
+  + `pcbj_bridge()`
   + `pcbj_castilian_pattern()`
   + `pcbj_english_pattern()`
   + `pcbj_decktet()`

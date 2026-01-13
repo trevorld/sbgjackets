@@ -1,9 +1,85 @@
-#' Create playing card box jacket for Pinochle
+#' Create playing card box jacket for traditional card games
 #'
+#' `pcbj_bridge()` creates a playing card box jacket for a Bridge deck.
 #' `pcbj_pinochle()` creates a playing card box jacket for a Pinochle deck.
 #'
 #' @inheritParams pcbj_english_pattern
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
+#' @rdname traditional_card_games
+#' @export
+pcbj_bridge <- function(
+	output = NULL,
+	...,
+	paper = c("letter", "a4"),
+	instructions = FALSE
+) {
+	check_dots_empty()
+	assert_runtime_dependencies()
+
+	paper <- tolower(paper)
+	paper <- match.arg(paper)
+	output <- pnpmisc:::normalize_output(output)
+
+	background_col <- "white"
+	text_col <- "black"
+
+	current_dev <- grDevices::dev.cur()
+	if (current_dev > 1) {
+		on.exit(grDevices::dev.set(current_dev), add = TRUE)
+	} else {
+		on.exit(grDevices::graphics.off(), add = TRUE)
+	}
+
+	# https://www.worthpoint.com/worthopedia/1905-postcard-game-bridge-savile-276822716
+	url <- "https://www.haroldschogger.com/histor11.jpg"
+	bm_pic <- bm_cache_url(url, "bridge_postcards.jpg") |>
+		extract(22:496, 5:325)
+	front <- fullGrob(bm_pic, height = 1)
+
+	bm_pic <- bm_cache_url(url, "bridge_postcards.jpg") |>
+		extract(15:527, 757:1081)
+
+	back <- fullGrob(bm_pic, width = 1)
+
+	spine <- gList(
+		spineTextGrob("Bridge", col = text_col, size = "poker"),
+		spineIconGrob(4:4, 60, 3.88, text_col, size = "poker")
+	)
+
+	xmp <- xmp(
+		creator = "Trevor L. Davis",
+		date_created = "2026",
+		spdx_id = "CC-BY-4.0",
+		title = "Bridge Playing Card Box Jacket"
+	)
+	credits <- c(
+		"* *Reliable Series 9no 9335* by William Ritchie & Sons (c. 1908\u20131918) and *The Game of Bridge* by Savile Lumley (1905)",
+		"",
+		"  + https://www.haroldschogger.com/history.htm",
+		"  + Public Domain in the USA"
+	)
+
+	inner <- creditsGrob(xmp, credits, icons = TRUE, size = "poker")
+
+	output <- pdf_create_poker_jacket(
+		output = output,
+		front = front,
+		back = back,
+		spine = spine,
+		inner = inner,
+		paper = paper,
+		bg = background_col
+	)
+	if (instructions) {
+		prepend_instructions(output, paper = paper)
+	}
+
+	set_xmp(xmp, output)
+	set_docinfo(as_docinfo(xmp), output)
+	invisible(output)
+}
+
+#' @rdname traditional_card_games
 #' @export
 pcbj_pinochle <- function(
 	output = NULL,

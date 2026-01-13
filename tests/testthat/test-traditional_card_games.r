@@ -1,3 +1,11 @@
+test_that("`pcbj_bridge()`", {
+	skip_if_not(has_runtime_dependencies())
+	skip_if_not(cache_has("bridge_postcards.jpg"))
+	f <- pcbj_bridge()
+	expect_true(file.exists(f))
+	unlink(f)
+})
+
 test_that("`pcbj_pinochle()`", {
 	skip_if_not(has_runtime_dependencies())
 	skip_if_not_installed("gtable")

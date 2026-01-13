@@ -105,6 +105,7 @@ This package also provides functions that locally create playing-card box jacket
 
 |Game (System/Components)         |Function                   |License           |
 |:--------------------------------|:--------------------------|:-----------------|
+|[Bridge](https://www.pagat.com/auctionwhist/bridge.html)|`pcbj_bridge()`            |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
 |[Decktet](https://decktet.com)   |`pcbj_decktet()`           |[CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)|
 |[Everdeck](https://thewrongtools.wordpress.com/2019/10/10/the-everdeck/)|`pcbj_everdeck()`          |[CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/)|
 |[The Fox in the Forest](https://foxtrotgames.com/forest/)|`pcbj_fox_in_the_forest()` |Personal Use Only |
@@ -122,7 +123,7 @@ This package also provides functions that locally create playing-card box jacket
 
 | Feature | Boardgame Barrio | `{sbgjackets}` |
 | --- | --- | --- |
-| Quantity | Over 1,600 pre-made jackets | 22 pre-made jackets |
+| Quantity | Over 1,600 pre-made jackets | 23 pre-made jackets |
 | Size | Targets only 4x6 photo storage boxes | Targets 4x6 photo storage boxes as well as playing card boxes |
 | Process | Made in Microsoft Publisher with a template | Made in `R` with `pnpmisc::pdf_create_jacket()` |
 | Spine Font | Calibri (proprietary) | Carlito (libre font, metrically compatible with Calibri) |

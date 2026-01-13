@@ -15,12 +15,12 @@ reference:
     - title: 'Generate print-and-play "jacket" files for playing card boxes'
       desc: ''
       contents:
+        - pcbj_bridge
         - pcbj_castilian_pattern
         - pcbj_decktet
         - pcbj_everdeck
         - pcbj_fox_in_the_forest
         - pcbj_mahjong
-        - pcbj_pinochle
     - title: "Helper grob utilities"
       desc: ''
       contents:
