@@ -3,6 +3,7 @@
 export(creditsGrob)
 export(pcbj_bavarian_pattern)
 export(pcbj_castilian_pattern)
+export(pcbj_decktet)
 export(pcbj_english_pattern)
 export(pcbj_everdeck)
 export(pcbj_fox_in_the_forest)

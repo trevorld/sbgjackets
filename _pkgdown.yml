@@ -16,6 +16,7 @@ reference:
       desc: ''
       contents:
         - pcbj_castilian_pattern
+        - pcbj_decktet
         - pcbj_everdeck
         - pcbj_fox_in_the_forest
         - pcbj_mahjong
