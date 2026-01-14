@@ -24,7 +24,7 @@ pcbj_pinochle(
 
 \item{...}{Should be empty.}
 
-\item{paper}{Paper size.  Either "letter", "a4", or "special".}
+\item{paper}{Paper size.  Usually either "letter" or "a4" but in certain circumstances can be one of "letter", "a4", "poker", "bridge", "legal", "a5", "a3", "special".}
 
 \item{instructions}{If \code{TRUE} then prepend instructions on how to make the jacket to the beginning of the pdf}
 }
