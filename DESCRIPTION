@@ -15,7 +15,7 @@ Description: Utilities for small box game jackets.
 Depends:
     R (>= 4.1)
 Imports:
-    bittermelon,
+    bittermelon (>= 2.2.0-2),
     dplyr,
     grid,
     grDevices,
@@ -24,7 +24,7 @@ Imports:
     magick,
     marquee,
     piecepackr (>= 1.15.0-11),
-    pnpmisc (>= 0.2.0-9),
+    pnpmisc (>= 0.2.0-11),
     ppdf (>= 0.2.0-22),
     ppn (>= 0.2.0-1),
     qpdf,

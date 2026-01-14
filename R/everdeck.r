@@ -31,7 +31,7 @@ pcbj_everdeck <- function(
 	url <- "https://boardgamegeek.com/filepage/279177/packvelopes-storage-boxes"
 	bm_pic <- cache_url(url, "Everdeck_Packvelopes.zip", download = FALSE) |>
 		zip_extract_bm_pixmap("Red and Black.pdf") |>
-		extract(1076:1681, 1304:2130)
+		bm_extract(1076:1681, 1304:2130)
 	front <- fullGrob(bm_pic, height = 1)
 
 	back_notes <- c(

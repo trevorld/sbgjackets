@@ -41,13 +41,14 @@ This package provides the following grobs to help create small box game (SBG) ja
 
 ```{r eval = FALSE}
 library("grid")
+library("pnpmisc")
 library("sbgjackets")
 library("xmpdf")
 sbgjackets:::assert_runtime_dependencies()
 
-front <- rectGrob(gp = gpar(col = NA, fill = "#D55E00"))
-back <- rectGrob(gp = gpar(col = NA, fill = "#009E73"))
-spine <- gList(rectGrob(gp = gpar(col = NA, fill = "black")),
+front <- fullGrob("#D55E00")
+back <- fullGrob("#009E73")
+spine <- gList(fullGrob("black"),
                spineTextGrob("Example Spine"),
                spineIconGrob(2:4, 30, 1.5))
 
@@ -62,9 +63,13 @@ credits <- c("* A list of extra credits written in *CommonMark* markdown rendere
 inner <- creditsGrob(xmp, credits, icons = TRUE)
 
 output <- "example_jacket.pdf"
-pnpmisc::pdf_create_jacket(output,
-                           front = front, back = back,
-                           spine = spine, inner = inner)
+pdf_create_jacket(
+	output,
+	front = front,
+	back = back,
+	spine = spine,
+	inner = inner
+)
 set_xmp(xmp, output)
 set_docinfo(as_docinfo(xmp), output)
 ```

@@ -90,7 +90,7 @@ pcbj_bavarian_pattern <- function(
 
 	url <- "https://upload.wikimedia.org/wikipedia/commons/8/89/Eduard_B%C3%BCttner_Berlin_Bayrisches_Einfachbild.jpg"
 	bm_pic <- bm_cache_url(url, "bavarian_pattern.jpg") |>
-		extract(10:870, 1020:1500)
+		bm_extract(10:870, 1020:1500)
 	front <- rasterGrob(
 		bm_pic,
 		height = 1,
@@ -197,7 +197,7 @@ pcbj_castilian_pattern <- function(
 	# https://commons.wikimedia.org/wiki/Category:Castilian_pattern
 	url <- "https://museotik.euskadi.eus/contenidos/cultural_asset/museotik_ca_64272/es_def/media/images/0901a0fe80239d26.jpg"
 	bm_pic <- bm_cache_url(url, "fournier_1907.jpg") |>
-		extract(59:402, 301:514)
+		bm_extract(59:402, 301:514)
 
 	front <- fullGrob(bm_pic, height = 1)
 
@@ -291,7 +291,7 @@ pcbj_english_pattern <- function(
 
 	url <- "https://museotik.euskadi.eus/contenidos/cultural_asset/museotik_ca_65097/es_def/media/images/0901a0fe80607e66.jpg"
 	bm_pic <- bm_cache_url(url, "worshipful_1897.jpg") |>
-		extract(125:1137, 77:768)
+		bm_extract(125:1137, 77:768)
 
 	front <- fullGrob(bm_pic, height = 1)
 

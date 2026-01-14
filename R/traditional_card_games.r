@@ -33,11 +33,11 @@ pcbj_bridge <- function(
 	# https://www.worthpoint.com/worthopedia/1905-postcard-game-bridge-savile-276822716
 	url <- "https://www.haroldschogger.com/histor11.jpg"
 	bm_pic <- bm_cache_url(url, "bridge_postcards.jpg") |>
-		extract(22:496, 5:325)
+		bm_extract(22:496, 5:325)
 	front <- fullGrob(bm_pic, height = 1)
 
 	bm_pic <- bm_cache_url(url, "bridge_postcards.jpg") |>
-		extract(15:527, 757:1081)
+		bm_extract(15:527, 757:1081)
 
 	back <- fullGrob(bm_pic, width = 1)
 

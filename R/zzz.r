@@ -1,5 +1,5 @@
 #' @import grid
-#' @importFrom bittermelon as_bm_pixmap bm_heights bm_replace bm_trim bm_widths
+#' @importFrom bittermelon as_bm_pixmap bm_extract bm_replace bm_trim
 #' @importFrom dplyr filter mutate
 #' @importFrom grDevices dev.off pdf
 #' @importFrom pnpmisc fullGrob pdf_create_jacket pdf_create_poker_jacket zip_extract_bm_pixmap
