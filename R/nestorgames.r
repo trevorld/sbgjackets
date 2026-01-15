@@ -12,15 +12,11 @@
 sbgj_nestorgames_all <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = TRUE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	title <- "Shibumi"
 	bm <- bm_from_title(title, instructions)
@@ -46,13 +42,16 @@ sbgj_nestorgames_all <- function(
 
 #' @rdname sbgj_nestorgames
 #' @export
-sbgj_shibumi <- function(output = NULL, ..., paper = c("letter", "a4"), instructions = FALSE) {
+sbgj_shibumi <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
+	current_dev <- grDevices::dev.cur()
+	on.exit(restore_devices(current_dev), add = TRUE)
 
 	background_col <- "white"
 	text_col <- "white"
@@ -71,10 +70,6 @@ sbgj_shibumi <- function(output = NULL, ..., paper = c("letter", "a4"), instruct
 	)
 
 	envir <- piecepackr::game_systems(round = TRUE, shading = TRUE)
-	current_dev <- grDevices::dev.cur()
-	if (current_dev > 1) {
-		on.exit(grDevices::dev.set(current_dev), add = TRUE)
-	}
 
 	l_front <- piecepackr::render_piece(
 		df_front,
@@ -118,7 +113,7 @@ sbgj_shibumi <- function(output = NULL, ..., paper = c("letter", "a4"), instruct
 
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 
-	output <- pdf_create_jacket(
+	pdf_create_jacket(
 		output = output,
 		front = front,
 		back = back,
@@ -126,12 +121,6 @@ sbgj_shibumi <- function(output = NULL, ..., paper = c("letter", "a4"), instruct
 		inner = inner,
 		paper = paper,
 		bg = background_col
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }

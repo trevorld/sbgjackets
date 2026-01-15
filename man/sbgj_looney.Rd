@@ -13,45 +13,50 @@
 sbgj_looney_pyramids_all(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = TRUE
 )
 
 sbgj_looney_pyramids(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 
 sbgj_homeworlds(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 
 sbgj_ice_duo(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 
-sbgj_jinxx(output = NULL, ..., paper = c("letter", "a4"), instructions = FALSE)
+sbgj_jinxx(
+  output = NULL,
+  ...,
+  paper = getOption("papersize", "letter"),
+  instructions = FALSE
+)
 
 sbgj_martian_chess(
   output = NULL,
   ...,
   silver = FALSE,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 
 sbgj_nomids(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE,
   custom = FALSE
 )

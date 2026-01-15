@@ -1,7 +1,7 @@
 Package: sbgjackets
 Type: Package
 Title: Utilities for Small Box Game Jackets
-Version: 0.1.0-22
+Version: 0.1.0-23
 Authors@R: c(person("Trevor L.", "Davis", role=c("aut", "cre"),
                      email="trevor.l.davis@gmail.com",
                      comment = c(ORCID = "0000-0001-6341-4639")),
@@ -38,7 +38,7 @@ Suggests:
 	knitr,
 	testthat,
 	tibble
-Remotes: piecepackr/piecepackr, piecepackr/ppdf, piecepackr/ppn, trevorld/pnpmisc
+Remotes: piecepackr/piecepackr, piecepackr/ppdf, piecepackr/ppn, trevorld/bittermelon, trevorld/pnpmisc
 License: MIT + file LICENSE
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3

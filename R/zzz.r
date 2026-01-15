@@ -2,7 +2,7 @@
 #' @importFrom bittermelon as_bm_pixmap bm_extract bm_replace bm_trim
 #' @importFrom dplyr filter mutate
 #' @importFrom grDevices dev.off pdf
-#' @importFrom pnpmisc fullGrob pdf_create_jacket pdf_create_poker_jacket zip_extract_bm_pixmap
+#' @importFrom pnpmisc fullGrob pdf_create_jacket pdf_create_poker_jacket pdf_orientation pdf_paper zip_extract_bm_pixmap
 #' @importFrom rlang abort check_dots_empty .data
 #' @importFrom stringr str_c str_glue str_sub str_sub<-
 #' @importFrom utils download.file packageVersion
@@ -42,6 +42,15 @@ readme_markdown_table <- function(df) {
 		check.names = FALSE
 	)
 	knitr::kable(table, "pipe")
+}
+
+restore_devices <- function(current_dev) {
+	if (current_dev > 1) {
+		grDevices::dev.set(current_dev)
+	} else {
+		grDevices::graphics.off()
+	}
+	invisible(NULL)
 }
 
 df_sbgj <- function() {

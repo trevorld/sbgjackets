@@ -22,15 +22,11 @@
 sbgj_looney_pyramids_all <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = TRUE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	title <- c(
 		"Looney Pyramids",
@@ -75,15 +71,11 @@ sbgj_looney_pyramids_all <- function(
 sbgj_looney_pyramids <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
@@ -207,7 +199,7 @@ sbgj_looney_pyramids <- function(
 	cr_grob <- creditsGrob(xmp, credits, icons = FALSE)
 	inner <- gList(cr_grob, bank_grob())
 
-	output <- pdf_create_jacket(
+	pdf_create_jacket(
 		output = output,
 		front = front,
 		back = back,
@@ -215,14 +207,8 @@ sbgj_looney_pyramids <- function(
 		inner = inner,
 		paper = paper,
 		bg = background_col
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
 
 bank_grob <- function() {
@@ -374,13 +360,14 @@ load_pyramid_badges <- function() {
 
 #' @rdname sbgj_looney
 #' @export
-sbgj_homeworlds <- function(output = NULL, ..., paper = c("letter", "a4"), instructions = FALSE) {
+sbgj_homeworlds <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
@@ -413,7 +400,7 @@ sbgj_homeworlds <- function(output = NULL, ..., paper = c("letter", "a4"), instr
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE)
 
-	output <- pdf_create_jacket(
+	pdf_create_jacket(
 		output = output,
 		front = front,
 		back = back,
@@ -421,25 +408,20 @@ sbgj_homeworlds <- function(output = NULL, ..., paper = c("letter", "a4"), instr
 		inner = inner,
 		paper = paper,
 		bg = background_col
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
 
 #' @rdname sbgj_looney
 #' @export
-sbgj_ice_duo <- function(output = NULL, ..., paper = c("letter", "a4"), instructions = FALSE) {
+sbgj_ice_duo <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
@@ -472,7 +454,7 @@ sbgj_ice_duo <- function(output = NULL, ..., paper = c("letter", "a4"), instruct
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE)
 
-	output <- pdf_create_jacket(
+	pdf_create_jacket(
 		output = output,
 		front = front,
 		back = back,
@@ -480,25 +462,20 @@ sbgj_ice_duo <- function(output = NULL, ..., paper = c("letter", "a4"), instruct
 		inner = inner,
 		paper = paper,
 		bg = background_col
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
 
 #' @rdname sbgj_looney
 #' @export
-sbgj_jinxx <- function(output = NULL, ..., paper = c("letter", "a4"), instructions = FALSE) {
+sbgj_jinxx <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
@@ -533,7 +510,7 @@ sbgj_jinxx <- function(output = NULL, ..., paper = c("letter", "a4"), instructio
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE)
 
-	output <- pdf_create_jacket(
+	pdf_create_jacket(
 		output = output,
 		front = front,
 		back = back,
@@ -541,14 +518,8 @@ sbgj_jinxx <- function(output = NULL, ..., paper = c("letter", "a4"), instructio
 		inner = inner,
 		paper = paper,
 		bg = background_col
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
 
 #' @rdname sbgj_looney
@@ -559,15 +530,11 @@ sbgj_martian_chess <- function(
 	output = NULL,
 	...,
 	silver = FALSE,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
@@ -621,7 +588,7 @@ sbgj_martian_chess <- function(
 	}
 	inner <- creditsGrob(xmp, credits, icons = TRUE)
 
-	output <- pdf_create_jacket(
+	pdf_create_jacket(
 		output = output,
 		front = front,
 		back = back,
@@ -629,14 +596,8 @@ sbgj_martian_chess <- function(
 		inner = inner,
 		paper = paper,
 		bg = background_col
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
 
 #' @rdname sbgj_looney
@@ -645,16 +606,12 @@ sbgj_martian_chess <- function(
 sbgj_nomids <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE,
 	custom = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
@@ -721,7 +678,7 @@ sbgj_nomids <- function(
 	}
 	inner <- creditsGrob(xmp, credits, icons = TRUE)
 
-	output <- pdf_create_jacket(
+	pdf_create_jacket(
 		output = output,
 		front = front,
 		back = back,
@@ -729,12 +686,6 @@ sbgj_nomids <- function(
 		inner = inner,
 		paper = paper,
 		bg = background_col
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }

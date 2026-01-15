@@ -10,13 +10,14 @@
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
 #' @rdname sbgj_dominoes
 #' @export
-sbgj_dominoes_all <- function(output = NULL, ..., paper = c("letter", "a4"), instructions = TRUE) {
+sbgj_dominoes_all <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = TRUE
+) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	title <- c("Double-Six Dominoes", "Double-Nine Dominoes", "Double-Twelve Dominoes")
 	bm <- bm_from_title(title, instructions)
@@ -52,15 +53,11 @@ sbgj_dominoes_all <- function(output = NULL, ..., paper = c("letter", "a4"), ins
 sbgj_dominoes_double6 <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	envir <- piecepackr::game_systems(round = TRUE)
 	df <- ppdf::domino_tiles() |> mutate(x = 0.4 + 0.4 * .data$x, y = 0.4 * .data$y)
@@ -95,20 +92,15 @@ sbgj_dominoes_double6 <- function(
 	)
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 
-	output <- pdf_create_jacket(
+	pdf_create_jacket(
 		output = output,
 		front = front,
 		back = back,
 		spine = spine,
 		inner = inner,
 		paper = paper
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
 
 #' @rdname sbgj_dominoes
@@ -116,15 +108,11 @@ sbgj_dominoes_double6 <- function(
 sbgj_dominoes_double9 <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	envir <- piecepackr::game_systems(round = TRUE)
 	df <- ppdf::domino_tiles(n = 10) |>
@@ -182,20 +170,15 @@ sbgj_dominoes_double9 <- function(
 	#            "  + Cropped to fit front cover")
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 
-	output <- pdf_create_jacket(
+	pdf_create_jacket(
 		output = output,
 		front = front,
 		back = back,
 		spine = spine,
 		inner = inner,
 		paper = paper
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
 
 #' @rdname sbgj_dominoes
@@ -203,15 +186,11 @@ sbgj_dominoes_double9 <- function(
 sbgj_dominoes_double12 <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	envir <- piecepackr::game_systems(round = TRUE)
 	df <- ppdf::domino_tiles(n = 13) |>
@@ -264,18 +243,13 @@ sbgj_dominoes_double12 <- function(
 	#              "  + Cropped to fit front cover")
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 
-	output <- pdf_create_jacket(
+	pdf_create_jacket(
 		output = output,
 		front = front,
 		back = back,
 		spine = spine,
 		inner = inner,
 		paper = paper
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }

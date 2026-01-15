@@ -8,25 +8,16 @@
 pcbj_mahjong <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
+	current_dev <- grDevices::dev.cur()
+	on.exit(restore_devices(current_dev), add = TRUE)
 
 	background_col <- "white"
 	text_col <- "black"
-
-	current_dev <- grDevices::dev.cur()
-	if (current_dev > 1) {
-		on.exit(grDevices::dev.set(current_dev), add = TRUE)
-	} else {
-		on.exit(grDevices::graphics.off(), add = TRUE)
-	}
 
 	url <- "https://www.publicdomainpictures.net/pictures/280000/velka/mahjong-tiles-1545917019VCL.jpg"
 	bm_pic <- bm_cache_url(url, "mahjong.jpg")
@@ -98,7 +89,7 @@ pcbj_mahjong <- function(
 
 	inner <- creditsGrob(xmp, credits, icons = FALSE, size = "poker")
 
-	output <- pdf_create_poker_jacket(
+	pdf_create_poker_jacket(
 		output = output,
 		front = front,
 		back = back,
@@ -106,12 +97,6 @@ pcbj_mahjong <- function(
 		inner = inner,
 		paper = paper,
 		bg = background_col
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper, orientation = "portrait")
-	}
-
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }

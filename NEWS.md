@@ -4,11 +4,17 @@ sbgjackets v0.1.0 (development)
 New features
 ------------
 
-Grobs to help create small box game (SBG) jackets:
+Functions to help create small box game (SBG) jackets:
+
+* Helper grob functions:
 
   + `creditsGrob()` (to go on inside of jacket)
   + `spineIconGrob()`
   + `spineTextGrob()`
+
+* Helper pdf functions:
+
+  + `pdf_polish_jacket()` adds instructions and/or metadata
 
 Functions to create small box game (SBG) jackets under Creative Commons licenses:
 
