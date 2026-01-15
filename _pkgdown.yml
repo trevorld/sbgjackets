@@ -5,6 +5,11 @@ development:
 template:
   bootstrap: 5
 reference:
+    - title: "Utility functions for writing jacket functions"
+      desc: ''
+      contents:
+        - creditsGrob
+        - pdf_polish_jacket
     - title: 'Generate print-and-play "jacket" files for 4"x6" photo storage boxes'
       desc: ''
       contents:
@@ -21,7 +26,3 @@ reference:
         - pcbj_everdeck
         - pcbj_fox_in_the_forest
         - pcbj_mahjong
-    - title: "Helper grob utilities"
-      desc: ''
-      contents:
-        - creditsGrob

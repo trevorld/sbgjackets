@@ -11,25 +11,35 @@
 sbgj_storage_all(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = TRUE
 )
 
-sbgj_dice(output = NULL, ..., paper = c("letter", "a4"), instructions = FALSE)
+sbgj_dice(
+  output = NULL,
+  ...,
+  paper = getOption("papersize", "letter"),
+  instructions = FALSE
+)
 
 sbgj_glass_stones(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 
-sbgj_pawns(output = NULL, ..., paper = c("letter", "a4"), instructions = FALSE)
+sbgj_pawns(
+  output = NULL,
+  ...,
+  paper = getOption("papersize", "letter"),
+  instructions = FALSE
+)
 
 sbgj_polyhedral_dice(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 }

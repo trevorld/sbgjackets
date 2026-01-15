@@ -72,9 +72,8 @@ pdf_create_jacket(
 	back = back,
 	spine = spine,
 	inner = inner
-)
-set_xmp(xmp, output)
-set_docinfo(as_docinfo(xmp), output)
+) |>
+	pdf_polish_jacket(xmp = xmp, instructions = TRUE)
 ```
 
 ## <a name="premade">Pre-made 4x6 Photo Box Jackets</a>

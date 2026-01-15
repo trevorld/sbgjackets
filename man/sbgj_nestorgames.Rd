@@ -8,14 +8,14 @@
 sbgj_nestorgames_all(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = TRUE
 )
 
 sbgj_shibumi(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 }

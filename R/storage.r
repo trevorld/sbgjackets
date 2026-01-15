@@ -12,13 +12,14 @@
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
 #' @rdname sbgj_storage
 #' @export
-sbgj_storage_all <- function(output = NULL, ..., paper = c("letter", "a4"), instructions = TRUE) {
+sbgj_storage_all <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = TRUE
+) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	title <- c("Dice", "Glass Stones", "Pawns", "Polyhedral Dice")
 	bm <- bm_from_title(title, instructions)
@@ -52,13 +53,14 @@ sbgj_storage_all <- function(output = NULL, ..., paper = c("letter", "a4"), inst
 
 #' @rdname sbgj_storage
 #' @export
-sbgj_dice <- function(output = NULL, ..., paper = c("letter", "a4"), instructions = FALSE) {
+sbgj_dice <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	url <- "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Mannen_spelen_dobbelspel%2C_op_de_grond_zit_aap_met_speelkaarten_Titelpagina_voor_De_alea_libri_duo%2C_Amsterdam_1642_De_alea_libri_duo_%28titel_op_object%29%2C_RP-P-1878-A-819.jpg/1193px-thumbnail.jpg"
 	bm_pic <- bm_cache_url(url, "dice.jpg") |>
@@ -111,24 +113,20 @@ sbgj_dice <- function(output = NULL, ..., paper = c("letter", "a4"), instruction
 		spine = spine,
 		inner = inner,
 		paper = paper
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
 
 #' @rdname sbgj_storage
 #' @export
-sbgj_glass_stones <- function(output = NULL, ..., paper = c("letter", "a4"), instructions = FALSE) {
+sbgj_glass_stones <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	url <- "https://i2.pickpik.com/photos/301/542/392/glass-beads-glass-blue-decoration-a9ef02658d94bb22dd25203b4aa9f858.jpg"
 	bm_pic <- bm_cache_url(url, "glass_stones.jpg")
@@ -166,24 +164,20 @@ sbgj_glass_stones <- function(output = NULL, ..., paper = c("letter", "a4"), ins
 		spine = spine,
 		inner = inner,
 		paper = paper
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
 
 #' @rdname sbgj_storage
 #' @export
-sbgj_pawns <- function(output = NULL, ..., paper = c("letter", "a4"), instructions = FALSE) {
+sbgj_pawns <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	url <- "https://pixabay.com/photos/play-stone-multicoloured-characters-1743645/"
 	bm_pic <- bm_cache_url(url, "wooden_pawns.jpg", download = FALSE)
@@ -226,13 +220,8 @@ sbgj_pawns <- function(output = NULL, ..., paper = c("letter", "a4"), instructio
 		spine = spine,
 		inner = inner,
 		paper = paper
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
 
 #' @rdname sbgj_storage
@@ -240,15 +229,11 @@ sbgj_pawns <- function(output = NULL, ..., paper = c("letter", "a4"), instructio
 sbgj_polyhedral_dice <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	url <- "https://i2.pickpik.com/photos/821/950/430/cube-play-role-playing-game-craps-82caba6d073e803940fba76a77c4be8a.jpg"
 	bm_pic <- bm_cache_url(url, "polyhedral_dice.jpg")
@@ -310,11 +295,6 @@ sbgj_polyhedral_dice <- function(
 		spine = spine,
 		inner = inner,
 		paper = paper
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }

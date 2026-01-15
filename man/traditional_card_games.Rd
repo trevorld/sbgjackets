@@ -8,14 +8,14 @@
 pcbj_bridge(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 
 pcbj_pinochle(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 }

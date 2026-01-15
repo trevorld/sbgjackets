@@ -10,25 +10,14 @@
 pcbj_bridge <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
 
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
-
 	background_col <- "white"
 	text_col <- "black"
-
-	current_dev <- grDevices::dev.cur()
-	if (current_dev > 1) {
-		on.exit(grDevices::dev.set(current_dev), add = TRUE)
-	} else {
-		on.exit(grDevices::graphics.off(), add = TRUE)
-	}
 
 	# https://www.worthpoint.com/worthopedia/1905-postcard-game-bridge-savile-276822716
 	url <- "https://www.haroldschogger.com/histor11.jpg"
@@ -69,14 +58,8 @@ pcbj_bridge <- function(
 		inner = inner,
 		paper = paper,
 		bg = background_col
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
 
 #' @rdname traditional_card_games
@@ -84,25 +67,16 @@ pcbj_bridge <- function(
 pcbj_pinochle <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
+	current_dev <- grDevices::dev.cur()
+	on.exit(restore_devices(current_dev), add = TRUE)
 
 	background_col <- "white"
 	text_col <- "black"
-
-	current_dev <- grDevices::dev.cur()
-	if (current_dev > 1) {
-		on.exit(grDevices::dev.set(current_dev), add = TRUE)
-	} else {
-		on.exit(grDevices::graphics.off(), add = TRUE)
-	}
 
 	url <- "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Pinochle_meld.jpg/1280px-Pinochle_meld.jpg"
 	bm_pic <- bm_cache_url(url, "pinochle.jpg") |>
@@ -186,12 +160,6 @@ pcbj_pinochle <- function(
 		inner = inner,
 		paper = paper,
 		bg = background_col
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }

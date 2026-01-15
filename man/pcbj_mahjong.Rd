@@ -7,7 +7,7 @@
 pcbj_mahjong(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 }

@@ -10,28 +10,28 @@
 pcbj_playing_cards_all(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 
 pcbj_bavarian_pattern(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 
 pcbj_castilian_pattern(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 
 pcbj_english_pattern(
   output = NULL,
   ...,
-  paper = c("letter", "a4"),
+  paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 }

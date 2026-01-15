@@ -11,25 +11,16 @@
 pcbj_fox_in_the_forest <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
+	current_dev <- grDevices::dev.cur()
+	on.exit(restore_devices(current_dev), add = TRUE)
 
 	background_col <- "#edc38fff"
 	text_col <- "#8b3c29ff"
-
-	current_dev <- grDevices::dev.cur()
-	if (current_dev > 1) {
-		on.exit(grDevices::dev.set(current_dev), add = TRUE)
-	} else {
-		on.exit(grDevices::graphics.off(), add = TRUE)
-	}
 
 	url <- "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Red_Fox%2C_Carl_Rungius%2C_1933.jpg/960px-Red_Fox%2C_Carl_Rungius%2C_1933.jpg"
 	bm_pic <- bm_cache_url(url, "Carl_Rungius_Red_Fox.jpg")
@@ -91,19 +82,13 @@ pcbj_fox_in_the_forest <- function(
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE, size = "poker")
 
-	output <- pdf_create_poker_jacket(
+	pdf_create_poker_jacket(
 		output = output,
 		front = front,
 		back = back,
 		spine = spine,
 		inner = inner,
 		paper = paper
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }

@@ -13,15 +13,11 @@
 pcbj_playing_cards_all <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
 
 	title <- c(
 		"French Suits: English Pattern",
@@ -62,25 +58,16 @@ pcbj_playing_cards_all <- function(
 pcbj_bavarian_pattern <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
+	current_dev <- grDevices::dev.cur()
+	on.exit(restore_devices(current_dev), add = TRUE)
 
 	background_col <- "white"
 	text_col <- "black"
-
-	current_dev <- grDevices::dev.cur()
-	if (current_dev > 1) {
-		on.exit(grDevices::dev.set(current_dev), add = TRUE)
-	} else {
-		on.exit(grDevices::graphics.off(), add = TRUE)
-	}
 
 	# Actual Bavarian Pattern cards are 2.25 inches wide and
 	# the clear plastic box I received them in are a bit narrower and
@@ -159,14 +146,8 @@ pcbj_bavarian_pattern <- function(
 		inner = inner,
 		paper = paper,
 		bg = background_col
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
 
 #' @rdname pcbj_playing_cards
@@ -174,25 +155,16 @@ pcbj_bavarian_pattern <- function(
 pcbj_castilian_pattern <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
+	current_dev <- grDevices::dev.cur()
+	on.exit(restore_devices(current_dev), add = TRUE)
 
 	background_col <- "white"
 	text_col <- "black"
-
-	current_dev <- grDevices::dev.cur()
-	if (current_dev > 1) {
-		on.exit(grDevices::dev.set(current_dev), add = TRUE)
-	} else {
-		on.exit(grDevices::graphics.off(), add = TRUE)
-	}
 
 	# https://commons.wikimedia.org/wiki/Category:Castilian_pattern
 	url <- "https://museotik.euskadi.eus/contenidos/cultural_asset/museotik_ca_64272/es_def/media/images/0901a0fe80239d26.jpg"
@@ -254,14 +226,8 @@ pcbj_castilian_pattern <- function(
 		inner = inner,
 		paper = paper,
 		bg = background_col
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
 
 #' @rdname pcbj_playing_cards
@@ -269,25 +235,16 @@ pcbj_castilian_pattern <- function(
 pcbj_english_pattern <- function(
 	output = NULL,
 	...,
-	paper = c("letter", "a4"),
+	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
-
-	paper <- tolower(paper)
-	paper <- match.arg(paper)
-	output <- pnpmisc:::normalize_output(output)
+	current_dev <- grDevices::dev.cur()
+	on.exit(restore_devices(current_dev), add = TRUE)
 
 	background_col <- "white"
 	text_col <- "black"
-
-	current_dev <- grDevices::dev.cur()
-	if (current_dev > 1) {
-		on.exit(grDevices::dev.set(current_dev), add = TRUE)
-	} else {
-		on.exit(grDevices::graphics.off(), add = TRUE)
-	}
 
 	url <- "https://museotik.euskadi.eus/contenidos/cultural_asset/museotik_ca_65097/es_def/media/images/0901a0fe80607e66.jpg"
 	bm_pic <- bm_cache_url(url, "worshipful_1897.jpg") |>
@@ -347,12 +304,6 @@ pcbj_english_pattern <- function(
 		inner = inner,
 		paper = paper,
 		bg = background_col
-	)
-	if (instructions) {
-		prepend_instructions(output, paper = paper)
-	}
-
-	set_xmp(xmp, output)
-	set_docinfo(as_docinfo(xmp), output)
-	invisible(output)
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }

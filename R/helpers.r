@@ -55,7 +55,11 @@ bm_from_title <- function(title, instructions = TRUE) {
 	bm
 }
 
-prepend_instructions <- function(output, paper = "letter", orientation = "landscape") {
+prepend_instructions <- function(
+	output,
+	paper = getOption("papersize", "letter"),
+	orientation = "landscape"
+) {
 	current_dev <- grDevices::dev.cur()
 	pdf(NULL, width = pnpmisc:::JACKET_4x6_WIDTH, height = pnpmisc:::JACKET_4x6_HEIGHT)
 	on.exit(invisible(dev.off()), add = TRUE)
