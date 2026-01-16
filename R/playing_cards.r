@@ -3,56 +3,10 @@
 #' `pcbj_bavarian_pattern()` creates a playing card box jacket for a German-suited deck in the Bavarian pattern.
 #' `pcbj_castilian_pattern()` creates a playing card box jacket for a Spanish-suited deck in the Castilian pattern.
 #' `pcbj_english_pattern()` creates a playing card box jacket for a French-suited deck in the English pattern.
-#' `pcbj_playing_cards_all()` creates all of those into a single pdf file.
 #'
 #' @inheritParams sbgj_dominoes_all
 #' @inheritParams pnpmisc::pdf_create_jacket
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
-#' @rdname pcbj_playing_cards
-#' @export
-pcbj_playing_cards_all <- function(
-	output = NULL,
-	...,
-	paper = getOption("papersize", "letter"),
-	instructions = FALSE
-) {
-	check_dots_empty()
-	assert_runtime_dependencies()
-
-	title <- c(
-		"French Suits: English Pattern",
-		"German Suits: Bavarian Pattern",
-		"Spanish Suits: Castilian Pattern"
-	)
-	bm <- bm_from_title(title, instructions)
-
-	xmp <- xmp(
-		creator = "Trevor L. Davis",
-		date_created = "2026",
-		spdx_id = "CC-BY-4.0",
-		title = "Playing Cards Box Jackets"
-	)
-
-	bavarian <- pcbj_bavarian_pattern(paper = paper)
-	castilian <- pcbj_castilian_pattern(paper = paper)
-	english <- pcbj_english_pattern(paper = paper)
-	output_c <- tempfile(fileext = ".pdf")
-	qpdf::pdf_combine(c(english, bavarian, castilian), output_c)
-	if (instructions) {
-		prepend_instructions(output_c, paper = paper)
-	}
-	output_c |>
-		pnpmisc::pdf_set_bookmarks(bookmarks = bm) |>
-		pnpmisc::pdf_set_xmp(xmp = xmp) |>
-		pnpmisc::pdf_set_docinfo(docinfo = as_docinfo(xmp)) |>
-		pnpmisc::pdf_compress(output, linearize = TRUE)
-
-	pnpmisc::rm_temp_pdfs()
-
-	invisible(output)
-}
-
-
 #' @rdname pcbj_playing_cards
 #' @export
 pcbj_bavarian_pattern <- function(

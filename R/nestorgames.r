@@ -1,45 +1,11 @@
 #' Create SBG Jacket for nestorgames products
 #'
 #' `sbgj_shibumi()` creates a small box game jacket for [Shibumi](https://cambolbro.com/games/shibumi/).
-#' `sbgj_nestorgames_all()` creates all of those into a single pdf file.
 #'
 #' Note that these print-and-play small box game jackets are for **Personal Use Only**.
 #' @inheritParams sbgj_dominoes_all
 #' @inheritParams pnpmisc::pdf_create_jacket
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
-#' @rdname sbgj_nestorgames
-#' @export
-sbgj_nestorgames_all <- function(
-	output = NULL,
-	...,
-	paper = getOption("papersize", "letter"),
-	instructions = TRUE
-) {
-	check_dots_empty()
-	assert_runtime_dependencies()
-
-	title <- "Shibumi"
-	bm <- bm_from_title(title, instructions)
-
-	xmp <- xmp(creator = "Trevor L. Davis", title = "nestorgames Small Box Game Jackets")
-
-	sh <- sbgj_shibumi(paper = paper)
-	output_c <- tempfile(fileext = ".pdf")
-	qpdf::pdf_combine(c(sh), output_c)
-	if (instructions) {
-		prepend_instructions(output_c, paper = paper)
-	}
-	output_c |>
-		pnpmisc::pdf_set_bookmarks(bookmarks = bm) |>
-		pnpmisc::pdf_set_xmp(xmp = xmp) |>
-		pnpmisc::pdf_set_docinfo(docinfo = as_docinfo(xmp)) |>
-		pnpmisc::pdf_compress(output, linearize = TRUE)
-
-	pnpmisc::rm_temp_pdfs()
-
-	invisible(output)
-}
-
 #' @rdname sbgj_nestorgames
 #' @export
 sbgj_shibumi <- function(
