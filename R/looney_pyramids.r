@@ -6,7 +6,6 @@
 #' `sbgj_jinxx()` creates a small box game jacket for [Jinxx](https://www.looneylabs.com/games/jinxx).
 #' `sbgj_martian_chess()` creates a small box game jacket for [Martian Chess](https://www.looneylabs.com/games/martian-chess).
 #' `sbgj_nomids()` creates a small box game jacket for [Nomids](https://www.looneylabs.com/games/nomids).
-#' `sbgj_looney_pyramids_all()` creates all of those into a single pdf file.
 #'
 #' Note that these print-and-play small box game jackets are for **Personal Use Only**.
 #' These jackets use images by Looney Labs.  These jackets are **not** for distribution.
@@ -17,55 +16,6 @@
 #' @inheritParams sbgj_dominoes_all
 #' @inheritParams pnpmisc::pdf_create_jacket
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
-#' @rdname sbgj_looney
-#' @export
-sbgj_looney_pyramids_all <- function(
-	output = NULL,
-	...,
-	paper = getOption("papersize", "letter"),
-	instructions = TRUE
-) {
-	check_dots_empty()
-	assert_runtime_dependencies()
-
-	title <- c(
-		"Looney Pyramids",
-		"Homeworlds",
-		"Ice Duo",
-		"Jinxx",
-		"Martian Chess",
-		"Martian Chess (Silver)",
-		"Nomids",
-		"Nomids (Custom Back)"
-	)
-	bm <- bm_from_title(title, instructions)
-
-	xmp <- xmp(creator = "Trevor L. Davis", title = "Looney Pyramids Small Box Game Jackets")
-
-	lp <- sbgj_looney_pyramids(paper = paper)
-	hm <- sbgj_homeworlds(paper = paper)
-	id <- sbgj_ice_duo(paper = paper)
-	jx <- sbgj_jinxx(paper = paper)
-	mc1 <- sbgj_martian_chess(paper = paper)
-	mc2 <- sbgj_martian_chess(silver = TRUE, paper = paper)
-	nomids1 <- sbgj_nomids(paper = paper)
-	nomids2 <- sbgj_nomids(paper = paper, custom = TRUE)
-	output_c <- tempfile(fileext = ".pdf")
-	qpdf::pdf_combine(c(lp, hm, id, jx, mc1, mc2, nomids1, nomids2), output_c)
-	if (instructions) {
-		prepend_instructions(output_c, paper = paper)
-	}
-	output_c |>
-		pnpmisc::pdf_set_bookmarks(bookmarks = bm) |>
-		pnpmisc::pdf_set_xmp(xmp = xmp) |>
-		pnpmisc::pdf_set_docinfo(docinfo = as_docinfo(xmp)) |>
-		pnpmisc::pdf_compress(output, linearize = TRUE)
-
-	pnpmisc::rm_temp_pdfs()
-
-	invisible(output)
-}
-
 #' @rdname sbgj_looney
 #' @export
 sbgj_looney_pyramids <- function(

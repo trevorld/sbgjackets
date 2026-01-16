@@ -37,13 +37,13 @@ sbgj_dominoes_all <- function(
 	if (instructions) {
 		prepend_instructions(output_c, paper = paper)
 	}
-	output_c |>
+	output <- output_c |>
 		pnpmisc::pdf_set_bookmarks(bookmarks = bm) |>
 		pnpmisc::pdf_set_xmp(xmp = xmp) |>
 		pnpmisc::pdf_set_docinfo(docinfo = as_docinfo(xmp)) |>
 		pnpmisc::pdf_compress(output, linearize = TRUE)
 
-	pnpmisc::rm_temp_pdfs()
+	pnpmisc::rm_temp_pdfs(exclude = output)
 
 	invisible(output)
 }

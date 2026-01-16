@@ -12,8 +12,8 @@ pdf_polish_jacket <- function(output, ..., instructions = FALSE, xmp = NULL) {
 	if (isTRUE(instructions)) {
 		prepend_instructions(
 			output,
-			paper = pdf_paper(output),
-			orientation = pdf_orientation(output)
+			paper = pdf_paper(output)[[1L]],
+			orientation = pdf_orientation(output)[[1L]]
 		)
 	}
 

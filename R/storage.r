@@ -3,54 +3,12 @@
 #' `sbgj_glass_stones()` creates a small box game jacket for glass stones.
 #' `sbgj_pawns()` creates a small box game jacket for pawns.
 #' `sbgj_polyhedral_dice()` creates a small box game jacket for polyhedral dice.
-#' `sbgj_storage_all()` creates all of those into a single pdf file.
 #'
 #' @param output Output file name.  Defaults to `tempfile(fileext = ".pdf")`.
 #' @param ... Should be empty.
 #' @inheritParams pnpmisc::pdf_create_jacket
 #' @param instructions If `TRUE` then prepend instructions on how to make the jacket to the beginning of the pdf
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
-#' @rdname sbgj_storage
-#' @export
-sbgj_storage_all <- function(
-	output = NULL,
-	...,
-	paper = getOption("papersize", "letter"),
-	instructions = TRUE
-) {
-	check_dots_empty()
-	assert_runtime_dependencies()
-
-	title <- c("Dice", "Glass Stones", "Pawns", "Polyhedral Dice")
-	bm <- bm_from_title(title, instructions)
-
-	xmp <- xmp(
-		creator = "Trevor L. Davis",
-		date_created = "2025",
-		spdx_id = "CC-BY-4.0",
-		title = "Storage Small Box Game Jackets"
-	)
-
-	dice <- sbgj_dice(paper = paper)
-	stones <- sbgj_glass_stones(paper = paper)
-	pawns <- sbgj_pawns(paper = paper)
-	pdice <- sbgj_polyhedral_dice(paper = paper)
-	output_c <- tempfile(fileext = ".pdf")
-	qpdf::pdf_combine(c(dice, stones, pawns, pdice), output_c)
-	if (instructions) {
-		prepend_instructions(output_c, paper = paper)
-	}
-	output_c |>
-		pnpmisc::pdf_set_bookmarks(bookmarks = bm) |>
-		pnpmisc::pdf_set_xmp(xmp = xmp) |>
-		pnpmisc::pdf_set_docinfo(docinfo = as_docinfo(xmp)) |>
-		pnpmisc::pdf_compress(output, linearize = TRUE)
-
-	pnpmisc::rm_temp_pdfs()
-
-	invisible(output)
-}
-
 #' @rdname sbgj_storage
 #' @export
 sbgj_dice <- function(
