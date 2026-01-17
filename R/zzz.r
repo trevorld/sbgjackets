@@ -9,24 +9,6 @@
 #' @importFrom xmpdf as_docinfo set_bookmarks set_docinfo set_xmp xmp
 NULL
 
-assert_runtime_dependencies <- function() {
-	stopifnot(
-		capabilities("cairo"),
-		piecepackr::has_font("Carlito"),
-		xmpdf::supports_set_bookmarks(),
-		xmpdf::supports_set_docinfo(),
-		xmpdf::supports_set_xmp()
-	)
-}
-
-has_runtime_dependencies <- function() {
-	capabilities("cairo") &&
-		piecepackr::has_font("Carlito") &&
-		xmpdf::supports_set_bookmarks() &&
-		xmpdf::supports_set_docinfo() &&
-		xmpdf::supports_set_xmp()
-}
-
 readme_markdown_table <- function(df) {
 	name <- ifelse(is.na(df$url), df$game, str_glue("[{df$game}]({df$url})"))
 	fn <- df$`function`

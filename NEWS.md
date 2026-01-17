@@ -12,8 +12,9 @@ Functions to help create small box game (SBG) jackets:
   + `spineIconGrob()`
   + `spineTextGrob()`
 
-* Helper pdf functions:
+* Other helper functions:
 
+  + `check_sbgjackets_dependencies()` checks if this package's run-time system dependencies are installed (#19)
   + `pdf_polish_jacket()` adds instructions and/or metadata
 
 Functions to create small box game (SBG) jackets under Creative Commons licenses:

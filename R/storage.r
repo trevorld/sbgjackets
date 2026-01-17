@@ -18,7 +18,7 @@ sbgj_dice <- function(
 	instructions = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	url <- "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Mannen_spelen_dobbelspel%2C_op_de_grond_zit_aap_met_speelkaarten_Titelpagina_voor_De_alea_libri_duo%2C_Amsterdam_1642_De_alea_libri_duo_%28titel_op_object%29%2C_RP-P-1878-A-819.jpg/1193px-thumbnail.jpg"
 	bm_pic <- bm_cache_url(url, "dice.jpg") |>
@@ -84,7 +84,7 @@ sbgj_glass_stones <- function(
 	instructions = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	url <- "https://i2.pickpik.com/photos/301/542/392/glass-beads-glass-blue-decoration-a9ef02658d94bb22dd25203b4aa9f858.jpg"
 	bm_pic <- bm_cache_url(url, "glass_stones.jpg")
@@ -135,7 +135,7 @@ sbgj_pawns <- function(
 	instructions = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	url <- "https://pixabay.com/photos/play-stone-multicoloured-characters-1743645/"
 	bm_pic <- bm_cache_url(url, "wooden_pawns.jpg", download = FALSE)
@@ -191,7 +191,7 @@ sbgj_polyhedral_dice <- function(
 	instructions = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	url <- "https://i2.pickpik.com/photos/821/950/430/cube-play-role-playing-game-craps-82caba6d073e803940fba76a77c4be8a.jpg"
 	bm_pic <- bm_cache_url(url, "polyhedral_dice.jpg")

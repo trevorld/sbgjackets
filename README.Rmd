@@ -44,7 +44,7 @@ library("grid")
 library("pnpmisc")
 library("sbgjackets")
 library("xmpdf")
-sbgjackets:::assert_runtime_dependencies()
+check_sbgjackets_dependencies()
 
 front <- fullGrob("#D55E00")
 back <- fullGrob("#009E73")
