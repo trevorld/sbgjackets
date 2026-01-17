@@ -15,7 +15,7 @@ pcbj_bridge <- function(
 	double = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	background_col <- "white"
 	text_col <- "black"
@@ -76,7 +76,7 @@ pcbj_pinochle <- function(
 	double = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 	current_dev <- grDevices::dev.cur()
 	on.exit(restore_devices(current_dev), add = TRUE)
 

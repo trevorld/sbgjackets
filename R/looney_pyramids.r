@@ -25,7 +25,7 @@ sbgj_looney_pyramids <- function(
 	instructions = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
@@ -317,7 +317,7 @@ sbgj_homeworlds <- function(
 	instructions = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
@@ -371,7 +371,7 @@ sbgj_ice_duo <- function(
 	instructions = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
@@ -425,7 +425,7 @@ sbgj_jinxx <- function(
 	instructions = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
@@ -484,7 +484,7 @@ sbgj_martian_chess <- function(
 	instructions = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"
@@ -561,7 +561,7 @@ sbgj_nomids <- function(
 	custom = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	background_col <- "#EFE8D5FF"
 	text_col <- "#1C3160FF"

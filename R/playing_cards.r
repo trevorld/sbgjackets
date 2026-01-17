@@ -18,7 +18,7 @@ pcbj_bavarian_pattern <- function(
 	double = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 	current_dev <- grDevices::dev.cur()
 	on.exit(restore_devices(current_dev), add = TRUE)
 
@@ -119,7 +119,7 @@ pcbj_castilian_pattern <- function(
 	double = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 	current_dev <- grDevices::dev.cur()
 	on.exit(restore_devices(current_dev), add = TRUE)
 
@@ -203,7 +203,7 @@ pcbj_english_pattern <- function(
 	double = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 	current_dev <- grDevices::dev.cur()
 	on.exit(restore_devices(current_dev), add = TRUE)
 

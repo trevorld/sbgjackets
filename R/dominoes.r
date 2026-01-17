@@ -17,7 +17,7 @@ sbgj_dominoes_all <- function(
 	instructions = TRUE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	title <- c("Double-Six Dominoes", "Double-Nine Dominoes", "Double-Twelve Dominoes")
 	bm <- bm_from_title(title, instructions)
@@ -57,7 +57,7 @@ sbgj_dominoes_double6 <- function(
 	instructions = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	envir <- piecepackr::game_systems(round = TRUE)
 	df <- ppdf::domino_tiles() |> mutate(x = 0.4 + 0.4 * .data$x, y = 0.4 * .data$y)
@@ -112,7 +112,7 @@ sbgj_dominoes_double9 <- function(
 	instructions = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	envir <- piecepackr::game_systems(round = TRUE)
 	df <- ppdf::domino_tiles(n = 10) |>
@@ -190,7 +190,7 @@ sbgj_dominoes_double12 <- function(
 	instructions = FALSE
 ) {
 	check_dots_empty()
-	assert_runtime_dependencies()
+	check_sbgjackets_dependencies()
 
 	envir <- piecepackr::game_systems(round = TRUE)
 	df <- ppdf::domino_tiles(n = 13) |>
