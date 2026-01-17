@@ -23,7 +23,7 @@ pcbj_everdeck <- function(
 	bm_pic <- cache_url(url, "Everdeck_Packvelopes.zip", download = FALSE) |>
 		zip_extract_bm_pixmap("Red and Black.pdf") |>
 		bm_extract(1076:1681, 1304:2130)
-	front <- fullGrob(bm_pic, height = 1)
+	front <- fullGrob(bm_pic, width = 1)
 
 	back_notes <- c(
 		"# Contents",
@@ -55,7 +55,7 @@ pcbj_everdeck <- function(
 	back_notes <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
 	mg <- marquee::marquee_grob(
 		back_notes,
-		style = credits_style("poker", color = text_col) |>
+		style = sbgjackets_style("poker", color = text_col) |>
 			marquee::modify_style(
 				"img",
 				marquee::style(img_asp = 3.5)
