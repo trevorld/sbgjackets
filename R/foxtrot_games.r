@@ -3,8 +3,7 @@
 #' `pcbj_fox_in_the_forest()` creates a playing card box jacket for the game *The Fox in the Forest*.
 #'
 #' Note that these print-and-play playing card box jackets are for **Personal Use Only**.
-#' @inheritParams sbgj_dominoes_all
-#' @inheritParams pnpmisc::pdf_create_jacket
+#' @inheritParams pcbj_english_pattern
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
 #' @rdname pcbj_foxtrot_games
 #' @export
@@ -12,7 +11,8 @@ pcbj_fox_in_the_forest <- function(
 	output = NULL,
 	...,
 	paper = getOption("papersize", "letter"),
-	instructions = FALSE
+	instructions = FALSE,
+	double = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
@@ -82,6 +82,9 @@ pcbj_fox_in_the_forest <- function(
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE, size = "poker")
 
+	if (double) {
+		spine <- list(spine, spine)
+	}
 	pdf_create_poker_jacket(
 		output = output,
 		front = front,

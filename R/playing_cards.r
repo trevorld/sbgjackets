@@ -7,13 +7,15 @@
 #' @inheritParams sbgj_dominoes_all
 #' @inheritParams pnpmisc::pdf_create_jacket
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
+#' @param double If `TRUE` produce two jackets instead of one jacket.
 #' @rdname pcbj_playing_cards
 #' @export
 pcbj_bavarian_pattern <- function(
 	output = NULL,
 	...,
 	paper = getOption("papersize", "letter"),
-	instructions = FALSE
+	instructions = FALSE,
+	double = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
@@ -92,7 +94,10 @@ pcbj_bavarian_pattern <- function(
 		x = unit(1 / 8 + BAVARIAN_DELTA, "in")
 	)
 
-	output <- pdf_create_poker_jacket(
+	if (double) {
+		spine <- list(spine, spine)
+	}
+	pdf_create_poker_jacket(
 		output = output,
 		front = front,
 		back = back,
@@ -110,7 +115,8 @@ pcbj_castilian_pattern <- function(
 	output = NULL,
 	...,
 	paper = getOption("papersize", "letter"),
-	instructions = FALSE
+	instructions = FALSE,
+	double = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
@@ -172,6 +178,9 @@ pcbj_castilian_pattern <- function(
 
 	inner <- creditsGrob(xmp, credits, icons = FALSE, size = "poker")
 
+	if (double) {
+		spine <- list(spine, spine)
+	}
 	output <- pdf_create_poker_jacket(
 		output = output,
 		front = front,
@@ -190,7 +199,8 @@ pcbj_english_pattern <- function(
 	output = NULL,
 	...,
 	paper = getOption("papersize", "letter"),
-	instructions = FALSE
+	instructions = FALSE,
+	double = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
@@ -250,6 +260,9 @@ pcbj_english_pattern <- function(
 
 	inner <- creditsGrob(xmp, credits, icons = FALSE, size = "poker")
 
+	if (double) {
+		spine <- list(spine, spine)
+	}
 	output <- pdf_create_poker_jacket(
 		output = output,
 		front = front,

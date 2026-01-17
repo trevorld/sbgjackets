@@ -11,7 +11,8 @@ pcbj_bridge <- function(
 	output = NULL,
 	...,
 	paper = getOption("papersize", "letter"),
-	instructions = FALSE
+	instructions = FALSE,
+	double = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
@@ -50,7 +51,10 @@ pcbj_bridge <- function(
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE, size = "poker")
 
-	output <- pdf_create_poker_jacket(
+	if (double) {
+		spine <- list(spine, spine)
+	}
+	pdf_create_poker_jacket(
 		output = output,
 		front = front,
 		back = back,
@@ -68,7 +72,8 @@ pcbj_pinochle <- function(
 	output = NULL,
 	...,
 	paper = getOption("papersize", "letter"),
-	instructions = FALSE
+	instructions = FALSE,
+	double = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
@@ -152,7 +157,10 @@ pcbj_pinochle <- function(
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE, size = "poker")
 
-	output <- pdf_create_poker_jacket(
+	if (double) {
+		spine <- list(spine, spine)
+	}
+	pdf_create_poker_jacket(
 		output = output,
 		front = front,
 		back = back,
