@@ -11,6 +11,7 @@ reference:
         - check_sbgjackets_dependencies
         - creditsGrob
         - pdf_polish_jacket
+        - sbgjackets_style
     - title: 'Generate print-and-play "jacket" files for 4"x6" photo storage boxes'
       desc: ''
       contents:

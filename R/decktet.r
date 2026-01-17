@@ -38,7 +38,7 @@ pcbj_decktet <- function(
 	back_notes1 <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
 	mg <- marquee::marquee_grob(
 		back_notes1,
-		style = credits_style("poker", color = text_col),
+		style = sbgjackets_style("poker", color = text_col),
 		width = unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in"),
 		x = unit(1 / 8, "in"),
 		y = unit(1, "npc") - unit(1 / 8, "in")
@@ -46,7 +46,7 @@ pcbj_decktet <- function(
 	back_notes2 <- c("Extended: Add 4 Pawns, 4 Courts, 1 Excuse")
 	mg2 <- marquee::marquee_grob(
 		back_notes2,
-		style = credits_style("poker", color = text_col),
+		style = sbgjackets_style("poker", color = text_col),
 		width = unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in"),
 		x = unit(1 / 8, "in"),
 		y = unit(0.30, "npc")

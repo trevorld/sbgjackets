@@ -53,7 +53,7 @@ pcbj_mahjong <- function(
 	back_notes <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
 	back <- marquee::marquee_grob(
 		back_notes,
-		style = credits_style("poker", color = text_col) |>
+		style = sbgjackets_style("poker", color = text_col) |>
 			marquee::modify_style(
 				"img",
 				marquee::style(img_asp = 3.5)

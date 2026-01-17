@@ -16,6 +16,7 @@ Functions to help create small box game (SBG) jackets:
 
   + `check_sbgjackets_dependencies()` checks if this package's run-time system dependencies are installed (#19)
   + `pdf_polish_jacket()` adds instructions and/or metadata
+  + `sbgjackets_style()` returns a marquee style set object (#18)
 
 Functions to create small box game (SBG) jackets under Creative Commons licenses:
 

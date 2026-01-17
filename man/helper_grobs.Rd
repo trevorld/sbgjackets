@@ -4,7 +4,7 @@
 \alias{spineTextGrob}
 \alias{creditsGrob}
 \alias{spineIconGrob}
-\title{Helper grobs}
+\title{Small Box Game Jacket Grobs}
 \usage{
 spineTextGrob(title, col = "white", size = c("4x6", "poker"))
 

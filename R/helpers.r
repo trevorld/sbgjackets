@@ -1,4 +1,4 @@
-#' Helper grobs
+#' Small Box Game Jacket Grobs
 #'
 #' `creditsGrob()`, `spineIconGrob()`, and `spineTextGrob()`
 #' are helper grob functions to help make small box game jackets
@@ -31,7 +31,7 @@ spineTextGrob <- function(title, col = "white", size = c("4x6", "poker")) {
 		x <- unit(0.25, "in")
 		y <- unit(0.25, "in")
 	} else {
-		fontsize <- "17"
+		fontsize <- "16"
 		x <- unit(0.125, "in")
 		y <- unit(0.200, "in")
 	}
@@ -41,7 +41,7 @@ spineTextGrob <- function(title, col = "white", size = c("4x6", "poker")) {
 		y,
 		hjust = 0,
 		vjust = 0,
-		gp = gpar(fontsize = fontsize, col = col)
+		gp = gpar(fontsize = fontsize, col = col, fontface = "bold")
 	)
 }
 
@@ -69,12 +69,12 @@ prepend_instructions <- function(
 
 	f1 <- pnpmisc::pdf_create_jacket_instructions(
 		paper = paper,
-		style = credits_style(),
+		style = sbgjackets_style(),
 		orientation = orientation
 	)
 	mg <- marquee::marquee_grob(
 		"This page intentionally left blank.",
-		style = credits_style(),
+		style = sbgjackets_style(),
 		x = 0.5,
 		y = 0.5,
 		hjust = "center-ink",
@@ -192,7 +192,7 @@ creditsGrob <- function(
 	# cat(credits, sep = "\n")
 	mg <- marquee::marquee_grob(
 		credits,
-		style = credits_style(size),
+		style = sbgjackets_style(size),
 		width = width %||% unit(pnpmisc:::JACKET_4x6_FRONT_WIDTH + 1, "in"),
 		x = x %||% unit(1 / 8, "in"),
 		y = unit(1, "npc") - unit(1 / 8, "in")
@@ -216,48 +216,6 @@ creditsGrob <- function(
 	}
 
 	gList(grob_cc, mg)
-}
-
-credits_style <- function(size = "4x6", color = "black") {
-	if (size == "4x6") {
-		base_size = 10
-		lineheight = 1.6
-	} else {
-		base_size = 9
-		lineheight = 1.4
-	}
-	if (packageVersion("marquee") >= "1.2.0") {
-		# Don't manually set `bullets` to avoid #99
-		style <- marquee::classic_style(
-			base_size = base_size,
-			body_font = "Carlito",
-			color = color,
-			header_font = "Carlito",
-			lineheight = lineheight,
-			margin = marquee::trbl(0, bottom = marquee::rem(0.7))
-		)
-	} else {
-		# Manually set `bullets` to avoid #53
-		style <- marquee::classic_style(
-			base_size = base_size,
-			body_font = "Carlito",
-			color = color,
-			header_font = "Carlito",
-			lineheight = 1.6,
-			margin = marquee::trbl(0, bottom = marquee::rem(0.7)),
-			bullets = rep("\u2022", 6L)
-		)
-	}
-	style |>
-		marquee::modify_style(
-			"h1",
-			border = NA,
-			size = marquee::relative(1.4),
-			border_size = marquee::trbl(NULL),
-			margin = marquee::trbl(NULL),
-			padding = marquee::trbl(NULL)
-		) |>
-		marquee::modify_style("ul", padding = marquee::trbl(right = marquee::em(1)))
 }
 
 # vermillion <- "#D55E00"
