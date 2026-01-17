@@ -10,21 +10,24 @@ pcbj_bavarian_pattern(
   output = NULL,
   ...,
   paper = getOption("papersize", "letter"),
-  instructions = FALSE
+  instructions = FALSE,
+  double = FALSE
 )
 
 pcbj_castilian_pattern(
   output = NULL,
   ...,
   paper = getOption("papersize", "letter"),
-  instructions = FALSE
+  instructions = FALSE,
+  double = FALSE
 )
 
 pcbj_english_pattern(
   output = NULL,
   ...,
   paper = getOption("papersize", "letter"),
-  instructions = FALSE
+  instructions = FALSE,
+  double = FALSE
 )
 }
 \arguments{
@@ -35,6 +38,8 @@ pcbj_english_pattern(
 \item{paper}{Paper size.  Usually either "letter" or "a4" but in certain circumstances can be one of "letter", "a4", "poker", "bridge", "legal", "a5", "a3", "special".}
 
 \item{instructions}{If \code{TRUE} then prepend instructions on how to make the jacket to the beginning of the pdf}
+
+\item{double}{If \code{TRUE} produce two jackets instead of one jacket.}
 }
 \value{
 The output file name invisibly.  As a side effect creates a pdf file.

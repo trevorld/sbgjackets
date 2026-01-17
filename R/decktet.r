@@ -9,7 +9,8 @@ pcbj_decktet <- function(
 	output = NULL,
 	...,
 	paper = getOption("papersize", "letter"),
-	instructions = FALSE
+	instructions = FALSE,
+	double = FALSE
 ) {
 	check_dots_empty()
 	assert_runtime_dependencies()
@@ -76,6 +77,9 @@ pcbj_decktet <- function(
 
 	inner <- creditsGrob(xmp, credits, icons = FALSE, size = "poker")
 
+	if (double) {
+		spine <- list(spine, spine)
+	}
 	pdf_create_poker_jacket(
 		output = output,
 		front = front,
