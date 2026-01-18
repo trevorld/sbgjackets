@@ -80,7 +80,9 @@ df_pcbj <- function() {
 		"German Suits: Bavarian Pattern", "https://i-p-c-s.org/pattern/ps-55.html", "`pcbj_bavarian_pattern()`", "CC-BY-4.0",
 		"Mahjong", "https://www.sloperama.com/mahjongg/", "`pcbj_mahjong()`", "CC-BY-ND-4.0",
 		"Pinochle", "https://www.pagat.com/marriage/pinmain.html", "`pcbj_pinochle()`", "CC-BY-SA-3.0",
-		"Spanish Suits: Castilian Pattern", "https://i-p-c-s.org/pattern/ps-27.html", "`pcbj_castilian_pattern()`", "CC-BY-4.0"
+		"Poker", "https://www.pagat.com/poker", "`pcbj_poker()`", "CC-BY-4.0",
+		"Spanish Suits: Castilian Pattern", "https://i-p-c-s.org/pattern/ps-27.html", "`pcbj_castilian_pattern()`", "CC-BY-4.0",
+		"Wizard", "https://www.usgamesinc.com/original-wizard-r-card-game.html", "`pcbj_wizard()`", "Personal Use Only"
 	)
 	df$shareable <- TRUE
 	df

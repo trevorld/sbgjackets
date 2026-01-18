@@ -117,7 +117,9 @@ This package also provides functions that locally create playing-card box jacket
 |[German Suits: Bavarian Pattern](https://i-p-c-s.org/pattern/ps-55.html)|`pcbj_bavarian_pattern()`  |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
 |[Mahjong](https://www.sloperama.com/mahjongg/)|`pcbj_mahjong()`           |[CC-BY-ND-4.0](https://creativecommons.org/licenses/by-nd/4.0/)|
 |[Pinochle](https://www.pagat.com/marriage/pinmain.html)|`pcbj_pinochle()`          |[CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/)|
+|[Poker](https://www.pagat.com/poker)|`pcbj_poker()`             |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
 |[Spanish Suits: Castilian Pattern](https://i-p-c-s.org/pattern/ps-27.html)|`pcbj_castilian_pattern()` |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
+|[Wizard](https://www.usgamesinc.com/original-wizard-r-card-game.html)|`pcbj_wizard()`            |Personal Use Only |
 
 
 
@@ -127,7 +129,7 @@ This package also provides functions that locally create playing-card box jacket
 
 | Feature | Boardgame Barrio | `{sbgjackets}` |
 | --- | --- | --- |
-| Quantity | Over 1,600 pre-made jackets | 23 pre-made jackets |
+| Quantity | Over 1,600 pre-made jackets | 25 pre-made jackets |
 | Size | Targets only 4x6 photo storage boxes | Targets 4x6 photo storage boxes as well as playing card boxes |
 | Process | Made in Microsoft Publisher with a template | Made in `R` with `pnpmisc::pdf_create_jacket()` |
 | Spine Font | Calibri (proprietary) | Carlito (libre font, metrically compatible with Calibri) |

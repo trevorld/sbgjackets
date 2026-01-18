@@ -22,28 +22,15 @@ sbgjackets_style <- function(
 		base_size = 9
 		lineheight = 1.4
 	}
-	if (packageVersion("marquee") >= "1.2.0") {
-		# Don't manually set `bullets` to avoid #99
-		style <- marquee::classic_style(
-			base_size = base_size,
-			body_font = "Carlito",
-			color = color,
-			header_font = "Carlito",
-			lineheight = lineheight,
-			margin = marquee::trbl(0, bottom = marquee::rem(0.7))
-		)
-	} else {
-		# Manually set `bullets` to avoid #53
-		style <- marquee::classic_style(
-			base_size = base_size,
-			body_font = "Carlito",
-			color = color,
-			header_font = "Carlito",
-			lineheight = 1.6,
-			margin = marquee::trbl(0, bottom = marquee::rem(0.7)),
-			bullets = rep("\u2022", 6L)
-		)
-	}
+	# Don't manually set `bullets` to avoid #99
+	style <- marquee::classic_style(
+		base_size = base_size,
+		body_font = "Carlito",
+		color = color,
+		header_font = "Carlito",
+		lineheight = lineheight,
+		margin = marquee::trbl(0, bottom = marquee::rem(0.7))
+	)
 	style |>
 		marquee::modify_style(
 			"h1",

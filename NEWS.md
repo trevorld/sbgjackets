@@ -44,6 +44,8 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
   + `pcbj_everdeck()`
   + `pcbj_mahjong()`
   + `pcbj_pinochle()`
+  + `pcbj_poker()`
+  + `pcbj_wizard()`
 
 Functions to create small box game (SBG) jackets for **Personal Use Only**:
 
