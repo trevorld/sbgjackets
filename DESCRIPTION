@@ -1,7 +1,7 @@
 Package: sbgjackets
 Type: Package
 Title: Utilities for Small Box Game Jackets
-Version: 0.1.0-24
+Version: 0.1.0-25
 Authors@R: c(person("Trevor L.", "Davis", role=c("aut", "cre"),
                      email="trevor.l.davis@gmail.com",
                      comment = c(ORCID = "0000-0001-6341-4639")),
@@ -22,7 +22,7 @@ Imports:
     grImport2,
 	gt,
     magick,
-    marquee,
+    marquee (>= 1.2.0),
     piecepackr (>= 1.15.0-11),
     pnpmisc (>= 0.2.0-11),
     ppdf (>= 0.2.0-22),

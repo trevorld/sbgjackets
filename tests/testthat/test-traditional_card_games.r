@@ -14,3 +14,11 @@ test_that("`pcbj_pinochle()`", {
 	expect_true(file.exists(f))
 	unlink(f)
 })
+
+test_that("`pcbj_poker()`", {
+	skip_if_not(has_runtime_dependencies())
+	skip_if_not(cache_has("dogs_playing_poker.png"))
+	f <- pcbj_poker(double = TRUE)
+	expect_true(file.exists(f))
+	unlink(f)
+})

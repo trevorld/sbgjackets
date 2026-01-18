@@ -171,3 +171,88 @@ pcbj_pinochle <- function(
 	) |>
 		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
+
+#' @rdname traditional_card_games
+#' @export
+pcbj_poker <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE,
+	double = FALSE
+) {
+	check_dots_empty()
+	check_sbgjackets_dependencies()
+
+	background_col <- "white"
+	text_col <- "black"
+
+	# https://commons.wikimedia.org/wiki/File:Cassius_Marcellus_Coolidge_-_Poker_Game_(1894).png
+	url <- "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Cassius_Marcellus_Coolidge_-_Poker_Game_%281894%29.png/960px-Cassius_Marcellus_Coolidge_-_Poker_Game_%281894%29.png"
+	bm_pic <- bm_cache_url(url, "dogs_playing_poker.png")
+	front <- fullGrob(bm_pic, height = 1)
+
+	back_notes <- c(
+		"# Contents",
+		"",
+		"52+ cards = 4 suits x 13 ranks (plus 0+ jokers)",
+		"",
+		"# Standard Poker Hand Rankings",
+		"",
+		"1. Straight Flush",
+		"1. Four of a Kind",
+		"1. Full House",
+		"1. Flush",
+		"1. Straight",
+		"1. Three of a Kind",
+		"1. Two Pairs",
+		"1. Pair",
+		"1. High Card",
+		"",
+		"# Links",
+		"",
+		"* https://www.pagat.com/poker/"
+	)
+	back_notes <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
+	back <- marquee::marquee_grob(
+		back_notes,
+		style = sbgjackets_style("poker", color = text_col),
+		width = unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in"),
+		x = unit(1 / 8, "in"),
+		y = unit(1, "npc") - unit(1 / 8, "in")
+	)
+
+	spine <- gList(
+		spineTextGrob("Poker", col = text_col, size = "poker"),
+		spineIconGrob(2:10, 60, 2.43, text_col, size = "poker")
+	)
+
+	xmp <- xmp(
+		creator = "Trevor L. Davis",
+		date_created = "2026",
+		spdx_id = "CC-BY-4.0",
+		title = "Poker Playing Card Box Jacket"
+	)
+	credits <- c(
+		"* *Poker Game* by Cassius Marcellus Coolidge (1894)",
+		"",
+		"  + https://commons.wikimedia.org/wiki/File:Cassius_Marcellus_Coolidge_-_Poker_Game_(1894).png",
+		"  + Public Domain in the USA"
+	)
+
+	inner <- creditsGrob(xmp, credits, icons = TRUE, size = "poker")
+
+	if (double) {
+		spine <- list(spine, spine)
+	}
+	pdf_create_poker_jacket(
+		output = output,
+		front = front,
+		back = back,
+		spine = spine,
+		inner = inner,
+		paper = paper,
+		bg = background_col
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
+}
