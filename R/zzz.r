@@ -52,7 +52,8 @@ df_sbgj <- function() {
 		"Nomids", "https://www.looneylabs.com/nomids", "`sbgj_nomids()`", "Personal Use Only",
 		"Pawns", NA_character_, "`sbgj_pawns()`", "CC-BY-ND-4.0",
 		"Shibumi", "https://cambolbro.com/games/shibumi/", "`sbgj_shibumi()`", "Personal Use Only",
-		"Glass Stones", NA_character_, "`sbgj_glass_stones()`", "CC-BY-ND-4.0"
+		"Glass Stones", NA_character_, "`sbgj_glass_stones()`", "CC-BY-ND-4.0",
+		"Yinsh", "https://www.gipf.com/yinsh/", "`sbgj_yinsh()`", "Personal Use Only"
 	)
 	# Looney Labs FAQ says okay to use their images to **create** jackets for personal use
 	# but does not grant permission to **share** such jackets

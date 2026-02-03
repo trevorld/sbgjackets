@@ -21,7 +21,7 @@ pcbj_decktet <- function(
 	text_col <- "black"
 
 	url <- "https://boardgamegeek.com/image/461294/series-decktet-games"
-	bm_pic <- bm_cache_url(url, "decktet_box_cover.jpg")
+	bm_pic <- bm_cache_url(url, "decktet_box_cover.jpg", download = FALSE)
 	front <- fullGrob(bm_pic, height = 1)
 
 	url <- "https://www.decktet.com/download/decktet-rules.pdf"

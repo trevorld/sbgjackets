@@ -49,6 +49,10 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
 
 Functions to create small box game (SBG) jackets for **Personal Use Only**:
 
+* Functions to create SBG jackets for GIPF games (#11):
+
+  + `sbgj_yinsh()`
+
 * Functions to create SBG jackets for Looney Pyramids (#2):
 
   + `sbgj_looney_pyramids()`
