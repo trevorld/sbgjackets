@@ -23,7 +23,14 @@ You can install the development version using my [R-universe](https://ropensci.o
 
 
 ``` r
-install.packages('sbgjackets', repos = c('https://trevorld.r-universe.dev', 'https://cloud.r-project.org'))
+install.packages(
+	'sbgjackets',
+	repos = c(
+		'https://trevorld.r-universe.dev',
+		'https://piecepackr.r-universe.dev',
+		'https://cloud.r-project.org'
+	)
+)
 ```
 
 or by using the `{remotes}` package:
