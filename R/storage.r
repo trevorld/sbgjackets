@@ -1,6 +1,7 @@
 #' Create SBG Jackets for Generic Component Storage
 #'
 #' `sbgj_glass_stones()` creates a small box game jacket for glass stones.
+#' `sbgj_marbles()` creates a small box game jacket for marbles.
 #' `sbgj_pawns()` creates a small box game jacket for pawns.
 #' `sbgj_polyhedral_dice()` creates a small box game jacket for polyhedral dice.
 #'
@@ -61,6 +62,60 @@ sbgj_dice <- function(
 		"  + https://commons.wikimedia.org/wiki/File:Mannen_spelen_dobbelspel,_op_de_grond_zit_aap_met_speelkaarten_Titelpagina_voor_De_alea_libri_duo,_Amsterdam_1642_De_alea_libri_duo_(titel_op_object),_RP-P-1878-A-819.jpg",
 		"  + Public Domain",
 		"  + Cropped to fit cover"
+	)
+	inner <- creditsGrob(xmp, credits, icons = FALSE)
+
+	output <- pdf_create_jacket(
+		output = output,
+		front = front,
+		back = back,
+		spine = spine,
+		inner = inner,
+		paper = paper
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
+}
+
+#' @rdname sbgj_storage
+#' @export
+sbgj_marbles <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
+	check_dots_empty()
+	check_sbgjackets_dependencies()
+
+	url <- "https://pixnio.com/objects/marble-ball-color-colorful"
+	bm_front <- bm_cache_url(url, "marbles_front.jpg", download = FALSE)
+
+	url <- "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/20150720-Glasmurmeln-IMG_7124.jpg/3840px-20150720-Glasmurmeln-IMG_7124.jpg"
+	bm_back <- bm_cache_url(url, "marbles_back.jpg")
+
+	front <- fullGrob(bm_front, height = 1)
+	back <- fullGrob(bm_back, height = 1)
+
+	spine <- gList(fullGrob("black"), spineTextGrob("Marbles"))
+	xmp <- xmp(
+		creator = "Trevor L. Davis",
+		date_created = "2026",
+		spdx_id = "CC-BY-SA-3.0",
+		title = "Marbles Small Box Game Jacket"
+	)
+
+	credits <- c(
+		"* *marble, ball, color, colorful*",
+		"",
+		"  + https://pixnio.com/objects/marble-ball-color-colorful",
+		"  + CC0 1.0 Public Domain Dedication",
+		"  + Cropped to fit front cover",
+		"",
+		"* *Gesuender Leben* by Bernhard Schindele",
+		"",
+		"  + https://commons.wikimedia.org/wiki/File:20150720-Glasmurmeln-IMG_7124.jpg",
+		"  + Creative Commons Attribution-ShareAlike 3.0 Unported License",
+		"  + Cropped to fit back cover"
 	)
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 

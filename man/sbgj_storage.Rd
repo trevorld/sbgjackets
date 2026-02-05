@@ -2,12 +2,20 @@
 % Please edit documentation in R/storage.r
 \name{sbgj_dice}
 \alias{sbgj_dice}
+\alias{sbgj_marbles}
 \alias{sbgj_glass_stones}
 \alias{sbgj_pawns}
 \alias{sbgj_polyhedral_dice}
 \title{Create SBG Jackets for Generic Component Storage}
 \usage{
 sbgj_dice(
+  output = NULL,
+  ...,
+  paper = getOption("papersize", "letter"),
+  instructions = FALSE
+)
+
+sbgj_marbles(
   output = NULL,
   ...,
   paper = getOption("papersize", "letter"),
@@ -49,6 +57,7 @@ The output file name invisibly.  As a side effect creates a pdf file.
 }
 \description{
 \code{sbgj_glass_stones()} creates a small box game jacket for glass stones.
+\code{sbgj_marbles()} creates a small box game jacket for marbles.
 \code{sbgj_pawns()} creates a small box game jacket for pawns.
 \code{sbgj_polyhedral_dice()} creates a small box game jacket for polyhedral dice.
 }

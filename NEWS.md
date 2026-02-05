@@ -31,6 +31,7 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
 
   + `sbgj_dice()`
   + `sbgj_glass_stones()`
+  + `sbgj_marbles()`
   + `sbgj_pawns()`
   + `sbgj_polyhedral_dice()`
 

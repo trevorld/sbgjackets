@@ -48,6 +48,7 @@ df_sbgj <- function() {
 		"Ice Duo", "https://www.looneylabs.com/games/ice-duo", "`sbgj_ice_duo()`", "Personal Use Only",
 		"Jinxx", "https://www.looneylabs.com/games/jinxx", "`sbgj_jinxx()`", "Personal Use Only",
 		"Looney Pyramids", "https://www.looneylabs.com/pyramids-home", "`sbgj_looney_pyramids()`", "Personal Use Only",
+		"Marbles", NA_character_, "`sbgj_marbles()`", "CC-BY-SA-3.0",
 		"Martian Chess", "https://www.looneylabs.com/martian_chess", "`sbgj_martian_chess()`", "Personal Use Only",
 		"Nomids", "https://www.looneylabs.com/nomids", "`sbgj_nomids()`", "Personal Use Only",
 		"Pawns", NA_character_, "`sbgj_pawns()`", "CC-BY-ND-4.0",
