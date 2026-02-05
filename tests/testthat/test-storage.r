@@ -5,6 +5,12 @@ test_that("Storage jackets", {
 	expect_true(file.exists(f))
 	unlink(f)
 
+	skip_if_not(cache_has("slate_black_stones.jpg"))
+	skip_if_not(cache_has("yunzi_go_stones.jpg"))
+	f <- sbgj_black_stones()
+	expect_true(file.exists(f))
+	unlink(f)
+
 	skip_if_not(cache_has("glass_stones.jpg"))
 	f <- sbgj_glass_stones()
 	expect_true(file.exists(f))
@@ -23,6 +29,12 @@ test_that("Storage jackets", {
 
 	skip_if_not(cache_has("polyhedral_dice.jpg"))
 	f <- sbgj_polyhedral_dice()
+	expect_true(file.exists(f))
+	unlink(f)
+
+	skip_if_not(cache_has("shell_white_stones.jpg"))
+	skip_if_not(cache_has("yunzi_go_stones.jpg"))
+	f <- sbgj_white_stones()
 	expect_true(file.exists(f))
 	unlink(f)
 })

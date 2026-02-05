@@ -29,11 +29,13 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
 
 * Functions to create SBG jackets for generic components (#8):
 
+  + `sbgj_black_stones()`
   + `sbgj_dice()`
   + `sbgj_glass_stones()`
   + `sbgj_marbles()`
   + `sbgj_pawns()`
   + `sbgj_polyhedral_dice()`
+  + `sbgj_white_stones()`
 
 * Functions to create Playing Card Box jackets:
 

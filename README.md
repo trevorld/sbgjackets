@@ -105,7 +105,9 @@ This package also provides functions that locally create SBG jackets pdfs for a 
 |[Nomids](https://www.looneylabs.com/nomids)|`sbgj_nomids()`            |Personal Use Only |
 |Pawns                    |`sbgj_pawns()`             |[CC-BY-ND-4.0](https://creativecommons.org/licenses/by-nd/4.0/)|
 |[Shibumi](https://cambolbro.com/games/shibumi/)|`sbgj_shibumi()`           |Personal Use Only |
+|Black Stones             |`sbgj_black_stones()`      |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
 |Glass Stones             |`sbgj_glass_stones()`      |[CC-BY-ND-4.0](https://creativecommons.org/licenses/by-nd/4.0/)|
+|White Stones             |`sbgj_white_stones()`      |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
 |[Yinsh](https://www.gipf.com/yinsh/)|`sbgj_yinsh()`             |Personal Use Only |
 
 
@@ -138,7 +140,7 @@ This package also provides functions that locally create playing-card box jacket
 
 | Feature | Boardgame Barrio | `{sbgjackets}` |
 | --- | --- | --- |
-| Quantity | Over 1,600 pre-made jackets | 27 pre-made jackets |
+| Quantity | Over 1,600 pre-made jackets | 29 pre-made jackets |
 | Size | Targets only 4x6 photo storage boxes | Targets 4x6 photo storage boxes as well as playing card boxes |
 | Process | Made in Microsoft Publisher with a template | Made in `R` with `pnpmisc::pdf_create_jacket()` |
 | Spine Font | Calibri (proprietary) | Carlito (libre font, metrically compatible with Calibri) |
