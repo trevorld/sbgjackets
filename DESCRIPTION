@@ -1,7 +1,7 @@
 Package: sbgjackets
 Type: Package
 Title: Utilities for Small Box Game Jackets
-Version: 0.1.0-28
+Version: 0.1.0-29
 Authors@R: c(person("Trevor L.", "Davis", role=c("aut", "cre"),
                      email="trevor.l.davis@gmail.com",
                      comment = c(ORCID = "0000-0001-6341-4639")),

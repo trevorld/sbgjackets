@@ -1,15 +1,72 @@
 #' Create SBG Jackets for Generic Component Storage
 #'
+#' `sbgj_black_stones()` creates a small box game jacket for black stones.
 #' `sbgj_glass_stones()` creates a small box game jacket for glass stones.
 #' `sbgj_marbles()` creates a small box game jacket for marbles.
 #' `sbgj_pawns()` creates a small box game jacket for pawns.
 #' `sbgj_polyhedral_dice()` creates a small box game jacket for polyhedral dice.
+#' `sbgj_white_stones()` creates a small box game jacket for white stones.
 #'
 #' @param output Output file name.  Defaults to `tempfile(fileext = ".pdf")`.
 #' @param ... Should be empty.
 #' @inheritParams pnpmisc::pdf_create_jacket
 #' @param instructions If `TRUE` then prepend instructions on how to make the jacket to the beginning of the pdf
 #' @return The output file name invisibly.  As a side effect creates a pdf file.
+#' @rdname sbgj_storage
+#' @export
+sbgj_black_stones <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
+	check_dots_empty()
+	check_sbgjackets_dependencies()
+
+	url <- "https://upload.wikimedia.org/wikipedia/commons/b/b8/Slate_go_pieces_sc.jpg"
+	bm_back <- bm_cache_url(url, "slate_black_stones.jpg")
+
+	url <- "https://upload.wikimedia.org/wikipedia/commons/b/b3/Yunzi_double_convex.jpg"
+	bm_front <- bm_cache_url(url, "yunzi_go_stones.jpg") |>
+		bm_trim(left = 600, top = 200)
+
+	front <- fullGrob(bm_front, height = 1)
+	back <- fullGrob(bm_back, height = 1)
+
+	spine <- gList(fullGrob("black"), spineTextGrob("Black Stones"))
+	xmp <- xmp(
+		creator = "Trevor L. Davis",
+		date_created = "2026",
+		spdx_id = "CC-BY-4.0",
+		title = "Black Stones Small Box Game Jacket"
+	)
+
+	credits <- c(
+		"* *Double convex yunzi stones and woven baskets for holding them placed on a Go board* by Ralph Unden",
+		"",
+		"  + https://commons.wikimedia.org/wiki/File:Yunzi_double_convex.jpg",
+		"  + Creative Commons Attribution 2.0 Generic License",
+		"  + Cropped to fit front cover",
+		"",
+		"* *slate go pieces sc* by Liz West",
+		"",
+		"  + https://commons.wikimedia.org/wiki/File:Slate_go_pieces_sc.jpg",
+		"  + Creative Commons Attribution 2.0 Generic License",
+		"  + Cropped to fit back cover"
+	)
+	inner <- creditsGrob(xmp, credits, icons = FALSE)
+
+	output <- pdf_create_jacket(
+		output = output,
+		front = front,
+		back = back,
+		spine = spine,
+		inner = inner,
+		paper = paper
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
+}
+
 #' @rdname sbgj_storage
 #' @export
 sbgj_dice <- function(
@@ -298,6 +355,61 @@ sbgj_polyhedral_dice <- function(
 		"    > The images provided by PickPik are free to use for personal and commercial projects",
 		"",
 		"  + Cropped to fit cover"
+	)
+	inner <- creditsGrob(xmp, credits, icons = FALSE)
+
+	output <- pdf_create_jacket(
+		output = output,
+		front = front,
+		back = back,
+		spine = spine,
+		inner = inner,
+		paper = paper
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
+}
+
+#' @rdname sbgj_storage
+#' @export
+sbgj_white_stones <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
+	check_dots_empty()
+	check_sbgjackets_dependencies()
+
+	url <- "https://upload.wikimedia.org/wikipedia/commons/6/62/Shell_go_pieces_sc.jpg"
+	bm_back <- bm_cache_url(url, "shell_white_stones.jpg")
+
+	url <- "https://upload.wikimedia.org/wikipedia/commons/b/b3/Yunzi_double_convex.jpg"
+	bm_front <- bm_cache_url(url, "yunzi_go_stones.jpg") |>
+		bm_trim(right = 670, bottom = 60, top = 100)
+
+	front <- fullGrob(bm_front, height = 1)
+	back <- fullGrob(bm_back, height = 1)
+
+	spine <- gList(fullGrob("black"), spineTextGrob("White Stones"))
+	xmp <- xmp(
+		creator = "Trevor L. Davis",
+		date_created = "2026",
+		spdx_id = "CC-BY-4.0",
+		title = "White Stones Small Box Game Jacket"
+	)
+
+	credits <- c(
+		"* *Double convex yunzi stones and woven baskets for holding them placed on a Go board* by Ralph Unden",
+		"",
+		"  + https://commons.wikimedia.org/wiki/File:Yunzi_double_convex.jpg",
+		"  + Creative Commons Attribution 2.0 Generic License",
+		"  + Cropped to fit front cover",
+		"",
+		"* *shell go pieces sc* by Liz West",
+		"",
+		"  + https://commons.wikimedia.org/wiki/File:Shell_go_pieces_sc.jpg",
+		"  + Creative Commons Attribution 2.0 Generic License",
+		"  + Cropped to fit back cover"
 	)
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 
