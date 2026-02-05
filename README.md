@@ -100,6 +100,7 @@ This package also provides functions that locally create SBG jackets pdfs for a 
 |[Ice Duo](https://www.looneylabs.com/games/ice-duo)|`sbgj_ice_duo()`           |Personal Use Only |
 |[Jinxx](https://www.looneylabs.com/games/jinxx)|`sbgj_jinxx()`             |Personal Use Only |
 |[Looney Pyramids](https://www.looneylabs.com/pyramids-home)|`sbgj_looney_pyramids()`   |Personal Use Only |
+|Marbles                  |`sbgj_marbles()`           |[CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/)|
 |[Martian Chess](https://www.looneylabs.com/martian_chess)|`sbgj_martian_chess()`     |Personal Use Only |
 |[Nomids](https://www.looneylabs.com/nomids)|`sbgj_nomids()`            |Personal Use Only |
 |Pawns                    |`sbgj_pawns()`             |[CC-BY-ND-4.0](https://creativecommons.org/licenses/by-nd/4.0/)|
@@ -137,7 +138,7 @@ This package also provides functions that locally create playing-card box jacket
 
 | Feature | Boardgame Barrio | `{sbgjackets}` |
 | --- | --- | --- |
-| Quantity | Over 1,600 pre-made jackets | 26 pre-made jackets |
+| Quantity | Over 1,600 pre-made jackets | 27 pre-made jackets |
 | Size | Targets only 4x6 photo storage boxes | Targets 4x6 photo storage boxes as well as playing card boxes |
 | Process | Made in Microsoft Publisher with a template | Made in `R` with `pnpmisc::pdf_create_jacket()` |
 | Spine Font | Calibri (proprietary) | Carlito (libre font, metrically compatible with Calibri) |

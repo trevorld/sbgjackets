@@ -10,6 +10,12 @@ test_that("Storage jackets", {
 	expect_true(file.exists(f))
 	unlink(f)
 
+	skip_if_not(cache_has("marbles_front.jpg"))
+	skip_if_not(cache_has("marbles_back.jpg"))
+	f <- sbgj_marbles()
+	expect_true(file.exists(f))
+	unlink(f)
+
 	skip_if_not(cache_has("wooden_pawns.jpg"))
 	f <- sbgj_pawns()
 	expect_true(file.exists(f))
