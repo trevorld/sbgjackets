@@ -32,6 +32,11 @@ test_that("Storage jackets", {
 	expect_true(file.exists(f))
 	unlink(f)
 
+	skip_if_not(cache_has("othello.jpg"))
+	f <- sbgj_reversible_discs()
+	expect_true(file.exists(f))
+	unlink(f)
+
 	skip_if_not(cache_has("shell_white_stones.jpg"))
 	skip_if_not(cache_has("yunzi_go_stones.jpg"))
 	f <- sbgj_white_stones()

@@ -2,6 +2,7 @@
 #'
 #' `pcbj_bridge()` creates a playing card box jacket for a Bridge deck.
 #' `pcbj_pinochle()` creates a playing card box jacket for a Pinochle deck.
+#' `pcbj_poker()` creates a playing card box jacket for a Poker deck.
 #'
 #' @inheritParams pcbj_english_pattern
 #' @return The output file name invisibly.  As a side effect creates a pdf file.

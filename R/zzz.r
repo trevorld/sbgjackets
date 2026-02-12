@@ -52,6 +52,7 @@ df_sbgj <- function() {
 		"Martian Chess", "https://www.looneylabs.com/martian_chess", "`sbgj_martian_chess()`", "Personal Use Only",
 		"Nomids", "https://www.looneylabs.com/nomids", "`sbgj_nomids()`", "Personal Use Only",
 		"Pawns", NA_character_, "`sbgj_pawns()`", "CC-BY-ND-4.0",
+		"Reversible Discs", NA_character_, "`sbgj_reversible_discs()`", "CC-BY-4.0",
 		"Shibumi", "https://cambolbro.com/games/shibumi/", "`sbgj_shibumi()`", "Personal Use Only",
 		"Black Stones", NA_character_, "`sbgj_black_stones()`", "CC-BY-4.0",
 		"Glass Stones", NA_character_, "`sbgj_glass_stones()`", "CC-BY-ND-4.0",
