@@ -47,4 +47,5 @@ The output file name invisibly.  As a side effect creates a pdf file.
 \description{
 \code{pcbj_bridge()} creates a playing card box jacket for a Bridge deck.
 \code{pcbj_pinochle()} creates a playing card box jacket for a Pinochle deck.
+\code{pcbj_poker()} creates a playing card box jacket for a Poker deck.
 }

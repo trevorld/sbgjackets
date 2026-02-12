@@ -5,6 +5,8 @@
 #' `sbgj_marbles()` creates a small box game jacket for marbles.
 #' `sbgj_pawns()` creates a small box game jacket for pawns.
 #' `sbgj_polyhedral_dice()` creates a small box game jacket for polyhedral dice.
+#' `sbgj_reversible_discs()` creates a small box game jacket for
+#'   reversible discs.
 #' `sbgj_white_stones()` creates a small box game jacket for white stones.
 #'
 #' @param output Output file name.  Defaults to `tempfile(fileext = ".pdf")`.
@@ -367,6 +369,126 @@ sbgj_polyhedral_dice <- function(
 		paper = paper
 	) |>
 		pdf_polish_jacket(xmp = xmp, instructions = instructions)
+}
+
+#' @rdname sbgj_storage
+#' @export
+sbgj_reversible_discs <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
+	check_dots_empty()
+	check_sbgjackets_dependencies()
+
+	url <- "https://www.flickr.com/photos/noahbulgaria/226231535"
+	bm_front <- bm_cache_url(url, "othello.jpg", download = FALSE)
+
+	front <- fullGrob(bm_front, height = 1)
+
+	back_notes <- c(
+		"# Notable games using reversible discs",
+		"",
+		"* *Games you can play with Othello/Reversi/bicolored pieces* geeklist",
+		"",
+		"  + https://boardgamegeek.com/geeklist/235864/",
+		"",
+		"* Glaisher",
+		"",
+		"  + https://boardgamegeek.com/boardgame/175363/glaisher",
+		"",
+		"* Io",
+		"",
+		"  + https://boardgamegeek.com/boardgame/172471/io",
+		"",
+		"* Ming Mang",
+		"",
+		"  + http://www.cyningstan.com/game/328/ming-mang",
+		"",
+		"* Othellito",
+		"",
+		"  + https://boardgamegeek.com/boardgame/289484/othellito",
+		"",
+		"* Othello",
+		"",
+		"  + https://www.worldothello.org/",
+		"",
+		"* Verto",
+		"",
+		"  + https://boardgamegeek.com/boardgame/89333/verto",
+		"",
+		"* Wizard's Garden",
+		"",
+		"  + https://www.tjgames.com/wizard.html",
+		"",
+		"* Yonmoque",
+		"",
+		"  + https://www.gift-box.co.jp/english/yonmoque.html"
+	)
+	back <- backNotesGrob(back_notes)
+
+	spine <- gList(fullGrob("black"), spineTextGrob("Reversible Discs"))
+	xmp <- xmp(
+		creator = "Trevor L. Davis",
+		date_created = "2026",
+		spdx_id = "CC-BY-4.0",
+		title = "Reversible Discs Small Box Game Jacket"
+	)
+
+	credits <- c(
+		"* *Othello! or Reversi* by Noah",
+		"",
+		"  + https://www.flickr.com/photos/noahbulgaria/226231535",
+		"  + Creative Commons Attribution 2.0 Generic License",
+		"  + Cropped to fit front cover"
+	)
+	cr_grob <- creditsGrob(xmp, credits, icons = FALSE)
+	inner <- gList(cr_grob, reversible_discs_board_grob())
+
+	output <- pdf_create_jacket(
+		output = output,
+		front = front,
+		back = back,
+		spine = spine,
+		inner = inner,
+		paper = paper
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
+}
+
+reversible_discs_board_grob <- function() {
+	w <- unit(3 / 4, "in")
+	xs_r <- unit(c(2 - 9 / 8, 2 - 3 / 8, 2 + 3 / 8, 2 + 9 / 8), "in")
+	ys_r <- unit(c(3 - 9 / 8, 3 - 3 / 8, 3 + 3 / 8, 3 + 9 / 8), "in")
+	xs_c <- unit(c(2 - 6 / 4, 2 - 3 / 4, 2, 2 + 3 / 4, 2 + 6 / 4), "in")
+	ys_c <- unit(c(3 - 6 / 4, 3 - 3 / 4, 3, 3 + 3 / 4, 3 + 6 / 4), "in")
+	fills_c_1 <- c("grey", "white", "black", "white", "grey")
+	fills_c_2 <- c("white", "black", "white", "black", "white")
+	fills_c_3 <- c("black", "white", "grey", "white", "black")
+	fills_c <- c(fills_c_1, fills_c_2, fills_c_3, fills_c_2, fills_c_1)
+	vp <- viewport(
+		width = unit(4, "in"),
+		height = unit(6, "in"),
+		x = unit(1, "npc") - unit(0.5 * (pnpmisc:::JACKET_4x6_FRONT_WIDTH - 4), "in"),
+		just = "right"
+	)
+	grobTree(
+		rectGrob(
+			x = rep(xs_r, 4L),
+			y = rep(ys_r, each = 4L),
+			width = w,
+			height = w,
+			gp = gpar(col = "black", fill = NA, lwd = 2)
+		),
+		circleGrob(
+			x = rep(xs_c, 5L),
+			y = rep(ys_c, each = 5L),
+			r = unit(1 / 8, "in"),
+			gp = gpar(col = "black", fill = fills_c, lwd = 2)
+		),
+		vp = vp
+	)
 }
 
 #' @rdname sbgj_storage

@@ -35,6 +35,7 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
   + `sbgj_marbles()`
   + `sbgj_pawns()`
   + `sbgj_polyhedral_dice()`
+  + `sbgj_reversible_discs()`
   + `sbgj_white_stones()`
 
 * Functions to create Playing Card Box jackets:
@@ -48,7 +49,6 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
   + `pcbj_mahjong()`
   + `pcbj_pinochle()`
   + `pcbj_poker()`
-  + `pcbj_wizard()`
 
 Functions to create small box game (SBG) jackets for **Personal Use Only**:
 
@@ -72,3 +72,7 @@ Functions to create small box game (SBG) jackets for **Personal Use Only**:
 * Functions to create Playing Card Box jackets for Foxtrot Games:
 
   + `pcbj_fox_in_the_forest()`
+
+* Functions to create Playing Card Box jackets for *Wizard*:
+
+  + `pcbj_wizard()`

@@ -7,6 +7,7 @@
 \alias{sbgj_glass_stones}
 \alias{sbgj_pawns}
 \alias{sbgj_polyhedral_dice}
+\alias{sbgj_reversible_discs}
 \alias{sbgj_white_stones}
 \title{Create SBG Jackets for Generic Component Storage}
 \usage{
@@ -52,6 +53,13 @@ sbgj_polyhedral_dice(
   instructions = FALSE
 )
 
+sbgj_reversible_discs(
+  output = NULL,
+  ...,
+  paper = getOption("papersize", "letter"),
+  instructions = FALSE
+)
+
 sbgj_white_stones(
   output = NULL,
   ...,
@@ -77,5 +85,7 @@ The output file name invisibly.  As a side effect creates a pdf file.
 \code{sbgj_marbles()} creates a small box game jacket for marbles.
 \code{sbgj_pawns()} creates a small box game jacket for pawns.
 \code{sbgj_polyhedral_dice()} creates a small box game jacket for polyhedral dice.
+\code{sbgj_reversible_discs()} creates a small box game jacket for
+reversible discs.
 \code{sbgj_white_stones()} creates a small box game jacket for white stones.
 }
