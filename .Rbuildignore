@@ -19,6 +19,6 @@
 ^pkgdown$
 ^raw-data$
 ^revdep$
-^R/tetris_stax.r$
-^tests/testthat/test-tetris_stax.r$
+^R/tetris_stax.R$
+^tests/testthat/test-tetris_stax.R$
 ^tmp$
