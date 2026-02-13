@@ -50,18 +50,7 @@ pcbj_mahjong <- function(
 		"",
 		"* https://www.sloperama.com/mahjongg/"
 	)
-	back_notes <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
-	back <- marquee::marquee_grob(
-		back_notes,
-		style = sbgjackets_style("poker", color = text_col) |>
-			marquee::modify_style(
-				"img",
-				marquee::style(img_asp = 3.5)
-			),
-		width = unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in"),
-		x = unit(1 / 8, "in"),
-		y = unit(1, "npc") - unit(1 / 8, "in")
-	)
+	back <- backNotesGrob(back_notes, col = text_col, size = "poker")
 
 	spine1 <- spineTextGrob("Mahjong (1/2)", col = text_col, size = "poker")
 	spine2 <- spineTextGrob("Mahjong (2/2)", col = text_col, size = "poker")

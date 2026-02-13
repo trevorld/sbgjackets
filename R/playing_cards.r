@@ -59,7 +59,7 @@ pcbj_bavarian_pattern <- function(
 		"* Skat",
 		"* Watten"
 	)
-	back_notes <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
+	back_notes <- paste(back_notes, collapse = "\n")
 	back <- marquee::marquee_grob(
 		back_notes,
 		style = sbgjackets_style("poker", color = text_col),
@@ -151,14 +151,7 @@ pcbj_castilian_pattern <- function(
 		"* Tresillo (modern variant of l'Hombre)",
 		"* Tute"
 	)
-	back_notes <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
-	back <- marquee::marquee_grob(
-		back_notes,
-		style = sbgjackets_style("poker", color = text_col),
-		width = unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in"),
-		x = unit(1 / 8, "in"),
-		y = unit(1, "npc") - unit(1 / 8, "in")
-	)
+	back <- backNotesGrob(back_notes, col = text_col, size = "poker")
 
 	spine <- spineTextGrob("Spanish Suits: Castilian Pattern", col = text_col, size = "poker")
 
@@ -233,14 +226,7 @@ pcbj_english_pattern <- function(
 		"* https://i-p-c-s.org/pattern/ps-48.html",
 		"* https://www.pagat.com"
 	)
-	back_notes <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
-	back <- marquee::marquee_grob(
-		back_notes,
-		style = sbgjackets_style("poker", color = text_col),
-		width = unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in"),
-		x = unit(1 / 8, "in"),
-		y = unit(1, "npc") - unit(1 / 8, "in")
-	)
+	back <- backNotesGrob(back_notes, col = text_col, size = "poker")
 
 	spine <- spineTextGrob("French Suits: English Pattern", col = text_col, size = "poker")
 
