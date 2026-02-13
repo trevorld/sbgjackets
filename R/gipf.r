@@ -59,14 +59,7 @@ sbgj_yinsh <- function(
 		"",
 		"  + If no one has won after all *markers* were placed then whoever removed the most rings wins else game ends in a draw"
 	)
-	back_notes <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
-	back <- marquee::marquee_grob(
-		back_notes,
-		style = sbgjackets_style(color = "black"),
-		width = unit(pnpmisc:::JACKET_4x6_FRONT_WIDTH, "in"),
-		x = unit(1 / 8, "in"),
-		y = unit(1, "npc") - unit(1 / 8, "in")
-	)
+	back <- backNotesGrob(back_notes, col = "black")
 
 	spine <- gList(
 		fullGrob("#3C697EFF"),

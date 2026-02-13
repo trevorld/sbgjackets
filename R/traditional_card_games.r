@@ -124,17 +124,14 @@ pcbj_pinochle <- function(
 		"",
 		"  ![](around_table)"
 	)
-	back_notes <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
-	back <- marquee::marquee_grob(
+	back <- backNotesGrob(
 		back_notes,
 		style = sbgjackets_style("poker", color = text_col) |>
 			marquee::modify_style(
 				"img",
 				marquee::style(img_asp = 3.5)
 			),
-		width = unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in"),
-		x = unit(1 / 8, "in"),
-		y = unit(1, "npc") - unit(1 / 8, "in")
+		size = "poker"
 	)
 
 	spine <- gList(
@@ -214,14 +211,7 @@ pcbj_poker <- function(
 		"",
 		"* https://www.pagat.com/poker/"
 	)
-	back_notes <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
-	back <- marquee::marquee_grob(
-		back_notes,
-		style = sbgjackets_style("poker", color = text_col),
-		width = unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in"),
-		x = unit(1 / 8, "in"),
-		y = unit(1, "npc") - unit(1 / 8, "in")
-	)
+	back <- backNotesGrob(back_notes, col = text_col, size = "poker")
 
 	spine <- gList(
 		spineTextGrob("Poker", col = text_col, size = "poker"),

@@ -1,8 +1,8 @@
 #' Small Box Game Jacket Grobs
 #'
-#' `creditsGrob()`, `spineIconGrob()`, and `spineTextGrob()`
-#' are helper grob functions to help make small box game jackets
-#' using [pnpmisc::pdf_create_jacket()].
+#' `backNotesGrob()`, `creditsGrob()`, `spineIconGrob()`, and
+#' `spineTextGrob()` are helper grob functions to help make small
+#' box game jackets using [pnpmisc::pdf_create_jacket()].
 #' @param title Title of small box game jacket (usually game name)
 #' @param col Color of text/icons
 #' @param size Target box size.  Either `"4x6"` or `"poker"`.
@@ -216,6 +216,36 @@ creditsGrob <- function(
 	}
 
 	gList(grob_cc, mg)
+}
+
+#' @rdname helper_grobs
+#' @param notes A character vector of (commonmark) back cover notes.
+#' @param style A `marquee` style set object
+#'              (e.g. from [sbgjackets_style()]).
+#' @export
+backNotesGrob <- function(
+	notes,
+	col = "black",
+	size = c("4x6", "poker"),
+	...,
+	style = sbgjackets_style(size, color = col)
+) {
+	check_dots_empty()
+	size <- match.arg(size)
+	notes <- paste(notes, collapse = "\n") |>
+		marquee::marquee_glue(.trim = FALSE)
+	if (size == "4x6") {
+		width <- unit(pnpmisc:::JACKET_4x6_FRONT_WIDTH, "in")
+	} else {
+		width <- unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in")
+	}
+	marquee::marquee_grob(
+		notes,
+		style = style,
+		width = width,
+		x = unit(1 / 8, "in"),
+		y = unit(1, "npc") - unit(1 / 8, "in")
+	)
 }
 
 # vermillion <- "#D55E00"
