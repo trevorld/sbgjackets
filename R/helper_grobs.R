@@ -357,3 +357,12 @@ format_n_players <- function(players) {
 	formatted <- list(prev = -1, val = "")
 	Reduce(format_n_players_fn, players, formatted)$val
 }
+
+vp_inner_right <- function() {
+	viewport(
+		width = unit(4, "in"),
+		height = unit(6, "in"),
+		x = unit(1, "npc") - unit(0.5 * (pnpmisc:::JACKET_4x6_FRONT_WIDTH - 4), "in"),
+		just = "right"
+	)
+}
