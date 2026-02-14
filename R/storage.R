@@ -122,7 +122,8 @@ sbgj_dice <- function(
 		"  + Public Domain",
 		"  + Cropped to fit cover"
 	)
-	inner <- creditsGrob(xmp, credits, icons = FALSE)
+	cr_grob <- creditsGrob(xmp, credits, icons = FALSE)
+	inner <- gList(cr_grob, dice_board_grob())
 
 	output <- pdf_create_jacket(
 		output = output,
@@ -133,6 +134,31 @@ sbgj_dice <- function(
 		paper = paper
 	) |>
 		pdf_polish_jacket(xmp = xmp, instructions = instructions)
+}
+
+dice_board_grob <- function() {
+	offsets <- (2 / 3) * seq(-2.5, 2.5, by = 1)
+	xs <- unit(2 + offsets, "in")
+	ys <- unit(3 + offsets, "in")
+	fills <- rep(c("white", "black"), each = 6L * 3L)
+	gp_rect <- gpar(col = "grey90", fill = NA, lwd = 2)
+	vp <- vp_inner_right()
+	grobTree(
+		rectGrob(
+			x = unit(2, "in"),
+			y = unit(3, "in"),
+			width = unit(c(8 / 3, 4 / 3), "in"),
+			height = unit(c(8 / 3, 4 / 3), "in"),
+			gp = gp_rect
+		),
+		circleGrob(
+			x = rep(xs, 6L),
+			y = rep(ys, each = 6L),
+			r = unit(1 / 8, "in"),
+			gp = gpar(col = "black", fill = fills, lwd = 2)
+		),
+		vp = vp
+	)
 }
 
 #' @rdname sbgj_storage
@@ -459,10 +485,12 @@ sbgj_reversible_discs <- function(
 
 reversible_discs_board_grob <- function() {
 	w <- unit(3 / 4, "in")
-	xs_r <- unit(c(2 - 9 / 8, 2 - 3 / 8, 2 + 3 / 8, 2 + 9 / 8), "in")
-	ys_r <- unit(c(3 - 9 / 8, 3 - 3 / 8, 3 + 3 / 8, 3 + 9 / 8), "in")
-	xs_c <- unit(c(2 - 6 / 4, 2 - 3 / 4, 2, 2 + 3 / 4, 2 + 6 / 4), "in")
-	ys_c <- unit(c(3 - 6 / 4, 3 - 3 / 4, 3, 3 + 3 / 4, 3 + 6 / 4), "in")
+	offsets_r <- (3 / 4) * seq(-1.5, 1.5, by = 1)
+	offsets_c <- (3 / 4) * seq(-2, 2, by = 1)
+	xs_r <- unit(2 + offsets_r, "in")
+	ys_r <- unit(3 + offsets_r, "in")
+	xs_c <- unit(2 + offsets_c, "in")
+	ys_c <- unit(3 + offsets_c, "in")
 	fills_c_1 <- c("grey", "white", "black", "white", "grey")
 	fills_c_2 <- c("white", "black", "white", "black", "white")
 	fills_c_3 <- c("black", "white", "grey", "white", "black")
