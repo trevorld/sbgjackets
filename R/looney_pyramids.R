@@ -162,8 +162,8 @@ sbgj_looney_pyramids <- function(
 }
 
 bank_grob <- function() {
-	xs <- unit(c(0.90, 2, 3.10), "in")
-	ys <- unit(c(0.8, 1.9, 3, 4.1, 5.2), "in")
+	xs <- unit(2 + 1.1 * seq(-1, 1, by = 1), "in")
+	ys <- unit(3 + 1.1 * seq(-2, 2, by = 1), "in")
 	w <- unit(9 / 16, "in")
 	vp <- vp_inner_right()
 	grobTree(
