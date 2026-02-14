@@ -165,12 +165,7 @@ bank_grob <- function() {
 	xs <- unit(c(0.90, 2, 3.10), "in")
 	ys <- unit(c(0.8, 1.9, 3, 4.1, 5.2), "in")
 	w <- unit(9 / 16, "in")
-	vp <- viewport(
-		width = unit(4, "in"),
-		height = unit(6, "in"),
-		x = unit(1, "npc") - unit(0.5 * (pnpmisc:::JACKET_4x6_FRONT_WIDTH - 4), "in"),
-		just = "right"
-	)
+	vp <- vp_inner_right()
 	grobTree(
 		rectGrob(
 			xs,

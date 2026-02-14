@@ -467,12 +467,7 @@ reversible_discs_board_grob <- function() {
 	fills_c_2 <- c("white", "black", "white", "black", "white")
 	fills_c_3 <- c("black", "white", "grey", "white", "black")
 	fills_c <- c(fills_c_1, fills_c_2, fills_c_3, fills_c_2, fills_c_1)
-	vp <- viewport(
-		width = unit(4, "in"),
-		height = unit(6, "in"),
-		x = unit(1, "npc") - unit(0.5 * (pnpmisc:::JACKET_4x6_FRONT_WIDTH - 4), "in"),
-		just = "right"
-	)
+	vp <- vp_inner_right()
 	grobTree(
 		rectGrob(
 			x = rep(xs_r, 4L),
