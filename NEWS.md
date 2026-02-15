@@ -8,6 +8,7 @@ Functions to help create small box game (SBG) jackets:
 
 * Helper grob functions:
 
+  + `backNotesGrob()`
   + `creditsGrob()` (to go on inside of jacket)
   + `spineIconGrob()`
   + `spineTextGrob()`
@@ -67,6 +68,7 @@ Functions to create small box game (SBG) jackets for **Personal Use Only**:
 
 * Functions to create SBG jackets for nestorgames (#3):
 
+  + `sbgj_nestortiles()`
   + `sbgj_shibumi()`
 
 * Functions to create Playing Card Box jackets for Foxtrot Games:

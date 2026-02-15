@@ -53,6 +53,7 @@ df_sbgj <- function() {
 		"Nomids", "https://www.looneylabs.com/nomids", "`sbgj_nomids()`", "Personal Use Only",
 		"Pawns", NA_character_, "`sbgj_pawns()`", "CC-BY-ND-4.0",
 		"Reversible Discs", NA_character_, "`sbgj_reversible_discs()`", "CC-BY-4.0",
+		"nestortiles", "https://boardgamegeek.com/boardgame/74615/nestortiles", "`sbgj_nestortiles()`", "Personal Use Only",
 		"Shibumi", "https://cambolbro.com/games/shibumi/", "`sbgj_shibumi()`", "Personal Use Only",
 		"Black Stones", NA_character_, "`sbgj_black_stones()`", "CC-BY-4.0",
 		"Glass Stones", NA_character_, "`sbgj_glass_stones()`", "CC-BY-ND-4.0",
