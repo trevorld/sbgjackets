@@ -105,6 +105,7 @@ This package also provides functions that locally create SBG jackets pdfs for a 
 |[Nomids](https://www.looneylabs.com/nomids)|`sbgj_nomids()`            |Personal Use Only |
 |Pawns                    |`sbgj_pawns()`             |[CC-BY-ND-4.0](https://creativecommons.org/licenses/by-nd/4.0/)|
 |Reversible Discs         |`sbgj_reversible_discs()`  |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
+|[Dungeon Delver](https://boardgamegeek.com/boardgame/113324/dungeon-delver)|`sbgj_dungeon_delver()`    |Personal Use Only |
 |[nestortiles](https://boardgamegeek.com/boardgame/74615/nestortiles)|`sbgj_nestortiles()`       |Personal Use Only |
 |[Shibumi](https://cambolbro.com/games/shibumi/)|`sbgj_shibumi()`           |Personal Use Only |
 |Black Stones             |`sbgj_black_stones()`      |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
@@ -142,7 +143,7 @@ This package also provides functions that locally create playing-card box jacket
 
 | Feature | Boardgame Barrio | `{sbgjackets}` |
 | --- | --- | --- |
-| Quantity | Over 1,600 pre-made jackets | 31 pre-made jackets |
+| Quantity | Over 1,600 pre-made jackets | 32 pre-made jackets |
 | Size | Targets only 4x6 photo storage boxes | Targets 4x6 photo storage boxes as well as playing card boxes |
 | Process | Made in Microsoft Publisher with a template | Made in `R` with `pnpmisc::pdf_create_jacket()` |
 | Spine Font | Calibri (proprietary) | Carlito (libre font, metrically compatible with Calibri) |

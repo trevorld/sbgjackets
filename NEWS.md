@@ -39,7 +39,7 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
   + `sbgj_reversible_discs()`
   + `sbgj_white_stones()`
 
-* Functions to create Playing Card Box jackets:
+* Functions to create Playing Card Box jackets (#12):
 
   + `pcbj_bavarian_pattern()`
   + `pcbj_bridge()`
@@ -52,10 +52,6 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
   + `pcbj_poker()`
 
 Functions to create small box game (SBG) jackets for **Personal Use Only**:
-
-* Functions to create SBG jackets for GIPF games (#11):
-
-  + `sbgj_yinsh()`
 
 * Functions to create SBG jackets for Looney Pyramids (#2):
 
@@ -71,10 +67,12 @@ Functions to create small box game (SBG) jackets for **Personal Use Only**:
   + `sbgj_nestortiles()`
   + `sbgj_shibumi()`
 
-* Functions to create Playing Card Box jackets for Foxtrot Games:
+* Functions to create a SBG jacket for miscellaneous games:
+
+  + `sbgj_dungeon_delver()` (#10)
+  + `sbgj_yinsh()` (#11)
+
+* Functions to create Playing Card Box jackets for miscellaneous games:
 
   + `pcbj_fox_in_the_forest()`
-
-* Functions to create Playing Card Box jackets for *Wizard*:
-
   + `pcbj_wizard()`

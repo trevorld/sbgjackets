@@ -16,6 +16,7 @@ reference:
       desc: ''
       contents:
         - sbgj_dominoes_all
+        - sbgj_dungeon_delver
         - sbgj_nomids
         - sbgj_nestortiles
         - sbgj_dice
