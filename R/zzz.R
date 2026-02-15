@@ -53,6 +53,7 @@ df_sbgj <- function() {
 		"Nomids", "https://www.looneylabs.com/nomids", "`sbgj_nomids()`", "Personal Use Only",
 		"Pawns", NA_character_, "`sbgj_pawns()`", "CC-BY-ND-4.0",
 		"Reversible Discs", NA_character_, "`sbgj_reversible_discs()`", "CC-BY-4.0",
+		"Dungeon Delver", "https://boardgamegeek.com/boardgame/113324/dungeon-delver", "`sbgj_dungeon_delver()`", "Personal Use Only",
 		"nestortiles", "https://boardgamegeek.com/boardgame/74615/nestortiles", "`sbgj_nestortiles()`", "Personal Use Only",
 		"Shibumi", "https://cambolbro.com/games/shibumi/", "`sbgj_shibumi()`", "Personal Use Only",
 		"Black Stones", NA_character_, "`sbgj_black_stones()`", "CC-BY-4.0",
@@ -63,6 +64,7 @@ df_sbgj <- function() {
 	# Looney Labs FAQ says okay to use their images to **create** jackets for personal use
 	# but does not grant permission to **share** such jackets
 	not_shareable <- c(
+		"Dungeon Delver",
 		"Homeworlds",
 		"Ice Duo",
 		"Jinxx",
