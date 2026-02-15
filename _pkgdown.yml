@@ -17,7 +17,7 @@ reference:
       contents:
         - sbgj_dominoes_all
         - sbgj_nomids
-        - sbgj_shibumi
+        - sbgj_nestortiles
         - sbgj_dice
         - sbgj_yinsh
     - title: 'Generate print-and-play "jacket" files for playing card boxes'

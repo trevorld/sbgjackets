@@ -110,7 +110,7 @@ sbgj_dice <- function(
 	spine <- gList(fullGrob("black"), spineTextGrob("Dice"))
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
-		date_created = "2025",
+		date_created = "2026",
 		spdx_id = "CC-BY-4.0",
 		title = "Dice Small Box Game Jacket"
 	)
