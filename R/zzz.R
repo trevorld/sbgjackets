@@ -1,5 +1,5 @@
 #' @import grid
-#' @importFrom bittermelon as_bm_pixmap bm_extract bm_replace bm_trim
+#' @importFrom bittermelon as_bm_pixmap bm_extract bm_replace bm_rotate bm_trim
 #' @importFrom dplyr filter mutate
 #' @importFrom grDevices dev.off pdf
 #' @importFrom pnpmisc fullGrob pdf_create_jacket pdf_create_poker_jacket pdf_orientation pdf_paper zip_extract_bm_pixmap
@@ -44,18 +44,19 @@ df_sbgj <- function() {
 		"Double-Six Dominoes", "https://www.pagat.com/domino/", "`sbgj_dominoes_double6()`", "CC-BY-4.0",
 		"Double-Nine Dominoes", NA_character_, "`sbgj_dominoes_double9()`", "CC-BY-4.0",
 		"Double-Twelve Dominoes", NA_character_, "`sbgj_dominoes_double12()`", "CC-BY-4.0",
+		"Dungeon Delver", "https://boardgamegeek.com/boardgame/113324/dungeon-delver", "`sbgj_dungeon_delver()`", "Personal Use Only",
 		"Homeworlds", "https://www.looneylabs.com/games/homeworlds", "`sbgj_homeworlds()`", "Personal Use Only",
 		"Ice Duo", "https://www.looneylabs.com/games/ice-duo", "`sbgj_ice_duo()`", "Personal Use Only",
 		"Jinxx", "https://www.looneylabs.com/games/jinxx", "`sbgj_jinxx()`", "Personal Use Only",
 		"Looney Pyramids", "https://www.looneylabs.com/pyramids-home", "`sbgj_looney_pyramids()`", "Personal Use Only",
 		"Marbles", NA_character_, "`sbgj_marbles()`", "CC-BY-SA-3.0",
 		"Martian Chess", "https://www.looneylabs.com/martian_chess", "`sbgj_martian_chess()`", "Personal Use Only",
+		"nestortiles", "https://boardgamegeek.com/boardgame/74615/nestortiles", "`sbgj_nestortiles()`", "Personal Use Only",
 		"Nomids", "https://www.looneylabs.com/nomids", "`sbgj_nomids()`", "Personal Use Only",
 		"Pawns", NA_character_, "`sbgj_pawns()`", "CC-BY-ND-4.0",
 		"Reversible Discs", NA_character_, "`sbgj_reversible_discs()`", "CC-BY-4.0",
-		"Dungeon Delver", "https://boardgamegeek.com/boardgame/113324/dungeon-delver", "`sbgj_dungeon_delver()`", "Personal Use Only",
-		"nestortiles", "https://boardgamegeek.com/boardgame/74615/nestortiles", "`sbgj_nestortiles()`", "Personal Use Only",
 		"Shibumi", "https://cambolbro.com/games/shibumi/", "`sbgj_shibumi()`", "Personal Use Only",
+		"Spirograph", "https://spirographicart.com/", "`sbgj_spirograph()`", "Personal Use Only",
 		"Black Stones", NA_character_, "`sbgj_black_stones()`", "CC-BY-4.0",
 		"Glass Stones", NA_character_, "`sbgj_glass_stones()`", "CC-BY-ND-4.0",
 		"White Stones", NA_character_, "`sbgj_white_stones()`", "CC-BY-4.0",

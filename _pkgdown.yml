@@ -20,6 +20,7 @@ reference:
         - sbgj_nomids
         - sbgj_nestortiles
         - sbgj_dice
+        - sbgj_spirograph
         - sbgj_yinsh
     - title: 'Generate print-and-play "jacket" files for playing card boxes'
       desc: ''

@@ -67,9 +67,10 @@ Functions to create small box game (SBG) jackets for **Personal Use Only**:
   + `sbgj_nestortiles()`
   + `sbgj_shibumi()`
 
-* Functions to create a SBG jacket for miscellaneous games:
+* Functions to create a SBG jacket for miscellaneous games/components:
 
   + `sbgj_dungeon_delver()` (#10)
+  + `sbgj_spirograph()`
   + `sbgj_yinsh()` (#11)
 
 * Functions to create Playing Card Box jackets for miscellaneous games:
