@@ -26,30 +26,30 @@ pcbj_fox_in_the_forest <- function(
 	bm_pic <- bm_cache_url(url, "Carl_Rungius_Red_Fox.jpg")
 	front <- fullGrob(bm_pic, height = 1)
 
-	back_notes <- c(
-		"# Contents",
-		"",
-		"* 33 cards (3 suits x ranks 1\u201311)",
-		"* 17 scoring tokens",
-		"* 2 player reference cards",
-		"",
-		"# Rules Summary",
-		"",
-		"* Trick-taking game with 13 tricks per round",
-		"* Play complete rounds until 21 points",
-		"",
-		"  + Tie-breaker: most points in the last round",
-		"  + Go to 16 points for a shorter game",
-		"  + Go to 35 points for a longer game",
-		"",
-		"* Setup each round:",
-		"",
-		"  + Shuffle all cards and deal 13 per player",
-		"  + Left over 7 cards form the \u201cdraw deck\u201d; flip its top card over next to it to indicate the trump suit (this card is the \u201cdecree\u201d)",
-		"",
-		"* If possible follower must play lead suit"
-	)
-	back_notes <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
+	back_notes <- r"(
+		# Contents
+
+		* 33 cards (3 suits x ranks 1{en_dash}11)
+		* 17 scoring tokens
+		* 2 player reference cards
+
+		# Rules Summary
+
+		* Trick-taking game with 13 tricks per round
+		* Play complete rounds until 21 points
+
+		  + Tie-breaker: most points in the last round
+		  + Go to 16 points for a shorter game
+		  + Go to 35 points for a longer game
+
+		* Setup each round:
+
+		  + Shuffle all cards and deal 13 per player
+		  + Left over 7 cards form the {dQuote("draw deck")}; flip its top card over next to it to indicate the trump suit (this card is the {dQuote("decree")})
+
+		* If possible follower must play lead suit
+	)"
+	back_notes <- trim_multistring(back_notes) |> marquee::marquee_glue(.trim = FALSE)
 	mg <- marquee::marquee_grob(
 		back_notes,
 		style = sbgjackets_style("poker", color = text_col),
@@ -66,19 +66,17 @@ pcbj_fox_in_the_forest <- function(
 	)
 
 	xmp <- xmp(creator = "Trevor L. Davis", title = "The Fox in the Forest Playing Card Box Jacket")
-	credits <- c(
-		"* *The Fox in the Forest* was designed by Joshua Buergel",
-		"",
-		"* *The Fox in the Forest* is published by Foxtrot Games http://foxtrotgames.com/forest/",
-		"",
-		"* This Playing Card Box Jacket is not affiliated, sponsored, nor endorsed by either Joshua Buergel or Foxtrot Games",
-		"",
-		str_glue(
-			"  * The use of a non-stylized {dQuote('The Fox in the Forest')} is intended as fair use to indicate that this playing card box is usable to store a {dQuote('The Fox in the Forest')} deck."
-		),
-		"",
-		"* *Red Fox* by Carl Rungius (1933). Public domain in USA. Cropped to fit front cover."
-	)
+	credits <- r"(
+		* *The Fox in the Forest* was designed by Joshua Buergel
+
+		* *The Fox in the Forest* is published by Foxtrot Games http://foxtrotgames.com/forest/
+
+		* This Playing Card Box Jacket is not affiliated, sponsored, nor endorsed by either Joshua Buergel or Foxtrot Games
+
+		  * The use of a non-stylized {dQuote('The Fox in the Forest')} is intended as fair use to indicate that this playing card box is usable to store a {dQuote('The Fox in the Forest')} deck.
+
+		* *Red Fox* by Carl Rungius (1933). Public domain in USA. Cropped to fit front cover.
+	)"
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE, size = "poker")
 

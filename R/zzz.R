@@ -4,7 +4,7 @@
 #' @importFrom grDevices dev.off pdf
 #' @importFrom pnpmisc fullGrob pdf_create_jacket pdf_create_poker_jacket pdf_orientation pdf_paper zip_extract_bm_pixmap
 #' @importFrom rlang abort check_dots_empty .data
-#' @importFrom stringr str_c str_glue str_sub str_sub<-
+#' @importFrom stringr str_c str_count str_flatten str_glue str_replace str_split str_sub str_sub<- str_trim
 #' @importFrom utils download.file packageVersion
 #' @importFrom xmpdf as_docinfo set_bookmarks set_docinfo set_xmp xmp
 NULL
@@ -131,6 +131,15 @@ bm_cache_url <- function(url, filename = basename(url), download = TRUE) {
 	}
 }
 
-extract <- `[` # to use in pipes
-
-AR_POKER <- pnpmisc:::JACKET_POKER_FRONT_WIDTH / pnpmisc:::JACKET_POKER_HEIGHT
+a_acute <- "\u00e1"
+a_ogonek <- "\u0105"
+copyright_sign <- "\u00a9"
+diamond_suit <- "\u2666"
+e_acute <- "\u00e9"
+E_acute <- "\u00c9"
+en_dash <- "\u2013"
+L_stroke <- "\u0141"
+prime <- "\u2032"
+spade_suit <- "\u2660"
+u_umlaut <- "\u00fc"
+z_dot_above <- "\u017c"

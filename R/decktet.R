@@ -30,12 +30,12 @@ pcbj_decktet <- function(
 	bm_ext <- bm_pic[270:589, 1156:2116]
 	rg_nr <- rasterGrob(bm_nr, y = 0.58, height = 0.5)
 	rg_ext <- rasterGrob(bm_ext, y = 0.15, width = 0.8)
-	back_notes <- c(
-		"# Contents",
-		"",
-		"Basic: 6 Aces, 3x8 Number-ranks, 6 Crowns"
-	)
-	back_notes1 <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
+	back_notes <- r"(
+		# Contents
+
+		Basic: 6 Aces, 3x8 Number-ranks, 6 Crowns
+	)"
+	back_notes1 <- trim_multistring(back_notes) |> marquee::marquee_glue(.trim = FALSE)
 	mg <- marquee::marquee_grob(
 		back_notes1,
 		style = sbgjackets_style("poker", color = text_col),
@@ -61,19 +61,19 @@ pcbj_decktet <- function(
 		spdx_id = "CC-BY-NC-4.0",
 		title = "Decktet Playing Card Box Jacket"
 	)
-	credits <- c(
-		"* *Box cover* by P.D. Magnus",
-		"",
-		"  + https://boardgamegeek.com/image/461294/series-decktet-games",
-		"  + Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License",
-		"  + Cropped to fit front cover",
-		"",
-		"* *The Decktet* by P.D. Magnus",
-		"",
-		"  + https://www.decktet.com/download/decktet-rules.pdf",
-		"  + Creative Commons Attribution-NonCommercial-ShareAlike 4.0 License",
-		"  + Extracted three charts from first page."
-	)
+	credits <- r"(
+		* *Box cover* by P.D. Magnus
+
+		  + https://boardgamegeek.com/image/461294/series-decktet-games
+		  + Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License
+		  + Cropped to fit front cover
+
+		* *The Decktet* by P.D. Magnus
+
+		  + https://www.decktet.com/download/decktet-rules.pdf
+		  + Creative Commons Attribution-NonCommercial-ShareAlike 4.0 License
+		  + Extracted three charts from first page.
+	)"
 
 	inner <- creditsGrob(xmp, credits, icons = FALSE, size = "poker")
 

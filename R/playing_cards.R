@@ -41,25 +41,25 @@ pcbj_bavarian_pattern <- function(
 		vp = viewport(just = "center", width = unit(BAVARIAN_WIDTH, "in"))
 	)
 
-	back_notes <- c(
-		"# Contents",
-		"",
-		"* 36 cards (4 suits x 9 ranks)",
-		"",
-		"  + Suits: Acorns, Leaves, Hearts, Bells",
-		"  + Ranks: 6\u201310, Under, Over, King, Ace",
-		"  + Common to remove the 6's and often the 7's and 8's as well",
-		"",
-		"# Notable games for this deck",
-		"",
-		"* Bavarian Schafkopf",
-		"* Bavarian Tarock",
-		"* Dreeg",
-		"* Sechsundsechzig (66)",
-		"* Skat",
-		"* Watten"
-	)
-	back_notes <- paste(back_notes, collapse = "\n")
+	back_notes <- r"(
+		# Contents
+
+		* 36 cards (4 suits x 9 ranks)
+
+		  + Suits: Acorns, Leaves, Hearts, Bells
+		  + Ranks: 6{en_dash}10, Under, Over, King, Ace
+		  + Common to remove the 6's and often the 7's and 8's as well
+
+		# Notable games for this deck
+
+		* Bavarian Schafkopf
+		* Bavarian Tarock
+		* Dreeg
+		* Sechsundsechzig (66)
+		* Skat
+		* Watten
+	)"
+	back_notes <- trim_multistring(back_notes)
 	back <- marquee::marquee_grob(
 		back_notes,
 		style = sbgjackets_style("poker", color = text_col),
@@ -76,14 +76,14 @@ pcbj_bavarian_pattern <- function(
 		spdx_id = "CC-BY-4.0",
 		title = "German Suits: Bavarian Pattern Playing Card Box Jacket"
 	)
-	credits <- c(
-		"* *Spielkartensatz Bayrisches Einfachbild* by Herstellers Eduard B\u00fcttner, Berlin",
-		"",
-		"  + Public domain (published between 1895 and 1907).",
-		"  + Cropped to fit front cover.",
-		"  + https://commons.wikimedia.org/wiki/File:Eduard_B%C3%BCttner_Berlin_Bayrisches_Einfachbild.jpg",
-		"  + https://www.froja.de/karten/karten.php?menu_id=2_4"
-	)
+	credits <- r"(
+		* *Spielkartensatz Bayrisches Einfachbild* by Herstellers Eduard B{u_umlaut}ttner, Berlin
+
+		  + Public domain (published between 1895 and 1907).
+		  + Cropped to fit front cover.
+		  + https://commons.wikimedia.org/wiki/File:Eduard_B%C3%BCttner_Berlin_Bayrisches_Einfachbild.jpg
+		  + https://www.froja.de/karten/karten.php?menu_id=2_4
+	)"
 
 	inner <- creditsGrob(
 		xmp,
@@ -133,24 +133,24 @@ pcbj_castilian_pattern <- function(
 
 	front <- fullGrob(bm_pic, height = 1)
 
-	back_notes <- c(
-		"# Contents",
-		"",
-		"* 40 cards (4 suits x 10 ranks)",
-		"",
-		"  + 4 Spanish suits: Swords (espadas), Clubs (bastos), Cups (copas), Coins (oros)",
-		"  + 10 ranks: 1\u20137, jack/page (sota), knight/horse (caballo), king (rey)",
-		"  + 48 card decks add an 8 and 9 per suit, 50 card decks also add two jokers.",
-		"",
-		"# Notable games for this deck",
-		"",
-		"* Brisca",
-		"* Escoba",
-		"* Mus",
-		"* Siete y Media",
-		"* Tresillo (modern variant of l'Hombre)",
-		"* Tute"
-	)
+	back_notes <- r"(
+		# Contents
+
+		* 40 cards (4 suits x 10 ranks)
+
+		  + 4 Spanish suits: Swords (espadas), Clubs (bastos), Cups (copas), Coins (oros)
+		  + 10 ranks: 1{en_dash}7, jack/page (sota), knight/horse (caballo), king (rey)
+		  + 48 card decks add an 8 and 9 per suit, 50 card decks also add two jokers.
+
+		# Notable games for this deck
+
+		* Brisca
+		* Escoba
+		* Mus
+		* Siete y Media
+		* Tresillo (modern variant of l'Hombre)
+		* Tute
+	)"
 	back <- backNotesGrob(back_notes, col = text_col, size = "poker")
 
 	spine <- spineTextGrob("Spanish Suits: Castilian Pattern", col = text_col, size = "poker")
@@ -161,13 +161,13 @@ pcbj_castilian_pattern <- function(
 		spdx_id = "CC-BY-4.0",
 		title = "Spanish Suits: Castilian Pattern Playing Card Box Jacket"
 	)
-	credits <- c(
-		"* *Baraja Heraclio Fournier 1907* by Heraclio Fournier Gonz\u00e1lez (1907).",
-		"",
-		"  + Public domain (author died on July 28th, 1916).",
-		"  + Cropped to fit front cover.",
-		"  + https://museotik.euskadi.eus/coleccion/-/autoria-fournier-gonzalez-heraclio/titulo-baraja-heraclio-fournier-1907/objeto-baraja/museotik-ca-64272/"
-	)
+	credits <- r"(
+		* *Baraja Heraclio Fournier 1907* by Heraclio Fournier Gonz{a_acute}lez (1907).
+
+		  + Public domain (author died on July 28th, 1916).
+		  + Cropped to fit front cover.
+		  + https://museotik.euskadi.eus/coleccion/-/autoria-fournier-gonzalez-heraclio/titulo-baraja-heraclio-fournier-1907/objeto-baraja/museotik-ca-64272/
+	)"
 
 	inner <- creditsGrob(xmp, credits, icons = FALSE, size = "poker")
 
@@ -209,23 +209,23 @@ pcbj_english_pattern <- function(
 
 	front <- fullGrob(bm_pic, height = 1)
 
-	back_notes <- c(
-		"The *English Pattern* is the most common deck of traditional playing cards.",
-		"",
-		"# Contents",
-		"",
-		"* 52+ cards (4 suits x 13 ranks plus jokers)",
-		"",
-		"  + 4 French suits: Spades, Diamonds, Clubs, Hearts",
-		"  + 13 ranks: Ace, 2\u201310, Jack, Queen, King",
-		"  + Usually 1\u20138 jokers (commonly two)",
-		"",
-		"# Links",
-		"",
-		"* https://boardgamegeek.com/boardgamefamily/98/components-traditional-playing-cards",
-		"* https://i-p-c-s.org/pattern/ps-48.html",
-		"* https://www.pagat.com"
-	)
+	back_notes <- r"(
+		The *English Pattern* is the most common deck of traditional playing cards.
+
+		# Contents
+
+		* 52+ cards (4 suits x 13 ranks plus jokers)
+
+		  + 4 French suits: Spades, Diamonds, Clubs, Hearts
+		  + 13 ranks: Ace, 2{en_dash}10, Jack, Queen, King
+		  + Usually 1{en_dash}8 jokers (commonly two)
+
+		# Links
+
+		* https://boardgamegeek.com/boardgamefamily/98/components-traditional-playing-cards
+		* https://i-p-c-s.org/pattern/ps-48.html
+		* https://www.pagat.com
+	)"
 	back <- backNotesGrob(back_notes, col = text_col, size = "poker")
 
 	spine <- spineTextGrob("French Suits: English Pattern", col = text_col, size = "poker")
@@ -236,13 +236,13 @@ pcbj_english_pattern <- function(
 		spdx_id = "CC-BY-4.0",
 		title = "French Suits: English Pattern Playing Card Box Jacket"
 	)
-	credits <- c(
-		"* *Worshipful 1897* by Worshipful Company of the Makers of Playing Cards (1897).",
-		"",
-		"  + Public domain.",
-		"  + Cropped to fit front cover.",
-		"  + https://museotik.euskadi.eus/coleccion/-/autoria-worshipful-company-of-the-makers-of-playing-cards/titulo-worshipful-1897/objeto-baraja/museotik-ca-65097/"
-	)
+	credits <- r"(
+		* *Worshipful 1897* by Worshipful Company of the Makers of Playing Cards (1897).
+
+		  + Public domain.
+		  + Cropped to fit front cover.
+		  + https://museotik.euskadi.eus/coleccion/-/autoria-worshipful-company-of-the-makers-of-playing-cards/titulo-worshipful-1897/objeto-baraja/museotik-ca-65097/
+	)"
 
 	inner <- creditsGrob(xmp, credits, icons = FALSE, size = "poker")
 

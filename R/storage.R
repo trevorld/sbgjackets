@@ -43,19 +43,19 @@ sbgj_black_stones <- function(
 		title = "Black Stones Small Box Game Jacket"
 	)
 
-	credits <- c(
-		"* *Double convex yunzi stones and woven baskets for holding them placed on a Go board* by Ralph Unden",
-		"",
-		"  + https://commons.wikimedia.org/wiki/File:Yunzi_double_convex.jpg",
-		"  + Creative Commons Attribution 2.0 Generic License",
-		"  + Cropped to fit front cover",
-		"",
-		"* *slate go pieces sc* by Liz West",
-		"",
-		"  + https://commons.wikimedia.org/wiki/File:Slate_go_pieces_sc.jpg",
-		"  + Creative Commons Attribution 2.0 Generic License",
-		"  + Cropped to fit back cover"
-	)
+	credits <- r"(
+		* *Double convex yunzi stones and woven baskets for holding them placed on a Go board* by Ralph Unden
+
+		  + https://commons.wikimedia.org/wiki/File:Yunzi_double_convex.jpg
+		  + Creative Commons Attribution 2.0 Generic License
+		  + Cropped to fit front cover
+
+		* *slate go pieces sc* by Liz West
+
+		  + https://commons.wikimedia.org/wiki/File:Slate_go_pieces_sc.jpg
+		  + Creative Commons Attribution 2.0 Generic License
+		  + Cropped to fit back cover
+	)"
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 
 	output <- pdf_create_jacket(
@@ -115,13 +115,13 @@ sbgj_dice <- function(
 		title = "Dice Small Box Game Jacket"
 	)
 
-	credits <- c(
-		"* *Mannen spelen dobbelspel, op de grond zit aap met speelkaarten.* (Men playing dice, monkey sitting on the ground with playing cards) by Cornelis van Dalen",
-		"",
-		"  + https://commons.wikimedia.org/wiki/File:Mannen_spelen_dobbelspel,_op_de_grond_zit_aap_met_speelkaarten_Titelpagina_voor_De_alea_libri_duo,_Amsterdam_1642_De_alea_libri_duo_(titel_op_object),_RP-P-1878-A-819.jpg",
-		"  + Public Domain",
-		"  + Cropped to fit cover"
-	)
+	credits <- r"(
+		* *Mannen spelen dobbelspel, op de grond zit aap met speelkaarten.* (Men playing dice, monkey sitting on the ground with playing cards) by Cornelis van Dalen
+
+		  + https://commons.wikimedia.org/wiki/File:Mannen_spelen_dobbelspel,_op_de_grond_zit_aap_met_speelkaarten_Titelpagina_voor_De_alea_libri_duo,_Amsterdam_1642_De_alea_libri_duo_(titel_op_object),_RP-P-1878-A-819.jpg
+		  + Public Domain
+		  + Cropped to fit cover
+	)"
 	cr_grob <- creditsGrob(xmp, credits, icons = FALSE)
 	inner <- gList(cr_grob, dice_board_grob())
 
@@ -189,19 +189,19 @@ sbgj_marbles <- function(
 		title = "Marbles Small Box Game Jacket"
 	)
 
-	credits <- c(
-		"* *marble, ball, color, colorful*",
-		"",
-		"  + https://pixnio.com/objects/marble-ball-color-colorful",
-		"  + CC0 1.0 Public Domain Dedication",
-		"  + Cropped to fit front cover",
-		"",
-		"* *Gesuender Leben* by Bernhard Schindele",
-		"",
-		"  + https://commons.wikimedia.org/wiki/File:20150720-Glasmurmeln-IMG_7124.jpg",
-		"  + Creative Commons Attribution-ShareAlike 3.0 Unported License",
-		"  + Cropped to fit back cover"
-	)
+	credits <- r"(
+		* *marble, ball, color, colorful*
+
+		  + https://pixnio.com/objects/marble-ball-color-colorful
+		  + CC0 1.0 Public Domain Dedication
+		  + Cropped to fit front cover
+
+		* *Gesuender Leben* by Bernhard Schindele
+
+		  + https://commons.wikimedia.org/wiki/File:20150720-Glasmurmeln-IMG_7124.jpg
+		  + Creative Commons Attribution-ShareAlike 3.0 Unported License
+		  + Cropped to fit back cover
+	)"
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 
 	output <- pdf_create_jacket(
@@ -243,16 +243,16 @@ sbgj_glass_stones <- function(
 		title = "Glass Stones Small Box Game Jacket"
 	)
 
-	credits <- c(
-		"* *assorted glass stones*",
-		"",
-		"  + https://www.pickpik.com/glass-beads-glass-blue-decoration-bead-beads-136538",
-		"  + PickPik Terms of Service https://www.pickpik.com/terms-of-service",
-		"",
-		"    > The images provided by PickPik are free to use for personal and commercial projects",
-		"",
-		"  + Cropped to fit covers"
-	)
+	credits <- r"(
+		* *assorted glass stones*
+
+		  + https://www.pickpik.com/glass-beads-glass-blue-decoration-bead-beads-136538
+		  + PickPik Terms of Service https://www.pickpik.com/terms-of-service
+
+		    > The images provided by PickPik are free to use for personal and commercial projects
+
+		  + Cropped to fit covers
+	)"
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 
 	output <- pdf_create_jacket(
@@ -294,21 +294,21 @@ sbgj_pawns <- function(
 		title = "Pawns Small Box Game Jacket"
 	)
 
-	credits <- c(
-		"* *Play stone, Multicoloured, Characters* by Alexa",
-		"",
-		"  + https://pixabay.com/photos/play-stone-multicoloured-characters-1743645/",
-		"  + https://pixabay.com/users/alexas_fotos-686414/",
-		"  + Pixabay Content License https://pixabay.com/service/license-summary/",
-		"",
-		"    > the Content License allows users to:",
-		"    >",
-		"    > * Use Content for free",
-		"    > * Use Content without having to attribute the author",
-		"    > * Modify or adapt Content into new works",
-		"",
-		"  + Cropped to fit covers"
-	)
+	credits <- r"(
+		* *Play stone, Multicoloured, Characters* by Alexa
+
+		  + https://pixabay.com/photos/play-stone-multicoloured-characters-1743645/
+		  + https://pixabay.com/users/alexas_fotos-686414/
+		  + Pixabay Content License https://pixabay.com/service/license-summary/
+
+		    > the Content License allows users to:
+		    >
+		    > * Use Content for free
+		    > * Use Content without having to attribute the author
+		    > * Modify or adapt Content into new works
+
+		  + Cropped to fit covers
+	)"
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 
 	output <- pdf_create_jacket(
@@ -374,16 +374,16 @@ sbgj_polyhedral_dice <- function(
 		title = "Polyhedral Dice Small Box Game Jacket"
 	)
 
-	credits <- c(
-		"* *assorted dice lot*",
-		"",
-		"  + https://www.pickpik.com/cube-play-role-playing-game-craps-colorful-instantaneous-speed-130507",
-		"  + PickPik Terms of Service https://www.pickpik.com/terms-of-service",
-		"",
-		"    > The images provided by PickPik are free to use for personal and commercial projects",
-		"",
-		"  + Cropped to fit cover"
-	)
+	credits <- r"(
+		* *assorted dice lot*
+
+		  + https://www.pickpik.com/cube-play-role-playing-game-craps-colorful-instantaneous-speed-130507
+		  + PickPik Terms of Service https://www.pickpik.com/terms-of-service
+
+		    > The images provided by PickPik are free to use for personal and commercial projects
+
+		  + Cropped to fit cover
+	)"
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 
 	output <- pdf_create_jacket(
@@ -413,45 +413,45 @@ sbgj_reversible_discs <- function(
 
 	front <- fullGrob(bm_front, height = 1)
 
-	back_notes <- c(
-		"# Notable games using reversible discs",
-		"",
-		"* *Games you can play with Othello/Reversi/bicolored pieces* geeklist",
-		"",
-		"  + https://boardgamegeek.com/geeklist/235864/",
-		"",
-		"* Glaisher",
-		"",
-		"  + https://boardgamegeek.com/boardgame/175363/glaisher",
-		"",
-		"* Io",
-		"",
-		"  + https://boardgamegeek.com/boardgame/172471/io",
-		"",
-		"* Ming Mang",
-		"",
-		"  + http://www.cyningstan.com/game/328/ming-mang",
-		"",
-		"* Othellito",
-		"",
-		"  + https://boardgamegeek.com/boardgame/289484/othellito",
-		"",
-		"* Othello",
-		"",
-		"  + https://www.worldothello.org/",
-		"",
-		"* Verto",
-		"",
-		"  + https://boardgamegeek.com/boardgame/89333/verto",
-		"",
-		"* Wizard's Garden",
-		"",
-		"  + https://www.tjgames.com/wizard.html",
-		"",
-		"* Yonmoque",
-		"",
-		"  + https://www.gift-box.co.jp/english/yonmoque.html"
-	)
+	back_notes <- r"(
+		# Notable games using reversible discs
+
+		* *Games you can play with Othello/Reversi/bicolored pieces* geeklist
+
+		  + https://boardgamegeek.com/geeklist/235864/
+
+		* Glaisher
+
+		  + https://boardgamegeek.com/boardgame/175363/glaisher
+
+		* Io
+
+		  + https://boardgamegeek.com/boardgame/172471/io
+
+		* Ming Mang
+
+		  + http://www.cyningstan.com/game/328/ming-mang
+
+		* Othellito
+
+		  + https://boardgamegeek.com/boardgame/289484/othellito
+
+		* Othello
+
+		  + https://www.worldothello.org/
+
+		* Verto
+
+		  + https://boardgamegeek.com/boardgame/89333/verto
+
+		* Wizard's Garden
+
+		  + https://www.tjgames.com/wizard.html
+
+		* Yonmoque
+
+		  + https://www.gift-box.co.jp/english/yonmoque.html
+	)"
 	back <- backNotesGrob(back_notes)
 
 	spine <- gList(fullGrob("black"), spineTextGrob("Reversible Discs"))
@@ -462,13 +462,13 @@ sbgj_reversible_discs <- function(
 		title = "Reversible Discs Small Box Game Jacket"
 	)
 
-	credits <- c(
-		"* *Othello! or Reversi* by Noah",
-		"",
-		"  + https://www.flickr.com/photos/noahbulgaria/226231535",
-		"  + Creative Commons Attribution 2.0 Generic License",
-		"  + Cropped to fit front cover"
-	)
+	credits <- r"(
+		* *Othello! or Reversi* by Noah
+
+		  + https://www.flickr.com/photos/noahbulgaria/226231535
+		  + Creative Commons Attribution 2.0 Generic License
+		  + Cropped to fit front cover
+	)"
 	cr_grob <- creditsGrob(xmp, credits, icons = FALSE)
 	inner <- gList(cr_grob, reversible_discs_board_grob())
 
@@ -543,19 +543,19 @@ sbgj_white_stones <- function(
 		title = "White Stones Small Box Game Jacket"
 	)
 
-	credits <- c(
-		"* *Double convex yunzi stones and woven baskets for holding them placed on a Go board* by Ralph Unden",
-		"",
-		"  + https://commons.wikimedia.org/wiki/File:Yunzi_double_convex.jpg",
-		"  + Creative Commons Attribution 2.0 Generic License",
-		"  + Cropped to fit front cover",
-		"",
-		"* *shell go pieces sc* by Liz West",
-		"",
-		"  + https://commons.wikimedia.org/wiki/File:Shell_go_pieces_sc.jpg",
-		"  + Creative Commons Attribution 2.0 Generic License",
-		"  + Cropped to fit back cover"
-	)
+	credits <- r"(
+		* *Double convex yunzi stones and woven baskets for holding them placed on a Go board* by Ralph Unden
+
+		  + https://commons.wikimedia.org/wiki/File:Yunzi_double_convex.jpg
+		  + Creative Commons Attribution 2.0 Generic License
+		  + Cropped to fit front cover
+
+		* *shell go pieces sc* by Liz West
+
+		  + https://commons.wikimedia.org/wiki/File:Shell_go_pieces_sc.jpg
+		  + Creative Commons Attribution 2.0 Generic License
+		  + Cropped to fit back cover
+	)"
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 
 	output <- pdf_create_jacket(
