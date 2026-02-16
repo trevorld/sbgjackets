@@ -43,12 +43,12 @@ pcbj_bridge <- function(
 		spdx_id = "CC-BY-4.0",
 		title = "Bridge Playing Card Box Jacket"
 	)
-	credits <- c(
-		"* *Reliable Series 9no 9335* by William Ritchie & Sons (c. 1908\u20131918) and *The Game of Bridge* by Savile Lumley (1905)",
-		"",
-		"  + https://www.haroldschogger.com/history.htm",
-		"  + Public Domain in the USA"
-	)
+	credits <- r"(
+		* *Reliable Series 9no 9335* by William Ritchie & Sons (c. 1908{en_dash}1918) and *The Game of Bridge* by Savile Lumley (1905)
+
+		  + https://www.haroldschogger.com/history.htm
+		  + Public Domain in the USA
+	)"
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE, size = "poker")
 
@@ -106,24 +106,24 @@ pcbj_pinochle <- function(
 			table.align = "left"
 		)
 
-	back_notes <- c(
-		"# Contents",
-		"",
-		"48 cards = 2 x 4 suits x 6 ranks (9, J, Q, K, 10, A)",
-		"",
-		"# Meld",
-		"",
-		"* Run (J, Q, K, 10, A in trump suit) = 150",
-		"* Double Run (all J, Q, K, 10, A in trump) = 1,500",
-		"* Royal Marriage (Q+K trump, not in run) = 40",
-		"* Common Marriage (Q+K in same suit) = 20",
-		"* Dix (9 in trump suit) = 10",
-		"* Pinochle ({.black \u2660}Q+{.red \u2666}J) = 40",
-		"* Double Pinochle ({.black \u2660}Q,{.black \u2660}Q,{.red \u2666}J,{.red \u2666}J) = 300",
-		"* Aces, Kings, Queens, or Jacks Around",
-		"",
-		"  ![](around_table)"
-	)
+	back_notes <- r"(
+		# Contents
+
+		48 cards = 2 x 4 suits x 6 ranks (9, J, Q, K, 10, A)
+
+		# Meld
+
+		* Run (J, Q, K, 10, A in trump suit) = 150
+		* Double Run (all J, Q, K, 10, A in trump) = 1,500
+		* Royal Marriage (Q+K trump, not in run) = 40
+		* Common Marriage (Q+K in same suit) = 20
+		* Dix (9 in trump suit) = 10
+		* Pinochle ({.black {spade_suit}}Q+{.red {diamond_suit}}J) = 40
+		* Double Pinochle ({.black {spade_suit}}Q,{.black {spade_suit}}Q,{.red {diamond_suit}}J,{.red {diamond_suit}}J) = 300
+		* Aces, Kings, Queens, or Jacks Around
+
+		  ![](around_table)
+	)"
 	back <- backNotesGrob(
 		back_notes,
 		style = sbgjackets_style("poker", color = text_col) |>
@@ -131,7 +131,8 @@ pcbj_pinochle <- function(
 				"img",
 				marquee::style(img_asp = 3.5)
 			),
-		size = "poker"
+		size = "poker",
+		around_table = around_table
 	)
 
 	spine <- gList(
@@ -145,13 +146,13 @@ pcbj_pinochle <- function(
 		spdx_id = "CC-BY-SA-3.0",
 		title = "Pinochle Playing Card Box Jacket"
 	)
-	credits <- c(
-		"* *Pinochle meld* by AMK1211",
-		"",
-		"  + https://commons.wikimedia.org/wiki/File:Pinochle_meld.jpg",
-		"  + Creative Commons Attribution-ShareAlike 3.0 Unported License",
-		"  + Cropped to fit front cover"
-	)
+	credits <- r"(
+		* *Pinochle meld* by AMK1211
+
+		  + https://commons.wikimedia.org/wiki/File:Pinochle_meld.jpg
+		  + Creative Commons Attribution-ShareAlike 3.0 Unported License
+		  + Cropped to fit front cover
+	)"
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE, size = "poker")
 
@@ -190,27 +191,27 @@ pcbj_poker <- function(
 	bm_pic <- bm_cache_url(url, "dogs_playing_poker.png")
 	front <- fullGrob(bm_pic, height = 1)
 
-	back_notes <- c(
-		"# Contents",
-		"",
-		"52+ cards = 4 suits x 13 ranks (plus 0+ jokers)",
-		"",
-		"# Standard Poker Hand Rankings",
-		"",
-		"1. Straight Flush",
-		"1. Four of a Kind",
-		"1. Full House",
-		"1. Flush",
-		"1. Straight",
-		"1. Three of a Kind",
-		"1. Two Pairs",
-		"1. Pair",
-		"1. High Card",
-		"",
-		"# Links",
-		"",
-		"* https://www.pagat.com/poker/"
-	)
+	back_notes <- r"(
+		# Contents
+
+		52+ cards = 4 suits x 13 ranks (plus 0+ jokers)
+
+		# Standard Poker Hand Rankings
+
+		1. Straight Flush
+		1. Four of a Kind
+		1. Full House
+		1. Flush
+		1. Straight
+		1. Three of a Kind
+		1. Two Pairs
+		1. Pair
+		1. High Card
+
+		# Links
+
+		* https://www.pagat.com/poker/
+	)"
 	back <- backNotesGrob(back_notes, col = text_col, size = "poker")
 
 	spine <- gList(
@@ -224,12 +225,12 @@ pcbj_poker <- function(
 		spdx_id = "CC-BY-4.0",
 		title = "Poker Playing Card Box Jacket"
 	)
-	credits <- c(
-		"* *Poker Game* by Cassius Marcellus Coolidge (1894)",
-		"",
-		"  + https://commons.wikimedia.org/wiki/File:Cassius_Marcellus_Coolidge_-_Poker_Game_(1894).png",
-		"  + Public Domain in the USA"
-	)
+	credits <- r"(
+		* *Poker Game* by Cassius Marcellus Coolidge (1894)
+
+		  + https://commons.wikimedia.org/wiki/File:Cassius_Marcellus_Coolidge_-_Poker_Game_(1894).png
+		  + Public Domain in the USA
+	)"
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE, size = "poker")
 

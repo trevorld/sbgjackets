@@ -83,13 +83,13 @@ sbgj_dominoes_double6 <- function(
 		title = "Double-Six Dominoes Small Box Game Jacket"
 	)
 
-	credits <- c(
-		"* *ilustracja z ksi\u0105\u017cki* (illustration with prints) by Louis Poyet",
-		"",
-		"  + https://commons.wikimedia.org/wiki/File:Rozrywki_Naukowe_Fig._049.jpg",
-		"  + Public Domain",
-		"  + Cropped to fit front cover"
-	)
+	credits <- r"(
+		* *ilustracja z ksi{a_ogonek}{z_dot_above}ki* (illustration with prints) by Louis Poyet
+
+		  + https://commons.wikimedia.org/wiki/File:Rozrywki_Naukowe_Fig._049.jpg
+		  + Public Domain
+		  + Cropped to fit front cover
+	)"
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 
 	pdf_create_jacket(
@@ -151,13 +151,13 @@ sbgj_dominoes_double9 <- function(
 		spdx_id = "CC-BY-4.0",
 		title = "Double-Nine Dominoes Small Box Game Jacket"
 	)
-	credits <- c(
-		"* *Optical illusion of some dominoes.* by Unknown artist",
-		"",
-		"  + https://www.getty.edu/art/collection/object/107CZC",
-		"  + Public Domain",
-		"  + Cropped to fit front cover"
-	)
+	credits <- r"(
+		* *Optical illusion of some dominoes.* by Unknown artist
+
+		  + https://www.getty.edu/art/collection/object/107CZC
+		  + Public Domain
+		  + Cropped to fit front cover
+	)"
 	#            "* *A game of Chicken Foot.* by yoppy",
 	#            "",
 	#            "  + https://commons.wikimedia.org/wiki/File:Chicken_Foot_domino_game.jpg",
@@ -223,13 +223,13 @@ sbgj_dominoes_double12 <- function(
 		spdx_id = "CC-BY-4.0",
 		title = "Double-Twelve Dominoes Small Box Game Jacket"
 	)
-	credits <- c(
-		"* *My Little White Kittens: Playing Dominoes* published by Currier & Ives",
-		"",
-		"  + https://www.loc.gov/resource/cph.3b50738/?st=image",
-		"  + Public Domain",
-		"  + Cropped to fit front cover"
-	)
+	credits <- r"(
+		* *My Little White Kittens: Playing Dominoes* published by Currier & Ives
+
+		  + https://www.loc.gov/resource/cph.3b50738/?st=image
+		  + Public Domain
+		  + Cropped to fit front cover
+	)"
 	#              "* *Mexican Train* by Bev Sykes",
 	#              "",
 	#              "  + https://flickr.com/photos/basykes/3116447054",

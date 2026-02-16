@@ -133,19 +133,20 @@ sbgj_looney_pyramids <- function(
 	)
 
 	xmp <- xmp(creator = "Trevor L. Davis", title = "Looney Pyramids Small Box Game Jacket")
-	credits <- c(
-		"* From https://www.looneylabs.com/",
-		"",
-		"  + *Looney Pyramids Intro Pamphlet* (cropped and edited)",
-		# "  + *Looney Pyramids - Zoom*",
-		"  + https://www.looneylabs.com/sites/default/files/LP4%20Top%20Header.png",
-		"  + From https://www.looneylabs.com/pyramid-arcade-game-badges-boards",
-		"",
-		"    the badges of 24 Looney Pyramids games",
-		"  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774",
-		"",
-		"    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law."
-	)
+	# nolint start: line_length_linter.
+	credits <- r"(
+		* From https://www.looneylabs.com/
+
+		  + *Looney Pyramids Intro Pamphlet* (cropped and edited)
+		  + https://www.looneylabs.com/sites/default/files/LP4%20Top%20Header.png
+		  + From https://www.looneylabs.com/pyramid-arcade-game-badges-boards
+
+		    the badges of 24 Looney Pyramids games
+		  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774
+
+		    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law.
+	)"
+	# nolint end
 	cr_grob <- creditsGrob(xmp, credits, icons = FALSE)
 	inner <- gList(cr_grob, bank_grob())
 
@@ -333,15 +334,15 @@ sbgj_homeworlds <- function(
 	)
 
 	xmp <- xmp(creator = "Trevor L. Davis", title = "Homeworlds Small Box Game Jacket")
-	credits <- c(
-		"* From https://www.looneylabs.com/resources/game/Homeworlds",
-		"",
-		"  + *Homeworlds Box Front*",
-		"  + *Homeworlds Box Back*",
-		"  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774",
-		"",
-		"    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law."
-	)
+	credits <- r"(
+		* From https://www.looneylabs.com/resources/game/Homeworlds
+
+		  + *Homeworlds Box Front*
+		  + *Homeworlds Box Back*
+		  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774
+
+		    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law.
+	)"
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE)
 
@@ -387,15 +388,15 @@ sbgj_ice_duo <- function(
 	)
 
 	xmp <- xmp(creator = "Trevor L. Davis", title = "Ice Duo Small Box Game Jacket")
-	credits <- c(
-		"* From https://www.looneylabs.com/resources/game/Ice%20Duo",
-		"",
-		"  + *Ice Duo Box Front*",
-		"  + *Ice Duo Box Back*",
-		"  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774",
-		"",
-		"    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law."
-	)
+	credits <- r"(
+		* From https://www.looneylabs.com/resources/game/Ice%20Duo
+
+		  + *Ice Duo Box Front*
+		  + *Ice Duo Box Back*
+		  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774
+
+		    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law.
+	)"
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE)
 
@@ -443,15 +444,15 @@ sbgj_jinxx <- function(
 	)
 
 	xmp <- xmp(creator = "Trevor L. Davis", title = "Jinxx Small Box Game Jacket")
-	credits <- c(
-		"* From https://www.looneylabs.com/resources/game/Jinxx",
-		"",
-		"  + *Jinxx Box Front*",
-		"  + *Jinxx Box Back*",
-		"  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774",
-		"",
-		"    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law."
-	)
+	credits <- r"(
+		* From https://www.looneylabs.com/resources/game/Jinxx
+
+		  + *Jinxx Box Front*
+		  + *Jinxx Box Back*
+		  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774
+
+		    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law.
+	)"
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE)
 
@@ -510,26 +511,26 @@ sbgj_martian_chess <- function(
 			creator = "Trevor L. Davis",
 			title = "Martian Chess (Silver) Small Box Game Jacket"
 		)
-		credits <- c(
-			"* From https://www.looneylabs.com/resources/game/Martian%20Chess",
-			"",
-			"  + *Martian Chess Box Front*",
-			"  + *Martian Chess Silver Box Back*",
-			"  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774",
-			"",
-			"    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law."
-		)
+		credits <- r"(
+			* From https://www.looneylabs.com/resources/game/Martian%20Chess
+
+			  + *Martian Chess Box Front*
+			  + *Martian Chess Silver Box Back*
+			  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774
+
+			    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law.
+		)"
 	} else {
 		xmp <- xmp(creator = "Trevor L. Davis", title = "Martian Chess Small Box Game Jacket")
-		credits <- c(
-			"* From https://www.looneylabs.com/resources/game/Martian%20Chess",
-			"",
-			"  + *Martian Chess Box Back*",
-			"  + *Martian Chess Box Front*",
-			"  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774",
-			"",
-			"    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law."
-		)
+		credits <- r"(
+			* From https://www.looneylabs.com/resources/game/Martian%20Chess
+
+			  + *Martian Chess Box Back*
+			  + *Martian Chess Box Front*
+			  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774
+
+			    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law.
+		)"
 	}
 	inner <- creditsGrob(xmp, credits, icons = TRUE)
 
@@ -598,28 +599,28 @@ sbgj_nomids <- function(
 			creator = "Trevor L. Davis",
 			title = "Nomids Small Box Game Jacket (Custom Back)"
 		)
-		credits <- c(
-			"* From https://www.looneylabs.com/resources/game/Nomids",
-			"",
-			"  + *Nomids Logo with Background*",
-			"  + *Nomids Box Front*",
-			"  + *Nomids Rules* (cropped, background tweaked)",
-			"  + *Looney Pyramids - Zoom*",
-			"  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774",
-			"",
-			"    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law."
-		)
+		credits <- r"(
+			* From https://www.looneylabs.com/resources/game/Nomids
+
+			  + *Nomids Logo with Background*
+			  + *Nomids Box Front*
+			  + *Nomids Rules* (cropped, background tweaked)
+			  + *Looney Pyramids - Zoom*
+			  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774
+
+			    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law.
+		)"
 	} else {
 		xmp <- xmp(creator = "Trevor L. Davis", title = "Nomids Small Box Game Jacket")
-		credits <- c(
-			"* From https://www.looneylabs.com/resources/game/Nomids",
-			"",
-			"  + *Nomids Box Back*",
-			"  + *Nomids Box Front*",
-			"  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774",
-			"",
-			"    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law."
-		)
+		credits <- r"(
+			* From https://www.looneylabs.com/resources/game/Nomids
+
+			  + *Nomids Box Back*
+			  + *Nomids Box Front*
+			  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774
+
+			    > If you only plan to make a single copy, or a few to gift to friends, then you can legally use our images without breaking copyright law.
+		)"
 	}
 	inner <- creditsGrob(xmp, credits, icons = TRUE)
 

@@ -25,31 +25,31 @@ sbgj_spirograph <- function(
 
 	front <- fullGrob(bm_pic, height = 1)
 
-	back_notes <- c(
-		"# Description",
-		"",
-		"* A set of tools to help produce {dQuote('roulette')} curves.",
-		"# Contents",
-		"",
-		"* 2 Spirograph rings (i.e. stators)",
-		"* 19 Spirograph (gear)wheels (i.e. rotors)",
-		"",
-		"  + 15 circular Spirograph wheels",
-		"  + 4 shaped Spirograph wheels",
-		"",
-		"* 1 Spirograph rack",
-		"* 14 page guide book",
-		"* reusable putty",
-		"* fine-line pens",
-		"",
-		"# Links",
-		"",
-		"* https://spirographicart.com/",
-		"* https://www.playmonster.com/product/spirograph-the-orginal-spirograph-deluxe-set/",
-		"* https://en.wikipedia.org/wiki/Epitrochoid",
-		"* https://en.wikipedia.org/wiki/Hypotrochoid",
-		"* https://en.wikipedia.org/wiki/Spirograph"
-	)
+	back_notes <- r"(
+		# Description
+
+		* A set of tools to help produce {dQuote('roulette')} curves.
+		# Contents
+
+		* 2 Spirograph rings (i.e. stators)
+		* 19 Spirograph (gear)wheels (i.e. rotors)
+
+		  + 15 circular Spirograph wheels
+		  + 4 shaped Spirograph wheels
+
+		* 1 Spirograph rack
+		* 14 page guide book
+		* reusable putty
+		* fine-line pens
+
+		# Links
+
+		* https://spirographicart.com/
+		* https://www.playmonster.com/product/spirograph-the-orginal-spirograph-deluxe-set/
+		* https://en.wikipedia.org/wiki/Epitrochoid
+		* https://en.wikipedia.org/wiki/Hypotrochoid
+		* https://en.wikipedia.org/wiki/Spirograph
+	)"
 	back <- backNotesGrob(back_notes, col = "black")
 
 	spine <- gList(
@@ -63,22 +63,20 @@ sbgj_spirograph <- function(
 		title = "Spirograph Small Box Game Jacket"
 	)
 
-	credits <- c(
-		"* *Spiro Various Spirographs in AutoCAD* by JTB World",
-		"",
-		"  + https://blog.jtbworld.com/2015/04/spiro-12-freeware-app-for-autocad.html",
-		"  + Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License",
-		"  + Rotated and cropped to fit front cover",
-		"",
-		"* The Spirograph was designed by Denys Fisher and has been published by several companies including PlayMonster Group LLC",
-		"",
-		"  + https://www.playmonster.com/brands/spirograph/",
-		"",
-		"* This Small Box Game Jacket is not affiliated, sponsored, nor endorsed by Denys Fisher nor any Spirograph publisher.",
-		str_glue(
-			"  * The use of a non-stylized {dQuote('Spirograph')} is intended as fair use to indicate that this 4x6 photo case is usable to store a Spirograph set."
-		)
-	)
+	credits <- r"(
+		* *Spiro Various Spirographs in AutoCAD* by JTB World
+
+		  + https://blog.jtbworld.com/2015/04/spiro-12-freeware-app-for-autocad.html
+		  + Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License
+		  + Rotated and cropped to fit front cover
+
+		* The Spirograph was designed by Denys Fisher and has been published by several companies including PlayMonster Group LLC
+
+		  + https://www.playmonster.com/brands/spirograph/
+
+		* This Small Box Game Jacket is not affiliated, sponsored, nor endorsed by Denys Fisher nor any Spirograph publisher.
+		  * The use of a non-stylized {dQuote('Spirograph')} is intended as fair use to indicate that this 4x6 photo case is usable to store a Spirograph set.
+	)"
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 
 	output <- pdf_create_jacket(

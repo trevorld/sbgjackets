@@ -39,7 +39,11 @@ spineIconGrob(players, minutes, weight, col = "white", size = "4x6")
 \item{xmp}{A \code{\link[xmpdf:xmp]{xmpdf::xmp()}} object with copyright/license information.}
 
 \item{credits}{A character vector of (commonmark) credits to eventually be
-passed to \code{\link[marquee:marquee_grob]{marquee::marquee_grob()}}.}
+passed to \code{\link[marquee:marquee_grob]{marquee::marquee_grob()}}.
+Will be collapsed to a single string by \code{paste(collapse = "\\n")},
+leading/trailing whitespace will be trimmed,
+any tab indentations will be unindented,
+and will be processed by \code{\link[marquee:marquee_glue]{marquee::marquee_glue()}}.}
 
 \item{icons}{If \code{TRUE} include Creative Commons credits for Games-icons.net icons.}
 
@@ -47,7 +51,11 @@ passed to \code{\link[marquee:marquee_grob]{marquee::marquee_grob()}}.}
 
 \item{x, width}{\code{\link[grid:unit]{grid::unit()}} that will be passed to \code{\link[marquee:marquee_grob]{marquee::marquee_grob()}}.}
 
-\item{notes}{A character vector of (commonmark) back cover notes.}
+\item{notes}{A character vector of (commonmark) back cover notes.
+Will be collapsed to a single string by \code{paste(collapse = "\\n")},
+leading/trailing whitespace will be trimmed,
+any tab indentations will be unindented,
+and will be processed by \code{\link[marquee:marquee_glue]{marquee::marquee_glue()}}.}
 
 \item{style}{A \code{marquee} style set object
 (e.g. from \code{\link[=sbgjackets_style]{sbgjackets_style()}}).}

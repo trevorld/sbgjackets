@@ -97,6 +97,10 @@ prepend_instructions <- function(
 #' @param xmp A [xmpdf::xmp()] object with copyright/license information.
 #' @param credits A character vector of (commonmark) credits to eventually be
 #'                passed to [marquee::marquee_grob()].
+#'                Will be collapsed to a single string by `paste(collapse = "\n")`,
+#'                leading/trailing whitespace will be trimmed,
+#'                any tab indentations will be unindented,
+#'                and will be processed by [marquee::marquee_glue()].
 #' @param icons If `TRUE` include Creative Commons credits for Games-icons.net icons.
 #' @param ... Ignored for now.
 #' @param x,width [grid::unit()] that will be passed to [marquee::marquee_grob()].
@@ -118,6 +122,8 @@ creditsGrob <- function(
 	if (current_dev > 1) {
 		on.exit(grDevices::dev.set(current_dev), add = TRUE)
 	}
+	credits <- paste(credits, collapse = "\n") |>
+		trim_multistring()
 
 	if (icons) {
 		credits <- c(
@@ -130,12 +136,6 @@ creditsGrob <- function(
 			"  + {dQuote('Weight')} by Delapouite https://game-icons.net/1x1/delapouite/weight.html",
 			"  + CC BY 3.0 license: https://creativecommons.org/licenses/by/3.0/"
 		)
-		# "  + {dQuote('Clockwork')} icon by Lorc under CC BY 3.0",
-		# "  + https://game-icons.net/1x1/lorc/clockwork.html",
-		# "  + {dQuote('Person')} icon by Delapouite under CC BY 3.0",
-		# "  + https://game-icons.net/1x1/delapouite/person.html",
-		# "  + {dQuote('Weight')} icon by Delapouite under CC BY 3.0",
-		# "  + https://game-icons.net/1x1/delapouite/weight.html")
 	}
 	credits <- c(
 		"# Credits",
@@ -146,7 +146,7 @@ creditsGrob <- function(
 		credits <- c(
 			credits,
 			"",
-			"* The Carlito font by \u0142ukasz Dziedzic",
+			"* The Carlito font by {L_stroke}ukasz Dziedzic",
 			"",
 			"  + https://fonts.google.com/specimen/Carlito",
 			"  + SIL Open Font License, Version 1.1"
@@ -182,13 +182,14 @@ creditsGrob <- function(
 	}
 	credits <- c("# License", "", license, "", credits)
 	if (!is.null(xmp$title) && !is.null(xmp$attribution_name)) {
-		title <- str_glue('*{xmp$title[["x-default"]]}* by {xmp$attribution_name}')
+		title <- '*{xmp$title[["x-default"]]}* by {xmp$attribution_name}'
 		if (!is.null(xmp$rights)) {
 			title <- c(title, "", xmp$rights)
 		}
 		credits <- c(title, credits)
 	}
-	credits <- paste(credits, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
+	credits <- paste(credits, collapse = "\n") |>
+		marquee::marquee_glue(.trim = FALSE)
 	# cat(credits, sep = "\n")
 	mg <- marquee::marquee_grob(
 		credits,
@@ -220,6 +221,10 @@ creditsGrob <- function(
 
 #' @rdname helper_grobs
 #' @param notes A character vector of (commonmark) back cover notes.
+#'              Will be collapsed to a single string by `paste(collapse = "\n")`,
+#'              leading/trailing whitespace will be trimmed,
+#'              any tab indentations will be unindented,
+#'              and will be processed by [marquee::marquee_glue()].
 #' @param style A `marquee` style set object
 #'              (e.g. from [sbgjackets_style()]).
 #' @export
@@ -230,21 +235,26 @@ backNotesGrob <- function(
 	...,
 	style = sbgjackets_style(size, color = col)
 ) {
-	check_dots_empty()
+	#### check_dots_empty()
 	size <- match.arg(size)
 	notes <- paste(notes, collapse = "\n") |>
+		trim_multistring() |>
 		marquee::marquee_glue(.trim = FALSE)
 	if (size == "4x6") {
 		width <- unit(pnpmisc:::JACKET_4x6_FRONT_WIDTH, "in")
 	} else {
 		width <- unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in")
 	}
-	marquee::marquee_grob(
-		notes,
-		style = style,
-		width = width,
-		x = unit(1 / 8, "in"),
-		y = unit(1, "npc") - unit(1 / 8, "in")
+	#### Bug in `marquee_grob()` that we need this hack?
+	with(
+		list(...),
+		marquee::marquee_grob(
+			notes,
+			style = style,
+			width = width,
+			x = unit(1 / 8, "in"),
+			y = unit(1, "npc") - unit(1 / 8, "in")
+		)
 	)
 }
 
@@ -279,7 +289,7 @@ spineIconGrob <- function(players, minutes, weight, col = "white", size = "4x6")
 		roundrectGrob(x = 1 / 6, width = 1 / 3, r = r, gp = gp_rr),
 		textGrob(format_n_players(players), x = 1 / 6, y = 1 / 4, gp = gp_text),
 		roundrectGrob(x = 3 / 6, width = 1 / 3, r = r, gp = gp_rr),
-		textGrob(str_glue("{minutes}\u2032"), x = 3 / 6, y = 1 / 4, gp = gp_text),
+		textGrob(str_glue("{minutes}{prime}"), x = 3 / 6, y = 1 / 4, gp = gp_text),
 		roundrectGrob(x = 5 / 6, width = 1 / 3, r = r, gp = gp_rr),
 		textGrob(sprintf("%.1f", weight), x = 5 / 6, y = 1 / 4, gp = gp_text)
 	)
@@ -341,8 +351,8 @@ format_n_players_fn <- function(formatted, x) {
 	}
 	if (x - formatted$prev == 1) {
 		# sequence
-		if (str_sub(formatted$val, -2L, -2L) != "\u2013") {
-			return(list(prev = x, val = str_c(formatted$val, "\u2013", x)))
+		if (str_sub(formatted$val, -2L, -2L) != en_dash) {
+			return(list(prev = x, val = str_c(formatted$val, en_dash, x)))
 		} else {
 			str_sub(formatted$val, -1L, -1L) <- x
 			formatted$prev <- x

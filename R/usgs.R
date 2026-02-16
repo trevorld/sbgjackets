@@ -25,31 +25,31 @@ pcbj_wizard <- function(
 	bm_pic <- bm_cache_url(url, "wizard_blue_bird.jpg")
 	front <- fullGrob(bm_pic, height = 1)
 
-	back_notes <- c(
-		"# Contents",
-		"",
-		"standard 52-card deck + 4 Wizards + 4 Jesters",
-		"",
-		"# Rules Summary",
-		"",
-		"* Trick-taking game with increasing number of tricks per round from one up to 60 / # players",
-		"* After deal turn up the next in deck as trump",
-		"",
-		"  + If Jester or last round no trump",
-		"  + If Wizard then Dealer's choice",
-		"",
-		"* Each player bids how many tricks they'll take",
-		"",
-		"  + Sum bids can't equal total tricks",
-		"  + If correct 20 points + 10 points per trick",
-		"  + If wrong -10 points per trick O/U bid",
-		"",
-		"* Must follow lead suit if possible except Wizard or Jester **may** be played at any time",
-		"",
-		"  + Jester always loses except if all following cards are also Jesters",
-		"  + First Wizard always wins"
-	)
-	back_notes <- paste(back_notes, collapse = "\n") |> marquee::marquee_glue(.trim = FALSE)
+	back_notes <- r"(
+		# Contents
+
+		standard 52-card deck + 4 Wizards + 4 Jesters
+
+		# Rules Summary
+
+		* Trick-taking game with increasing number of tricks per round from one up to 60 / # players
+		* After deal turn up the next in deck as trump
+
+		  + If Jester or last round no trump
+		  + If Wizard then Dealer's choice
+
+		* Each player bids how many tricks they'll take
+
+		  + Sum bids can't equal total tricks
+		  + If correct 20 points + 10 points per trick
+		  + If wrong -10 points per trick O/U bid
+
+		* Must follow lead suit if possible except Wizard or Jester **may** be played at any time
+
+		  + Jester always loses except if all following cards are also Jesters
+		  + First Wizard always wins
+	)"
+	back_notes <- trim_multistring(back_notes) |> marquee::marquee_glue(.trim = FALSE)
 	mg <- marquee::marquee_grob(
 		back_notes,
 		style = sbgjackets_style("poker", color = text_col),
@@ -66,21 +66,19 @@ pcbj_wizard <- function(
 	)
 
 	xmp <- xmp(creator = "Trevor L. Davis", title = "Wizard Playing Card Box Jacket")
-	credits <- c(
-		"* *Wizard* was designed by Ken Fisher",
-		"",
-		"* *Wizard* is published by U.S. Game Systems, Inc.",
-		"",
-		"  + https://www.usgamesinc.com/original-wizard-r-card-game.html",
-		"",
-		"* This Playing Card Box Jacket is not affiliated, sponsored, nor endorsed by either Ken Fisher or U.S. Game Systems, Inc.",
-		"",
-		str_glue(
-			"  * The use of a non-stylized {dQuote('Wizard')} is intended as fair use to indicate that this playing card box is usable to store a {dQuote('Wizard')} deck."
-		),
-		"",
-		"* *Images d'\u00c9pinal : L'Oiseau bleu* by Pellerin & Cie (1860). Public domain in USA."
-	)
+	credits <- r"(
+		* *Wizard* was designed by Ken Fisher
+
+		* *Wizard* is published by U.S. Game Systems, Inc.
+
+		  + https://www.usgamesinc.com/original-wizard-r-card-game.html
+
+		* This Playing Card Box Jacket is not affiliated, sponsored, nor endorsed by either Ken Fisher or U.S. Game Systems, Inc.
+
+		  * The use of a non-stylized {dQuote('Wizard')} is intended as fair use to indicate that this playing card box is usable to store a {dQuote('Wizard')} deck.
+
+		* *Images d'{E_acute}pinal : L'Oiseau bleu* by Pellerin & Cie (1860). Public domain in USA.
+	)"
 
 	inner <- creditsGrob(xmp, credits, icons = TRUE, size = "poker")
 

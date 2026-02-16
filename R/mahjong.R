@@ -29,27 +29,27 @@ pcbj_mahjong <- function(
 
 	front <- list(front1, front2)
 
-	back_notes <- c(
-		"# Contents",
-		"",
-		"* 136+ cards",
-		"",
-		"  + 108 suited cards = 4 x 3 suits x 9 ranks",
-		"",
-		"    - Suits: Circles, Bamboo, Characters",
-		"",
-		"  + 28+ Honor cards",
-		"",
-		"    - 16 \u201cWind\u201d cards = 4 x {{East, South, West, North}}",
-		"    - 12 \u201cDragon\u201d cards = 4 x {{White, Green, Red}}",
-		"    - 0+ \u201cFlower\u201d cards in uniquely numbered quartets",
-		"",
-		"  + 0+ Joker cards",
-		"",
-		"# Links",
-		"",
-		"* https://www.sloperama.com/mahjongg/"
-	)
+	back_notes <- r"(
+		# Contents
+
+		* 136+ cards
+
+		  + 108 suited cards = 4 x 3 suits x 9 ranks
+
+		    - Suits: Circles, Bamboo, Characters
+
+		  + 28+ Honor cards
+
+		    - 16 {dQuote("Wind")} cards = 4 x {{East, South, West, North}}
+		    - 12 {dQuote("Dragon")} cards = 4 x {{White, Green, Red}}
+		    - 0+ {dQuote("Flower")} cards in uniquely numbered quartets
+
+		  + 0+ Joker cards
+
+		# Links
+
+		* https://www.sloperama.com/mahjongg/
+	)"
 	back <- backNotesGrob(back_notes, col = text_col, size = "poker")
 
 	spine1 <- spineTextGrob("Mahjong (1/2)", col = text_col, size = "poker")
@@ -62,19 +62,19 @@ pcbj_mahjong <- function(
 		spdx_id = "CC-BY-ND-4.0",
 		title = "Mahjong Playing Card Box Jackets"
 	)
-	credits <- c(
-		"* *Mahjong Tiles* by Peter Griffin",
-		"",
-		"  + https://www.publicdomainpictures.net/en/view-image.php?image=279568",
-		"  + CC0 1.0 Public Domain Dedication",
-		"  + Cropped to fit front cover",
-		"",
-		"* *Traditional Mahjong Tiles Arrangement Close-Up* by Mahmoud Yahyaoui",
-		"",
-		"  + https://www.pexels.com/photo/traditional-mahjong-tiles-arrangement-close-up-28996231/",
-		"  + https://www.pexels.com/license/",
-		"  + Cropped to fit front cover"
-	)
+	credits <- r"(
+		* *Mahjong Tiles* by Peter Griffin
+
+		  + https://www.publicdomainpictures.net/en/view-image.php?image=279568
+		  + CC0 1.0 Public Domain Dedication
+		  + Cropped to fit front cover
+
+		* *Traditional Mahjong Tiles Arrangement Close-Up* by Mahmoud Yahyaoui
+
+		  + https://www.pexels.com/photo/traditional-mahjong-tiles-arrangement-close-up-28996231/
+		  + https://www.pexels.com/license/
+		  + Cropped to fit front cover
+	)"
 
 	inner <- creditsGrob(xmp, credits, icons = FALSE, size = "poker")
 

@@ -25,41 +25,42 @@ sbgj_dungeon_delver <- function(
 
 	front <- fullGrob(bm_cover, height = 1)
 
-	back_notes <- c(
-		"# Contents",
-		"",
-		"* 54 Dungeon Delver cards:",
-		"",
-		"  + 6 hero cards",
-		"  + 21 item cards",
-		"  + 4 trap cards",
-		"  + 23 monster cards",
-		"",
-		"* 6 hit counters",
-		"* 6 dice: d4, d6, d8, d10, d12, and d20",
-		"* Instructions",
-		"",
-		"# Rules Summary",
-		"",
-		"* Choose a **Hero** and place them, their starting weapon, and a number of hit counters equal to their HP in front of you.  Set aside other heroes and shuffle remaining cards face down as a draw pile.",
-		"",
-		"* Draw cards one at a time and resolve:",
-		"",
-		"  - **Item** \u2013 Keep face up to a max of 3 items.",
-		"",
-		"    + To stay in limit may choose to discard new or old item.",
-		"    + Use anytime they would help.  If single use then discard.",
-		"    + May hold and discard items (to run away) that can't use.",
-		"",
-		"  - **Trap** \u2013 Follow instructions, then discard.",
-		"  - **Monster** \u2013 Roll dice listed on your weapon (d6 if unarmed).",
-		"",
-		"    + If die equals monster number then reroll.",
-		"    + If die less than monster number take a hit (and add a counter to hero card) or run away by discarding an item.",
-		"    + Then discard monster (even if you take a hit).",
-		"",
-		"* **Win** by making it through the entire draw pile without your hit counters ever matching your hero's HP (else you **lose**)."
-	)
+	back_notes <- r"(
+		# Contents
+
+		* 54 Dungeon Delver cards:
+
+		  + 6 hero cards
+		  + 21 item cards
+		  + 4 trap cards
+		  + 23 monster cards
+
+		* 6 hit counters
+		* 6 dice: d4, d6, d8, d10, d12, and d20
+		* Instructions
+
+		# Rules Summary
+
+		* Choose a **Hero** and place them, their starting weapon, and a number of hit counters equal to their HP in front of you.  Set aside other heroes and shuffle remaining cards face down as a draw pile.
+
+		* Draw cards one at a time and resolve:
+
+		  - **Item:** Keep face up to a max of 3 items.
+
+		    + To stay in limit may choose to discard new or old item.
+		    + Use anytime they would help.  If single use then discard.
+		    + May hold and discard items (to run away) that can't use.
+
+		  - **Monster:** Roll dice listed on your weapon (d6 if unarmed).
+
+		    + If die equals monster number then reroll.
+		    + If die less than monster number take a hit (and add a counter to hero card) or run away by discarding an item.
+		    + Then discard monster (even if you take a hit).
+
+		  - **Trap:** Follow instructions, then discard.
+
+		* **Win** by making it through the entire draw pile without your hit counters ever matching your hero's HP (else you **lose**).
+	)"
 	back <- backNotesGrob(back_notes)
 
 	xmp <- xmp(
@@ -68,12 +69,12 @@ sbgj_dungeon_delver <- function(
 		title = "Dungeon Delver Small Box Game Jacket"
 	)
 
-	credits <- c(
-		"* *Original English card backs* by Drew Chamberlain",
-		"",
-		"  + https://boardgamegeek.com/filepage/299906",
-		"  + Cropped to fit front cover"
-	)
+	credits <- r"(
+		* *Original English card backs* by Drew Chamberlain
+
+		  + https://boardgamegeek.com/filepage/299906
+		  + Cropped to fit front cover
+	)"
 
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
 	spine <- gList(
