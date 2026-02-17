@@ -64,13 +64,13 @@ pcbj_decktet <- function(
 	credits <- r"(
 		* *Box cover* by P.D. Magnus
 
-		  + https://boardgamegeek.com/image/461294/series-decktet-games
+		  + <https://boardgamegeek.com/image/461294/series-decktet-games>
 		  + Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License
 		  + Cropped to fit front cover
 
 		* *The Decktet* by P.D. Magnus
 
-		  + https://www.decktet.com/download/decktet-rules.pdf
+		  + <https://www.decktet.com/download/decktet-rules.pdf>
 		  + Creative Commons Attribution-NonCommercial-ShareAlike 4.0 License
 		  + Extracted three charts from first page.
 	)"

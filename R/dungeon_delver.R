@@ -72,7 +72,7 @@ sbgj_dungeon_delver <- function(
 	credits <- r"(
 		* *Original English card backs* by Drew Chamberlain
 
-		  + https://boardgamegeek.com/filepage/299906
+		  + <https://boardgamegeek.com/filepage/299906>
 		  + Used with permission
 		  + Cropped to fit front cover
 	)"

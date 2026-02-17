@@ -37,47 +37,47 @@ sbgj_nestortiles <- function(
 
 		* *Cuboid* by Stephen Tavener
 
-		  + https://boardgamegeek.com/boardgame/88844/cuboid
+		  + <https://boardgamegeek.com/boardgame/88844/cuboid>
 
 		* *Domina 4* by N{e_acute}stor Romeral Andr{e_acute}s
 
-		  + https://boardgamegeek.com/boardgame/39992/domina-4
+		  + <https://boardgamegeek.com/boardgame/39992/domina-4>
 
 		* *Keks* by Dieter Stein
 
-		  + https://spielstein.com/games/keks
+		  + <https://spielstein.com/games/keks>
 
 		* *Myrmidons* by N{e_acute}stor Romeral Andr{e_acute}s
 
-		  + https://boardgamegeek.com/boardgame/83750/myrmidons
+		  + <https://boardgamegeek.com/boardgame/83750/myrmidons>
 
 		* *Nestortiles DUEL* by N{e_acute}stor Romeral Andr{e_acute}s
 
-		  + https://boardgamegeek.com/boardgame/76107/
+		  + <https://boardgamegeek.com/boardgame/76107/>
 
 		* *Octopus* by N{e_acute}stor Romeral Andr{e_acute}s
 
-		  + https://boardgamegeek.com/boardgame/76202/
+		  + <https://boardgamegeek.com/boardgame/76202/>
 
 		* *Roll Your Own* by Mark R. Brown
 
-		  + https://boardgamegeek.com/boardgame/76695/roll-your-own
+		  + <https://boardgamegeek.com/boardgame/76695/roll-your-own>
 
 		* *Temple* by Martin Windischer
 
-		  + https://boardgamegeek.com/boardgame/84745/temple
+		  + <https://boardgamegeek.com/boardgame/84745/temple>
 
 		* *Textile* by Dieter Stein
 
-		  + https://spielstein.com/games/textile
+		  + <https://spielstein.com/games/textile>
 
 		* *Tilting Dice* by James Ryan
 
-		  + https://boardgamegeek.com/boardgame/88605/tilting-dice
+		  + <https://boardgamegeek.com/boardgame/88605/tilting-dice>
 
 		* *Topologic* by Dieter Stein
 
-		  + https://spielstein.com/games/topologic
+		  + <https://spielstein.com/games/topologic>
 	)"
 	back <- backNotesGrob(back_notes, col = "black")
 
@@ -90,7 +90,7 @@ sbgj_nestortiles <- function(
 	credits <- r"(
 		* *One possible Keks setup* by Dieter Stein
 
-		  + https://spielstein.com/games/keks
+		  + <https://spielstein.com/games/keks>
 		  + Creative Commons Attribution-NonCommercial 4.0 License
 		  + Cropped to fit front cover
 
@@ -173,11 +173,11 @@ sbgj_shibumi <- function(
 	credits <- r"(
 		* The shibumi game system was invented by Cameron Browne
 
-		  * https://cambolbro.com/games/shibumi/
+		  * <https://cambolbro.com/games/shibumi/>
 
 		* The shibumi game system was published by nestorgames
 
-		  * https://nestorgames.com/shibumi
+		  * <https://nestorgames.com/shibumi>
 
 		* This Small Box Game Jacket is not affiliated, sponsored, nor endorsed by either Cameron Browne or nestorgames
 		  * The use of a non-stylized {dQuote('Shibumi')} is intended as fair use to indicate that this 4x6 photo case is usable to store a {dQuote('shibumi')} set.

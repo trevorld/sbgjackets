@@ -69,7 +69,7 @@ sbgj_yinsh <- function(
 
 	xmp <- xmp(creator = "Trevor L. Davis", title = "Yinsh Small Box Game Jacket")
 	credits <- r"(
-		* YINSH was invented by Kris Burm https://www.gipf.com/yinsh/
+		* YINSH was invented by Kris Burm <https://www.gipf.com/yinsh/>
 
 		* YINSH has been published by several companies including HUCH!; DiceTree Games; Rio Grande Games; Smart Toys and Games, Inc.; and Don & Co.
 
@@ -78,7 +78,7 @@ sbgj_yinsh <- function(
 
 		* *Yinsh* image by Wizzy Parkerir cropped to fit front cover
 
-		  + https://boardgamegeek.com/image/3782516/yinsh
+		  + <https://boardgamegeek.com/image/3782516/yinsh>
 		  + CC0 1.0 Public Domain Dedication
 	)"
 

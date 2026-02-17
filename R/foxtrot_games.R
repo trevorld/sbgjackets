@@ -69,7 +69,7 @@ pcbj_fox_in_the_forest <- function(
 	credits <- r"(
 		* *The Fox in the Forest* was designed by Joshua Buergel
 
-		* *The Fox in the Forest* is published by Foxtrot Games http://foxtrotgames.com/forest/
+		* *The Fox in the Forest* is published by Foxtrot Games <http://foxtrotgames.com/forest/>
 
 		* This Playing Card Box Jacket is not affiliated, sponsored, nor endorsed by either Joshua Buergel or Foxtrot Games
 

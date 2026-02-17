@@ -86,7 +86,7 @@ sbgj_dominoes_double6 <- function(
 	credits <- r"(
 		* *ilustracja z ksi{a_ogonek}{z_dot_above}ki* (illustration with prints) by Louis Poyet
 
-		  + https://commons.wikimedia.org/wiki/File:Rozrywki_Naukowe_Fig._049.jpg
+		  + <https://commons.wikimedia.org/wiki/File:Rozrywki_Naukowe_Fig._049.jpg>
 		  + Public Domain
 		  + Cropped to fit front cover
 	)"
@@ -154,7 +154,7 @@ sbgj_dominoes_double9 <- function(
 	credits <- r"(
 		* *Optical illusion of some dominoes.* by Unknown artist
 
-		  + https://www.getty.edu/art/collection/object/107CZC
+		  + <https://www.getty.edu/art/collection/object/107CZC>
 		  + Public Domain
 		  + Cropped to fit front cover
 	)"
@@ -226,7 +226,7 @@ sbgj_dominoes_double12 <- function(
 	credits <- r"(
 		* *My Little White Kittens: Playing Dominoes* published by Currier & Ives
 
-		  + https://www.loc.gov/resource/cph.3b50738/?st=image
+		  + <https://www.loc.gov/resource/cph.3b50738/?st=image>
 		  + Public Domain
 		  + Cropped to fit front cover
 	)"
