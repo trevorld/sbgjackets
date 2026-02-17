@@ -49,18 +49,8 @@ pcbj_wizard <- function(
 		  + Jester always loses except if all following cards are also Jesters
 		  + First Wizard always wins
 	)"
-	back_notes <- trim_multistring(back_notes) |> marquee::marquee_glue(.trim = FALSE)
-	mg <- marquee::marquee_grob(
-		back_notes,
-		style = sbgjackets_style("poker", color = text_col),
-		width = unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in"),
-		x = unit(1 / 8, "in"),
-		y = unit(1, "npc") - unit(1 / 8, "in")
-	)
-
-	back <- gList(fullGrob(background_col), mg)
+	back <- backNotesGrob(back_notes, col = text_col, size = "poker")
 	spine <- gList(
-		fullGrob(background_col),
 		spineTextGrob("Wizard", col = text_col, size = "poker"),
 		spineIconGrob(3:6, 45, 1.7, text_col, size = "poker")
 	)
@@ -91,7 +81,8 @@ pcbj_wizard <- function(
 		back = back,
 		spine = spine,
 		inner = inner,
-		paper = paper
+		paper = paper,
+		bg = background_col
 	) |>
 		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
