@@ -153,9 +153,14 @@ creditsGrob <- function(
 		)
 	}
 
-	fn <- try(as.character(as.list(sys.call(-1L))[[1L]]), silent = TRUE)
-	if (!inherits(fn, "try-error")) {
-		fn <- grep("^sbgj_|^pcbj_", fn, value = TRUE)
+	fn_expr <- try(as.list(sys.call(-1L))[[1L]], silent = TRUE)
+	if (!inherits(fn_expr, "try-error")) {
+		fn <- as.character(fn_expr)
+		if (fn[[1L]] == "getFromNamespace") {
+			fn <- eval(fn_expr[[2L]], parent.frame())
+		} else {
+			fn <- grep("^sbgj_|^pcbj_", fn, value = TRUE)
+		}
 		if (length(fn) == 1L && exists(fn, getNamespace("sbgjackets"))) {
 			generated_by <- c(
 				"* Generated in `R` by `sbgjackets::{fn}()`",

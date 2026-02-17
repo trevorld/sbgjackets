@@ -152,7 +152,7 @@ sbgj_dominoes_double9 <- function(
 		title = "Double-Nine Dominoes Small Box Game Jacket"
 	)
 	credits <- r"(
-		* *Optical illusion of some dominoes.* by Unknown artist
+		* *Optical illusion of some dominoes* by Unknown artist
 
 		  + <https://www.getty.edu/art/collection/object/107CZC>
 		  + Public Domain
