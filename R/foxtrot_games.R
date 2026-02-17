@@ -49,18 +49,9 @@ pcbj_fox_in_the_forest <- function(
 
 		* If possible follower must play lead suit
 	)"
-	back_notes <- trim_multistring(back_notes) |> marquee::marquee_glue(.trim = FALSE)
-	mg <- marquee::marquee_grob(
-		back_notes,
-		style = sbgjackets_style("poker", color = text_col),
-		width = unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in"),
-		x = unit(1 / 8, "in"),
-		y = unit(1, "npc") - unit(1 / 8, "in")
-	)
+	back <- backNotesGrob(back_notes, col = text_col, size = "poker")
 
-	back <- gList(fullGrob(background_col), mg)
 	spine <- gList(
-		fullGrob(background_col),
 		spineTextGrob("The Fox in the Forest", col = text_col, size = "poker"),
 		spineIconGrob(2, 30, 1.6, text_col, size = "poker")
 	)
@@ -89,7 +80,8 @@ pcbj_fox_in_the_forest <- function(
 		back = back,
 		spine = spine,
 		inner = inner,
-		paper = paper
+		paper = paper,
+		bg = background_col
 	) |>
 		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }

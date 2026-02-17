@@ -52,28 +52,10 @@ pcbj_everdeck <- function(
 
 		* <https://thewrongtools.wordpress.com/2019/10/10/the-everdeck/>
 	)"
-	back_notes <- trim_multistring(back_notes) |> marquee::marquee_glue(.trim = FALSE)
-	mg <- marquee::marquee_grob(
-		back_notes,
-		style = sbgjackets_style("poker", color = text_col) |>
-			marquee::modify_style(
-				"img",
-				marquee::style(img_asp = 3.5)
-			),
-		width = unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in"),
-		x = unit(1 / 8, "in"),
-		y = unit(1, "npc") - unit(1 / 8, "in")
-	)
+	back <- backNotesGrob(back_notes, col = text_col, size = "poker")
 
-	back <- gList(fullGrob(background_col), mg)
-	spine1 <- gList(
-		fullGrob(background_col),
-		spineTextGrob("Everdeck (1/2)", col = text_col, size = "poker")
-	)
-	spine2 <- gList(
-		fullGrob(background_col),
-		spineTextGrob("Everdeck (2/2)", col = text_col, size = "poker")
-	)
+	spine1 <- spineTextGrob("Everdeck (1/2)", col = text_col, size = "poker")
+	spine2 <- spineTextGrob("Everdeck (2/2)", col = text_col, size = "poker")
 	spine <- list(spine1, spine2)
 
 	xmp <- xmp(
@@ -104,7 +86,8 @@ pcbj_everdeck <- function(
 		back = back,
 		spine = spine,
 		inner = inner,
-		paper = paper
+		paper = paper,
+		bg = background_col
 	) |>
 		pdf_polish_jacket(xmp = xmp, instructions = instructions)
 }
