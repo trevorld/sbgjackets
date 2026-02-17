@@ -33,7 +33,7 @@ The output file name invisibly.  As a side effect creates a pdf file.
 }
 \description{
 \code{sbgj_nestortiles()} creates a small box game jacket for
-\href{https://boardgamegeek.com/boardgame/74615/nestortiles}{nestortiles}.
+\href{https://boardgamegeek.com/boardgame/74615/nestortiles}{Nestortiles}.
 \code{sbgj_shibumi()} creates a small box game jacket for \href{https://cambolbro.com/games/shibumi/}{Shibumi}.
 }
 \details{

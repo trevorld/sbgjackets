@@ -51,7 +51,7 @@ df_sbgj <- function() {
 		"Looney Pyramids", "https://www.looneylabs.com/pyramids-home", "`sbgj_looney_pyramids()`", "Personal Use Only",
 		"Marbles", NA_character_, "`sbgj_marbles()`", "CC-BY-SA-3.0",
 		"Martian Chess", "https://www.looneylabs.com/martian_chess", "`sbgj_martian_chess()`", "Personal Use Only",
-		"nestortiles", "https://boardgamegeek.com/boardgame/74615/nestortiles", "`sbgj_nestortiles()`", "Personal Use Only",
+		"Nestortiles", "https://boardgamegeek.com/boardgame/74615/nestortiles", "`sbgj_nestortiles()`", "Personal Use Only",
 		"Nomids", "https://www.looneylabs.com/nomids", "`sbgj_nomids()`", "Personal Use Only",
 		"Pawns", NA_character_, "`sbgj_pawns()`", "CC-BY-ND-4.0",
 		"Reversible Discs", NA_character_, "`sbgj_reversible_discs()`", "CC-BY-4.0",
