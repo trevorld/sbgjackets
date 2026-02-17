@@ -40,5 +40,6 @@ sbgjackets_style <- function(
 			margin = marquee::trbl(NULL),
 			padding = marquee::trbl(NULL)
 		) |>
-		marquee::modify_style("ul", padding = marquee::trbl(right = marquee::em(1)))
+		marquee::modify_style("ul", padding = marquee::trbl(right = marquee::em(1))) |>
+		marquee::modify_style("a", color = color)
 }

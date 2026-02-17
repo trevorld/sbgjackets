@@ -135,11 +135,11 @@ sbgj_looney_pyramids <- function(
 	xmp <- xmp(creator = "Trevor L. Davis", title = "Looney Pyramids Small Box Game Jacket")
 	# nolint start: line_length_linter.
 	credits <- r"(
-		* From https://www.looneylabs.com/
+		* From <https://www.looneylabs.com/>
 
 		  + *Looney Pyramids Intro Pamphlet* (cropped and edited)
-		  + https://www.looneylabs.com/sites/default/files/LP4%20Top%20Header.png
-		  + From https://www.looneylabs.com/pyramid-arcade-game-badges-boards
+		  + <https://www.looneylabs.com/sites/default/files/LP4%20Top%20Header.png>
+		  + From <https://www.looneylabs.com/pyramid-arcade-game-badges-boards>
 
 		    the badges of 24 Looney Pyramids games
 		  + faq.looneylabs.com/non-gameplay-questions/working-with-looney-labs#1774
@@ -335,7 +335,7 @@ sbgj_homeworlds <- function(
 
 	xmp <- xmp(creator = "Trevor L. Davis", title = "Homeworlds Small Box Game Jacket")
 	credits <- r"(
-		* From https://www.looneylabs.com/resources/game/Homeworlds
+		* From <https://www.looneylabs.com/resources/game/Homeworlds>
 
 		  + *Homeworlds Box Front*
 		  + *Homeworlds Box Back*
@@ -389,7 +389,7 @@ sbgj_ice_duo <- function(
 
 	xmp <- xmp(creator = "Trevor L. Davis", title = "Ice Duo Small Box Game Jacket")
 	credits <- r"(
-		* From https://www.looneylabs.com/resources/game/Ice%20Duo
+		* From <https://www.looneylabs.com/resources/game/Ice%20Duo>
 
 		  + *Ice Duo Box Front*
 		  + *Ice Duo Box Back*
@@ -445,7 +445,7 @@ sbgj_jinxx <- function(
 
 	xmp <- xmp(creator = "Trevor L. Davis", title = "Jinxx Small Box Game Jacket")
 	credits <- r"(
-		* From https://www.looneylabs.com/resources/game/Jinxx
+		* From <https://www.looneylabs.com/resources/game/Jinxx>
 
 		  + *Jinxx Box Front*
 		  + *Jinxx Box Back*
@@ -512,7 +512,7 @@ sbgj_martian_chess <- function(
 			title = "Martian Chess (Silver) Small Box Game Jacket"
 		)
 		credits <- r"(
-			* From https://www.looneylabs.com/resources/game/Martian%20Chess
+			* From <https://www.looneylabs.com/resources/game/Martian%20Chess>
 
 			  + *Martian Chess Box Front*
 			  + *Martian Chess Silver Box Back*
@@ -523,7 +523,7 @@ sbgj_martian_chess <- function(
 	} else {
 		xmp <- xmp(creator = "Trevor L. Davis", title = "Martian Chess Small Box Game Jacket")
 		credits <- r"(
-			* From https://www.looneylabs.com/resources/game/Martian%20Chess
+			* From <https://www.looneylabs.com/resources/game/Martian%20Chess>
 
 			  + *Martian Chess Box Back*
 			  + *Martian Chess Box Front*
@@ -600,7 +600,7 @@ sbgj_nomids <- function(
 			title = "Nomids Small Box Game Jacket (Custom Back)"
 		)
 		credits <- r"(
-			* From https://www.looneylabs.com/resources/game/Nomids
+			* From <https://www.looneylabs.com/resources/game/Nomids>
 
 			  + *Nomids Logo with Background*
 			  + *Nomids Box Front*
@@ -613,7 +613,7 @@ sbgj_nomids <- function(
 	} else {
 		xmp <- xmp(creator = "Trevor L. Davis", title = "Nomids Small Box Game Jacket")
 		credits <- r"(
-			* From https://www.looneylabs.com/resources/game/Nomids
+			* From <https://www.looneylabs.com/resources/game/Nomids>
 
 			  + *Nomids Box Back*
 			  + *Nomids Box Front*

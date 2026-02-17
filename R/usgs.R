@@ -71,7 +71,7 @@ pcbj_wizard <- function(
 
 		* *Wizard* is published by U.S. Game Systems, Inc.
 
-		  + https://www.usgamesinc.com/original-wizard-r-card-game.html
+		  + <https://www.usgamesinc.com/original-wizard-r-card-game.html>
 
 		* This Playing Card Box Jacket is not affiliated, sponsored, nor endorsed by either Ken Fisher or U.S. Game Systems, Inc.
 

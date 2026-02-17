@@ -46,7 +46,7 @@ pcbj_bridge <- function(
 	credits <- r"(
 		* *Reliable Series 9no 9335* by William Ritchie & Sons (c. 1908{en_dash}1918) and *The Game of Bridge* by Savile Lumley (1905)
 
-		  + https://www.haroldschogger.com/history.htm
+		  + <https://www.haroldschogger.com/history.htm>
 		  + Public Domain in the USA
 	)"
 
@@ -149,7 +149,7 @@ pcbj_pinochle <- function(
 	credits <- r"(
 		* *Pinochle meld* by AMK1211
 
-		  + https://commons.wikimedia.org/wiki/File:Pinochle_meld.jpg
+		  + <https://commons.wikimedia.org/wiki/File:Pinochle_meld.jpg>
 		  + Creative Commons Attribution-ShareAlike 3.0 Unported License
 		  + Cropped to fit front cover
 	)"
@@ -210,7 +210,7 @@ pcbj_poker <- function(
 
 		# Links
 
-		* https://www.pagat.com/poker/
+		* <https://www.pagat.com/poker/>
 	)"
 	back <- backNotesGrob(back_notes, col = text_col, size = "poker")
 
@@ -228,7 +228,7 @@ pcbj_poker <- function(
 	credits <- r"(
 		* *Poker Game* by Cassius Marcellus Coolidge (1894)
 
-		  + https://commons.wikimedia.org/wiki/File:Cassius_Marcellus_Coolidge_-_Poker_Game_(1894).png
+		  + <https://commons.wikimedia.org/wiki/File:Cassius_Marcellus_Coolidge_-_Poker_Game_(1894).png>
 		  + Public Domain in the USA
 	)"
 

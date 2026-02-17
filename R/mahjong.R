@@ -48,7 +48,7 @@ pcbj_mahjong <- function(
 
 		# Links
 
-		* https://www.sloperama.com/mahjongg/
+		* <https://www.sloperama.com/mahjongg/>
 	)"
 	back <- backNotesGrob(back_notes, col = text_col, size = "poker")
 
@@ -65,14 +65,14 @@ pcbj_mahjong <- function(
 	credits <- r"(
 		* *Mahjong Tiles* by Peter Griffin
 
-		  + https://www.publicdomainpictures.net/en/view-image.php?image=279568
+		  + <https://www.publicdomainpictures.net/en/view-image.php?image=279568>
 		  + CC0 1.0 Public Domain Dedication
 		  + Cropped to fit front cover
 
 		* *Traditional Mahjong Tiles Arrangement Close-Up* by Mahmoud Yahyaoui
 
-		  + https://www.pexels.com/photo/traditional-mahjong-tiles-arrangement-close-up-28996231/
-		  + https://www.pexels.com/license/
+		  + <https://www.pexels.com/photo/traditional-mahjong-tiles-arrangement-close-up-28996231/>
+		  + <https://www.pexels.com/license/>
 		  + Cropped to fit front cover
 	)"
 

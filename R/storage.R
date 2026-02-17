@@ -46,13 +46,13 @@ sbgj_black_stones <- function(
 	credits <- r"(
 		* *Double convex yunzi stones and woven baskets for holding them placed on a Go board* by Ralph Unden
 
-		  + https://commons.wikimedia.org/wiki/File:Yunzi_double_convex.jpg
+		  + <https://commons.wikimedia.org/wiki/File:Yunzi_double_convex.jpg>
 		  + Creative Commons Attribution 2.0 Generic License
 		  + Cropped to fit front cover
 
 		* *slate go pieces sc* by Liz West
 
-		  + https://commons.wikimedia.org/wiki/File:Slate_go_pieces_sc.jpg
+		  + <https://commons.wikimedia.org/wiki/File:Slate_go_pieces_sc.jpg>
 		  + Creative Commons Attribution 2.0 Generic License
 		  + Cropped to fit back cover
 	)"
@@ -118,7 +118,7 @@ sbgj_dice <- function(
 	credits <- r"(
 		* *Mannen spelen dobbelspel, op de grond zit aap met speelkaarten.* (Men playing dice, monkey sitting on the ground with playing cards) by Cornelis van Dalen
 
-		  + https://commons.wikimedia.org/wiki/File:Mannen_spelen_dobbelspel,_op_de_grond_zit_aap_met_speelkaarten_Titelpagina_voor_De_alea_libri_duo,_Amsterdam_1642_De_alea_libri_duo_(titel_op_object),_RP-P-1878-A-819.jpg
+		  + <https://commons.wikimedia.org/wiki/File:Mannen_spelen_dobbelspel,_op_de_grond_zit_aap_met_speelkaarten_Titelpagina_voor_De_alea_libri_duo,_Amsterdam_1642_De_alea_libri_duo_(titel_op_object),_RP-P-1878-A-819.jpg>
 		  + Public Domain
 		  + Cropped to fit cover
 	)"
@@ -192,13 +192,13 @@ sbgj_marbles <- function(
 	credits <- r"(
 		* *marble, ball, color, colorful*
 
-		  + https://pixnio.com/objects/marble-ball-color-colorful
+		  + <https://pixnio.com/objects/marble-ball-color-colorful>
 		  + CC0 1.0 Public Domain Dedication
 		  + Cropped to fit front cover
 
 		* *Gesuender Leben* by Bernhard Schindele
 
-		  + https://commons.wikimedia.org/wiki/File:20150720-Glasmurmeln-IMG_7124.jpg
+		  + <https://commons.wikimedia.org/wiki/File:20150720-Glasmurmeln-IMG_7124.jpg>
 		  + Creative Commons Attribution-ShareAlike 3.0 Unported License
 		  + Cropped to fit back cover
 	)"
@@ -246,8 +246,8 @@ sbgj_glass_stones <- function(
 	credits <- r"(
 		* *assorted glass stones*
 
-		  + https://www.pickpik.com/glass-beads-glass-blue-decoration-bead-beads-136538
-		  + PickPik Terms of Service https://www.pickpik.com/terms-of-service
+		  + <https://www.pickpik.com/glass-beads-glass-blue-decoration-bead-beads-136538>
+		  + PickPik Terms of Service <https://www.pickpik.com/terms-of-service>
 
 		    > The images provided by PickPik are free to use for personal and commercial projects
 
@@ -297,9 +297,9 @@ sbgj_pawns <- function(
 	credits <- r"(
 		* *Play stone, Multicoloured, Characters* by Alexa
 
-		  + https://pixabay.com/photos/play-stone-multicoloured-characters-1743645/
-		  + https://pixabay.com/users/alexas_fotos-686414/
-		  + Pixabay Content License https://pixabay.com/service/license-summary/
+		  + <https://pixabay.com/photos/play-stone-multicoloured-characters-1743645/>
+		  + <https://pixabay.com/users/alexas_fotos-686414/>
+		  + Pixabay Content License <https://pixabay.com/service/license-summary/>
 
 		    > the Content License allows users to:
 		    >
@@ -377,8 +377,8 @@ sbgj_polyhedral_dice <- function(
 	credits <- r"(
 		* *assorted dice lot*
 
-		  + https://www.pickpik.com/cube-play-role-playing-game-craps-colorful-instantaneous-speed-130507
-		  + PickPik Terms of Service https://www.pickpik.com/terms-of-service
+		  + <https://www.pickpik.com/cube-play-role-playing-game-craps-colorful-instantaneous-speed-130507>
+		  + PickPik Terms of Service <https://www.pickpik.com/terms-of-service>
 
 		    > The images provided by PickPik are free to use for personal and commercial projects
 
@@ -418,39 +418,39 @@ sbgj_reversible_discs <- function(
 
 		* *Games you can play with Othello/Reversi/bicolored pieces* geeklist
 
-		  + https://boardgamegeek.com/geeklist/235864/
+		  + <https://boardgamegeek.com/geeklist/235864/>
 
 		* Glaisher
 
-		  + https://boardgamegeek.com/boardgame/175363/glaisher
+		  + <https://boardgamegeek.com/boardgame/175363/glaisher>
 
 		* Io
 
-		  + https://boardgamegeek.com/boardgame/172471/io
+		  + <https://boardgamegeek.com/boardgame/172471/io>
 
 		* Ming Mang
 
-		  + http://www.cyningstan.com/game/328/ming-mang
+		  + <http://www.cyningstan.com/game/328/ming-mang>
 
 		* Othellito
 
-		  + https://boardgamegeek.com/boardgame/289484/othellito
+		  + <https://boardgamegeek.com/boardgame/289484/othellito>
 
 		* Othello
 
-		  + https://www.worldothello.org/
+		  + <https://www.worldothello.org/>
 
 		* Verto
 
-		  + https://boardgamegeek.com/boardgame/89333/verto
+		  + <https://boardgamegeek.com/boardgame/89333/verto>
 
 		* Wizard's Garden
 
-		  + https://www.tjgames.com/wizard.html
+		  + <https://www.tjgames.com/wizard.html>
 
 		* Yonmoque
 
-		  + https://www.gift-box.co.jp/english/yonmoque.html
+		  + <https://www.gift-box.co.jp/english/yonmoque.html>
 	)"
 	back <- backNotesGrob(back_notes)
 
@@ -465,7 +465,7 @@ sbgj_reversible_discs <- function(
 	credits <- r"(
 		* *Othello! or Reversi* by Noah
 
-		  + https://www.flickr.com/photos/noahbulgaria/226231535
+		  + <https://www.flickr.com/photos/noahbulgaria/226231535>
 		  + Creative Commons Attribution 2.0 Generic License
 		  + Cropped to fit front cover
 	)"
@@ -546,13 +546,13 @@ sbgj_white_stones <- function(
 	credits <- r"(
 		* *Double convex yunzi stones and woven baskets for holding them placed on a Go board* by Ralph Unden
 
-		  + https://commons.wikimedia.org/wiki/File:Yunzi_double_convex.jpg
+		  + <https://commons.wikimedia.org/wiki/File:Yunzi_double_convex.jpg>
 		  + Creative Commons Attribution 2.0 Generic License
 		  + Cropped to fit front cover
 
 		* *shell go pieces sc* by Liz West
 
-		  + https://commons.wikimedia.org/wiki/File:Shell_go_pieces_sc.jpg
+		  + <https://commons.wikimedia.org/wiki/File:Shell_go_pieces_sc.jpg>
 		  + Creative Commons Attribution 2.0 Generic License
 		  + Cropped to fit back cover
 	)"

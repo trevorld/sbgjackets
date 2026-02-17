@@ -81,8 +81,8 @@ pcbj_bavarian_pattern <- function(
 
 		  + Public domain (published between 1895 and 1907).
 		  + Cropped to fit front cover.
-		  + https://commons.wikimedia.org/wiki/File:Eduard_B%C3%BCttner_Berlin_Bayrisches_Einfachbild.jpg
-		  + https://www.froja.de/karten/karten.php?menu_id=2_4
+		  + <https://commons.wikimedia.org/wiki/File:Eduard_B%C3%BCttner_Berlin_Bayrisches_Einfachbild.jpg>
+		  + <https://www.froja.de/karten/karten.php?menu_id=2_4>
 	)"
 
 	inner <- creditsGrob(
@@ -166,7 +166,7 @@ pcbj_castilian_pattern <- function(
 
 		  + Public domain (author died on July 28th, 1916).
 		  + Cropped to fit front cover.
-		  + https://museotik.euskadi.eus/coleccion/-/autoria-fournier-gonzalez-heraclio/titulo-baraja-heraclio-fournier-1907/objeto-baraja/museotik-ca-64272/
+		  + <https://museotik.euskadi.eus/coleccion/-/autoria-fournier-gonzalez-heraclio/titulo-baraja-heraclio-fournier-1907/objeto-baraja/museotik-ca-64272/>
 	)"
 
 	inner <- creditsGrob(xmp, credits, icons = FALSE, size = "poker")
@@ -222,9 +222,9 @@ pcbj_english_pattern <- function(
 
 		# Links
 
-		* https://boardgamegeek.com/boardgamefamily/98/components-traditional-playing-cards
-		* https://i-p-c-s.org/pattern/ps-48.html
-		* https://www.pagat.com
+		* <https://boardgamegeek.com/boardgamefamily/98/components-traditional-playing-cards>
+		* <https://i-p-c-s.org/pattern/ps-48.html>
+		* <https://www.pagat.com>
 	)"
 	back <- backNotesGrob(back_notes, col = text_col, size = "poker")
 
@@ -241,7 +241,7 @@ pcbj_english_pattern <- function(
 
 		  + Public domain.
 		  + Cropped to fit front cover.
-		  + https://museotik.euskadi.eus/coleccion/-/autoria-worshipful-company-of-the-makers-of-playing-cards/titulo-worshipful-1897/objeto-baraja/museotik-ca-65097/
+		  + <https://museotik.euskadi.eus/coleccion/-/autoria-worshipful-company-of-the-makers-of-playing-cards/titulo-worshipful-1897/objeto-baraja/museotik-ca-65097/>
 	)"
 
 	inner <- creditsGrob(xmp, credits, icons = FALSE, size = "poker")

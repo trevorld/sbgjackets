@@ -131,10 +131,10 @@ creditsGrob <- function(
 			"",
 			"* Various icons from Game-icons.net",
 			"",
-			"  + {dQuote('Clockwork')} by Lorc https://game-icons.net/1x1/lorc/clockwork.html",
-			"  + {dQuote('Person')} by Delapouite https://game-icons.net/1x1/delapouite/person.html",
-			"  + {dQuote('Weight')} by Delapouite https://game-icons.net/1x1/delapouite/weight.html",
-			"  + CC BY 3.0 license: https://creativecommons.org/licenses/by/3.0/"
+			"  + {dQuote('Clockwork')} by Lorc <https://game-icons.net/1x1/lorc/clockwork.html>",
+			"  + {dQuote('Person')} by Delapouite <https://game-icons.net/1x1/delapouite/person.html>",
+			"  + {dQuote('Weight')} by Delapouite <https://game-icons.net/1x1/delapouite/weight.html>",
+			"  + CC BY 3.0 license: <https://creativecommons.org/licenses/by/3.0/>"
 		)
 	}
 	credits <- c(
@@ -148,7 +148,7 @@ creditsGrob <- function(
 			"",
 			"* The Carlito font by {L_stroke}ukasz Dziedzic",
 			"",
-			"  + https://fonts.google.com/specimen/Carlito",
+			"  + <https://fonts.google.com/specimen/Carlito>",
 			"  + SIL Open Font License, Version 1.1"
 		)
 	}
@@ -160,14 +160,14 @@ creditsGrob <- function(
 			generated_by <- c(
 				"* Generated in `R` by `sbgjackets::{fn}()`",
 				"",
-				"  + https://github.com/trevorld/sbgjackets",
+				"  + <https://github.com/trevorld/sbgjackets>",
 				"  + MIT license"
 			)
 		} else {
 			generated_by <- c(
 				"* Generated in `R` by `pnpmisc::pdf_create_jacket()`",
 				"",
-				"  + https://github.com/trevorld/pnpmisc",
+				"  + <https://github.com/trevorld/pnpmisc>",
 				"  + MIT license"
 			)
 		}

@@ -50,7 +50,7 @@ pcbj_everdeck <- function(
 
 		# Links
 
-		* https://thewrongtools.wordpress.com/2019/10/10/the-everdeck/
+		* <https://thewrongtools.wordpress.com/2019/10/10/the-everdeck/>
 	)"
 	back_notes <- trim_multistring(back_notes) |> marquee::marquee_glue(.trim = FALSE)
 	mg <- marquee::marquee_grob(
@@ -90,8 +90,8 @@ pcbj_everdeck <- function(
 		  * The use of a non-stylized {dQuote('Everdeck')} is intended as fair use to indicate that this playing card box is usable to store a {dQuote('Everdeck')} deck.
 		* *Everdeck Packvelopes* by Brooks Boyd
 
-		  + https://boardgamegeek.com/profile/midnightlightning
-		  + https://boardgamegeek.com/filepage/279177/packvelopes-storage-boxes
+		  + <https://boardgamegeek.com/profile/midnightlightning>
+		  + <https://boardgamegeek.com/filepage/279177/packvelopes-storage-boxes>
 		  + Creative Commons Attribution-ShareAlike 3.0 Unported License
 		  + Cropped to fit front cover
 	)"
