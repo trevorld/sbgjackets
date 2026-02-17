@@ -65,7 +65,6 @@ df_sbgj <- function() {
 	# Looney Labs FAQ says okay to use their images to **create** jackets for personal use
 	# but does not grant permission to **share** such jackets
 	not_shareable <- c(
-		"Dungeon Delver",
 		"Homeworlds",
 		"Ice Duo",
 		"Jinxx",

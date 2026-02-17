@@ -73,6 +73,7 @@ sbgj_dungeon_delver <- function(
 		* *Original English card backs* by Drew Chamberlain
 
 		  + https://boardgamegeek.com/filepage/299906
+		  + Used with permission
 		  + Cropped to fit front cover
 	)"
 
