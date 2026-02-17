@@ -157,7 +157,7 @@ creditsGrob <- function(
 	if (!inherits(fn_expr, "try-error")) {
 		fn <- as.character(fn_expr)
 		if (fn[[1L]] == "getFromNamespace") {
-			fn <- eval(fn_expr[[2L]], parent.frame())
+			fn <- eval(fn_expr[[2L]], parent.frame(n = 2L))
 		} else {
 			fn <- grep("^sbgj_|^pcbj_", fn, value = TRUE)
 		}
