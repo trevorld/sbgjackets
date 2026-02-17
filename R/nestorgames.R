@@ -1,7 +1,7 @@
 #' Create SBG Jacket for nestorgames products
 #'
 #' `sbgj_nestortiles()` creates a small box game jacket for
-#' [nestortiles](https://boardgamegeek.com/boardgame/74615/nestortiles).
+#' [Nestortiles](https://boardgamegeek.com/boardgame/74615/nestortiles).
 #' `sbgj_shibumi()` creates a small box game jacket for [Shibumi](https://cambolbro.com/games/shibumi/).
 #'
 #' Note that these print-and-play small box game jackets are for **Personal Use Only**.
@@ -33,7 +33,7 @@ sbgj_nestortiles <- function(
 
 		* 60 interlocking panels = 10 colors x 1{en_dash}6 dice pips
 
-		# Notable games using nestortiles
+		# Notable games using Nestortiles
 
 		* *Cuboid* by Stephen Tavener
 
@@ -83,10 +83,10 @@ sbgj_nestortiles <- function(
 
 	spine <- gList(
 		fullGrob("black"),
-		spineTextGrob("nestortiles", col = text_col)
+		spineTextGrob("Nestortiles", col = text_col)
 	)
 
-	xmp <- xmp(creator = "Trevor L. Davis", title = "nestortiles Small Box Game Jacket")
+	xmp <- xmp(creator = "Trevor L. Davis", title = "Nestortiles Small Box Game Jacket")
 	credits <- r"(
 		* *One possible Keks setup* by Dieter Stein
 
@@ -94,10 +94,10 @@ sbgj_nestortiles <- function(
 		  + Creative Commons Attribution-NonCommercial 4.0 License
 		  + Cropped to fit front cover
 
-		* nestortiles was published by nestorgames
+		* Nestortiles was published by nestorgames
 
 		* This Small Box Game Jacket is not affiliated, sponsored, nor endorsed by nestorgames
-		  * The use of a non-stylized {dQuote('nestortiles')} is intended as fair use to indicate that this 4x6 photo case is usable to store a nestortiles set.
+		  * The use of a non-stylized {dQuote('Nestortiles')} is intended as fair use to indicate that this 4x6 photo case is usable to store a {dQuote('Nestortiles')} set.
 	)"
 
 	inner <- creditsGrob(xmp, credits, icons = FALSE)
@@ -171,11 +171,11 @@ sbgj_shibumi <- function(
 
 	xmp <- xmp(creator = "Trevor L. Davis", title = "Shibumi Small Box Game Jacket")
 	credits <- r"(
-		* The shibumi game system was invented by Cameron Browne
+		* The Shibumi game system was invented by Cameron Browne
 
 		  * <https://cambolbro.com/games/shibumi/>
 
-		* The shibumi game system was published by nestorgames
+		* The Shibumi game system was published by nestorgames
 
 		  * <https://nestorgames.com/shibumi>
 
