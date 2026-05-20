@@ -7,7 +7,7 @@
 pdf_polish_jacket(output, ..., instructions = FALSE, xmp = NULL)
 }
 \arguments{
-\item{output}{Filename of a pdf file created by \code{\link[pnpmisc:pdf_create_jacket]{pnpmisc::pdf_create_jacket()}} or \code{\link[pnpmisc:pdf_create_jacket]{pnpmisc::pdf_create_poker_jacket()}}.}
+\item{output}{Filename of a pdf file created by \code{\link[pnpmisc:pdf_create_jacket]{pnpmisc::pdf_create_jacket()}} or \code{\link[pnpmisc:pdf_create_poker_jacket]{pnpmisc::pdf_create_poker_jacket()}}.}
 
 \item{...}{Should be empty.}
 

@@ -134,6 +134,7 @@ This package also provides functions that locally create playing-card box jacket
 |[Pinochle](https://www.pagat.com/marriage/pinmain.html)|`pcbj_pinochle()`          |[CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/)|
 |[Poker](https://www.pagat.com/poker)|`pcbj_poker()`             |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
 |[Spanish Suits: Castilian Pattern](https://i-p-c-s.org/pattern/ps-27.html)|`pcbj_castilian_pattern()` |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
+|[Qwixx](https://www.gamewright.com/product/Qwixx)|`pcbj_qwixx()`             |Personal Use Only |
 |[Wizard](https://www.usgamesinc.com/original-wizard-r-card-game.html)|`pcbj_wizard()`            |Personal Use Only |
 
 
@@ -144,7 +145,7 @@ This package also provides functions that locally create playing-card box jacket
 
 | Feature | Boardgame Barrio | `{sbgjackets}` |
 | --- | --- | --- |
-| Quantity | Over 1,600 pre-made jackets | 33 pre-made jackets |
+| Quantity | Over 1,600 pre-made jackets | 34 pre-made jackets |
 | Size | Targets only 4x6 photo storage boxes | Targets 4x6 photo storage boxes as well as playing card boxes |
 | Process | Made in Microsoft Publisher with a template | Made in `R` with `pnpmisc::pdf_create_jacket()` |
 | Spine Font | Calibri (proprietary) | Carlito (libre font, metrically compatible with Calibri) |
@@ -161,8 +162,18 @@ Other Small Box Game Jackets:
 
 Origami to organize a 4"x6" photo storage box:
 
-* [Origami Masu Box](https://www.paperkawaii.com/origami-photo-tutorials/masu-box/) and [Origami Masu Box Divider](https://www.paperkawaii.com/origami-photo-tutorials/masu-box-divider/) (6"x6" paper)
-* [Origami Baggi Box](http://www.origami-instructions.com/origami-baggi-box.html) (4"x4" paper)
+* Origami Masu Box
+
+  + Masu Box [Photo Tutorial](https://www.paperkawaii.com/origami-photo-tutorials/masu-box/) and [Diagram](https://www.paperkawaii.com/wp-content/uploads/2023/05/origami-masu-box-paper-kawaii.jpg)
+  + Masu Box Divider [Photo Tutorial](https://www.paperkawaii.com/origami-photo-tutorials/masu-box-divider/)
+  + If made with 15 cm (6") square piece of paper will make a square box about 5.5 cm (2.2") on each side and 3 cm (1.2") tall
+
+* Origami Baggi Box
+
+  + Baggi Box Photo Tutorials by [Epic Origami](https://epicorigami.blogspot.com/2013/09/the-baggi-box.html) and [Origami-Instructions.com](http://www.origami-instructions.com/origami-baggi-box.html) and
+  + If made with 10 cm (4") square piece of paper will make a box about 2.5 cm (1") wide and tall and 5 cm (2") long.
+
+* (Baggi and Masu) [Origami Box](https://www.corniro.com/create) template generator
 
 
 3D printable models to organize a 4"x6" photo storage box:
