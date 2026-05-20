@@ -4,6 +4,7 @@ development:
     mode: auto
 template:
   bootstrap: 5
+llm-docs: false
 reference:
     - title: "Utility functions for writing jacket functions"
       desc: ''
@@ -31,4 +32,5 @@ reference:
         - pcbj_everdeck
         - pcbj_fox_in_the_forest
         - pcbj_mahjong
+        - pcbj_qwixx
         - pcbj_wizard

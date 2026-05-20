@@ -76,4 +76,5 @@ Functions to create small box game (SBG) jackets for **Personal Use Only**:
 * Functions to create Playing Card Box jackets for miscellaneous games:
 
   + `pcbj_fox_in_the_forest()`
+  + `pcbj_qwixx()`
   + `pcbj_wizard()`

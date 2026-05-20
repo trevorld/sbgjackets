@@ -90,6 +90,7 @@ df_pcbj <- function() {
 		"Pinochle", "https://www.pagat.com/marriage/pinmain.html", "`pcbj_pinochle()`", "CC-BY-SA-3.0",
 		"Poker", "https://www.pagat.com/poker", "`pcbj_poker()`", "CC-BY-4.0",
 		"Spanish Suits: Castilian Pattern", "https://i-p-c-s.org/pattern/ps-27.html", "`pcbj_castilian_pattern()`", "CC-BY-4.0",
+		"Qwixx", "https://www.gamewright.com/product/Qwixx", "`pcbj_qwixx()`", "Personal Use Only",
 		"Wizard", "https://www.usgamesinc.com/original-wizard-r-card-game.html", "`pcbj_wizard()`", "Personal Use Only"
 	)
 	df$shareable <- TRUE
@@ -136,6 +137,7 @@ copyright_sign <- "\u00a9"
 diamond_suit <- "\u2666"
 e_acute <- "\u00e9"
 E_acute <- "\u00c9"
+em_dash <- "\u2014"
 en_dash <- "\u2013"
 L_stroke <- "\u0141"
 prime <- "\u2032"

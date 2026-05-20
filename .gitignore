@@ -6,3 +6,5 @@ pkgdown
 R/tetris_stax.R
 tests/testthat/test-tetris_stax.R
 tmp
+Rplots.pdf
+.claude/

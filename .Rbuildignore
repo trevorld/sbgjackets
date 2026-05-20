@@ -20,5 +20,6 @@
 ^raw-data$
 ^revdep$
 ^R/tetris_stax.R$
+^Rplots.pdf$
 ^tests/testthat/test-tetris_stax.R$
 ^tmp$
