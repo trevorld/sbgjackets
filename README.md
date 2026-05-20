@@ -133,8 +133,8 @@ This package also provides functions that locally create playing-card box jacket
 |[Mahjong](https://www.sloperama.com/mahjongg/)|`pcbj_mahjong()`           |[CC-BY-ND-4.0](https://creativecommons.org/licenses/by-nd/4.0/)|
 |[Pinochle](https://www.pagat.com/marriage/pinmain.html)|`pcbj_pinochle()`          |[CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/)|
 |[Poker](https://www.pagat.com/poker)|`pcbj_poker()`             |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
+|[Qwixx](https://gamewright.com/product/Qwixx)|`pcbj_qwixx()`             |Personal Use Only |
 |[Spanish Suits: Castilian Pattern](https://i-p-c-s.org/pattern/ps-27.html)|`pcbj_castilian_pattern()` |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
-|[Qwixx](https://www.gamewright.com/product/Qwixx)|`pcbj_qwixx()`             |Personal Use Only |
 |[Wizard](https://www.usgamesinc.com/original-wizard-r-card-game.html)|`pcbj_wizard()`            |Personal Use Only |
 
 
@@ -170,7 +170,7 @@ Origami to organize a 4"x6" photo storage box:
 
 * Origami Baggi Box
 
-  + Baggi Box Photo Tutorials by [Epic Origami](https://epicorigami.blogspot.com/2013/09/the-baggi-box.html) and [Origami-Instructions.com](http://www.origami-instructions.com/origami-baggi-box.html) and
+  + Baggi Box Photo Tutorials by [Epic Origami](https://epicorigami.blogspot.com/2013/09/the-baggi-box.html) and [Origami-Instructions.com](http://www.origami-instructions.com/origami-baggi-box.html)
   + If made with 10 cm (4") square piece of paper will make a box about 2.5 cm (1") wide and tall and 5 cm (2") long.
 
 * (Baggi and Masu) [Origami Box](https://www.corniro.com/create) template generator
