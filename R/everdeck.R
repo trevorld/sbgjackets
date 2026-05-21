@@ -61,7 +61,6 @@ pcbj_everdeck <- function(
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
 		date_created = "2026",
-		spdx_id = "CC-BY-SA-3.0",
 		title = "Everdeck Playing Card Box Jackets"
 	)
 	credits <- r"(
