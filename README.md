@@ -130,7 +130,7 @@ This package also provides functions that locally create playing-card box jacket
 |Cubes                            |`pcbj_cubes()`             |[CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/)|
 |[Decktet](https://decktet.com)   |`pcbj_decktet()`           |[CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)|
 |Dice                             |`pcbj_dice()`              |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
-|[Everdeck](https://thewrongtools.wordpress.com/2019/10/10/the-everdeck/)|`pcbj_everdeck()`          |[CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/)|
+|[Everdeck](https://thewrongtools.wordpress.com/2019/10/10/the-everdeck/)|`pcbj_everdeck()`          |Personal Use Only |
 |[The Fox in the Forest](https://foxtrotgames.com/forest/)|`pcbj_fox_in_the_forest()` |Personal Use Only |
 |[French Suits: English Pattern](https://i-p-c-s.org/pattern/ps-48.html)|`pcbj_english_pattern()`   |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
 |[German Suits: Bavarian Pattern](https://i-p-c-s.org/pattern/ps-55.html)|`pcbj_bavarian_pattern()`  |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|

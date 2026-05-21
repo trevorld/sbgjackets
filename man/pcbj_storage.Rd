@@ -2,8 +2,8 @@
 % Please edit documentation in R/storage.R
 \name{pcbj_cubes}
 \alias{pcbj_cubes}
-\alias{pcbj_meeples}
 \alias{pcbj_dice}
+\alias{pcbj_meeples}
 \alias{pcbj_polyhedral_dice}
 \title{Create playing card box jackets for generic component storage.}
 \usage{
@@ -14,14 +14,14 @@ pcbj_cubes(
   instructions = FALSE
 )
 
-pcbj_meeples(
+pcbj_dice(
   output = NULL,
   ...,
   paper = getOption("papersize", "letter"),
   instructions = FALSE
 )
 
-pcbj_dice(
+pcbj_meeples(
   output = NULL,
   ...,
   paper = getOption("papersize", "letter"),

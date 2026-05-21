@@ -125,7 +125,7 @@ jacket_cubes <- function(
 		df <- ppdf::cube_bits(
 			suit = rep(1:8, length.out = n_rows * n_cols),
 			x = rep((1:n_cols - 0.5) * (2.5 / n_cols), n_rows),
-			y = rep((3.5 / n_cols) * (n_cols:1 - 0.5), each = n_rows)
+			y = rep((3.5 / n_rows) * (n_rows:1 - 0.5), each = n_cols)
 		)
 		back <- piecepackr::pmap_piece(
 			df,
@@ -301,17 +301,6 @@ pcbj_cubes <- function(
 
 #' @rdname pcbj_storage
 #' @export
-pcbj_meeples <- function(
-	output = NULL,
-	...,
-	paper = getOption("papersize", "letter"),
-	instructions = FALSE
-) {
-	jacket_meeples(output = output, ..., size = "poker", paper = paper, instructions = instructions)
-}
-
-#' @rdname pcbj_storage
-#' @export
 pcbj_dice <- function(
 	output = NULL,
 	...,
@@ -319,6 +308,17 @@ pcbj_dice <- function(
 	instructions = FALSE
 ) {
 	jacket_dice(output = output, ..., size = "poker", paper = paper, instructions = instructions)
+}
+
+#' @rdname pcbj_storage
+#' @export
+pcbj_meeples <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
+	jacket_meeples(output = output, ..., size = "poker", paper = paper, instructions = instructions)
 }
 
 dice_board_grob <- function() {
