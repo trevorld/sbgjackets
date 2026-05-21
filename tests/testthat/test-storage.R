@@ -1,5 +1,13 @@
 test_that("Storage jackets", {
 	skip_if_not(has_runtime_dependencies())
+	skip_if_not(cache_has("cubes.jpg"))
+	f <- pcbj_cubes()
+	expect_true(file.exists(f))
+	unlink(f)
+	f <- sbgj_cubes()
+	expect_true(file.exists(f))
+	unlink(f)
+
 	skip_if_not(cache_has("dice.jpg"))
 	f <- pcbj_dice()
 	expect_true(file.exists(f))

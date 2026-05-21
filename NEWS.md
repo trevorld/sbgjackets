@@ -31,6 +31,7 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
 * Functions to create SBG jackets for generic components (#8):
 
   + `sbgj_black_stones()`
+  + `sbgj_cubes()`
   + `sbgj_dice()`
   + `sbgj_glass_stones()`
   + `sbgj_marbles()`
@@ -44,6 +45,7 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
   + `pcbj_bavarian_pattern()`
   + `pcbj_bridge()`
   + `pcbj_castilian_pattern()`
+  + `pcbj_cubes()`
   + `pcbj_english_pattern()`
   + `pcbj_decktet()`
   + `pcbj_dice()`
