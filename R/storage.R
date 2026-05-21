@@ -4,6 +4,7 @@
 #' `sbgj_cubes()` creates a small box game jacket for wooden cubes.
 #' `sbgj_glass_stones()` creates a small box game jacket for glass stones.
 #' `sbgj_marbles()` creates a small box game jacket for marbles.
+#' `sbgj_meeples()` creates a small box game jacket for meeples.
 #' `sbgj_pawns()` creates a small box game jacket for pawns.
 #' `sbgj_polyhedral_dice()` creates a small box game jacket for polyhedral dice.
 #' `sbgj_reversible_discs()` creates a small box game jacket for
@@ -97,7 +98,7 @@ jacket_cubes <- function(
 		"cubes.jpg",
 		download = FALSE
 	)
-	bm_pic <- bm_trim(bm_pic, left = 640)
+	bm_pic <- bm_trim(bm_pic, left = 1200)
 	front <- fullGrob(bm_pic, width = 1)
 
 	envir <- piecepackr::game_systems()
@@ -282,6 +283,7 @@ jacket_dice <- function(
 #'
 #' `pcbj_cubes()` creates a playing card box jacket for wooden cube storage.
 #' `pcbj_dice()` creates a playing card box jacket for dice storage.
+#' `pcbj_meeples()` creates a playing card box jacket for meeple storage.
 #' `pcbj_polyhedral_dice()` creates a playing card box jacket for polyhedral dice storage.
 #'
 #' @inheritParams pcbj_english_pattern
@@ -295,6 +297,17 @@ pcbj_cubes <- function(
 	instructions = FALSE
 ) {
 	jacket_cubes(output = output, ..., size = "poker", paper = paper, instructions = instructions)
+}
+
+#' @rdname pcbj_storage
+#' @export
+pcbj_meeples <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
+	jacket_meeples(output = output, ..., size = "poker", paper = paper, instructions = instructions)
 }
 
 #' @rdname pcbj_storage
@@ -436,6 +449,108 @@ sbgj_glass_stones <- function(
 		paper = paper
 	) |>
 		pdf_polish_jacket(xmp = xmp, instructions = instructions)
+}
+
+#' @rdname sbgj_storage
+#' @export
+sbgj_meeples <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
+	jacket_meeples(output = output, ..., size = "4x6", paper = paper, instructions = instructions)
+}
+
+jacket_meeples <- function(
+	output = NULL,
+	...,
+	size = c("4x6", "poker"),
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
+	check_dots_empty()
+	check_sbgjackets_dependencies()
+	size <- match.arg(size)
+
+	bm_pic <- bm_cache_url(
+		"https://www.flickr.com/photos/kaptainkobold/101348899/",
+		"meeples.jpg",
+		download = FALSE
+	)
+	front <- fullGrob(bm_pic, height = 1)
+
+	envir <- piecepackr::game_systems()
+	if (size == "4x6") {
+		df <- ppdf::meeple_bits(
+			suit = rep(1:9, length.out = 24L),
+			x = rep(1:4 - 0.5, 6L),
+			y = rep((6 / 6) * (6:1 - 0.5), each = 4L)
+		)
+		back <- piecepackr::pmap_piece(
+			df,
+			piecepackr::pieceGrob,
+			scale = 1.0,
+			envir = envir,
+			op_scale = 0.5,
+			draw = FALSE,
+			default.units = "in"
+		)
+	} else {
+		df <- ppdf::meeple_bits(
+			suit = rep(1:9, length.out = 12L),
+			x = rep((1:3 - 0.5) * (2.5 / 3), 4L),
+			y = rep((3.5 / 4) * (4:1 - 0.5), each = 3L)
+		)
+		back <- piecepackr::pmap_piece(
+			df,
+			piecepackr::pieceGrob,
+			scale = 0.75,
+			envir = envir,
+			op_scale = 0.5,
+			draw = FALSE,
+			default.units = "in"
+		)
+	}
+
+	spine <- gList(fullGrob("black"), spineTextGrob("Meeples", size = size))
+	xmp <- xmp(
+		creator = "Trevor L. Davis",
+		date_created = "2026",
+		spdx_id = "CC-BY-NC-SA-2.0",
+		title = jacket_title("Meeples", size)
+	)
+
+	credits <- r"(
+		* *Blue Men in Carcassonne* by Alan (kaptainkobold)
+
+		  + <https://www.flickr.com/photos/kaptainkobold/101348899/>
+		  + Creative Commons Attribution-NonCommercial-ShareAlike 2.0 Generic License
+		  + Cropped to fit front cover
+	)"
+	inner <- creditsGrob(xmp, credits, icons = FALSE, size = size)
+
+	output <- if (size == "4x6") {
+		pdf_create_jacket(
+			output = output,
+			front = front,
+			back = back,
+			spine = spine,
+			inner = inner,
+			paper = paper
+		)
+	} else {
+		pdf_create_poker_jacket(
+			output = output,
+			front = front,
+			back = back,
+			spine = spine,
+			inner = inner,
+			paper = paper,
+			bg = "white"
+		)
+	}
+	pdf_polish_jacket(output, xmp = xmp, instructions = instructions)
 }
 
 #' @rdname sbgj_storage
