@@ -1,6 +1,9 @@
 test_that("Storage jackets", {
 	skip_if_not(has_runtime_dependencies())
 	skip_if_not(cache_has("dice.jpg"))
+	f <- pcbj_dice()
+	expect_true(file.exists(f))
+	unlink(f)
 	f <- sbgj_dice(instructions = TRUE)
 	expect_true(file.exists(f))
 	unlink(f)
@@ -28,6 +31,9 @@ test_that("Storage jackets", {
 	unlink(f)
 
 	skip_if_not(cache_has("polyhedral_dice.jpg"))
+	f <- pcbj_polyhedral_dice()
+	expect_true(file.exists(f))
+	unlink(f)
 	f <- sbgj_polyhedral_dice()
 	expect_true(file.exists(f))
 	unlink(f)

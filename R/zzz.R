@@ -82,6 +82,7 @@ df_pcbj <- function() {
 		~game, ~url, ~`function`, ~license,
 		"Bridge", "https://www.pagat.com/auctionwhist/bridge.html", "`pcbj_bridge()`", "CC-BY-4.0",
 		"Decktet", "https://decktet.com", "`pcbj_decktet()`", "CC-BY-NC-SA-4.0",
+		"Dice", NA_character_, "`pcbj_dice()`", "CC-BY-4.0",
 		"Everdeck", "https://thewrongtools.wordpress.com/2019/10/10/the-everdeck/", "`pcbj_everdeck()`", "CC-BY-SA-3.0",
 		"The Fox in the Forest", "https://foxtrotgames.com/forest/", "`pcbj_fox_in_the_forest()`", "Personal Use Only",
 		"French Suits: English Pattern", "https://i-p-c-s.org/pattern/ps-48.html", "`pcbj_english_pattern()`", "CC-BY-4.0",
@@ -89,12 +90,19 @@ df_pcbj <- function() {
 		"Mahjong", "https://www.sloperama.com/mahjongg/", "`pcbj_mahjong()`", "CC-BY-ND-4.0",
 		"Pinochle", "https://www.pagat.com/marriage/pinmain.html", "`pcbj_pinochle()`", "CC-BY-SA-3.0",
 		"Poker", "https://www.pagat.com/poker", "`pcbj_poker()`", "CC-BY-4.0",
+		"Polyhedral Dice", NA_character_, "`pcbj_polyhedral_dice()`", "CC-BY-ND-4.0",
 		"Qwixx", "https://gamewright.com/product/Qwixx", "`pcbj_qwixx()`", "Personal Use Only",
 		"Spanish Suits: Castilian Pattern", "https://i-p-c-s.org/pattern/ps-27.html", "`pcbj_castilian_pattern()`", "CC-BY-4.0",
 		"Wizard", "https://www.usgamesinc.com/original-wizard-r-card-game.html", "`pcbj_wizard()`", "Personal Use Only"
 	)
 	df$shareable <- TRUE
 	df
+}
+
+jacket_title <- function(name, size = c("4x6", "poker")) {
+	size <- match.arg(size)
+	suffix <- if (size == "4x6") "Small Box Game Jacket" else "Playing Card Box Jacket"
+	paste(name, suffix)
 }
 
 cache_has <- function(filename) {

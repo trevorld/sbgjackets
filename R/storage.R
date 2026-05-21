@@ -77,42 +77,64 @@ sbgj_dice <- function(
 	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
+	jacket_dice(output = output, ..., size = "4x6", paper = paper, instructions = instructions)
+}
+
+jacket_dice <- function(
+	output = NULL,
+	...,
+	size = c("4x6", "poker"),
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
 	check_dots_empty()
 	check_sbgjackets_dependencies()
+	size <- match.arg(size)
 
 	url <- "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Mannen_spelen_dobbelspel%2C_op_de_grond_zit_aap_met_speelkaarten_Titelpagina_voor_De_alea_libri_duo%2C_Amsterdam_1642_De_alea_libri_duo_%28titel_op_object%29%2C_RP-P-1878-A-819.jpg/1193px-thumbnail.jpg"
 	bm_pic <- bm_cache_url(url, "dice.jpg") |>
 		bm_trim(right = 150L, left = 075L, top = 550L, bottom = 250L)
+	front <- fullGrob(bm_pic, height = 1)
 
 	envir <- piecepackr::game_systems()
-	# df <- ppdf::dice_dice(x = rep(1:4 - 0.5, 6L),
-	#                       y = rep(6:1 - 0.5, each = 4L),
-	#                       rank = rep(1:6, 4L),
-	#                       suit = rep(6:1, 4L))
-	df <- ppdf::dice_dice(
-		x = rep(1:4 - 0.5, 7L),
-		y = rep((6 / 7) * (7:1 - 0.5) + 0.1, each = 4L),
-		rank = rep(1:6, length.out = 28L),
-		suit = rep(6:1, length.out = 28L)
-	)
-	dice <- piecepackr::pmap_piece(
-		df,
-		piecepackr::pieceGrob,
-		scale = 1.1,
-		envir = envir,
-		draw = FALSE,
-		default.units = "in"
-	)
+	if (size == "4x6") {
+		df <- ppdf::dice_dice(
+			x = rep(1:4 - 0.5, 7L),
+			y = rep((6 / 7) * (7:1 - 0.5) + 0.1, each = 4L),
+			rank = rep(1:6, length.out = 28L),
+			suit = rep(6:1, length.out = 28L)
+		)
+		back <- piecepackr::pmap_piece(
+			df,
+			piecepackr::pieceGrob,
+			scale = 1.1,
+			envir = envir,
+			draw = FALSE,
+			default.units = "in"
+		)
+	} else {
+		df <- ppdf::dice_dice(
+			x = rep((1:3 - 0.5) * (2.5 / 3), 4L),
+			y = rep((3.5 / 4) * (4:1 - 0.5), each = 3L),
+			rank = rep(1:6, length.out = 12L),
+			suit = rep(6:1, length.out = 12L)
+		)
+		back <- piecepackr::pmap_piece(
+			df,
+			piecepackr::pieceGrob,
+			scale = 0.75,
+			envir = envir,
+			draw = FALSE,
+			default.units = "in"
+		)
+	}
 
-	front <- fullGrob(bm_pic, height = 1)
-	back <- dice
-
-	spine <- gList(fullGrob("black"), spineTextGrob("Dice"))
+	spine <- gList(fullGrob("black"), spineTextGrob("Dice", size = size))
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
 		date_created = "2026",
 		spdx_id = "CC-BY-4.0",
-		title = "Dice Small Box Game Jacket"
+		title = jacket_title("Dice", size)
 	)
 
 	credits <- r"(
@@ -122,18 +144,48 @@ sbgj_dice <- function(
 		  + Public Domain
 		  + Cropped to fit cover
 	)"
-	cr_grob <- creditsGrob(xmp, credits, icons = FALSE)
-	inner <- gList(cr_grob, dice_board_grob())
+	cr_grob <- creditsGrob(xmp, credits, icons = FALSE, size = size)
 
-	output <- pdf_create_jacket(
-		output = output,
-		front = front,
-		back = back,
-		spine = spine,
-		inner = inner,
-		paper = paper
-	) |>
-		pdf_polish_jacket(xmp = xmp, instructions = instructions)
+	if (size == "4x6") {
+		inner <- gList(cr_grob, dice_board_grob())
+		output <- pdf_create_jacket(
+			output = output,
+			front = front,
+			back = back,
+			spine = spine,
+			inner = inner,
+			paper = paper
+		)
+	} else {
+		output <- pdf_create_poker_jacket(
+			output = output,
+			front = front,
+			back = back,
+			spine = spine,
+			inner = cr_grob,
+			paper = paper,
+			bg = "white"
+		)
+	}
+	pdf_polish_jacket(output, xmp = xmp, instructions = instructions)
+}
+
+#' Create playing card box jackets for generic component storage.
+#'
+#' `pcbj_dice()` creates a playing card box jacket for dice storage.
+#' `pcbj_polyhedral_dice()` creates a playing card box jacket for polyhedral dice storage.
+#'
+#' @inheritParams pcbj_english_pattern
+#' @return The output file name invisibly.  As a side effect creates a pdf file.
+#' @rdname pcbj_storage
+#' @export
+pcbj_dice <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
+	jacket_dice(output = output, ..., size = "poker", paper = paper, instructions = instructions)
 }
 
 dice_board_grob <- function() {
@@ -330,48 +382,90 @@ sbgj_polyhedral_dice <- function(
 	paper = getOption("papersize", "letter"),
 	instructions = FALSE
 ) {
+	jacket_polyhedral_dice(
+		output = output,
+		...,
+		size = "4x6",
+		paper = paper,
+		instructions = instructions
+	)
+}
+
+jacket_polyhedral_dice <- function(
+	output = NULL,
+	...,
+	size = c("4x6", "poker"),
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
 	check_dots_empty()
 	check_sbgjackets_dependencies()
+	size <- match.arg(size)
 
 	url <- "https://i2.pickpik.com/photos/821/950/430/cube-play-role-playing-game-craps-82caba6d073e803940fba76a77c4be8a.jpg"
 	bm_pic <- bm_cache_url(url, "polyhedral_dice.jpg")
 	nc <- ncol(bm_pic)
-	bm_front <- bm_pic[, seq.int(ceiling(nc / 2) - 24L, nc)]
-	# bm_back <- bm_pic[, seq.int(1L, floor(nc / 2) + 24L)]
+	front <- fullGrob(bm_pic[, seq.int(ceiling(nc / 2) - 24L, nc)], height = 1)
 
 	envir <- piecepackr::game_systems()
-	df <- ppdf::dice_dice(
-		x = rep(1:4 - 0.5, 7L),
-		y = rep((6 / 7) * (7:1 - 0.5) + 0.1, each = 4L),
-		rank = rep(1:4, 7L),
-		suit = rep(6:1, length.out = 28L)
-	) |>
-		mutate(
-			cfg = rep(
-				paste0("dice_", c("d4", "numeral", "d8", "d10", "d10_percentile", "d12", "d20")),
-				each = 4L
+	if (size == "4x6") {
+		df <- ppdf::dice_dice(
+			x = rep(1:4 - 0.5, 7L),
+			y = rep((6 / 7) * (7:1 - 0.5) + 0.1, each = 4L),
+			rank = rep(1:4, 7L),
+			suit = rep(6:1, length.out = 28L)
+		) |>
+			mutate(
+				cfg = rep(
+					paste0(
+						"dice_",
+						c("d4", "numeral", "d8", "d10", "d10_percentile", "d12", "d20")
+					),
+					each = 4L
+				)
 			)
+		back <- piecepackr::pmap_piece(
+			df,
+			piecepackr::pieceGrob,
+			scale = 0.88,
+			envir = envir,
+			op_scale = 0.01,
+			draw = FALSE,
+			default.units = "in"
 		)
-	dice <- piecepackr::pmap_piece(
-		df,
-		piecepackr::pieceGrob,
-		scale = 0.88,
-		envir = envir,
-		op_scale = 0.01,
-		draw = FALSE,
-		default.units = "in"
-	)
+	} else {
+		df <- ppdf::dice_dice(
+			x = rep(c(0.625, 1.25, 1.875), 7L),
+			y = rep((3.5 / 7) * (7:1 - 0.5), each = 3L),
+			rank = rep(1:4, length.out = 21L),
+			suit = rep(6:1, length.out = 21L)
+		) |>
+			mutate(
+				cfg = rep(
+					paste0(
+						"dice_",
+						c("d4", "numeral", "d8", "d10", "d10_percentile", "d12", "d20")
+					),
+					each = 3L
+				)
+			)
+		back <- piecepackr::pmap_piece(
+			df,
+			piecepackr::pieceGrob,
+			scale = 0.45,
+			envir = envir,
+			op_scale = 0.01,
+			draw = FALSE,
+			default.units = "in"
+		)
+	}
 
-	front <- fullGrob(bm_front, height = 1)
-	back <- dice
-	# back <- fullGrob(bm_back, height = 1)
-
-	spine <- gList(fullGrob("black"), spineTextGrob("Polyhedral Dice"))
+	spine <- gList(fullGrob("black"), spineTextGrob("Polyhedral Dice", size = size))
 	xmp <- xmp(
 		creator = "Trevor L. Davis",
-		date_created = "2025",
+		date_created = if (size == "4x6") "2025" else "2026",
 		spdx_id = "CC-BY-ND-4.0",
-		title = "Polyhedral Dice Small Box Game Jacket"
+		title = jacket_title("Polyhedral Dice", size)
 	)
 
 	credits <- r"(
@@ -384,17 +478,46 @@ sbgj_polyhedral_dice <- function(
 
 		  + Cropped to fit cover
 	)"
-	inner <- creditsGrob(xmp, credits, icons = FALSE)
+	inner <- creditsGrob(xmp, credits, icons = FALSE, size = size)
 
-	output <- pdf_create_jacket(
+	output <- if (size == "4x6") {
+		pdf_create_jacket(
+			output = output,
+			front = front,
+			back = back,
+			spine = spine,
+			inner = inner,
+			paper = paper
+		)
+	} else {
+		pdf_create_poker_jacket(
+			output = output,
+			front = front,
+			back = back,
+			spine = spine,
+			inner = inner,
+			paper = paper,
+			bg = "white"
+		)
+	}
+	pdf_polish_jacket(output, xmp = xmp, instructions = instructions)
+}
+
+#' @rdname pcbj_storage
+#' @export
+pcbj_polyhedral_dice <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
+	jacket_polyhedral_dice(
 		output = output,
-		front = front,
-		back = back,
-		spine = spine,
-		inner = inner,
-		paper = paper
-	) |>
-		pdf_polish_jacket(xmp = xmp, instructions = instructions)
+		...,
+		size = "poker",
+		paper = paper,
+		instructions = instructions
+	)
 }
 
 #' @rdname sbgj_storage
