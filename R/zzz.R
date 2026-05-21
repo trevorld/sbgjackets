@@ -39,6 +39,7 @@ df_sbgj <- function() {
 	# fmt: skip
 	df <- tibble::tribble(
 		~game, ~url, ~`function`, ~license,
+		"Cubes", NA_character_, "`sbgj_cubes()`", "CC-BY-SA-3.0",
 		"Dice", NA_character_, "`sbgj_dice()`", "CC-BY-4.0",
 		"Polyhedral Dice", NA_character_, "`sbgj_polyhedral_dice()`", "CC-BY-ND-4.0",
 		"Double-Six Dominoes", "https://www.pagat.com/domino/", "`sbgj_dominoes_double6()`", "CC-BY-4.0",
@@ -81,6 +82,7 @@ df_pcbj <- function() {
 	df <- tibble::tribble(
 		~game, ~url, ~`function`, ~license,
 		"Bridge", "https://www.pagat.com/auctionwhist/bridge.html", "`pcbj_bridge()`", "CC-BY-4.0",
+		"Cubes", NA_character_, "`pcbj_cubes()`", "CC-BY-SA-3.0",
 		"Decktet", "https://decktet.com", "`pcbj_decktet()`", "CC-BY-NC-SA-4.0",
 		"Dice", NA_character_, "`pcbj_dice()`", "CC-BY-4.0",
 		"Everdeck", "https://thewrongtools.wordpress.com/2019/10/10/the-everdeck/", "`pcbj_everdeck()`", "CC-BY-SA-3.0",
