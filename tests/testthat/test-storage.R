@@ -8,6 +8,14 @@ test_that("Storage jackets", {
 	expect_true(file.exists(f))
 	unlink(f)
 
+	skip_if_not(cache_has("meeples.jpg"))
+	f <- pcbj_meeples()
+	expect_true(file.exists(f))
+	unlink(f)
+	f <- sbgj_meeples()
+	expect_true(file.exists(f))
+	unlink(f)
+
 	skip_if_not(cache_has("dice.jpg"))
 	f <- pcbj_dice()
 	expect_true(file.exists(f))
