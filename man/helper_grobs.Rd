@@ -7,13 +7,13 @@
 \alias{spineIconGrob}
 \title{Small Box Game Jacket Grobs}
 \usage{
-spineTextGrob(title, col = "white", size = c("4x6", "poker"))
+spineTextGrob(title, col = "white", size = c("4x6", "poker", "wallet"))
 
 creditsGrob(
   xmp = xmpdf::xmp(),
   credits = character(),
   icons = FALSE,
-  size = "4x6",
+  size = c("4x6", "poker", "wallet"),
   ...,
   width = NULL,
   x = NULL
@@ -22,19 +22,25 @@ creditsGrob(
 backNotesGrob(
   notes,
   col = "black",
-  size = c("4x6", "poker"),
+  size = c("4x6", "poker", "wallet"),
   ...,
   style = sbgjackets_style(size, color = col)
 )
 
-spineIconGrob(players, minutes, weight, col = "white", size = "4x6")
+spineIconGrob(
+  players,
+  minutes,
+  weight,
+  col = "white",
+  size = c("4x6", "poker", "wallet")
+)
 }
 \arguments{
 \item{title}{Title of small box game jacket (usually game name)}
 
 \item{col}{Color of text/icons}
 
-\item{size}{Target box size.  Either \code{"4x6"} or \code{"poker"}.}
+\item{size}{Target box size.  Either \code{"4x6"}, \code{"poker"}, or \code{"wallet"}.}
 
 \item{xmp}{A \code{\link[xmpdf:xmp]{xmpdf::xmp()}} object with copyright/license information.}
 

@@ -5,7 +5,7 @@
 #' box game jackets using [pnpmisc::pdf_create_jacket()].
 #' @param title Title of small box game jacket (usually game name)
 #' @param col Color of text/icons
-#' @param size Target box size.  Either `"4x6"` or `"poker"`.
+#' @param size Target box size.  Either `"4x6"`, `"poker"`, or `"wallet"`.
 #' @param players A integer vector of allowed number of players
 #' @param minutes An integer of number of minutes (larger number from BGG)
 #' @param weight A double of game weight (number from BGG)
@@ -24,24 +24,34 @@
 #'                              spine = spine, inner = inner)
 #' }
 #' @export
-spineTextGrob <- function(title, col = "white", size = c("4x6", "poker")) {
+spineTextGrob <- function(title, col = "white", size = c("4x6", "poker", "wallet")) {
 	size <- match.arg(size)
 	if (size == "4x6") {
 		fontsize <- "28"
 		x <- unit(0.25, "in")
 		y <- unit(0.25, "in")
-	} else {
+		hjust <- 0
+		vjust <- 0
+	} else if (size == "poker") {
 		fontsize <- "16"
 		x <- unit(0.125, "in")
 		y <- unit(0.200, "in")
+		hjust <- 0
+		vjust <- 0
+	} else {
+		fontsize <- "16"
+		x <- unit(2.125, "in")
+		y <- unit(3, "in")
+		hjust <- 0
+		vjust <- 0.5
 	}
 	textGrob(
 		title,
 		x,
 		y,
-		hjust = 0,
-		vjust = 0,
-		gp = gpar(fontsize = fontsize, col = col, fontface = "bold")
+		hjust = hjust,
+		vjust = vjust,
+		gp = gpar(fontsize = fontsize, col = col, fontface = "bold", fontfamily = "Carlito")
 	)
 }
 
@@ -61,7 +71,11 @@ prepend_instructions <- function(
 	orientation = "landscape"
 ) {
 	current_dev <- grDevices::dev.cur()
-	pdf(NULL, width = pnpmisc:::JACKET_4x6_WIDTH, height = pnpmisc:::JACKET_4x6_HEIGHT)
+	ragg::agg_capture(
+		width = pnpmisc:::JACKET_4x6_WIDTH,
+		height = pnpmisc:::JACKET_4x6_HEIGHT,
+		units = "in"
+	)
 	on.exit(invisible(dev.off()), add = TRUE)
 	if (current_dev > 1) {
 		on.exit(grDevices::dev.set(current_dev), add = TRUE)
@@ -109,15 +123,20 @@ creditsGrob <- function(
 	xmp = xmpdf::xmp(),
 	credits = character(),
 	icons = FALSE,
-	size = "4x6",
+	size = c("4x6", "poker", "wallet"),
 	...,
 	width = NULL,
 	x = NULL
 ) {
 	check_dots_empty()
+	size <- match.arg(size)
 	# Prevents `marquee::marque_grob()` from leaving open a graphics device
 	current_dev <- grDevices::dev.cur()
-	pdf(NULL, width = pnpmisc:::JACKET_4x6_WIDTH, height = pnpmisc:::JACKET_4x6_HEIGHT)
+	ragg::agg_capture(
+		width = pnpmisc:::JACKET_4x6_WIDTH,
+		height = pnpmisc:::JACKET_4x6_HEIGHT,
+		units = "in"
+	)
 	on.exit(invisible(dev.off()), add = TRUE)
 	if (current_dev > 1) {
 		on.exit(grDevices::dev.set(current_dev), add = TRUE)
@@ -126,8 +145,7 @@ creditsGrob <- function(
 		trim_multistring()
 
 	if (icons) {
-		credits <- c(
-			credits,
+		icon_credits <- c(
 			"",
 			"* Various icons from Game-icons.net",
 			"",
@@ -136,92 +154,173 @@ creditsGrob <- function(
 			"  + {dQuote('Weight')} by Delapouite <https://game-icons.net/1x1/delapouite/weight.html>",
 			"  + CC BY 3.0 license: <https://creativecommons.org/licenses/by/3.0/>"
 		)
+	} else {
+		icon_credits <- NULL
 	}
-	credits <- c(
-		"# Credits",
-		"",
-		credits
-	)
-	if (size == "4x6") {
-		credits <- c(
-			credits,
+	if (size %in% c("4x6")) {
+		font_credits <- c(
 			"",
 			"* The Carlito font by {L_stroke}ukasz Dziedzic",
 			"",
 			"  + <https://fonts.google.com/specimen/Carlito>",
 			"  + SIL Open Font License, Version 1.1"
 		)
+	} else {
+		font_credits <- NULL
 	}
 
 	fn_expr <- try(as.list(sys.call(-1L))[[1L]], silent = TRUE)
-	if (!inherits(fn_expr, "try-error")) {
+	if (!inherits(fn_expr, "try-error") && size == "4x6") {
 		fn <- as.character(fn_expr)
 		if (fn[[1L]] == "getFromNamespace") {
 			fn <- eval(fn_expr[[2L]], parent.frame(n = 2L))
 		} else {
-			fn <- grep("^sbgj_|^pcbj_", fn, value = TRUE)
+			fn <- grep("^sbgj_|^pcbj_|^wj_", fn, value = TRUE)
 		}
 		if (length(fn) == 1L && exists(fn, getNamespace("sbgjackets"))) {
-			generated_by <- c(
+			generated_by_credits <- c(
+				"",
 				"* Generated in `R` by `sbgjackets::{fn}()`",
 				"",
 				"  + <https://github.com/trevorld/sbgjackets>",
 				"  + MIT license"
 			)
 		} else {
-			generated_by <- c(
+			generated_by_credits <- c(
+				"",
 				"* Generated in `R` by `pnpmisc::pdf_create_jacket()`",
 				"",
 				"  + <https://github.com/trevorld/pnpmisc>",
 				"  + MIT license"
 			)
 		}
-	}
-	if (size == "4x6") {
-		credits <- c(credits, "", generated_by)
+	} else {
+		generated_by_credits <- NULL
 	}
 	if (!is.null(xmp$usage_terms)) {
 		license <- xmp$usage_terms
 	} else {
 		license <- "Personal Use Only"
 	}
-	credits <- c("# License", "", license, "", credits)
+	license <- c("# License", "", license)
 	if (!is.null(xmp$title) && !is.null(xmp$attribution_name)) {
 		title <- '*{xmp$title[["x-default"]]}* by {xmp$attribution_name}'
 		if (!is.null(xmp$rights)) {
 			title <- c(title, "", xmp$rights)
 		}
-		credits <- c(title, credits)
-	}
-	credits <- paste(credits, collapse = "\n") |>
-		marquee::marquee_glue(.trim = FALSE)
-	# cat(credits, sep = "\n")
-	mg <- marquee::marquee_grob(
-		credits,
-		style = sbgjackets_style(size),
-		width = width %||% unit(pnpmisc:::JACKET_4x6_FRONT_WIDTH + 1, "in"),
-		x = x %||% unit(1 / 8, "in"),
-		y = unit(1, "npc") - unit(1 / 8, "in")
-	)
-	if (is.null(xmp$spdx_id)) {
-		grob_cc <- nullGrob()
 	} else {
-		badge <- piecepackr::spdx_license_list[xmp$spdx_id, "badge"]
-		if (is.na(badge)) {
-			grob_cc <- nullGrob()
-		} else {
-			cc_file <- system.file(paste0("extdata/badges/", badge), package = "piecepackr")
-			cc_picture <- grImport2::readPicture(cc_file)
-			grob_cc <- grImport2::symbolsGrob(
-				cc_picture,
-				x = unit(pnpmisc:::JACKET_4x6_FRONT_WIDTH / 2, "in"),
-				y = unit(0.30, "in"),
-				size = unit(0.9, "in")
-			)
-		}
+		title <- NULL
 	}
+	if (size == "wallet") {
+		grob_cc <- license_badge_grob(
+			xmp,
+			x = unit(0.5, "npc"),
+			y = unit(1.0, "npc") - unit(0.4, "in")
+		)
 
-	gList(grob_cc, mg)
+		credits <- c(
+			"# Credits",
+			icon_credits,
+			font_credits,
+			generated_by_credits,
+			"",
+			credits
+		)
+		textl <- c(title, license)
+		textl <- paste(textl, collapse = "\n") |>
+			marquee::marquee_glue(.trim = FALSE)
+		# Horizontally centered since the spine mask clips increasingly
+		# aggressively away from the middle of this strip, unlike the
+		# corner-anchored jackets. Still top-anchored vertically.
+		mgl <- marquee::marquee_grob(
+			textl,
+			style = sbgjackets_style(size, align = "center"),
+			width = unit(4.75, "in"),
+			x = x %||% unit(0.5, "npc"),
+			y = unit(1, "npc") - unit(1 / 8, "in") - unit(0.55, "in"),
+			hjust = "center-ink"
+		)
+		# Credits go in the left inside strip (x=[0,2]) of the spine viewport,
+		# rotated so text runs along the spine's y-axis.
+		gl <- gTree(
+			children = gList(mgl, grob_cc),
+			vp = viewport(
+				x = unit(1, "in"),
+				y = unit(3, "in"),
+				width = unit(4.75, "in"),
+				height = unit(1.75, "in"),
+				angle = -90
+			)
+		)
+		textr <- c(credits)
+		textr <- paste(textr, collapse = "\n") |>
+			marquee::marquee_glue(.trim = FALSE)
+		# Horizontally centered since the spine mask clips increasingly
+		# aggressively away from the middle of this strip, unlike the
+		# corner-anchored jackets. Still top-anchored vertically.
+		mgr <- marquee::marquee_grob(
+			textr,
+			style = sbgjackets_style(size, align = "center"),
+			width = unit(4.75, "in"),
+			x = x %||% unit(0.5, "npc"),
+			y = unit(1, "npc") - unit(1 / 8, "in"),
+			hjust = "center-ink"
+		)
+		# Credits go in the left inside strip (x=[0,2]) of the spine viewport,
+		# rotated so text runs along the spine's y-axis.
+		gr <- gTree(
+			children = gList(mgr),
+			vp = viewport(
+				x = unit(7, "in"),
+				y = unit(3, "in"),
+				width = unit(4.75, "in"),
+				height = unit(1.75, "in"),
+				angle = 90
+			)
+		)
+		gList(gl, gr)
+	} else {
+		grob_cc <- license_badge_grob(xmp)
+
+		credits <- c(
+			"# Credits",
+			"",
+			credits,
+			icon_credits,
+			font_credits,
+			generated_by_credits
+		)
+		text <- c(title, license, "", credits)
+		# cat(text, sep = "\n")
+		text <- paste(text, collapse = "\n") |>
+			marquee::marquee_glue(.trim = FALSE)
+		mg <- marquee::marquee_grob(
+			text,
+			style = sbgjackets_style(size),
+			width = width %||% unit(pnpmisc:::JACKET_4x6_FRONT_WIDTH + 1, "in"),
+			x = x %||% unit(1 / 8, "in"),
+			y = unit(1, "npc") - unit(1 / 8, "in")
+		)
+
+		gList(grob_cc, mg)
+	}
+}
+
+license_badge_grob <- function(
+	xmp,
+	x = unit(pnpmisc:::JACKET_4x6_FRONT_WIDTH / 2, "in"),
+	y = unit(0.30, "in")
+) {
+	if (is.null(xmp$spdx_id)) {
+		return(nullGrob())
+	}
+	badge <- piecepackr::spdx_license_list[xmp$spdx_id, "badge"]
+	if (is.na(badge)) {
+		return(nullGrob())
+	}
+	cc_file <- system.file(paste0("extdata/badges/", badge), package = "piecepackr")
+	cc_picture <- grImport2::readPicture(cc_file)
+	grImport2::symbolsGrob(cc_picture, x = x, y = y, size = unit(0.9, "in"))
 }
 
 #' @rdname helper_grobs
@@ -236,21 +335,42 @@ creditsGrob <- function(
 backNotesGrob <- function(
 	notes,
 	col = "black",
-	size = c("4x6", "poker"),
+	size = c("4x6", "poker", "wallet"),
 	...,
 	style = sbgjackets_style(size, color = col)
 ) {
-	#### check_dots_empty()
 	size <- match.arg(size)
 	notes <- paste(notes, collapse = "\n") |>
 		trim_multistring() |>
 		marquee::marquee_glue(.trim = FALSE)
 	if (size == "4x6") {
 		width <- unit(pnpmisc:::JACKET_4x6_FRONT_WIDTH, "in")
-	} else {
+		y_pos <- unit(1, "npc") - unit(1 / 8, "in")
+	} else if (size == "poker") {
 		width <- unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in")
+		y_pos <- unit(1, "npc") - unit(1 / 8, "in")
+	} else {
+		# Front viewport is 2"x8"; safe zone for wallet is y=[2,6]
+		width <- unit(1.75, "in")
+		y_pos <- unit(6, "in") - unit(1 / 8, "in")
 	}
-	#### Bug in `marquee_grob()` that we need this hack?
+	# Prevents `marquee::marquee_grob()` from leaving open a graphics device
+	current_dev <- grDevices::dev.cur()
+	ragg::agg_capture(
+		width = pnpmisc:::JACKET_4x6_WIDTH,
+		height = pnpmisc:::JACKET_4x6_HEIGHT,
+		units = "in"
+	)
+	on.exit(invisible(dev.off()), add = TRUE)
+	if (current_dev > 1) {
+		on.exit(grDevices::dev.set(current_dev), add = TRUE)
+	}
+	# `...` (e.g. `around_table = around_table` in `pcbj_pinochle()`) is bound
+	# into scope here so markdown image tags like `![](around_table)` can
+	# resolve the object by name when `marquee_grob()` renders them.
+	# If {marquee} agrees to look for such objects higher up the call stack
+	# instead of just its own environment, this workaround (and `...`) could
+	# be dropped in favor of `check_dots_empty()`.
 	with(
 		list(...),
 		marquee::marquee_grob(
@@ -258,7 +378,7 @@ backNotesGrob <- function(
 			style = style,
 			width = width,
 			x = unit(1 / 8, "in"),
-			y = unit(1, "npc") - unit(1 / 8, "in")
+			y = y_pos
 		)
 	)
 }
@@ -269,27 +389,51 @@ backNotesGrob <- function(
 
 #' @rdname helper_grobs
 #' @export
-spineIconGrob <- function(players, minutes, weight, col = "white", size = "4x6") {
+spineIconGrob <- function(
+	players,
+	minutes,
+	weight,
+	col = "white",
+	size = c("4x6", "poker", "wallet")
+) {
+	size <- match.arg(size)
 	r <- unit(0.3, "snpc")
 	gp_rr <- gpar(col = col, fill = NA, lwd = 2)
 	if (size == "4x6") {
 		gp_text <- gpar(fontsize = 10, fontfamily = "Carlito", col = col)
-		height = unit(17 / 32, "in")
-		width = unit(17 / 16, "in")
-		y = unit(0.125, "in")
-	} else {
+		height <- unit(17 / 32, "in")
+		width <- unit(17 / 16, "in")
+		vp <- viewport(
+			x = unit(1, "npc") - unit(0.125, "in"),
+			y = unit(0.125, "in"),
+			just = c("right", "bottom"),
+			height = height,
+			width = width
+		)
+	} else if (size == "poker") {
 		gp_text <- gpar(fontsize = 8, fontfamily = "Carlito", col = col)
-		height = unit(14 / 32, "in")
-		width = unit(15 / 16, "in")
-		y = unit(0.100, "in")
+		height <- unit(14 / 32, "in")
+		width <- unit(15 / 16, "in")
+		vp <- viewport(
+			x = unit(1, "npc") - unit(0.125, "in"),
+			y = unit(0.100, "in"),
+			just = c("right", "bottom"),
+			height = height,
+			width = width
+		)
+	} else {
+		# wallet
+		gp_text <- gpar(fontsize = 6, fontfamily = "Carlito", col = col)
+		height <- unit(9 / 32, "in")
+		width <- unit(9 / 16, "in")
+		vp <- viewport(
+			x = unit(5.875, "in"),
+			y = unit(3, "in"),
+			just = c("right", "center"),
+			height = height,
+			width = width
+		)
 	}
-	vp <- viewport(
-		x = unit(1, "npc") - unit(0.125, "in"),
-		y = y,
-		just = c("right", "bottom"),
-		height = height,
-		width = width
-	)
 	gl <- gList(
 		roundrectGrob(x = 1 / 6, width = 1 / 3, r = r, gp = gp_rr),
 		textGrob(format_n_players(players), x = 1 / 6, y = 1 / 4, gp = gp_text),

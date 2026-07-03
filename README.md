@@ -10,6 +10,7 @@
 * [Examples](#examples)
 * [Pre-made 4x6 Photo Box Jackets](#premade)
 * [Pre-made Playing Card Box Jackets](#premade_card)
+* [Pre-made Playing Card Wallets](#premade_wallet)
 * [Differences with Boardgame Barrio's Small Box Game Jackets](#barrio)
 * [Related links](#related)
 
@@ -142,6 +143,18 @@ This package also provides functions that locally create playing-card box jacket
 |[Qwixx](https://gamewright.com/product/Qwixx)|`pcbj_qwixx()`             |Personal Use Only |
 |[Spanish Suits: Castilian Pattern](https://i-p-c-s.org/pattern/ps-27.html)|`pcbj_castilian_pattern()` |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
 |[Wizard](https://www.usgamesinc.com/original-wizard-r-card-game.html)|`pcbj_wizard()`            |Personal Use Only |
+
+
+
+## <a name="premade_wallet">Pre-made Playing Card Wallets</a>
+
+This package also provides functions that locally create print-and-play origami card wallet pdfs for a few select games.  Pre-made versions for several of these are available for download at <https://trevorldavis.com/piecepackr/pages/print-and-play-pdfs.html>.
+
+
+
+|Game (System/Components) |Function                     |License         |
+|:------------------------|:----------------------------|:---------------|
+|[Blorg in the Midwest](https://boardgamegeek.com/boardgame/220380/blorg-in-the-midwest)|`pcw_blorg_in_the_midwest()` |[CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)|
 
 
 

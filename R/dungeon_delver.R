@@ -77,7 +77,7 @@ sbgj_dungeon_delver <- function(
 		  + Cropped to fit front cover
 	)"
 
-	inner <- creditsGrob(xmp, credits, icons = FALSE)
+	inner <- creditsGrob(xmp, credits, icons = TRUE)
 	spine <- gList(
 		fullGrob("#C4BEB2"),
 		spineTextGrob("Dungeon Delver", col = "#1B0C05"),
