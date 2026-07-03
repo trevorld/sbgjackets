@@ -1,8 +1,8 @@
 #' @import grid
 #' @importFrom bittermelon as_bm_pixmap bm_extract bm_replace bm_rotate bm_trim
 #' @importFrom dplyr filter mutate
-#' @importFrom grDevices dev.off pdf
-#' @importFrom pnpmisc fullGrob pdf_create_jacket pdf_create_poker_jacket pdf_orientation pdf_paper zip_extract_bm_pixmap
+#' @importFrom grDevices dev.off
+#' @importFrom pnpmisc fullGrob pdf_create_jacket pdf_create_poker_jacket pdf_create_wallet pdf_orientation pdf_paper zip_extract_bm_pixmap
 #' @importFrom rlang abort check_dots_empty .data
 #' @importFrom stringr str_c str_count str_flatten str_glue str_replace str_split str_sub str_sub<- str_trim
 #' @importFrom utils download.file packageVersion
@@ -33,6 +33,17 @@ restore_devices <- function(current_dev) {
 		grDevices::graphics.off()
 	}
 	invisible(NULL)
+}
+
+muffle_warning <- function(expr, regexp) {
+	withCallingHandlers(
+		expr,
+		warning = function(w) {
+			if (grepl(regexp, conditionMessage(w))) {
+				invokeRestart("muffleWarning")
+			}
+		}
+	)
 }
 
 df_sbgj <- function() {
@@ -103,9 +114,24 @@ df_pcbj <- function() {
 	df
 }
 
-jacket_title <- function(name, size = c("4x6", "poker")) {
+df_pcw <- function() {
+	# fmt: skip
+	df <- tibble::tribble(
+		~game, ~url, ~`function`, ~license,
+		"Blorg in the Midwest", "https://boardgamegeek.com/boardgame/220380/blorg-in-the-midwest", "`pcw_blorg_in_the_midwest()`", "CC-BY-NC-SA-4.0"
+	)
+	df$shareable <- TRUE
+	df
+}
+
+jacket_title <- function(name, size = c("4x6", "poker", "wallet")) {
 	size <- match.arg(size)
-	suffix <- if (size == "4x6") "Small Box Game Jacket" else "Playing Card Box Jacket"
+	suffix <- switch(
+		size,
+		"4x6" = "Small Box Game Jacket",
+		"poker" = "Playing Card Box Jacket",
+		"wallet" = "Playing Card Wallet"
+	)
 	paste(name, suffix)
 }
 

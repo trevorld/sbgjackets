@@ -56,6 +56,10 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
   + `pcbj_poker()`
   + `pcbj_polyhedral_dice()`
 
+* Functions to create Card Wallet jackets (#14):
+
+  + `pcw_blorg_in_the_midwest()`
+
 Functions to create small box game (SBG) jackets for **Personal Use Only**:
 
 * Functions to create SBG jackets for Looney Pyramids (#2):

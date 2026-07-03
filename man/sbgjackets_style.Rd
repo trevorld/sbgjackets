@@ -4,14 +4,26 @@
 \alias{sbgjackets_style}
 \title{Small Box Game Jackets \code{marquee} style}
 \usage{
-sbgjackets_style(size = c("4x6", "poker"), ..., color = "black")
+sbgjackets_style(
+  size = c("4x6", "poker", "wallet"),
+  ...,
+  color = "black",
+  align = NULL
+)
 }
 \arguments{
-\item{size}{Either \code{"4x6"} for a 4x6 photo storage box jacket or \code{"poker"} for a playing card storage box.}
+\item{size}{Either \code{"4x6"} for a 4x6 photo storage box jacket,
+\code{"poker"} for a playing card storage box, or
+\code{"wallet"} for a card wallet origami jacket.}
 
 \item{...}{Ignored}
 
 \item{color}{The desired text color.}
+
+\item{align}{If not \code{NULL} the text alignment
+(e.g. \code{"left"}, \code{"center"}, or \code{"right"})
+to use for the \code{"base"} style,
+see \code{\link[marquee:style]{marquee::style()}} for allowed values.}
 }
 \value{
 A \code{marquee} style set object.

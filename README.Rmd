@@ -10,6 +10,7 @@
 * [Examples](#examples)
 * [Pre-made 4x6 Photo Box Jackets](#premade)
 * [Pre-made Playing Card Box Jackets](#premade_card)
+* [Pre-made Playing Card Wallets](#premade_wallet)
 * [Differences with Boardgame Barrio's Small Box Game Jackets](#barrio)
 * [Related links](#related)
 
@@ -91,6 +92,12 @@ This package also provides functions that locally create SBG jackets pdfs for a 
 This package also provides functions that locally create playing-card box jackets pdfs for a few select games (and game systems and generic components).  Pre-made versions for several of these are available for download at <https://trevorldavis.com/piecepackr/pages/print-and-play-pdfs.html>.
 
 `r sbgjackets:::readme_markdown_table(sbgjackets:::df_pcbj())`
+
+## <a name="premade_wallet">Pre-made Playing Card Wallets</a>
+
+This package also provides functions that locally create print-and-play origami card wallet pdfs for a few select games.  Pre-made versions for several of these are available for download at <https://trevorldavis.com/piecepackr/pages/print-and-play-pdfs.html>.
+
+`r sbgjackets:::readme_markdown_table(sbgjackets:::df_pcw())`
 
 ## <a name="barrio">Differences with Boardgame Barrio's Small Box Game Jackets</a>
 
