@@ -1,6 +1,6 @@
-#' Create card wallet jacket for *Blorg in the Midwest*
+#' Create playing card wallet for *Blorg in the Midwest*
 #'
-#' `pcw_blorg_in_the_midwest()` creates a card wallet jacket for the game
+#' `pcw_blorg_in_the_midwest()` creates an origami playing card wallet for the game
 #' *Blorg in the Midwest*.
 #'
 #' @inheritParams pnpmisc::pdf_create_wallet
@@ -21,8 +21,7 @@ pcw_blorg_in_the_midwest <- function(
 	text_col <- "black"
 
 	url <- "https://boardgamegeek.com/filepage/145694/blorg-in-the-midwest-rules"
-	rules_path <- cache_url(url, "Blorg_in_the_Midwest_rules.pdf", download = FALSE)
-	bm_page_1 <- pnpmisc::pdf_render_bm_pixmap(rules_path, page = 1L)
+	bm_page_1 <- bm_cache_url(url, "Blorg_in_the_Midwest_rules.pdf", download = FALSE)
 	bm_cover <- bm_extract(bm_page_1, 2537:3286, 217:706)
 	bm_setup <- bm_extract(bm_page_1, 445:936, 1740:2316)
 	setup_grob <- rasterGrob(bm_setup, width = unit(0.9, "npc"))
@@ -71,15 +70,12 @@ pcw_blorg_in_the_midwest <- function(
 		creditsGrob(xmp, credits, icons = TRUE, size = "wallet")
 	)
 
-	output <- muffle_warning(
-		pdf_create_wallet(
-			output = output,
-			front = front,
-			back = back,
-			spine = spine,
-			paper = paper
-		),
-		"cannot clip to rotated viewport"
+	output <- pdf_create_wallet_silent(
+		output = output,
+		front = front,
+		back = back,
+		spine = spine,
+		paper = paper
 	)
 	pdf_polish_jacket(output, xmp = xmp)
 }

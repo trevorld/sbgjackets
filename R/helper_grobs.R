@@ -40,8 +40,14 @@ spineTextGrob <- function(title, col = "white", size = c("4x6", "poker", "wallet
 		vjust <- 0
 	} else {
 		fontsize <- "16"
-		x <- unit(2.125, "in")
-		y <- unit(3, "in")
+		# Offsets from the spine's center (npc 0.5) rather than an edge:
+		# `pdf_create_wallet()`'s spine viewport grows symmetrically around
+		# its own center as `bleed` increases, so npc 0.5 always maps back
+		# to the same logical point (x=4in, y=3in at bleed=0) regardless of
+		# bleed, while a bare `unit(2.125, "in")` would silently assume
+		# bleed=0.
+		x <- unit(0.5, "npc") - unit(1.875, "in")
+		y <- unit(0.5, "npc")
 		hjust <- 0
 		vjust <- 0.5
 	}
@@ -157,7 +163,7 @@ creditsGrob <- function(
 	} else {
 		icon_credits <- NULL
 	}
-	if (size %in% c("4x6")) {
+	if (size == "4x6") {
 		font_credits <- c(
 			"",
 			"* The Carlito font by {L_stroke}ukasz Dziedzic",
@@ -175,7 +181,7 @@ creditsGrob <- function(
 		if (fn[[1L]] == "getFromNamespace") {
 			fn <- eval(fn_expr[[2L]], parent.frame(n = 2L))
 		} else {
-			fn <- grep("^sbgj_|^pcbj_|^wj_", fn, value = TRUE)
+			fn <- grep("^sbgj_|^pcbj_|^pcw_", fn, value = TRUE)
 		}
 		if (length(fn) == 1L && exists(fn, getNamespace("sbgjackets"))) {
 			generated_by_credits <- c(
@@ -212,98 +218,157 @@ creditsGrob <- function(
 		title <- NULL
 	}
 	if (size == "wallet") {
-		grob_cc <- license_badge_grob(
-			xmp,
-			x = unit(0.5, "npc"),
-			y = unit(1.0, "npc") - unit(0.4, "in")
+		creditsGrob_wallet(
+			xmp = xmp,
+			credits = credits,
+			icon_credits = icon_credits,
+			font_credits = font_credits,
+			generated_by_credits = generated_by_credits,
+			license = license,
+			title = title,
+			x = x
 		)
-
-		credits <- c(
-			"# Credits",
-			icon_credits,
-			font_credits,
-			generated_by_credits,
-			"",
-			credits
-		)
-		textl <- c(title, license)
-		textl <- paste(textl, collapse = "\n") |>
-			marquee::marquee_glue(.trim = FALSE)
-		# Horizontally centered since the spine mask clips increasingly
-		# aggressively away from the middle of this strip, unlike the
-		# corner-anchored jackets. Still top-anchored vertically.
-		mgl <- marquee::marquee_grob(
-			textl,
-			style = sbgjackets_style(size, align = "center"),
-			width = unit(4.75, "in"),
-			x = x %||% unit(0.5, "npc"),
-			y = unit(1, "npc") - unit(1 / 8, "in") - unit(0.55, "in"),
-			hjust = "center-ink"
-		)
-		# Credits go in the left inside strip (x=[0,2]) of the spine viewport,
-		# rotated so text runs along the spine's y-axis.
-		gl <- gTree(
-			children = gList(mgl, grob_cc),
-			vp = viewport(
-				x = unit(1, "in"),
-				y = unit(3, "in"),
-				width = unit(4.75, "in"),
-				height = unit(1.75, "in"),
-				angle = -90
-			)
-		)
-		textr <- c(credits)
-		textr <- paste(textr, collapse = "\n") |>
-			marquee::marquee_glue(.trim = FALSE)
-		# Horizontally centered since the spine mask clips increasingly
-		# aggressively away from the middle of this strip, unlike the
-		# corner-anchored jackets. Still top-anchored vertically.
-		mgr <- marquee::marquee_grob(
-			textr,
-			style = sbgjackets_style(size, align = "center"),
-			width = unit(4.75, "in"),
-			x = x %||% unit(0.5, "npc"),
-			y = unit(1, "npc") - unit(1 / 8, "in"),
-			hjust = "center-ink"
-		)
-		# Credits go in the left inside strip (x=[0,2]) of the spine viewport,
-		# rotated so text runs along the spine's y-axis.
-		gr <- gTree(
-			children = gList(mgr),
-			vp = viewport(
-				x = unit(7, "in"),
-				y = unit(3, "in"),
-				width = unit(4.75, "in"),
-				height = unit(1.75, "in"),
-				angle = 90
-			)
-		)
-		gList(gl, gr)
 	} else {
-		grob_cc <- license_badge_grob(xmp)
-
-		credits <- c(
-			"# Credits",
-			"",
-			credits,
-			icon_credits,
-			font_credits,
-			generated_by_credits
+		creditsGrob_jacket(
+			xmp = xmp,
+			credits = credits,
+			icon_credits = icon_credits,
+			font_credits = font_credits,
+			generated_by_credits = generated_by_credits,
+			license = license,
+			title = title,
+			size = size,
+			width = width,
+			x = x
 		)
-		text <- c(title, license, "", credits)
-		# cat(text, sep = "\n")
-		text <- paste(text, collapse = "\n") |>
-			marquee::marquee_glue(.trim = FALSE)
-		mg <- marquee::marquee_grob(
-			text,
-			style = sbgjackets_style(size),
-			width = width %||% unit(pnpmisc:::JACKET_4x6_FRONT_WIDTH + 1, "in"),
-			x = x %||% unit(1 / 8, "in"),
-			y = unit(1, "npc") - unit(1 / 8, "in")
-		)
-
-		gList(grob_cc, mg)
 	}
+}
+
+# Wallet spine layout: two rotated side-strips (left = title/license +
+# CC badge, right = credits), clipped by the spine's trapezoid mask.
+creditsGrob_wallet <- function(
+	xmp,
+	credits,
+	icon_credits,
+	font_credits,
+	generated_by_credits,
+	license,
+	title,
+	x
+) {
+	grob_cc <- license_badge_grob(
+		xmp,
+		x = unit(0.5, "npc"),
+		y = unit(1.0, "npc") - unit(0.4, "in")
+	)
+
+	credits <- c(
+		"# Credits",
+		icon_credits,
+		font_credits,
+		generated_by_credits,
+		"",
+		credits
+	)
+	textl <- c(title, license)
+	# `.envir = parent.frame()` reaches back to creditsGrob()'s frame (this
+	# function's caller), where the `{fn}` glue placeholder used by
+	# `generated_by_credits` would be defined, matching the pre-refactor
+	# behavior of calling `marquee_glue()` directly inside creditsGrob().
+	textl <- paste(textl, collapse = "\n") |>
+		marquee::marquee_glue(.trim = FALSE, .envir = parent.frame())
+	# Horizontally centered since the spine mask clips increasingly
+	# aggressively away from the middle of this strip, unlike the
+	# corner-anchored jackets. Still top-anchored vertically.
+	mgl <- marquee::marquee_grob(
+		textl,
+		style = sbgjackets_style("wallet", align = "center"),
+		width = unit(4.75, "in"),
+		x = x %||% unit(0.5, "npc"),
+		y = unit(1, "npc") - unit(1 / 8, "in") - unit(0.55, "in"),
+		hjust = "center-ink"
+	)
+	# Credits go in the left inside strip (x=[0,2]) of the spine viewport,
+	# rotated so text runs along the spine's y-axis. Offset from the
+	# spine's center (npc 0.5), see spineTextGrob().
+	gl <- gTree(
+		children = gList(mgl, grob_cc),
+		vp = viewport(
+			x = unit(0.5, "npc") - unit(3, "in"),
+			y = unit(0.5, "npc"),
+			width = unit(4.75, "in"),
+			height = unit(1.75, "in"),
+			angle = -90
+		)
+	)
+	textr <- paste(credits, collapse = "\n") |>
+		marquee::marquee_glue(.trim = FALSE, .envir = parent.frame())
+	# Horizontally centered since the spine mask clips increasingly
+	# aggressively away from the middle of this strip, unlike the
+	# corner-anchored jackets. Still top-anchored vertically.
+	mgr <- marquee::marquee_grob(
+		textr,
+		style = sbgjackets_style("wallet", align = "center"),
+		width = unit(4.75, "in"),
+		x = x %||% unit(0.5, "npc"),
+		y = unit(1, "npc") - unit(1 / 8, "in"),
+		hjust = "center-ink"
+	)
+	# Credits go in the right inside strip (x=[6,8]) of the spine viewport,
+	# rotated so text runs along the spine's y-axis. Offset from the
+	# spine's center (npc 0.5), see spineTextGrob().
+	gr <- gTree(
+		children = gList(mgr),
+		vp = viewport(
+			x = unit(0.5, "npc") + unit(3, "in"),
+			y = unit(0.5, "npc"),
+			width = unit(4.75, "in"),
+			height = unit(1.75, "in"),
+			angle = 90
+		)
+	)
+	gList(gl, gr)
+}
+
+# 4x6/poker layout: a single corner-anchored license badge + credits block.
+creditsGrob_jacket <- function(
+	xmp,
+	credits,
+	icon_credits,
+	font_credits,
+	generated_by_credits,
+	license,
+	title,
+	size,
+	width,
+	x
+) {
+	grob_cc <- license_badge_grob(xmp)
+
+	credits <- c(
+		"# Credits",
+		"",
+		credits,
+		icon_credits,
+		font_credits,
+		generated_by_credits
+	)
+	text <- c(title, license, "", credits)
+	# `.envir = parent.frame()` reaches back to creditsGrob()'s frame (this
+	# function's caller), where the `{fn}` glue placeholder used by
+	# `generated_by_credits` would be defined, matching the pre-refactor
+	# behavior of calling `marquee_glue()` directly inside creditsGrob().
+	text <- paste(text, collapse = "\n") |>
+		marquee::marquee_glue(.trim = FALSE, .envir = parent.frame())
+	mg <- marquee::marquee_grob(
+		text,
+		style = sbgjackets_style(size),
+		width = width %||% unit(pnpmisc:::JACKET_4x6_FRONT_WIDTH + 1, "in"),
+		x = x %||% unit(1 / 8, "in"),
+		y = unit(1, "npc") - unit(1 / 8, "in")
+	)
+
+	gList(grob_cc, mg)
 }
 
 license_badge_grob <- function(
@@ -350,9 +415,13 @@ backNotesGrob <- function(
 		width <- unit(pnpmisc:::JACKET_POKER_FRONT_WIDTH, "in")
 		y_pos <- unit(1, "npc") - unit(1 / 8, "in")
 	} else {
-		# Front viewport is 2"x8"; safe zone for wallet is y=[2,6]
+		# Front viewport is 2"x8"; safe zone for wallet is y=[2,6].
+		# Offset from the front/back cover's center (npc 0.5) rather than
+		# an edge, since `pdf_create_wallet()`'s front/back viewports grow
+		# symmetrically around their own center as `bleed` increases; see
+		# spineTextGrob().
 		width <- unit(1.75, "in")
-		y_pos <- unit(6, "in") - unit(1 / 8, "in")
+		y_pos <- unit(0.5, "npc") + unit(1.875, "in")
 	}
 	# Prevents `marquee::marquee_grob()` from leaving open a graphics device
 	current_dev <- grDevices::dev.cur()
@@ -426,9 +495,10 @@ spineIconGrob <- function(
 		gp_text <- gpar(fontsize = 6, fontfamily = "Carlito", col = col)
 		height <- unit(9 / 32, "in")
 		width <- unit(9 / 16, "in")
+		# Offset from the spine's center (npc 0.5), see spineTextGrob().
 		vp <- viewport(
-			x = unit(5.875, "in"),
-			y = unit(3, "in"),
+			x = unit(0.5, "npc") + unit(1.875, "in"),
+			y = unit(0.5, "npc"),
 			just = c("right", "center"),
 			height = height,
 			width = width
