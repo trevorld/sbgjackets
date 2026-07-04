@@ -2,7 +2,7 @@
 % Please edit documentation in R/blorg_in_the_midwest.R
 \name{pcw_blorg_in_the_midwest}
 \alias{pcw_blorg_in_the_midwest}
-\title{Create card wallet jacket for \emph{Blorg in the Midwest}}
+\title{Create playing card wallet for \emph{Blorg in the Midwest}}
 \usage{
 pcw_blorg_in_the_midwest(
   output = NULL,
@@ -21,6 +21,6 @@ pcw_blorg_in_the_midwest(
 The output file name invisibly.  As a side effect creates a pdf file.
 }
 \description{
-\code{pcw_blorg_in_the_midwest()} creates a card wallet jacket for the game
+\code{pcw_blorg_in_the_midwest()} creates an origami playing card wallet for the game
 \emph{Blorg in the Midwest}.
 }

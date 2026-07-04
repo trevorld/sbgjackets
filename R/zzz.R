@@ -39,10 +39,20 @@ muffle_warning <- function(expr, regexp) {
 	withCallingHandlers(
 		expr,
 		warning = function(w) {
-			if (grepl(regexp, conditionMessage(w))) {
+			if (grepl(regexp, conditionMessage(w), fixed = TRUE)) {
 				invokeRestart("muffleWarning")
 			}
 		}
+	)
+}
+
+# `creditsGrob(size = "wallet")`'s license badge sits in a rotated viewport
+# that's not near the mask's clipping region, so this warning is known-benign
+# for content built from sbgjackets' own wallet helpers.
+pdf_create_wallet_silent <- function(...) {
+	muffle_warning(
+		pdf_create_wallet(...),
+		"cannot clip to rotated viewport"
 	)
 }
 
