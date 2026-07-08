@@ -3,6 +3,7 @@
 \name{pcbj_cubes}
 \alias{pcbj_cubes}
 \alias{pcbj_dice}
+\alias{pcbj_game_pieces}
 \alias{pcbj_meeples}
 \alias{pcbj_polyhedral_dice}
 \title{Create playing card box jackets for generic component storage.}
@@ -15,6 +16,13 @@ pcbj_cubes(
 )
 
 pcbj_dice(
+  output = NULL,
+  ...,
+  paper = getOption("papersize", "letter"),
+  instructions = FALSE
+)
+
+pcbj_game_pieces(
   output = NULL,
   ...,
   paper = getOption("papersize", "letter"),
@@ -50,6 +58,7 @@ The output file name invisibly.  As a side effect creates a pdf file.
 \description{
 \code{pcbj_cubes()} creates a playing card box jacket for wooden cube storage.
 \code{pcbj_dice()} creates a playing card box jacket for dice storage.
+\code{pcbj_game_pieces()} creates a playing card box jacket for game piece storage.
 \code{pcbj_meeples()} creates a playing card box jacket for meeple storage.
 \code{pcbj_polyhedral_dice()} creates a playing card box jacket for polyhedral dice storage.
 }

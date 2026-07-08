@@ -2,6 +2,7 @@
 #'
 #' `sbgj_black_stones()` creates a small box game jacket for black stones.
 #' `sbgj_cubes()` creates a small box game jacket for wooden cubes.
+#' `sbgj_game_pieces()` creates a small box game jacket for game pieces.
 #' `sbgj_glass_stones()` creates a small box game jacket for glass stones.
 #' `sbgj_marbles()` creates a small box game jacket for marbles.
 #' `sbgj_meeples()` creates a small box game jacket for meeples.
@@ -279,10 +280,95 @@ jacket_dice <- function(
 	pdf_polish_jacket(output, xmp = xmp, instructions = instructions)
 }
 
+#' @rdname sbgj_storage
+#' @export
+sbgj_game_pieces <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
+	jacket_game_pieces(
+		output = output,
+		...,
+		size = "4x6",
+		paper = paper,
+		instructions = instructions
+	)
+}
+
+jacket_game_pieces <- function(
+	output = NULL,
+	...,
+	size = c("4x6", "poker"),
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
+	check_dots_empty()
+	check_sbgjackets_dependencies()
+	size <- match.arg(size)
+
+	url <- "https://unsplash.com/photos/laNNTAth9vs/download"
+	bm_front <- bm_cache_url(url, "game_pieces_front.jpg")
+
+	url <- "https://unsplash.com/photos/ayVMouMabzs/download"
+	bm_back <- bm_cache_url(url, "game_pieces_back.jpg")
+
+	front <- fullGrob(bm_front, width = 1)
+	back <- fullGrob(bm_back, height = 1)
+
+	spine <- gList(fullGrob("black"), spineTextGrob("Game Pieces", size = size))
+	xmp <- xmp(
+		creator = "Trevor L. Davis",
+		date_created = "2026",
+		spdx_id = "CC-BY-ND-4.0",
+		title = jacket_title("Game Pieces", size)
+	)
+
+	credits <- r"(
+		* *six assorted-color dice* by Robert Coelho
+
+		  + <https://unsplash.com/photos/six-assorted-color-dice-laNNTAth9vs>
+		  + Unsplash License <https://unsplash.com/license>
+		  + Cropped to fit front cover
+
+		* *Dice and pawns are ready to play* by Abhishek Tewari
+
+		  + <https://unsplash.com/photos/dice-and-pawns-are-ready-to-play-ayVMouMabzs>
+		  + Unsplash License <https://unsplash.com/license>
+		  + Cropped to fit back cover
+	)"
+	inner <- creditsGrob(xmp, credits, icons = FALSE, size = size)
+
+	output <- if (size == "4x6") {
+		pdf_create_jacket(
+			output = output,
+			front = front,
+			back = back,
+			spine = spine,
+			inner = inner,
+			paper = paper,
+			bg = "black"
+		)
+	} else {
+		pdf_create_poker_jacket(
+			output = output,
+			front = front,
+			back = back,
+			spine = spine,
+			inner = inner,
+			paper = paper,
+			bg = "black"
+		)
+	}
+	pdf_polish_jacket(output, xmp = xmp, instructions = instructions)
+}
+
 #' Create playing card box jackets for generic component storage.
 #'
 #' `pcbj_cubes()` creates a playing card box jacket for wooden cube storage.
 #' `pcbj_dice()` creates a playing card box jacket for dice storage.
+#' `pcbj_game_pieces()` creates a playing card box jacket for game piece storage.
 #' `pcbj_meeples()` creates a playing card box jacket for meeple storage.
 #' `pcbj_polyhedral_dice()` creates a playing card box jacket for polyhedral dice storage.
 #'
@@ -308,6 +394,23 @@ pcbj_dice <- function(
 	instructions = FALSE
 ) {
 	jacket_dice(output = output, ..., size = "poker", paper = paper, instructions = instructions)
+}
+
+#' @rdname pcbj_storage
+#' @export
+pcbj_game_pieces <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
+	jacket_game_pieces(
+		output = output,
+		...,
+		size = "poker",
+		paper = paper,
+		instructions = instructions
+	)
 }
 
 #' @rdname pcbj_storage
