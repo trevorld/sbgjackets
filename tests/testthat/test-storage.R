@@ -24,6 +24,15 @@ test_that("Storage jackets", {
 	expect_true(file.exists(f))
 	unlink(f)
 
+	skip_if_not(cache_has("game_pieces_front.jpg"))
+	skip_if_not(cache_has("game_pieces_back.jpg"))
+	f <- pcbj_game_pieces()
+	expect_true(file.exists(f))
+	unlink(f)
+	f <- sbgj_game_pieces()
+	expect_true(file.exists(f))
+	unlink(f)
+
 	skip_if_not(cache_has("slate_black_stones.jpg"))
 	skip_if_not(cache_has("yunzi_go_stones.jpg"))
 	f <- sbgj_black_stones()

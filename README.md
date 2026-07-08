@@ -99,6 +99,7 @@ This package also provides functions that locally create SBG jackets pdfs for a 
 |Double-Nine Dominoes     |`sbgj_dominoes_double9()`  |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
 |Double-Twelve Dominoes   |`sbgj_dominoes_double12()` |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
 |[Dungeon Delver](https://boardgamegeek.com/boardgame/113324/dungeon-delver)|`sbgj_dungeon_delver()`    |Personal Use Only |
+|Game Pieces              |`sbgj_game_pieces()`       |[CC-BY-ND-4.0](https://creativecommons.org/licenses/by-nd/4.0/)|
 |[Homeworlds](https://www.looneylabs.com/games/homeworlds)|`sbgj_homeworlds()`        |Personal Use Only |
 |[Ice Duo](https://www.looneylabs.com/games/ice-duo)|`sbgj_ice_duo()`           |Personal Use Only |
 |[Jinxx](https://www.looneylabs.com/games/jinxx)|`sbgj_jinxx()`             |Personal Use Only |
@@ -134,6 +135,7 @@ This package also provides functions that locally create playing-card box jacket
 |[Everdeck](https://thewrongtools.wordpress.com/2019/10/10/the-everdeck/)|`pcbj_everdeck()`          |Personal Use Only |
 |[The Fox in the Forest](https://foxtrotgames.com/forest/)|`pcbj_fox_in_the_forest()` |Personal Use Only |
 |[French Suits: English Pattern](https://i-p-c-s.org/pattern/ps-48.html)|`pcbj_english_pattern()`   |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
+|Game Pieces                      |`pcbj_game_pieces()`       |[CC-BY-ND-4.0](https://creativecommons.org/licenses/by-nd/4.0/)|
 |[German Suits: Bavarian Pattern](https://i-p-c-s.org/pattern/ps-55.html)|`pcbj_bavarian_pattern()`  |[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)|
 |[Mahjong](https://www.sloperama.com/mahjongg/)|`pcbj_mahjong()`           |[CC-BY-ND-4.0](https://creativecommons.org/licenses/by-nd/4.0/)|
 |Meeples                          |`pcbj_meeples()`           |[CC-BY-NC-SA-2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/)|
@@ -164,7 +166,7 @@ This package also provides functions that locally create print-and-play origami 
 
 | Feature | Boardgame Barrio | `{sbgjackets}` |
 | --- | --- | --- |
-| Quantity | Over 1,600 pre-made jackets | 40 pre-made jackets |
+| Quantity | Over 1,600 pre-made jackets | 42 pre-made jackets |
 | Size | Targets only 4x6 photo storage boxes | Targets 4x6 photo storage boxes as well as playing card boxes |
 | Process | Made in Microsoft Publisher with a template | Made in `R` with `pnpmisc::pdf_create_jacket()` |
 | Spine Font | Calibri (proprietary) | Carlito (libre font, metrically compatible with Calibri) |

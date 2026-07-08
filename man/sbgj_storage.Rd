@@ -4,6 +4,7 @@
 \alias{sbgj_black_stones}
 \alias{sbgj_cubes}
 \alias{sbgj_dice}
+\alias{sbgj_game_pieces}
 \alias{sbgj_marbles}
 \alias{sbgj_glass_stones}
 \alias{sbgj_meeples}
@@ -28,6 +29,13 @@ sbgj_cubes(
 )
 
 sbgj_dice(
+  output = NULL,
+  ...,
+  paper = getOption("papersize", "letter"),
+  instructions = FALSE
+)
+
+sbgj_game_pieces(
   output = NULL,
   ...,
   paper = getOption("papersize", "letter"),
@@ -98,6 +106,7 @@ The output file name invisibly.  As a side effect creates a pdf file.
 \description{
 \code{sbgj_black_stones()} creates a small box game jacket for black stones.
 \code{sbgj_cubes()} creates a small box game jacket for wooden cubes.
+\code{sbgj_game_pieces()} creates a small box game jacket for game pieces.
 \code{sbgj_glass_stones()} creates a small box game jacket for glass stones.
 \code{sbgj_marbles()} creates a small box game jacket for marbles.
 \code{sbgj_meeples()} creates a small box game jacket for meeples.

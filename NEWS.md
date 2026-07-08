@@ -33,6 +33,7 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
   + `sbgj_black_stones()`
   + `sbgj_cubes()`
   + `sbgj_dice()`
+  + `sbgj_game_pieces()`
   + `sbgj_glass_stones()`
   + `sbgj_marbles()`
   + `sbgj_meeples()`
@@ -50,6 +51,7 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
   + `pcbj_decktet()`
   + `pcbj_dice()`
   + `pcbj_english_pattern()`
+  + `pcbj_game_pieces()`
   + `pcbj_mahjong()`
   + `pcbj_meeples()`
   + `pcbj_pinochle()`
