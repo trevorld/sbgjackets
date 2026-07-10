@@ -1,6 +1,8 @@
 #' Create playing card box jacket for traditional card games
 #'
 #' `pcbj_bridge()` creates a playing card box jacket for a Bridge deck.
+#' `pcbj_canasta()` creates two playing card box jackets for the two decks
+#' used in Canasta.
 #' `pcbj_pinochle()` creates a playing card box jacket for a Pinochle deck.
 #' `pcbj_poker()` creates a playing card box jacket for a Poker deck.
 #'
@@ -55,6 +57,104 @@ pcbj_bridge <- function(
 	if (double) {
 		spine <- list(spine, spine)
 	}
+	pdf_create_poker_jacket(
+		output = output,
+		front = front,
+		back = back,
+		spine = spine,
+		inner = inner,
+		paper = paper,
+		bg = background_col
+	) |>
+		pdf_polish_jacket(xmp = xmp, instructions = instructions)
+}
+
+#' @rdname traditional_card_games
+#' @export
+pcbj_canasta <- function(
+	output = NULL,
+	...,
+	paper = getOption("papersize", "letter"),
+	instructions = FALSE
+) {
+	check_dots_empty()
+	check_sbgjackets_dependencies()
+
+	background_col <- "white"
+	text_col <- "black"
+
+	# Little Red Riding Hood images featuring a basket ("canasta" in Spanish)
+	url1 <- "https://upload.wikimedia.org/wikipedia/commons/2/20/Little_Red_Riding_Hood_-_53069344364_-_Jack_Zipes_Historic_Fairy_Tale_Postcard_Collection_-_A.P._%281910-1914%29.jpg"
+	bm_back1 <- bm_cache_url(url1, "little_red_riding_hood_1.jpg") |>
+		bm_extract(112:921, 95:440)
+	back1 <- fullGrob(bm_back1, width = 1)
+
+	url2 <- "https://upload.wikimedia.org/wikipedia/commons/4/4d/WalterCrane%2CLittle_Red_Riding_Hood-5.png"
+	bm_front1 <- bm_cache_url(url2, "little_red_riding_hood_2.png") |>
+		bm_extract(18:1109, 4:908)
+	front1 <- fullGrob(bm_front1, height = 1)
+
+	url3 <- "https://upload.wikimedia.org/wikipedia/commons/4/42/Little_Red_Riding_Hood_-_53066252887_-_Jack_Zipes_Historic_Fairy_Tale_Postcard_Collection_-_uncredited_%281909_or_earlier%29.jpg"
+	bm_back2 <- bm_cache_url(url3, "little_red_riding_hood_3.jpg") |>
+		bm_extract(333:965, 257:624)
+	back2 <- fullGrob(bm_back2, width = 1)
+
+	url4 <- "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Little_Red_Riding_Hood_LCCN2004669683.jpg/960px-Little_Red_Riding_Hood_LCCN2004669683.jpg"
+	bm_front2 <- bm_cache_url(url4, "little_red_riding_hood_4.jpg") |>
+		bm_extract(177:878, 228:825)
+	front2 <- fullGrob(bm_front2, height = 1)
+
+	front <- list(front1, front2)
+	back <- list(back1, back2)
+
+	spine1 <- gList(
+		spineTextGrob("Canasta (1/2)", col = text_col, size = "poker"),
+		spineIconGrob(2:4, 45, 2.14, text_col, size = "poker")
+	)
+	spine2 <- gList(
+		spineTextGrob("Canasta (2/2)", col = text_col, size = "poker"),
+		spineIconGrob(2:4, 45, 2.14, text_col, size = "poker")
+	)
+	spine <- list(spine1, spine2)
+
+	xmp <- xmp(
+		creator = "Trevor L. Davis",
+		date_created = "2026",
+		spdx_id = "CC-BY-4.0",
+		title = "Canasta Playing Card Box Jackets"
+	)
+	credits1 <- r"(
+		* *Little Red Riding Hood* by Walter Crane (1875)
+
+		  + <https://commons.wikimedia.org/wiki/File:WalterCrane,Little_Red_Riding_Hood-5.png>
+		  + Public Domain in the USA
+		  + Cropped to fit front cover
+
+		* *Little Red Riding Hood* by A.P. (1910{en_dash}1914) from the Jack Zipes Historic Fairy Tale Postcard Collection
+
+		  + <https://www.flickr.com/photos/69184488@N06/53069344364/>
+		  + Creative Commons Attribution 2.0 Generic License
+		  + Cropped to fit back cover
+	)"
+	credits2 <- r"(
+		* *Little Red Riding Hood* published by Joseph Hoover (1873)
+
+		  + <https://commons.wikimedia.org/wiki/File:Little_Red_Riding_Hood_LCCN2004669683.jpg>
+		  + Public Domain in the USA
+		  + Cropped to fit front cover
+
+		* *Little Red Riding Hood* by an uncredited artist (1909 or earlier) from the Jack Zipes Historic Fairy Tale Postcard Collection
+
+		  + <https://www.flickr.com/photos/69184488@N06/53066252887/>
+		  + Creative Commons Attribution 2.0 Generic License
+		  + Cropped to fit back cover
+	)"
+
+	inner <- list(
+		creditsGrob(xmp, credits1, icons = TRUE, size = "poker", cex = 0.8),
+		creditsGrob(xmp, credits2, icons = TRUE, size = "poker", cex = 0.8)
+	)
+
 	pdf_create_poker_jacket(
 		output = output,
 		front = front,

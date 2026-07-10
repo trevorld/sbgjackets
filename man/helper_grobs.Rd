@@ -16,7 +16,8 @@ creditsGrob(
   size = c("4x6", "poker", "wallet"),
   ...,
   width = NULL,
-  x = NULL
+  x = NULL,
+  cex = 1
 )
 
 backNotesGrob(
@@ -56,6 +57,9 @@ and will be processed by \code{\link[marquee:marquee_glue]{marquee::marquee_glue
 \item{...}{Ignored for now.}
 
 \item{x, width}{\code{\link[grid:unit]{grid::unit()}} that will be passed to \code{\link[marquee:marquee_grob]{marquee::marquee_grob()}}.}
+
+\item{cex}{Multiplier applied to the font size (and hence the line
+spacing) which can be lowered to compact longer credits.}
 
 \item{notes}{A character vector of (commonmark) back cover notes.
 Will be collapsed to a single string by \code{paste(collapse = "\\n")},

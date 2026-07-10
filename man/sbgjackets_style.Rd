@@ -8,7 +8,8 @@ sbgjackets_style(
   size = c("4x6", "poker", "wallet"),
   ...,
   color = "black",
-  align = NULL
+  align = NULL,
+  cex = 1
 )
 }
 \arguments{
@@ -24,6 +25,9 @@ sbgjackets_style(
 (e.g. \code{"left"}, \code{"center"}, or \code{"right"})
 to use for the \code{"base"} style,
 see \code{\link[marquee:style]{marquee::style()}} for allowed values.}
+
+\item{cex}{Multiplier applied to the base font size (and hence the
+line spacing which is relative to the font size).}
 }
 \value{
 A \code{marquee} style set object.
