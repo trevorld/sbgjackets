@@ -124,6 +124,8 @@ prepend_instructions <- function(
 #' @param icons If `TRUE` include Creative Commons credits for Games-icons.net icons.
 #' @param ... Ignored for now.
 #' @param x,width [grid::unit()] that will be passed to [marquee::marquee_grob()].
+#' @param cex Multiplier applied to the font size (and hence the line
+#'            spacing) which can be lowered to compact longer credits.
 #' @export
 creditsGrob <- function(
 	xmp = xmpdf::xmp(),
@@ -132,7 +134,8 @@ creditsGrob <- function(
 	size = c("4x6", "poker", "wallet"),
 	...,
 	width = NULL,
-	x = NULL
+	x = NULL,
+	cex = 1
 ) {
 	check_dots_empty()
 	size <- match.arg(size)
@@ -226,7 +229,8 @@ creditsGrob <- function(
 			generated_by_credits = generated_by_credits,
 			license = license,
 			title = title,
-			x = x
+			x = x,
+			cex = cex
 		)
 	} else {
 		creditsGrob_jacket(
@@ -239,7 +243,8 @@ creditsGrob <- function(
 			title = title,
 			size = size,
 			width = width,
-			x = x
+			x = x,
+			cex = cex
 		)
 	}
 }
@@ -254,7 +259,8 @@ creditsGrob_wallet <- function(
 	generated_by_credits,
 	license,
 	title,
-	x
+	x,
+	cex
 ) {
 	grob_cc <- license_badge_grob(
 		xmp,
@@ -282,7 +288,7 @@ creditsGrob_wallet <- function(
 	# corner-anchored jackets. Still top-anchored vertically.
 	mgl <- marquee::marquee_grob(
 		textl,
-		style = sbgjackets_style("wallet", align = "center"),
+		style = sbgjackets_style("wallet", align = "center", cex = cex),
 		width = unit(4.75, "in"),
 		x = x %||% unit(0.5, "npc"),
 		y = unit(1, "npc") - unit(1 / 8, "in") - unit(0.55, "in"),
@@ -308,7 +314,7 @@ creditsGrob_wallet <- function(
 	# corner-anchored jackets. Still top-anchored vertically.
 	mgr <- marquee::marquee_grob(
 		textr,
-		style = sbgjackets_style("wallet", align = "center"),
+		style = sbgjackets_style("wallet", align = "center", cex = cex),
 		width = unit(4.75, "in"),
 		x = x %||% unit(0.5, "npc"),
 		y = unit(1, "npc") - unit(1 / 8, "in"),
@@ -341,7 +347,8 @@ creditsGrob_jacket <- function(
 	title,
 	size,
 	width,
-	x
+	x,
+	cex
 ) {
 	grob_cc <- license_badge_grob(xmp)
 
@@ -362,7 +369,7 @@ creditsGrob_jacket <- function(
 		marquee::marquee_glue(.trim = FALSE, .envir = parent.frame())
 	mg <- marquee::marquee_grob(
 		text,
-		style = sbgjackets_style(size),
+		style = sbgjackets_style(size, cex = cex),
 		width = width %||% unit(pnpmisc:::JACKET_4x6_FRONT_WIDTH + 1, "in"),
 		x = x %||% unit(1 / 8, "in"),
 		y = unit(1, "npc") - unit(1 / 8, "in")

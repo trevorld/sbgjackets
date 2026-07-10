@@ -12,13 +12,16 @@
 #'              (e.g. `"left"`, `"center"`, or `"right"`)
 #'              to use for the `"base"` style,
 #'              see [marquee::style()] for allowed values.
+#' @param cex Multiplier applied to the base font size (and hence the
+#'            line spacing which is relative to the font size).
 #' @return A `marquee` style set object.
 #' @export
 sbgjackets_style <- function(
 	size = c("4x6", "poker", "wallet"),
 	...,
 	color = "black",
-	align = NULL
+	align = NULL,
+	cex = 1
 ) {
 	check_dots_empty()
 	size <- match.arg(size)
@@ -32,6 +35,7 @@ sbgjackets_style <- function(
 		base_size <- 8
 		lineheight <- 1.3
 	}
+	base_size <- cex * base_size
 	# Don't manually set `bullets` to avoid #99
 	style <- marquee::classic_style(
 		base_size = base_size,

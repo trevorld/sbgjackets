@@ -105,6 +105,7 @@ df_pcbj <- function() {
 	df <- tibble::tribble(
 		~game, ~url, ~`function`, ~license,
 		"Bridge", "https://www.pagat.com/auctionwhist/bridge.html", "`pcbj_bridge()`", "CC-BY-4.0",
+		"Canasta", "https://www.pagat.com/rummy/canasta.html", "`pcbj_canasta()`", "CC-BY-4.0",
 		"Cubes", NA_character_, "`pcbj_cubes()`", "CC-BY-SA-3.0",
 		"Decktet", "https://decktet.com", "`pcbj_decktet()`", "CC-BY-NC-SA-4.0",
 		"Dice", NA_character_, "`pcbj_dice()`", "CC-BY-4.0",

@@ -46,6 +46,7 @@ Functions to create small box game (SBG) jackets under Creative Commons licenses
 
   + `pcbj_bavarian_pattern()`
   + `pcbj_bridge()`
+  + `pcbj_canasta()`
   + `pcbj_castilian_pattern()`
   + `pcbj_cubes()`
   + `pcbj_decktet()`
