@@ -207,7 +207,7 @@ creditsGrob <- function(
 		generated_by_credits <- NULL
 	}
 	if (!is.null(xmp$usage_terms)) {
-		license <- xmp$usage_terms
+		license <- protect_url_wrap(xmp$usage_terms)
 	} else {
 		license <- "Personal Use Only"
 	}
@@ -376,6 +376,15 @@ creditsGrob_jacket <- function(
 	)
 
 	gList(grob_cc, mg)
+}
+
+# Insert a word joiner (U+2060) after "http(s)://" since the Unicode line
+# breaking algorithm ({marquee} via ICU) otherwise allows an awkward line break
+# right after the scheme's slashes.  The word joiner renders invisibly, is
+# omitted from the PDF's extractable text by `cairo_pdf()`, and even if copied
+# would be stripped from the hostname by browsers' IDNA processing.
+protect_url_wrap <- function(x) {
+	gsub("(https?://)", "\\1\u2060", x)
 }
 
 license_badge_grob <- function(
