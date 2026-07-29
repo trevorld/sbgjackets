@@ -30,6 +30,7 @@ reference:
         - pcbj_castilian_pattern
         - pcbj_decktet
         - pcbj_dice
+        - pcbj_dotaro_deck
         - pcbj_everdeck
         - pcbj_fox_in_the_forest
         - pcbj_mahjong
