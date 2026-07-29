@@ -40,6 +40,8 @@ Suggests:
 	testthat,
 	tibble
 Additional_repositories: https://trevorld.r-universe.dev, https://piecepackr.r-universe.dev
+Remotes:
+    trevorld/dotaro.deck
 License: MIT + file LICENSE
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
