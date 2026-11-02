@@ -76,16 +76,7 @@ prepend_instructions <- function(
 	paper = getOption("papersize", "letter"),
 	orientation = "landscape"
 ) {
-	current_dev <- grDevices::dev.cur()
-	ragg::agg_capture(
-		width = pnpmisc:::JACKET_4x6_WIDTH,
-		height = pnpmisc:::JACKET_4x6_HEIGHT,
-		units = "in"
-	)
-	on.exit(invisible(dev.off()), add = TRUE)
-	if (current_dev > 1) {
-		on.exit(grDevices::dev.set(current_dev), add = TRUE)
-	}
+	local_agg_capture()
 
 	f1 <- pnpmisc::pdf_create_jacket_instructions(
 		paper = paper,
@@ -140,16 +131,7 @@ creditsGrob <- function(
 	check_dots_empty()
 	size <- match.arg(size)
 	# Prevents `marquee::marque_grob()` from leaving open a graphics device
-	current_dev <- grDevices::dev.cur()
-	ragg::agg_capture(
-		width = pnpmisc:::JACKET_4x6_WIDTH,
-		height = pnpmisc:::JACKET_4x6_HEIGHT,
-		units = "in"
-	)
-	on.exit(invisible(dev.off()), add = TRUE)
-	if (current_dev > 1) {
-		on.exit(grDevices::dev.set(current_dev), add = TRUE)
-	}
+	local_agg_capture()
 	credits <- paste(credits, collapse = "\n") |>
 		trim_multistring()
 
@@ -440,16 +422,7 @@ backNotesGrob <- function(
 		y_pos <- unit(0.5, "npc") + unit(1.875, "in")
 	}
 	# Prevents `marquee::marquee_grob()` from leaving open a graphics device
-	current_dev <- grDevices::dev.cur()
-	ragg::agg_capture(
-		width = pnpmisc:::JACKET_4x6_WIDTH,
-		height = pnpmisc:::JACKET_4x6_HEIGHT,
-		units = "in"
-	)
-	on.exit(invisible(dev.off()), add = TRUE)
-	if (current_dev > 1) {
-		on.exit(grDevices::dev.set(current_dev), add = TRUE)
-	}
+	local_agg_capture()
 	# `...` (e.g. `around_table = around_table` in `pcbj_pinochle()`) is bound
 	# into scope here so markdown image tags like `![](around_table)` can
 	# resolve the object by name when `marquee_grob()` renders them.
